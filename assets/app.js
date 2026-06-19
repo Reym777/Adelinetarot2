@@ -219,22 +219,23 @@
     $("payName").textContent = state.fullName;
     $("payRef").textContent = state.reference;
 
+    var stripeBox = $("stripeBox");
+    // Prioridad a la API Stripe nativa (que genera las sesiones y gestiona el retorno automático)
+    if (stripeBox) { 
+      stripeBox.classList.toggle("hidden", !state.stripeEnabled); 
+    }
+    var stripeBtn = $("stripeBtn");
+    if (stripeBtn) { stripeBtn.disabled = false; stripeBtn.textContent = STRIPE_LABEL; }
+
     var link = $("paypalMeLink");
     var payUrl = state.paymentUrl || state.paypalMeUrl || "";
-    if (payUrl) {
+    // Solo mostramos el enlace estático si Stripe nativo NO está activado
+    if (payUrl && !state.stripeEnabled) {
       link.href = payUrl;
       link.classList.remove("hidden");
     } else {
       link.classList.add("hidden");
     }
-
-    var payNote = $("payNote");
-    if (payNote) { payNote.textContent = state.paymentNote || ""; }
-
-    var stripeBox = $("stripeBox");
-    if (stripeBox) { stripeBox.classList.toggle("hidden", !state.stripeEnabled); }
-    var stripeBtn = $("stripeBtn");
-    if (stripeBtn) { stripeBtn.disabled = false; stripeBtn.textContent = STRIPE_LABEL; }
 
     var note = $("paypalNote");
     note.innerHTML = "";
