@@ -189,22 +189,28 @@
           <p class="pay-amount" id="payAmount">100 MXN</p>
           <p class="pay-sub">Para <span id="payName" class="gold"></span> · Ref. <span id="payRef"></span></p>
 
-          <div class="paypal-box">
+          <div class="paypal-box" id="payButtonsContainer">
+            
             <div id="stripeBox" class="hidden">
-              <button type="button" class="btn btn-primary btn-block" id="stripeBtn">
-                💳 Pagar con tarjeta · Apple Pay · Google Pay
+              <button type="button" class="btn btn-primary btn-block" id="stripeBtn" style="margin-bottom: 12px; background: #635bff; color: white; border: none;">
+                💳 Pagar con Tarjeta (Stripe)
               </button>
-              <p class="hint center" style="margin:8px 0 0">
-                Pago seguro con Stripe. Apple Pay y Google Pay aparecen
-                automáticamente en dispositivos compatibles.
-              </p>
+              
+              <button type="button" class="btn btn-block" id="stripeAppleBtn" style="margin-bottom: 12px; background: #000; color: #fff; border: none;">
+                 Apple Pay
+              </button>
+              
+              <button type="button" class="btn btn-block" id="stripeGoogleBtn" style="margin-bottom: 12px; background: #fff; color: #000; border: 1px solid #ccc;">
+                <svg style="width:16px;height:16px;vertical-align:text-bottom;margin-right:6px;" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.7 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6C44.43 38.02 46.98 31.85 46.98 24.55z"/><path fill="#FBBC05" d="M10.54 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.98-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Google Pay
+              </button>
               <div class="divider">o</div>
             </div>
-            <div id="walletButtons" class="wallet-buttons hidden">
-              <div id="applepay-button" class="wallet-btn hidden"></div>
-              <div id="googlepay-button" class="wallet-btn hidden"></div>
-              <div class="divider">o</div>
-            </div>
+
+            <a id="customPaypalBtn" class="btn btn-block" style="background:#ffc439; color:#003087; margin-bottom: 12px; font-weight:bold; border: none; text-decoration: none;" href="https://www.paypal.com/paypalme/adelinetaroterapeu?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcASigrhleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadMFfskfIRWh4h1AlE60TGTcpOxCp2j-NnyZZwvxvjp2vow8MGH3BzmdjFVaA_aem_cdYniPJG_ibJZQZ6qjkGpw" target="_blank" rel="noopener">
+              Pagar con PayPal
+            </a>
+
+            <div id="walletButtons" class="wallet-buttons hidden"></div>
             <div id="paypal-buttons"></div>
             <div id="paypalNote"></div>
 

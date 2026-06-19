@@ -42,22 +42,24 @@ body {
 
 img, svg { max-width: 100%; height: auto; }
 
-/* Cielo nocturno: degradado + capas de estrellas */
+/* Theme enchanteur avec image de fond */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -2;
-  background:
-    radial-gradient(1200px 700px at 80% -10%, #2a2156 0%, transparent 60%),
-    radial-gradient(900px 600px at 10% 110%, #1d1a44 0%, transparent 55%),
-    linear-gradient(180deg, #0c0a1d 0%, #0a0818 100%);
+  background: url("images/photo_2026-06-19_22-16-38.jpg") no-repeat center center;
+  background-size: cover;
+  opacity: 0.8; /* Légèrement estompé pour que le texte reste lisible */
 }
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
+  /* Couche d'assombrissement (overlay) du thème mystique */
+  background: linear-gradient(180deg, rgba(12,10,29,0.7) 0%, rgba(10,8,24,0.95) 100%);
+}
   background-image:
     radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,.9), transparent),
     radial-gradient(1.5px 1.5px at 70% 20%, rgba(255,255,255,.7), transparent),
