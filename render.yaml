@@ -1,0 +1,44 @@
+# ============================================================================
+#  Render Blueprint — AdelineTarot (todo en uno: API FastAPI + sitio estatico)
+# ----------------------------------------------------------------------------
+#  Despliegue en 4 pasos:
+#   1) Sube la carpeta AdelineTarot/ a un repositorio de GitHub
+#      (este archivo render.yaml debe quedar en la RAIZ del repo).
+#   2) En https://dashboard.render.com  ->  New +  ->  Blueprint
+#      ->  conecta tu repo. Render leera este archivo y creara el servicio.
+#   3) Pulsa "Apply". Al terminar, abre https://<nombre>.onrender.com
+#      Ese mismo dominio sirve el sitio (/) y la API (/api/...): sin CORS.
+#   4) Panel privado en  /admin . El token se genera solo y queda guardado
+#      en Render (variable ADELINE_ADMIN_TOKEN, visible en Environment).
+#
+#  Notas:
+#   - El plan free "duerme" tras inactividad: la 1a visita puede tardar ~50s.
+#   - SQLite vive en disco efimero del plan free: las reservas se pierden al
+#     redeploy/reinicio. Para conservarlas usa un Render Disk o Postgres.
+#   - PayPal: pega tu client-id en ADELINE_PAYPAL_CLIENT_ID para activar los
+#     botones in-page; si lo dejas vacio se usa el enlace PayPal.Me.
+# ============================================================================
+services:
+  - type: web
+    name: adelinetarot
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: ADELINE_DEBUG
+        value: "false"
+      # Token de administracion estable (Render genera un valor seguro y lo fija).
+      - key: ADELINE_ADMIN_TOKEN
+        generateValue: true
+      # PayPal.Me para el pago manual (cambialo por tu usuario real de PayPal).
+      - key: ADELINE_PAYPAL_ME_HANDLE
+        value: adelinetarot
+      # Opcional: client-id de PayPal para los botones in-page. Vacio = solo PayPal.Me.
+      - key: ADELINE_PAYPAL_CLIENT_ID
+        value: ""

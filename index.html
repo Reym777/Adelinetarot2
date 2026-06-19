@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0a1d" />
+  <!-- URL del backend (FastAPI). Dejalo vacio si el backend sirve esta pagina.
+       En GitHub Pages u otro hosting estatico, pon aqui la URL publica del
+       backend, p. ej. content="https://tu-backend.onrender.com" -->
+  <meta name="adeline-api-base" content="" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23e8c66b'/%3E%3Ccircle cx='11' cy='13' r='10' fill='%230c0a1d'/%3E%3C/svg%3E" />
+  <title>AdelineTarot · Carta Astral & Tarot en videollamada</title>
+  <meta name="description" content="Descubre tu carta astral y una lectura de tarot en una videollamada privada con AdelineTarot. Reserva con tu fecha, nombre y lugar de nacimiento." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#inicio">
+        <span class="moon" aria-hidden="true"></span>
+        AdelineTarot
+      </a>
+      <nav class="nav-links">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#incluye">Qué incluye</a>
+        <a href="#reservar">Reservar</a>
+        <a href="admin.html">AdelineTarot</a>
+      </nav>
+      <a href="#reservar" class="btn btn-primary" style="padding:10px 22px">Reservar</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="container">
+        <svg class="constellation" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <circle cx="60" cy="60" r="46" stroke="#e8c66b" stroke-opacity="0.35" stroke-width="1"/>
+          <circle cx="60" cy="14" r="3" fill="#e8c66b"/>
+          <circle cx="98" cy="44" r="2.4" fill="#b9aef0"/>
+          <circle cx="86" cy="92" r="3" fill="#e8c66b"/>
+          <circle cx="30" cy="96" r="2.4" fill="#b9aef0"/>
+          <circle cx="20" cy="40" r="3" fill="#e8c66b"/>
+          <circle cx="60" cy="60" r="4.5" fill="#fff7df"/>
+          <path d="M60 14 L98 44 L86 92 L30 96 L20 40 Z" stroke="#e8c66b" stroke-opacity="0.5" stroke-width="0.8"/>
+          <path d="M60 14 L60 60 L98 44 M60 60 L86 92 M60 60 L30 96 M60 60 L20 40" stroke="#b9aef0" stroke-opacity="0.4" stroke-width="0.7"/>
+        </svg>
+        <p class="eyebrow">Astrología · Tarot · Videollamada privada</p>
+        <h1>
+          Tu cielo tiene un mensaje
+          <span class="thin">y las cartas, un camino</span>
+        </h1>
+        <p class="lead">
+          Con tu fecha, nombre y lugar de nacimiento, <strong class="gold">AdelineTarot</strong>
+          traza tu carta astral y la interpreta en vivo, junto a una lectura de tarot
+          que ilumina tu camino a corto plazo. Todo en una videollamada privada.
+        </p>
+        <div class="hero-cta">
+          <a href="#reservar" class="btn btn-primary">Reservar mi consulta</a>
+          <a href="#como-funciona" class="btn btn-ghost">Saber más</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CÓMO FUNCIONA ===================== -->
+    <section id="como-funciona">
+      <div class="container">
+        <h2 class="section-title">Cómo funciona</h2>
+        <p class="section-sub">Tres pasos para encontrarnos bajo las estrellas.</p>
+        <div class="grid-3">
+          <div class="card">
+            <span class="icon">🌙</span>
+            <span class="step-num">PASO 01</span>
+            <h3>Comparte tu nacimiento</h3>
+            <p>Tu nombre, fecha, hora (si la conoces) y lugar de nacimiento. Con eso nace tu carta astral.</p>
+          </div>
+          <div class="card">
+            <span class="icon">🔮</span>
+            <span class="step-num">PASO 02</span>
+            <h3>Reserva con PayPal</h3>
+            <p>Elige tu plan —100 MXN o 20 PEN— y paga de forma segura. Tu enlace de videollamada se crea al instante.</p>
+          </div>
+          <div class="card">
+            <span class="icon">✨</span>
+            <span class="step-num">PASO 03</span>
+            <h3>Nos vemos en la videollamada</h3>
+            <p>Recibe tu enlace único y privado. AdelineTarot te recibe con tu carta astral y tu tirada de tarot.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== QUÉ INCLUYE ===================== -->
+    <section id="incluye">
+      <div class="container">
+        <h2 class="section-title">Qué incluye tu consulta</h2>
+        <p class="section-sub">Una lectura completa de tu cielo y tus cartas.</p>
+        <div class="grid-3">
+          <div class="card">
+            <span class="icon">☉</span>
+            <h3>Carta astral</h3>
+            <p>Sol, Luna, Ascendente y planetas: el retrato profundo de quién eres y cómo brillas.</p>
+          </div>
+          <div class="card">
+            <span class="icon">🃏</span>
+            <h3>Lectura de tarot</h3>
+            <p>Pasado, presente y futuro próximo: una visión clara de tu camino a corto plazo.</p>
+          </div>
+          <div class="card">
+            <span class="icon">🎥</span>
+            <h3>Videollamada privada</h3>
+            <p>Un encuentro íntimo, sólo tú y AdelineTarot, en un enlace único y seguro.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RESERVAR ===================== -->
+    <section id="reservar">
+      <div class="container reserva-wrap">
+        <h2 class="section-title">Reserva tu lectura</h2>
+        <p class="section-sub">Completa tus datos de nacimiento para preparar tu carta astral.</p>
+
+        <!-- PASO A: FORMULARIO -->
+        <div class="panel" id="stepForm">
+          <form id="bookingForm" novalidate>
+            <div class="form-grid">
+              <div class="field full">
+                <label for="full_name">Nombre completo</label>
+                <input id="full_name" name="full_name" type="text" autocomplete="name"
+                       placeholder="Tu nombre y apellido" required maxlength="120" />
+              </div>
+              <div class="field">
+                <label for="birth_date">Fecha de nacimiento</label>
+                <input id="birth_date" name="birth_date" type="date" required />
+              </div>
+              <div class="field">
+                <label for="birth_time">Hora de nacimiento <span class="muted">(opcional)</span></label>
+                <input id="birth_time" name="birth_time" type="time" />
+              </div>
+              <div class="field full">
+                <label for="birth_place">Lugar de nacimiento</label>
+                <input id="birth_place" name="birth_place" type="text"
+                       placeholder="Ciudad, país" required maxlength="160" />
+              </div>
+              <div class="field full">
+                <label for="email">Correo electrónico</label>
+                <input id="email" name="email" type="email" autocomplete="email"
+                       placeholder="tucorreo@ejemplo.com" required maxlength="254" />
+              </div>
+
+              <!-- honeypot anti-bots -->
+              <div class="hp" aria-hidden="true">
+                <label for="website">No rellenar</label>
+                <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <div class="field full">
+                <label>Elige tu plan</label>
+                <div class="plans" id="plans">
+                  <label class="plan selected" data-plan="mxn">
+                    <input type="radio" name="plan" value="mxn" checked />
+                    <span class="amount" id="amtMxn">100</span>
+                    <span class="cur">MXN · Pesos</span>
+                  </label>
+                  <label class="plan" data-plan="pen">
+                    <input type="radio" name="plan" value="pen" />
+                    <span class="amount" id="amtPen">20</span>
+                    <span class="cur">PEN · Soles</span>
+                  </label>
+                </div>
+                <p class="hint">El pago se realiza por PayPal a <strong class="gold">@adelinetarot</strong>. El plan en soles se cobra como su equivalente en USD.</p>
+              </div>
+            </div>
+
+            <div id="formAlert"></div>
+
+            <button type="submit" class="btn btn-primary btn-block" id="submitBtn" style="margin-top:10px">
+              Continuar al pago
+            </button>
+          </form>
+        </div>
+
+        <!-- PASO B: PAGO -->
+        <div class="panel hidden" id="stepPay">
+          <p class="pay-amount" id="payAmount">100 MXN</p>
+          <p class="pay-sub">Para <span id="payName" class="gold"></span> · Ref. <span id="payRef"></span></p>
+
+          <div class="paypal-box">
+            <div id="stripeBox" class="hidden">
+              <button type="button" class="btn btn-primary btn-block" id="stripeBtn">
+                💳 Pagar con tarjeta · Apple Pay · Google Pay
+              </button>
+              <p class="hint center" style="margin:8px 0 0">
+                Pago seguro con Stripe. Apple Pay y Google Pay aparecen
+                automáticamente en dispositivos compatibles.
+              </p>
+              <div class="divider">o</div>
+            </div>
+            <div id="walletButtons" class="wallet-buttons hidden">
+              <div id="applepay-button" class="wallet-btn hidden"></div>
+              <div id="googlepay-button" class="wallet-btn hidden"></div>
+              <div class="divider">o</div>
+            </div>
+            <div id="paypal-buttons"></div>
+            <div id="paypalNote"></div>
+
+            <div class="divider">paga de forma segura</div>
+            <a id="paypalMeLink" class="paypalme-link" href="#" target="_blank" rel="noopener">
+              💳 Pagar ahora
+            </a>
+            <div id="payNote" class="hint" style="margin-top:10px;white-space:pre-line"></div>
+            <button type="button" class="btn btn-primary btn-block" id="confirmPaidBtn" style="margin-top:14px">
+              He realizado el pago
+            </button>
+            <p class="hint center" style="margin-top:10px">
+              Tras verificar la recepción del pago, AdelineTarot te enviará el enlace
+              de la videollamada por correo.
+            </p>
+            <div id="payAlert"></div>
+          </div>
+          <p class="hint center" style="margin-top:18px">
+            <a href="#" id="backToForm">← Volver a mis datos</a>
+          </p>
+        </div>
+
+        <!-- PASO C: CONFIRMACIÓN -->
+        <div class="panel hidden center" id="stepDone">
+          <div class="confirm-icon">✓</div>
+          <h2 style="color:var(--gold)">¡Hemos registrado tu pago!</h2>
+          <p class="muted" style="max-width:540px;margin:10px auto 0">
+            Gracias <span id="doneName" class="gold"></span>. En cuanto AdelineTarot
+            confirme la recepción del pago, recibirás el enlace privado de tu
+            videollamada en <strong id="doneEmail">tu correo</strong>.
+          </p>
+          <div id="teaserBox"></div>
+
+          <div class="video-card">
+            <strong class="gold">Próximo paso</strong>
+            <p class="muted" style="margin:8px 0 0">
+              Revisa tu bandeja de entrada (y la carpeta de spam). El enlace solo se
+              envía por correo tras validar el pago; por seguridad no se muestra en
+              esta página.
+            </p>
+          </div>
+          <p class="hint" style="margin-top:18px">
+            Ref. <span id="doneRef"></span> · ¿Dudas? Responde al correo de confirmación.
+          </p>
+        </div>
+
+        <!-- CONSOLA VISUAL DE DEPURACIÓN (ERRORES) -->
+        <div id="debugLogBox" class="panel hidden" style="background:#111; color:#0f0; border:1px solid #444; font-family:monospace; padding:10px; margin-top:20px; font-size:12px; text-align:left; max-height:200px; overflow-y:auto; word-break:break-all;">
+          <strong style="color:#fff;">Terminal / Errores:</strong>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="brand"><span class="moon" aria-hidden="true"></span> AdelineTarot</div>
+      <p class="muted">Astrología &amp; tarot con alma · Consultas privadas por videollamada</p>
+      <p class="legal">Las lecturas tienen fines de orientación y entretenimiento. © <span id="year"></span> AdelineTarot.</p>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
