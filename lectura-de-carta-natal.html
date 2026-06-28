@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lectura de carta natal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .natal-page { padding: 110px 0 60px; }
+    .natal-wrap { max-width: 920px; margin: 0 auto; }
+    .natal-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .natal-top a { font-family: "Cinzel", serif; letter-spacing: .08em; font-size: .82rem; }
+    .natal-form { margin-bottom: 20px; }
+    .natal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .natal-grid .full { grid-column: 1 / -1; }
+    .natal-report { line-height: 1.8; color: var(--muted); }
+    .natal-report h3 { color: var(--gold); margin: 16px 0 8px; }
+    .natal-report h4 { color: var(--gold); margin: 12px 0 6px; font-size: 1.1rem; }
+    .natal-report ul { margin: 0 0 12px 20px; }
+    .natal-chip { display: inline-block; margin: 0 6px 8px 0; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: rgba(232,198,107,.08); color: var(--gold); font-family: "Cinzel", serif; font-size: .78rem; }
+    @media (max-width: 760px) {
+      .natal-grid { grid-template-columns: 1fr; }
+      .natal-page { padding-top: 90px; }
+      .natal-top { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html#inicio">
+        <img src="assets/images/bandeau v2.jpg" class="brand-banner-img" alt="AdelineTarot" />
+      </a>
+      <a href="index.html#inicio" class="btn btn-ghost" style="justify-self:start; position:relative; z-index:2; margin-left:12px;">Home</a>
+      <a href="oraciones.html" class="btn btn-primary header-cta">Oraciones</a>
+    </div>
+  </header>
+
+  <main class="natal-page">
+    <section>
+      <div class="container natal-wrap">
+        <div class="panel natal-form">
+          <h1 style="margin-bottom:8px">Lectura de carta natal</h1>
+          <p class="muted" style="margin-bottom:16px">Completa tus datos para generar una interpretación amplia en español con planetas, casas, signos y aspectos.</p>
+          <div class="natal-grid">
+            <div class="pred-field"><label for="natal-name">Nombre</label><input id="natal-name" type="text" maxlength="80" placeholder="Tu nombre" /></div>
+            <div class="pred-field"><label for="natal-place">Lugar de nacimiento</label><input id="natal-place" type="text" maxlength="120" placeholder="Ciudad y país" /></div>
+            <div class="pred-field"><label for="natal-date">Fecha de nacimiento</label><input id="natal-date" type="date" /></div>
+            <div class="pred-field"><label for="natal-time">Hora de nacimiento (opcional)</label><input id="natal-time" type="time" /></div>
+            <div class="pred-field full"><button id="natal-run" class="btn btn-primary">Generar mi carta natal completa</button></div>
+          </div>
+          <p id="natal-msg" class="hint" style="margin-top:10px"></p>
+        </div>
+
+        <div id="natal-report" class="panel natal-report hidden"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const SIGNS = ['Aries', 'Tauro', 'Geminis', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Escorpio', 'Sagitario', 'Capricornio', 'Acuario', 'Piscis'];
+    const SIGN_SYMBOLS = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+    const HOUSES = ['Yo y la identidad', 'Recursos y dinero', 'Comunicacion y entorno', 'Hogar y raiz', 'Creatividad y placer', 'Trabajo y salud', 'Relaciones y pareja', 'Transformacion y poder', 'Filosofia y viajes', 'Vocacion y carrera', 'Comunidad y redes', 'Mundo interior y espiritualidad'];
+
+    const PLANETS = {
+      Sol: { sym: '☉', speed: 0.9856, base: 280.46, key: 'identidad, vitalidad y proposito' },
+      Luna: { sym: '☽', speed: 13.1764, base: 218.32, key: 'emociones, necesidades y refugio' },
+      Mercurio: { sym: '☿', speed: 4.0923, base: 252.25, key: 'mente, lenguaje y aprendizaje' },
+      Venus: { sym: '♀', speed: 1.6021, base: 181.98, key: 'amor, gustos y valores' },
+      Marte: { sym: '♂', speed: 0.5240, base: 355.43, key: 'accion, deseo y coraje' },
+      Jupiter: { sym: '♃', speed: 0.0831, base: 34.35, key: 'expansion, fe y crecimiento' },
+      Saturno: { sym: '♄', speed: 0.0334, base: 50.08, key: 'disciplina, limites y estructura' },
+      Urano: { sym: '♅', speed: 0.0117, base: 314.05, key: 'innovacion, cambio y libertad' },
+      Neptuno: { sym: '♆', speed: 0.0060, base: 304.35, key: 'intuicion, idealismo y sensibilidad' },
+      Pluton: { sym: '♇', speed: 0.0040, base: 238.93, key: 'poder interno, crisis y renacimiento' }
+    };
+
+    const SIGN_TONES = {
+      Aries: 'directo, valiente y pionero',
+      Tauro: 'estable, sensorial y perseverante',
+      Geminis: 'curioso, versatil y comunicador',
+      Cancer: 'emocional, protector y receptivo',
+      Leo: 'creativo, noble y expresivo',
+      Virgo: 'analitico, preciso y servicial',
+      Libra: 'armonico, diplomatico y social',
+      Escorpio: 'intenso, magnetico y transformador',
+      Sagitario: 'aventurero, franco y filosofico',
+      Capricornio: 'estrategico, responsable y ambicioso',
+      Acuario: 'visionario, libre y colectivo',
+      Piscis: 'compasivo, imaginativo y espiritual'
+    };
+
+    const HOUSE_KEYS = {
+      1: 'como te muestras, tu estilo y tu impulso inicial',
+      2: 'economia personal, autoestima y administracion de recursos',
+      3: 'comunicacion diaria, estudio y hermanos',
+      4: 'familia, seguridad emocional y hogar',
+      5: 'romance, talento, arte y disfrute',
+      6: 'rutina, trabajo, salud y habitos',
+      7: 'pareja, acuerdos y cooperacion',
+      8: 'intimidad, cambios profundos y finanzas compartidas',
+      9: 'creencias, viajes y expansion de conciencia',
+      10: 'carrera, metas y reputacion',
+      11: 'amistades, proyectos colectivos y futuro',
+      12: 'inconsciente, retiro y sanacion espiritual'
+    };
+
+    const ASPECTS = [
+      { name: 'Conjuncion', angle: 0, orb: 8, tone: 'fusiona energias y concentra foco' },
+      { name: 'Sextil', angle: 60, orb: 5, tone: 'abre oportunidades fluidas y colaborativas' },
+      { name: 'Cuadratura', angle: 90, orb: 6, tone: 'genera tension creativa para evolucionar' },
+      { name: 'Trigono', angle: 120, orb: 6, tone: 'facilita talentos naturales y armonia' },
+      { name: 'Oposicion', angle: 180, orb: 8, tone: 'pide balance entre polos complementarios' }
+    ];
+
+    function hashText(text) {
+      let h = 0;
+      const raw = String(text || '').toLowerCase();
+      for (let i = 0; i < raw.length; i++) h = (h * 31 + raw.charCodeAt(i)) % 100000;
+      return h;
+    }
+
+    function julianFromDate(dateStr, timeStr) {
+      const dt = new Date(dateStr + 'T' + (timeStr || '12:00'));
+      return dt.getTime() / 86400000 + 2440587.5;
+    }
+
+    function planetPositions(dateStr, timeStr) {
+      const jd = julianFromDate(dateStr, timeStr);
+      const out = {};
+      for (const [name, meta] of Object.entries(PLANETS)) {
+        let lon = (meta.base + meta.speed * (jd - 2451545.0)) % 360;
+        if (lon < 0) lon += 360;
+        lon = (lon + Math.sin(jd * 0.01 + meta.base) * 2.2) % 360;
+        if (lon < 0) lon += 360;
+        const signIdx = Math.floor(lon / 30) % 12;
+        out[name] = {
+          lon,
+          signIdx,
+          sign: SIGNS[signIdx],
+          signSym: SIGN_SYMBOLS[signIdx],
+          degInSign: (lon % 30).toFixed(1)
+        };
+      }
+      return out;
+    }
+
+    function calcAscendant(dateStr, timeStr, place) {
+      const dt = new Date(dateStr + 'T' + (timeStr || '12:00'));
+      const hour = dt.getHours();
+      const month = dt.getMonth();
+      const day = dt.getDate();
+      const placeBoost = hashText(place) % 12;
+      const ascIdx = (Math.floor(hour / 2) + month + day + placeBoost) % 12;
+      return { idx: ascIdx, sign: SIGNS[ascIdx], signSym: SIGN_SYMBOLS[ascIdx] };
+    }
+
+    function assignHouses(planets, ascIdx) {
+      const result = {};
+      for (const [planet, p] of Object.entries(planets)) {
+        const house = ((p.signIdx - ascIdx + 12) % 12) + 1;
+        result[planet] = house;
+      }
+      return result;
+    }
+
+    function nearestAspect(diff) {
+      for (const a of ASPECTS) {
+        const delta = Math.min(Math.abs(diff - a.angle), Math.abs((360 - diff) - a.angle));
+        if (delta <= a.orb) return { ...a, orbValue: delta.toFixed(1) };
+      }
+      return null;
+    }
+
+    function computeAspects(planets) {
+      const entries = Object.entries(planets);
+      const found = [];
+      for (let i = 0; i < entries.length; i++) {
+        for (let j = i + 1; j < entries.length; j++) {
+          const [p1, a] = entries[i];
+          const [p2, b] = entries[j];
+          let diff = Math.abs(a.lon - b.lon);
+          if (diff > 180) diff = 360 - diff;
+          const aspect = nearestAspect(diff);
+          if (aspect) found.push({ p1, p2, ...aspect });
+        }
+      }
+      return found.sort((x, y) => Number(x.orbValue) - Number(y.orbValue));
+    }
+
+    function textPlanetSign(planet, sign) {
+      return `Con ${planet} en ${sign}, tu energia se expresa de forma ${SIGN_TONES[sign]}. Esta combinacion activa ${PLANETS[planet].key} con un estilo ${SIGN_TONES[sign]}, por lo que tus decisiones tienden a seguir ese tono en relaciones, trabajo y vida personal.`;
+    }
+
+    function textPlanetHouse(planet, house) {
+      return `${planet} en casa ${house} enfatiza ${HOUSE_KEYS[house]}. Aqui se mueve tu ${PLANETS[planet].key}: cuando cultivas orden y conciencia en este sector, tu crecimiento se vuelve visible y sostenible.`;
+    }
+
+    function textAspect(item) {
+      return `${item.p1} y ${item.p2} forman ${item.name.toLowerCase()} (${item.orbValue}° de orbe): esta dinamica ${item.tone}. En la practica, conviene observar como equilibras ${PLANETS[item.p1].key} con ${PLANETS[item.p2].key}.`;
+    }
+
+    function ageFromDate(dateStr) {
+      const b = new Date(dateStr);
+      const t = new Date();
+      let a = t.getFullYear() - b.getFullYear();
+      if (t.getMonth() < b.getMonth() || (t.getMonth() === b.getMonth() && t.getDate() < b.getDate())) a--;
+      return a;
+    }
+
+    function renderReport(name, place, date, time) {
+      const planets = planetPositions(date, time);
+      const asc = calcAscendant(date, time, place);
+      const houses = assignHouses(planets, asc.idx);
+      const aspects = computeAspects(planets);
+      const age = ageFromDate(date);
+
+      const chips = [`<span class="natal-chip">Nombre: ${name}</span>`, `<span class="natal-chip">Lugar: ${place}</span>`, `<span class="natal-chip">Edad: ${age} años</span>`, `<span class="natal-chip">Ascendente: ${asc.signSym} ${asc.sign}</span>`].join('');
+
+      const core = ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte'].map((p) => {
+        const d = planets[p];
+        return `<li><strong>${PLANETS[p].sym} ${p} en ${d.sign}</strong> (${d.degInSign}°): ${textPlanetSign(p, d.sign)}</li>`;
+      }).join('');
+
+      const extended = ['Jupiter', 'Saturno', 'Urano', 'Neptuno', 'Pluton'].map((p) => {
+        const d = planets[p];
+        return `<li><strong>${PLANETS[p].sym} ${p} en ${d.sign}</strong> (${d.degInSign}°): ${textPlanetSign(p, d.sign)}</li>`;
+      }).join('');
+
+      const byHouse = Object.keys(PLANETS).map((p) => `<li><strong>${PLANETS[p].sym} ${p}</strong>: ${textPlanetHouse(p, houses[p])}</li>`).join('');
+
+      const aspectHtml = aspects.length
+        ? `<ul>${aspects.slice(0, 16).map((a) => `<li>${textAspect(a)}</li>`).join('')}</ul>`
+        : '<p>No se detectaron aspectos mayores cerrados con el orbe configurado.</p>';
+
+      const summary = `<p>Tu carta sugiere un perfil donde el ascendente en <strong>${asc.sign}</strong> colorea tu forma de iniciar etapas, mientras que Sol en <strong>${planets.Sol.sign}</strong> y Luna en <strong>${planets.Luna.sign}</strong> marcan la combinacion central entre identidad y mundo emocional. Las casas activas muestran donde suceden los aprendizajes clave de esta etapa.</p>`;
+
+      return `
+        <h2 style="margin-bottom:10px">Informe de carta natal: ${name}</h2>
+        <div>${chips}</div>
+        ${summary}
+        <h3>Nucleo personal</h3>
+        <ul>${core}</ul>
+        <h3>Planetas transpersonales y madurez</h3>
+        <ul>${extended}</ul>
+        <h3>Interpretacion por casas (todas las combinaciones activas)</h3>
+        <ul>${byHouse}</ul>
+        <h3>Aspectos principales entre planetas</h3>
+        ${aspectHtml}
+      `;
+    }
+
+    document.getElementById('natal-run').addEventListener('click', () => {
+      const name = document.getElementById('natal-name').value.trim();
+      const place = document.getElementById('natal-place').value.trim();
+      const date = document.getElementById('natal-date').value;
+      const time = document.getElementById('natal-time').value;
+      const msg = document.getElementById('natal-msg');
+      const out = document.getElementById('natal-report');
+
+      if (!name || !place || !date) {
+        msg.textContent = 'Completa nombre, lugar de nacimiento y fecha de nacimiento.';
+        out.classList.add('hidden');
+        return;
+      }
+
+      msg.textContent = '';
+      out.innerHTML = renderReport(name, place, date, time);
+      out.classList.remove('hidden');
+      out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
+</body>
+</html>

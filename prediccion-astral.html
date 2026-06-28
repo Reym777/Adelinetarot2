@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predicción astral gratuita</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html#inicio">
+        <img src="assets/images/bandeau v3.jpg" class="brand-banner-img" alt="AdelineTarot" />
+      </a>
+      <a href="index.html#inicio" class="btn btn-ghost" style="justify-self:start; position:relative; z-index:2; margin-left:12px;">Home</a>
+      <a href="reserva-tu-lectura.html" class="btn btn-primary header-cta">Reservar</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="prediccion">
+      <div class="container" style="padding-top:34px">
+        <h2 class="section-title">Predicción astral gratuita</h2>
+        <p class="section-sub">Ingresa tu fecha de nacimiento y recibe una lectura inmediata. Elige entre visión a corto plazo (tarot — próximas semanas) o largo plazo (astrología — próximos 5 años).</p>
+
+        <div class="pred-tabs" role="tablist">
+          <button class="pred-tab active" role="tab" aria-selected="true" onclick="switchPredTab('court')">🃏 Corto plazo</button>
+          <button class="pred-tab" role="tab" aria-selected="false" onclick="switchPredTab('long')">🔭 Largo plazo</button>
+        </div>
+
+        <div class="pred-panel active" id="pred-panel-court">
+          <div class="pred-form-wrap">
+            <div class="pred-input-grid">
+              <div class="pred-field full">
+                <label for="pred-name-court">Tu nombre</label>
+                <input id="pred-name-court" type="text" placeholder="Nombre" maxlength="80" autocomplete="given-name" />
+              </div>
+              <div class="pred-field">
+                <label for="pred-date-court">Fecha de nacimiento</label>
+                <input id="pred-date-court" type="date" />
+              </div>
+              <div class="pred-field">
+                <label for="pred-question">Tema principal</label>
+                <select id="pred-question">
+                  <option value="general">General</option>
+                  <option value="amor">Amor y relaciones</option>
+                  <option value="trabajo">Trabajo y dinero</option>
+                  <option value="salud">Salud y bienestar</option>
+                  <option value="familia">Familia</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="runShortTermPred()" style="margin-top:6px">✨ Ver mi lectura de tarot</button>
+            <div id="pred-court-result" class="pred-result" style="display:none"></div>
+            <div id="pred-court-gate" class="pred-gate-box hidden">
+              <h3>🔐 Continuer la lecture complète</h3>
+              <p>Les 3 premiers paragraphes sont visibles. Pour débloquer toute la prédiction, envoie ton email.</p>
+              <div class="pred-gate-row">
+                <input id="pred-unlock-email" type="email" placeholder="Tu email" maxlength="254" autocomplete="email" />
+                <button type="button" class="btn btn-primary" onclick="unlockShortPrediction()">Débloquer</button>
+              </div>
+              <p class="hint" id="pred-gate-msg"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pred-panel" id="pred-panel-long">
+          <div class="pred-form-wrap">
+            <div class="pred-input-grid">
+              <div class="pred-field full">
+                <label for="pred-name-long">Tu nombre</label>
+                <input id="pred-name-long" type="text" placeholder="Nombre" maxlength="80" autocomplete="given-name" />
+              </div>
+              <div class="pred-field">
+                <label for="pred-date-long">Fecha de nacimiento</label>
+                <input id="pred-date-long" type="date" />
+              </div>
+              <div class="pred-field">
+                <label for="pred-time-long">Hora de nacimiento <span class="muted">(opcional)</span></label>
+                <input id="pred-time-long" type="time" />
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="runLongTermPred()" style="margin-top:6px">🌟 Ver mi predicción 5 años</button>
+            <div id="pred-long-result" class="pred-result" style="display:none"></div>
+            <div id="pred-long-gate" class="pred-gate-box">
+              <h3>🔒 Predicción 5 años bloqueada</h3>
+              <p>Acceso completo por 5 USD. Es la misma tarifa especial de la visio con AdelineTarot.</p>
+              <div class="pred-gate-row">
+                <input id="pred-long-email" type="email" placeholder="Tu email" maxlength="254" autocomplete="email" />
+                <a class="btn btn-primary" href="https://www.paypal.com/paypalme/adelinetaroterapeu/5" target="_blank" rel="noopener">Pagar 5 USD</a>
+              </div>
+              <button type="button" class="btn btn-ghost" style="margin-top:10px" onclick="unlockLongPrediction()">Ya pagué, desbloquear</button>
+              <p class="hint" id="pred-long-msg"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="muted">Astrología &amp; tarot con alma · Consultas privadas por videollamada</p>
+      <p class="legal">© <span id="year"></span> AdelineTarot.</p>
+    </div>
+  </footer>
+
+  <script>
+    const SIGNS_ES = ['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'];
+    const SIGN_SYMBOLS = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+    const PLANETS_DEF = {
+      'Sol': { sym:'☉', speed:0.9856, base:280.46 },
+      'Luna': { sym:'☽', speed:13.1764, base:218.32 },
+      'Mercurio': { sym:'☿', speed:4.0923, base:252.25 },
+      'Venus': { sym:'♀', speed:1.6021, base:181.98 },
+      'Marte': { sym:'♂', speed:0.5240, base:355.43 },
+      'Júpiter': { sym:'♃', speed:0.0831, base:34.35 },
+      'Saturno': { sym:'♄', speed:0.0334, base:50.08 },
+      'Urano': { sym:'♅', speed:0.0117, base:314.05 },
+      'Neptuno': { sym:'♆', speed:0.0060, base:304.35 },
+      'Plutón': { sym:'♇', speed:0.0040, base:238.93 }
+    };
+
+    function predCalcAstro(dateStr, timeStr) {
+      const dt = new Date(dateStr + 'T' + (timeStr || '12:00'));
+      const jd = dt.getTime() / 86400000 + 2440587.5;
+      const res = {};
+      for (const [name, d] of Object.entries(PLANETS_DEF)) {
+        let lon = (d.base + d.speed * (jd - 2451545.0)) % 360;
+        if (lon < 0) lon += 360;
+        lon = (lon + Math.sin(jd * 0.01 + d.base) * 2) % 360;
+        const idx = Math.floor(lon / 30) % 12;
+        res[name] = { sign: SIGNS_ES[idx], symbol: d.sym, sigSym: SIGN_SYMBOLS[idx], lon };
+      }
+      return res;
+    }
+
+    function predGetAsc(dateStr, timeStr) {
+      const hour = parseInt((timeStr || '12:00').split(':')[0]);
+      const month = new Date(dateStr).getMonth();
+      return SIGNS_ES[Math.floor((hour + month) / 2) % 12];
+    }
+
+    function predAge(dateStr) {
+      const b = new Date(dateStr), t = new Date();
+      let a = t.getFullYear() - b.getFullYear();
+      if (t.getMonth() < b.getMonth() || (t.getMonth() === b.getMonth() && t.getDate() < b.getDate())) a--;
+      return a;
+    }
+
+    function switchPredTab(which) {
+      document.querySelectorAll('.pred-tab').forEach((b, i) => {
+        b.classList.toggle('active', (i === 0 && which === 'court') || (i === 1 && which === 'long'));
+        b.setAttribute('aria-selected', b.classList.contains('active'));
+      });
+      document.getElementById('pred-panel-court').classList.toggle('active', which === 'court');
+      document.getElementById('pred-panel-long').classList.toggle('active', which === 'long');
+    }
+
+    function isValidEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || '').trim());
+    }
+
+    const TAROT_ARCANA = [
+      {n:'El Loco',k:'new_start'},{n:'El Mago',k:'will'},{n:'La Suma Sacerdotisa',k:'intuition'},{n:'La Emperatriz',k:'abundance'},{n:'El Emperador',k:'structure'},{n:'El Hierofante',k:'wisdom'},{n:'Los Amantes',k:'choice'},{n:'El Carro',k:'victory'},{n:'La Fuerza',k:'courage'},{n:'El Ermitaño',k:'reflection'},{n:'La Rueda',k:'cycle'},{n:'La Justicia',k:'balance'},{n:'El Colgado',k:'pause'},{n:'La Muerte',k:'transform'},{n:'La Templanza',k:'harmony'},{n:'El Diablo',k:'shadow'},{n:'La Torre',k:'disruption'},{n:'La Estrella',k:'hope'},{n:'La Luna',k:'illusion'},{n:'El Sol',k:'clarity'},{n:'El Juicio',k:'renewal'},{n:'El Mundo',k:'completion'}
+    ];
+
+    const TAROT_TEXT = {
+      new_start:'Apertura de ciclo y decisión valiente.', will:'Manifestación y enfoque práctico.', intuition:'Escucha interior y percepción fina.', abundance:'Creatividad y fertilidad en proyectos.', structure:'Orden y límites para avanzar.', wisdom:'Aprendizaje y guía espiritual.', choice:'Decisión emocional importante.', victory:'Movimiento y triunfo sostenido.', courage:'Fuerza interior y paciencia.', reflection:'Retiro consciente y visión profunda.', cycle:'Cambios de rumbo y oportunidad.', balance:'Justicia, equilibrio y claridad.', pause:'Pausa estratégica antes del salto.', transform:'Cierre y renacimiento.', harmony:'Templanza y madurez emocional.', shadow:'Liberación de apegos.', disruption:'Ruptura de estructuras viejas.', hope:'Esperanza y sanación.', illusion:'Dudas que deben aclararse.', clarity:'Éxito, luz y expansión.', renewal:'Llamado a renacer.', completion:'Culminación de etapa.'
+    };
+
+    function tarotDraw(seed) {
+      let s = seed;
+      const rng = () => { s = (s * 1664525 + 1013904223) & 0xffffffff; return Math.abs(s) / 0x80000000; };
+      const idxs = [];
+      while (idxs.length < 3) { const i = Math.floor(rng() * 22); if (!idxs.includes(i)) idxs.push(i); }
+      return idxs.map(i => TAROT_ARCANA[i]);
+    }
+
+    function dateSeed(dateStr, name) {
+      let h = 5381;
+      const s = (dateStr + name).replace(/[^a-zA-Z0-9]/g, '');
+      for (let i = 0; i < s.length; i++) h = ((h << 5) + h) + s.charCodeAt(i);
+      return Math.abs(h);
+    }
+
+    let shortPredictionLockedHtml = '';
+    let longPredictionHtml = '';
+
+    function runShortTermPred() {
+      const name = document.getElementById('pred-name-court').value.trim();
+      const date = document.getElementById('pred-date-court').value;
+      const topic = document.getElementById('pred-question').value;
+      const wrap = document.getElementById('pred-court-result');
+      if (!name || !date) {
+        wrap.style.display = 'block';
+        wrap.innerHTML = '<div class="alert alert-error">Por favor, ingresa tu nombre y fecha de nacimiento.</div>';
+        return;
+      }
+      wrap.style.display = 'block';
+      const astro = predCalcAstro(date, '');
+      const asc = predGetAsc(date, '');
+      const cards = tarotDraw(dateSeed(date, name));
+      let html = `<div class="pred-astro-bar"><div class="pred-astro-item"><span class="planet-sym">☉</span><span class="planet-sign">${astro['Sol'].sign}</span></div><div class="pred-astro-item"><span class="planet-sym">☽</span><span class="planet-sign">${astro['Luna'].sign}</span></div><div class="pred-astro-item"><span class="planet-sym">↑</span><span class="planet-sign">${asc}</span></div></div>`;
+      html += `<div class="pred-card"><h3>🃏 Tirada de tres cartas · ${topic}</h3><p>Lectura personalizada para <span class="highlight">${name}</span>.</p></div>`;
+      ['Pasado','Presente','Futuro próximo'].forEach((pos, i) => {
+        const c = cards[i];
+        html += `<div class="pred-card pred-card-border-left"><h3>${pos} — <span class="highlight">${c.n}</span></h3><p>${TAROT_TEXT[c.k]}</p></div>`;
+      });
+      shortPredictionLockedHtml = `<div class="pred-card"><h3>✨ Síntesis</h3><p>Tu lectura muestra una progresión real de apertura, decisión y foco.</p><a href="reserva-tu-lectura.html" class="btn btn-primary">🔮 Reservar mi consulta</a></div>`;
+      if (!sessionStorage.getItem('adelinetarot_short_unlock')) {
+        html += `<div class="pred-locked-bloc"><div class="pred-locked-fade">${shortPredictionLockedHtml}</div><div class="pred-locked-overlay"><strong>🔒 Contenido bloqueado</strong><p>Ingresa tu email para desbloquear.</p></div></div>`;
+        document.getElementById('pred-court-gate').classList.remove('hidden');
+      } else {
+        html += shortPredictionLockedHtml;
+      }
+      wrap.innerHTML = html;
+    }
+
+    function unlockShortPrediction() {
+      const email = (document.getElementById('pred-unlock-email').value || '').trim();
+      const msg = document.getElementById('pred-gate-msg');
+      if (!isValidEmail(email)) { msg.textContent = 'Entre un email valide pour débloquer.'; return; }
+      sessionStorage.setItem('adelinetarot_short_unlock', '1');
+      msg.textContent = 'Merci. Contenu débloqué.';
+      const wrap = document.getElementById('pred-court-result');
+      const locked = wrap.querySelector('.pred-locked-bloc');
+      if (locked) locked.outerHTML = shortPredictionLockedHtml;
+      document.getElementById('pred-court-gate').classList.add('hidden');
+    }
+
+    function unlockLongPrediction() {
+      const email = (document.getElementById('pred-long-email').value || '').trim();
+      const msg = document.getElementById('pred-long-msg');
+      if (!isValidEmail(email)) { msg.textContent = 'Ingresa un email válido para desbloquear.'; return; }
+      sessionStorage.setItem('adelinetarot_long_unlock', '1');
+      document.getElementById('pred-long-gate').classList.add('hidden');
+      if (longPredictionHtml) {
+        const wrap = document.getElementById('pred-long-result');
+        wrap.style.display = 'block';
+        wrap.innerHTML = longPredictionHtml;
+      }
+    }
+
+    function runLongTermPred() {
+      const name = document.getElementById('pred-name-long').value.trim();
+      const date = document.getElementById('pred-date-long').value;
+      const time = document.getElementById('pred-time-long').value;
+      const wrap = document.getElementById('pred-long-result');
+      if (!name || !date) {
+        wrap.style.display = 'block';
+        wrap.innerHTML = '<div class="alert alert-error">Por favor, ingresa tu nombre y fecha de nacimiento.</div>';
+        return;
+      }
+      const astro = predCalcAstro(date, time);
+      const age = predAge(date);
+      longPredictionHtml = `<div class="pred-card"><h3>🌟 Predicción para ${name}</h3><p>Sol en <span class="highlight">${astro['Sol'].sign}</span>, Luna en <span class="highlight">${astro['Luna'].sign}</span>. Esta lectura cubre tus próximos 5 años.</p></div><div class="pred-card pred-card-border-left"><h3>💼 Carrera y finanzas</h3><p>Etapa de consolidación progresiva con aperturas en el segundo y cuarto año.</p></div><div class="pred-card pred-card-border-left"><h3>💕 Amor y relaciones</h3><p>Mayor claridad emocional y vínculos más conscientes.</p></div><div class="pred-card pred-card-border-left"><h3>👨‍👩‍👧 Familia y hogar</h3><p>Reorganización positiva de estructuras familiares.</p></div><div class="pred-card pred-card-border-left"><h3>🌿 Bienestar</h3><p>Necesidad de ritmo estable, descanso y hábitos sostenibles.</p></div><div class="pred-card"><h3>🔭 Visión 10 años</h3><p>Edad actual: ${age}. La maduración de tus ciclos será clave para decisiones de largo plazo.</p><a href="reserva-tu-lectura.html" class="btn btn-primary">✨ Reservar mi sesión</a></div>`;
+      if (!sessionStorage.getItem('adelinetarot_long_unlock')) {
+        wrap.style.display = 'none';
+        document.getElementById('pred-long-gate').classList.remove('hidden');
+        return;
+      }
+      document.getElementById('pred-long-gate').classList.add('hidden');
+      wrap.style.display = 'block';
+      wrap.innerHTML = longPredictionHtml;
+    }
+
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -20,34 +20,74 @@
   <!-- ===================== HEADER ===================== -->
   <header class="site-header">
     <div class="container nav">
+      <button type="button" class="menu-toggle" aria-label="Abrir menú" onclick="toggleMenu(true)">☰</button>
       <a class="brand" href="#inicio">
-        <span class="moon" aria-hidden="true"></span>
-        AdelineTarot
+        <img src="assets/images/bandeau v3.jpg" class="brand-banner-img" alt="AdelineTarot" />
       </a>
-      <nav class="nav-links">
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#incluye">Qué incluye</a>
-        <a href="#reservar">Reservar</a>
-        <a href="admin.html">AdelineTarot</a>
-      </nav>
-      <a href="#reservar" class="btn btn-primary" style="padding:10px 22px">Reservar</a>
+      <a href="reserva-tu-lectura.html" class="btn btn-primary header-cta">Reservar</a>
     </div>
   </header>
+
+  <aside id="sideMenu" class="side-menu" aria-hidden="true">
+    <div class="side-menu-head">
+      <span>Menú</span>
+      <button type="button" class="menu-close" aria-label="Cerrar menú" onclick="toggleMenu(false)">×</button>
+    </div>
+    <nav class="side-menu-links" onclick="toggleMenu(false)">
+        <a href="#inicio">HOME</a>
+      <a href="lectura-de-carta-natal.html">Lectura de carta natal gratuita</a>
+        <a href="#services-hub" onclick="openServiceTab('live', true)">Tirada en tiempo real</a>
+        <a href="prediccion-astral.html#pred-panel-court">Predicción gratuita</a>
+        <a href="prediccion-astral.html#pred-panel-long">Lectura a 1 año</a>
+        <a href="prediccion-astral.html#pred-panel-long">Predicción a 5 años</a>
+      <a href="oraciones.html">Oraciones</a>
+        <a href="#services-hub" onclick="openServiceTab('whatsapp', true)">Atención WhatsApp</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#incluye">Qué incluye</a>
+        <a href="reserva-tu-lectura.html">Reservar</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+  </aside>
+  <div id="menuBackdrop" class="menu-backdrop hidden" onclick="toggleMenu(false)"></div>
 
   <main id="inicio">
     <!-- ===================== HERO ===================== -->
     <section class="hero">
       <div class="container">
-        <svg class="constellation" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <circle cx="60" cy="60" r="46" stroke="#e8c66b" stroke-opacity="0.35" stroke-width="1"/>
-          <circle cx="60" cy="14" r="3" fill="#e8c66b"/>
-          <circle cx="98" cy="44" r="2.4" fill="#b9aef0"/>
-          <circle cx="86" cy="92" r="3" fill="#e8c66b"/>
-          <circle cx="30" cy="96" r="2.4" fill="#b9aef0"/>
-          <circle cx="20" cy="40" r="3" fill="#e8c66b"/>
-          <circle cx="60" cy="60" r="4.5" fill="#fff7df"/>
-          <path d="M60 14 L98 44 L86 92 L30 96 L20 40 Z" stroke="#e8c66b" stroke-opacity="0.5" stroke-width="0.8"/>
-          <path d="M60 14 L60 60 L98 44 M60 60 L86 92 M60 60 L30 96 M60 60 L20 40" stroke="#b9aef0" stroke-opacity="0.4" stroke-width="0.7"/>
+        <svg class="constellation metatron" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <!-- Outer Hexagon -->
+          <polygon points="60,20 94.64,40 94.64,80 60,100 25.36,80 25.36,40" stroke="#e8c66b" stroke-opacity="0.35" stroke-width="0.8"/>
+          <!-- Inner Hexagon -->
+          <polygon points="60,40 77.32,50 77.32,70 60,80 42.68,70 42.68,50" stroke="#e8c66b" stroke-opacity="0.35" stroke-width="0.8"/>
+          <!-- Merkaba Up/Down -->
+          <polygon points="60,20 94.64,80 25.36,80" stroke="#b9aef0" stroke-opacity="0.4" stroke-width="0.7"/>
+          <polygon points="94.64,40 60,100 25.36,40" stroke="#b9aef0" stroke-opacity="0.4" stroke-width="0.7"/>
+          <!-- Radii -->
+          <path d="M60 20 L60 100 M94.64 40 L25.36 80 M94.64 80 L25.36 40" stroke="#e8c66b" stroke-opacity="0.3" stroke-width="0.6"/>
+          <!-- Connections from outer to inner opposite -->
+          <path d="M60 20 L77.32 70 L25.36 40 L60 80 L94.64 40 L42.68 70 Z" stroke="#e8c66b" stroke-opacity="0.2" stroke-width="0.6"/>
+          <!-- 13 Circles -->
+          <!-- Center -->
+          <circle cx="60" cy="60" r="4" fill="#fff7df"/>
+          <circle cx="60" cy="60" r="8" stroke="#e8c66b" stroke-width="0.5"/>
+          <g class="hex-violet">
+            <!-- Inner -->
+            <circle cx="60" cy="40" r="3" fill="#b9aef0"/>
+            <circle cx="77.32" cy="50" r="3" fill="#b9aef0"/>
+            <circle cx="77.32" cy="70" r="3" fill="#b9aef0"/>
+            <circle cx="60" cy="80" r="3" fill="#b9aef0"/>
+            <circle cx="42.68" cy="70" r="3" fill="#b9aef0"/>
+            <circle cx="42.68" cy="50" r="3" fill="#b9aef0"/>
+          </g>
+          <g class="hex-yellow">
+            <!-- Outer -->
+            <circle cx="60" cy="20" r="4.5" fill="#e8c66b"/>
+            <circle cx="94.64" cy="40" r="4.5" fill="#e8c66b"/>
+            <circle cx="94.64" cy="80" r="4.5" fill="#e8c66b"/>
+            <circle cx="60" cy="100" r="4.5" fill="#e8c66b"/>
+            <circle cx="25.36" cy="80" r="4.5" fill="#e8c66b"/>
+            <circle cx="25.36" cy="40" r="4.5" fill="#e8c66b"/>
+          </g>
         </svg>
         <p class="eyebrow">Astrología · Tarot · Videollamada privada</p>
         <h1>
@@ -60,8 +100,94 @@
           que ilumina tu camino a corto plazo. Todo en una videollamada privada.
         </p>
         <div class="hero-cta">
-          <a href="#reservar" class="btn btn-primary">Reservar mi consulta</a>
+          <a href="reserva-tu-lectura.html" class="btn btn-primary">Reservar mi consulta</a>
+          <a href="oraciones.html" class="btn btn-ghost">Oraciones</a>
+          <a href="lectura-de-carta-natal.html" class="btn btn-ghost">Lectura de carta natal gratuita</a>
+          <a href="prediccion-astral.html#pred-panel-long" class="btn btn-ghost">Lectura a 1 año</a>
+          <a href="prediccion-astral.html#pred-panel-long" class="btn btn-ghost">Predicción a 5 años</a>
           <a href="#como-funciona" class="btn btn-ghost">Saber más</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HUB SERVICES ===================== -->
+    <section id="services-hub" class="services-hub">
+      <div class="container">
+        <div class="orbit-wrap">
+          <div class="orbit-ring">
+            <button class="orbit-card active" style="--ang:0deg" data-service="natal" onclick="window.location.href='lectura-de-carta-natal.html'"><img src="assets/images/service-card-1.jpg" alt="Carta natal" /><span>Carta natal</span></button>
+            <button class="orbit-card" style="--ang:60deg" data-service="live" onclick="openServiceTab('live', true)"><img src="assets/images/service-card-2.jpg" alt="Tiempo real" /><span>Tiempo real</span></button>
+            <button class="orbit-card" style="--ang:120deg" data-service="year" onclick="openServiceTab('year', true)"><img src="assets/images/service-card-3.jpg" alt="1 año" /><span>1 año</span></button>
+            <button class="orbit-card" style="--ang:180deg" data-service="long" onclick="openServiceTab('long', true)"><img src="assets/images/service-card-4.jpg" alt="5 años" /><span>5 años</span></button>
+            <button class="orbit-card" style="--ang:240deg" data-service="oraciones" onclick="openServiceTab('oraciones', true)"><img src="assets/images/service-card-5.jpg" alt="Oraciones" /><span>Oraciones</span></button>
+            <button class="orbit-card" style="--ang:300deg" data-service="whatsapp" onclick="openServiceTab('whatsapp', true)"><img src="assets/images/service-card-6.jpg" alt="WhatsApp" /><span>WhatsApp</span></button>
+            <div class="orbit-core"></div>
+          </div>
+        </div>
+
+        <div class="service-tabs" id="serviceTabs">
+          <article class="service-tab" data-tab="live">
+            <h3>🃏 Tirada en tiempo real</h3>
+            <p>Demande d'information + moteur compatibilité rapide pour la session live.</p>
+            <div class="pred-input-grid">
+              <div class="pred-field"><label for="svc-live-name">Ton nom</label><input id="svc-live-name" type="text" maxlength="80" /></div>
+              <div class="pred-field"><label for="svc-live-date">Ta date</label><input id="svc-live-date" type="date" /></div>
+              <div class="pred-field"><label for="svc-live-target">Nom cible</label><input id="svc-live-target" type="text" maxlength="80" /></div>
+              <div class="pred-field"><label for="svc-live-target-date">Date cible</label><input id="svc-live-target-date" type="date" /></div>
+              <div class="pred-field full"><label for="svc-live-email">Email</label><input id="svc-live-email" type="email" maxlength="254" /></div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="runSvcLive()">Analyser la compatibilité</button>
+            <div id="svc-live-out" class="svc-result hidden"></div>
+          </article>
+          <article class="service-tab" data-tab="year">
+            <h3>📆 Lectura a 1 año</h3>
+            <p>Demande d'information + moteur annuel en 4 trimestres.</p>
+            <div class="pred-input-grid">
+              <div class="pred-field"><label for="svc-year-name">Nom</label><input id="svc-year-name" type="text" maxlength="80" /></div>
+              <div class="pred-field"><label for="svc-year-date">Date de naissance</label><input id="svc-year-date" type="date" /></div>
+              <div class="pred-field"><label for="svc-year-focus">Focus</label><select id="svc-year-focus"><option value="general">Général</option><option value="amour">Amour</option><option value="travail">Travail</option><option value="argent">Argent</option></select></div>
+              <div class="pred-field"><label for="svc-year-email">Email</label><input id="svc-year-email" type="email" maxlength="254" /></div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="runSvcYear()">Générer mon année</button>
+            <div id="svc-year-out" class="svc-result hidden"></div>
+          </article>
+          <article class="service-tab" data-tab="long">
+            <h3>🔭 Predicción a 5 años</h3>
+            <p>Demande d'information + moteur long terme (cap décennal et retour de Saturne).</p>
+            <div class="pred-input-grid">
+              <div class="pred-field"><label for="svc-long-name">Nom</label><input id="svc-long-name" type="text" maxlength="80" /></div>
+              <div class="pred-field"><label for="svc-long-date">Date de naissance</label><input id="svc-long-date" type="date" /></div>
+              <div class="pred-field"><label for="svc-long-time">Heure</label><input id="svc-long-time" type="time" /></div>
+              <div class="pred-field"><label for="svc-long-email">Email</label><input id="svc-long-email" type="email" maxlength="254" /></div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="runSvcLong()">Calculer ma vision 5 ans</button>
+            <div id="svc-long-out" class="svc-result hidden"></div>
+          </article>
+          <article class="service-tab" data-tab="oraciones">
+            <h3>🙏 Demande d'orations</h3>
+            <p>Demande d'information + moteur d'intention alignée au signe.</p>
+            <div class="pred-input-grid">
+              <div class="pred-field"><label for="svc-ora-name">Nom</label><input id="svc-ora-name" type="text" maxlength="80" /></div>
+              <div class="pred-field"><label for="svc-ora-honor">En honneur de</label><input id="svc-ora-honor" type="text" maxlength="120" /></div>
+              <div class="pred-field"><label for="svc-ora-date">Date de naissance</label><input id="svc-ora-date" type="date" /></div>
+              <div class="pred-field"><label for="svc-ora-email">Email</label><input id="svc-ora-email" type="email" maxlength="254" /></div>
+              <div class="pred-field full"><label for="svc-ora-intent">Intention</label><input id="svc-ora-intent" type="text" maxlength="220" /></div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="runSvcOration()">Créer l'oraison recommandée</button>
+            <div id="svc-ora-out" class="svc-result hidden"></div>
+            <a href="oraciones.html" class="btn btn-ghost" style="margin-top:10px">Ir al formulario completo</a>
+          </article>
+          <article class="service-tab" data-tab="whatsapp">
+            <h3>💬 Atención WhatsApp</h3>
+            <p>Demande d'information + moteur de message prérempli prêt à envoyer.</p>
+            <div class="pred-input-grid">
+              <div class="pred-field"><label for="svc-wa-name">Ton nom</label><input id="svc-wa-name" type="text" maxlength="80" /></div>
+              <div class="pred-field"><label for="svc-wa-service">Service</label><select id="svc-wa-service"><option value="Carte natale">Carte natale</option><option value="Tiempo real">Tiempo real</option><option value="1 año">1 año</option><option value="5 años">5 años</option><option value="Orations">Orations</option></select></div>
+              <div class="pred-field full"><label for="svc-wa-msg">Message</label><input id="svc-wa-msg" type="text" maxlength="220" placeholder="Je souhaite des informations" /></div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="runSvcWhatsApp()">Générer le message WhatsApp</button>
+            <div id="svc-wa-out" class="svc-result hidden"></div>
+          </article>
         </div>
       </div>
     </section>
@@ -81,8 +207,8 @@
           <div class="card">
             <span class="icon">🔮</span>
             <span class="step-num">PASO 02</span>
-            <h3>Reserva con PayPal</h3>
-            <p>Elige tu plan —100 MXN o 20 PEN— y paga de forma segura. Tu enlace de videollamada se crea al instante.</p>
+            <h3>Reserva en línea</h3>
+            <p>Elige tu plan y paga de forma segura. Para sesión privada, tarifa especial desde 5 USD.</p>
           </div>
           <div class="card">
             <span class="icon">✨</span>
@@ -119,159 +245,731 @@
       </div>
     </section>
 
-    <!-- ===================== RESERVAR ===================== -->
-    <section id="reservar">
-      <div class="container reserva-wrap">
-        <h2 class="section-title">Reserva tu lectura</h2>
-        <p class="section-sub">Completa tus datos de nacimiento para preparar tu carta astral.</p>
-
-        <!-- PASO A: FORMULARIO -->
-        <div class="panel" id="stepForm">
-          <form id="bookingForm" novalidate>
-            <div class="form-grid">
-              <div class="field full">
-                <label for="full_name">Nombre completo</label>
-                <input id="full_name" name="full_name" type="text" autocomplete="name"
-                       placeholder="Tu nombre y apellido" required maxlength="120" />
-              </div>
-              <div class="field">
-                <label for="birth_date">Fecha de nacimiento</label>
-                <input id="birth_date" name="birth_date" type="date" required />
-              </div>
-              <div class="field">
-                <label for="birth_time">Hora de nacimiento <span class="muted">(opcional)</span></label>
-                <input id="birth_time" name="birth_time" type="time" />
-              </div>
-              <div class="field full">
-                <label for="birth_place">Lugar de nacimiento</label>
-                <input id="birth_place" name="birth_place" type="text"
-                       placeholder="Ciudad, país" required maxlength="160" />
-              </div>
-              <div class="field full">
-                <label for="email">Correo electrónico</label>
-                <input id="email" name="email" type="email" autocomplete="email"
-                       placeholder="tucorreo@ejemplo.com" required maxlength="254" />
-              </div>
-
-              <!-- honeypot anti-bots -->
-              <div class="hp" aria-hidden="true">
-                <label for="website">No rellenar</label>
-                <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
-              </div>
-
-              <div class="field full">
-                <label>Elige tu plan</label>
-                <div class="plans" id="plans">
-                  <label class="plan selected" data-plan="mxn">
-                    <input type="radio" name="plan" value="mxn" checked />
-                    <span class="amount" id="amtMxn">100</span>
-                    <span class="cur">MXN · Pesos</span>
-                  </label>
-                  <label class="plan" data-plan="pen">
-                    <input type="radio" name="plan" value="pen" />
-                    <span class="amount" id="amtPen">20</span>
-                    <span class="cur">PEN · Soles</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div id="formAlert"></div>
-
-            <button type="submit" class="btn btn-primary btn-block" id="submitBtn" style="margin-top:10px">
-              Continuar al pago
-            </button>
-          </form>
-        </div>
-
-        <!-- PASO B: PAGO -->
-        <div class="panel hidden" id="stepPay">
-          <p class="pay-amount" id="payAmount">100 MXN</p>
-          <p class="pay-sub">Para <span id="payName" class="gold"></span> · Ref. <span id="payRef"></span></p>
-
-          <div class="paypal-box" id="payButtonsContainer">
-            
-            <div id="stripeBox" class="hidden">
-              <button type="button" class="btn btn-primary btn-block" id="stripeBtn" style="margin-bottom: 12px; background: #635bff; color: white; border: none;">
-                💳 Pagar con Tarjeta (Stripe)
-              </button>
-              
-              <button type="button" class="btn btn-block" id="stripeAppleBtn" style="margin-bottom: 12px; background: #000; color: #fff; border: none;">
-                 Apple Pay
-              </button>
-              
-              <button type="button" class="btn btn-block" id="stripeGoogleBtn" style="margin-bottom: 12px; background: #fff; color: #000; border: 1px solid #ccc;">
-                <svg style="width:16px;height:16px;vertical-align:text-bottom;margin-right:6px;" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.7 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6C44.43 38.02 46.98 31.85 46.98 24.55z"/><path fill="#FBBC05" d="M10.54 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.98-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Google Pay
-              </button>
-              <div class="divider">o</div>
-            </div>
-
-            <a id="customPaypalBtn" class="btn btn-block" style="background:#ffc439; color:#003087; margin-bottom: 12px; font-weight:bold; border: none; text-decoration: none;" href="https://www.paypal.com/paypalme/adelinetaroterapeu?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcASigrhleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadMFfskfIRWh4h1AlE60TGTcpOxCp2j-NnyZZwvxvjp2vow8MGH3BzmdjFVaA_aem_cdYniPJG_ibJZQZ6qjkGpw" target="_blank" rel="noopener">
-              Pagar con PayPal
-            </a>
-
-            <div id="walletButtons" class="wallet-buttons hidden"></div>
-            <div id="paypal-buttons"></div>
-            <div id="paypalNote"></div>
-
-            <a id="paypalMeLink" class="btn btn-primary btn-block hidden" href="#" target="_blank" rel="noopener">
-              💳 Completar pago
-            </a>
-            <div id="payNote" class="hint" style="margin-top:10px;white-space:pre-line"></div>
-            <p class="hint center" style="margin-top:8px">
-              Al hacer clic irás a una pasarela segura. Cuando hayas terminado, vuelve aquí.
-            </p>
-            <div class="divider">después de pagar</div>
-            <button type="button" class="btn btn-primary btn-block" id="confirmPaidBtn">
-              He realizado el pago
-            </button>
-            <p class="hint center" style="margin-top:10px">
-              Tras verificar la recepción del pago, AdelineTarot te enviará el enlace
-              de la videollamada por correo.
-            </p>
-            <div id="payAlert"></div>
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contacto">
+    <div class="container">
+      <h2 class="section-title">Contacto & rappel</h2>
+      <p class="section-sub">Laisse ton email et ton motif, AdelineTarot peut te recontacter.</p>
+      <div class="panel contact-panel">
+        <div class="pred-input-grid">
+          <div class="pred-field">
+            <label for="contact-name">Nom</label>
+            <input id="contact-name" type="text" maxlength="120" placeholder="Ton nom" />
           </div>
-          <p class="hint center" style="margin-top:18px">
-            <a href="#" id="backToForm">← Volver a mis datos</a>
-          </p>
-        </div>
-
-        <!-- PASO C: CONFIRMACIÓN -->
-        <div class="panel hidden center" id="stepDone">
-          <div class="confirm-icon">✓</div>
-          <h2 style="color:var(--gold)">¡Hemos registrado tu pago!</h2>
-          <p class="muted" style="max-width:540px;margin:10px auto 0">
-            Gracias <span id="doneName" class="gold"></span>. En cuanto AdelineTarot
-            confirme la recepción del pago, recibirás el enlace privado de tu
-            videollamada en <strong id="doneEmail">tu correo</strong>.
-          </p>
-          <div id="teaserBox"></div>
-
-          <div class="video-card">
-            <strong class="gold">Próximo paso</strong>
-            <p class="muted" style="margin:8px 0 0">
-              Revisa tu bandeja de entrada (y la carpeta de spam). El enlace solo se
-              envía por correo tras validar el pago; por seguridad no se muestra en
-              esta página.
-            </p>
+          <div class="pred-field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" type="email" maxlength="254" placeholder="email@exemple.com" />
           </div>
-          <p class="hint" style="margin-top:18px">
-            Ref. <span id="doneRef"></span> · ¿Dudas? Responde al correo de confirmación.
-          </p>
+          <div class="pred-field full">
+            <label for="contact-reason">Motif</label>
+            <input id="contact-reason" type="text" maxlength="220" placeholder="Je souhaite être rappelé(e) pour..." />
+          </div>
         </div>
+        <button type="button" class="btn btn-primary" onclick="sendContactRequest()">Demander un rappel</button>
+        <p class="hint" id="contact-msg" style="margin-top:12px"></p>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <!-- ===================== WHATSAPP POPUP ===================== -->
+  <div id="waPopup" class="wa-popup hidden" role="dialog" aria-live="polite" aria-label="Servicios por WhatsApp">
+    <button class="wa-close" type="button" aria-label="Cerrar" onclick="closeWaPopup()">×</button>
+    <h3>💬 Atención por WhatsApp</h3>
+    <p>Lectura rápida, consulta privada, oraciones y velas en honor especial.</p>
+    <a class="btn btn-primary wa-popup-btn" href="https://wa.me/527227117122" target="_blank" rel="noopener">
+      <svg class="wa-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.52 3.48A11.78 11.78 0 0 0 12.13 0C5.57 0 .23 5.34.23 11.9c0 2.1.55 4.16 1.6 5.98L0 24l6.31-1.78a11.88 11.88 0 0 0 5.82 1.48h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.52-8.42m-8.39 18.2h-.01a9.85 9.85 0 0 1-5.02-1.37l-.36-.22-3.74 1.05 1-3.65-.24-.37a9.84 9.84 0 0 1-1.51-5.22c0-5.46 4.44-9.9 9.9-9.9 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 6.99c0 5.46-4.45 9.9-9.91 9.9m5.43-7.39c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.66-.5l-.56-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.87 1.2 3.07c.15.2 2.08 3.18 5.04 4.46.71.3 1.27.48 1.7.62.71.23 1.35.2 1.86.12.56-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.56-.35"/></svg>
+      Escribir al +52 722 711 7122
+    </a>
+  </div>
+  <div id="freeReadingPopup" class="center-popup hidden" role="dialog" aria-live="polite" aria-label="Lectura de carta natal gratuita">
+    <div class="center-popup-card">
+      <button class="center-popup-close" type="button" aria-label="Cerrar" onclick="closeFreeReadingPopup()">×</button>
+      <p class="eyebrow" style="margin-bottom:10px">Gratis</p>
+      <h3>Lectura de carta natal gratuita</h3>
+      <p>Empieza aquí: tu lectura gratuita es el elemento principal. Haz clic para abrir directamente la predicción y recibir tus primeros resultados.</p>
+      <a href="lectura-de-carta-natal.html" class="btn btn-primary">Abrir la lectura gratuita</a>
+    </div>
+  </div>
+  <a class="wa-fab" href="https://wa.me/527227117122" target="_blank" rel="noopener" aria-label="Ouvrir WhatsApp AdelineTarot">
+    <svg class="wa-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.52 3.48A11.78 11.78 0 0 0 12.13 0C5.57 0 .23 5.34.23 11.9c0 2.1.55 4.16 1.6 5.98L0 24l6.31-1.78a11.88 11.88 0 0 0 5.82 1.48h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.52-8.42m-8.39 18.2h-.01a9.85 9.85 0 0 1-5.02-1.37l-.36-.22-3.74 1.05 1-3.65-.24-.37a9.84 9.84 0 0 1-1.51-5.22c0-5.46 4.44-9.9 9.9-9.9 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 6.99c0 5.46-4.45 9.9-9.91 9.9m5.43-7.39c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.66-.5l-.56-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.87 1.2 3.07c.15.2 2.08 3.18 5.04 4.46.71.3 1.27.48 1.7.62.71.23 1.35.2 1.86.12.56-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.56-.35"/></svg>
+  </a>
+
+  <script>
+  // ================================================================
+  //  MOTOR DE PREDICCIÓN ASTRAL — AdelineTarot
+  //  (basado en HumanPredict, integrado 2026-06)
+  // ================================================================
+
+  const SIGNS_ES = ['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'];
+  const SIGN_SYMBOLS = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+
+  const PLANETS_DEF = {
+    'Sol':     { sym:'☉', speed:0.9856,  base:280.46 },
+    'Luna':    { sym:'☽', speed:13.1764, base:218.32 },
+    'Mercurio':{ sym:'☿', speed:4.0923,  base:252.25 },
+    'Venus':   { sym:'♀', speed:1.6021,  base:181.98 },
+    'Marte':   { sym:'♂', speed:0.5240,  base:355.43 },
+    'Júpiter': { sym:'♃', speed:0.0831,  base:34.35  },
+    'Saturno': { sym:'♄', speed:0.0334,  base:50.08  },
+    'Urano':   { sym:'♅', speed:0.0117,  base:314.05 },
+    'Neptuno': { sym:'♆', speed:0.0060,  base:304.35 },
+    'Plutón':  { sym:'♇', speed:0.0040,  base:238.93 }
+  };
+
+  function predCalcAstro(dateStr, timeStr) {
+    const dt = new Date(dateStr + 'T' + (timeStr || '12:00'));
+    const jd = dt.getTime() / 86400000 + 2440587.5;
+    const res = {};
+    for (const [name, d] of Object.entries(PLANETS_DEF)) {
+      let lon = (d.base + d.speed * (jd - 2451545.0)) % 360;
+      if (lon < 0) lon += 360;
+      lon = (lon + Math.sin(jd * 0.01 + d.base) * 2) % 360;
+      const idx = Math.floor(lon / 30) % 12;
+      res[name] = { sign: SIGNS_ES[idx], symbol: d.sym, sigSym: SIGN_SYMBOLS[idx], lon };
+    }
+    return res;
+  }
+
+  function predGetAsc(dateStr, timeStr) {
+    const hour = parseInt((timeStr || '12:00').split(':')[0]);
+    const month = new Date(dateStr).getMonth();
+    return SIGNS_ES[Math.floor((hour + month) / 2) % 12];
+  }
+
+  function predAge(dateStr) {
+    const b = new Date(dateStr), t = new Date();
+    let a = t.getFullYear() - b.getFullYear();
+    if (t.getMonth() < b.getMonth() || (t.getMonth() === b.getMonth() && t.getDate() < b.getDate())) a--;
+    return a;
+  }
+
+  function switchPredTab(which) {
+    document.querySelectorAll('.pred-tab').forEach((b, i) => {
+      b.classList.toggle('active', (i === 0 && which === 'court') || (i === 1 && which === 'long'));
+      b.setAttribute('aria-selected', b.classList.contains('active'));
+    });
+    document.getElementById('pred-panel-court').classList.toggle('active', which === 'court');
+    document.getElementById('pred-panel-long').classList.toggle('active', which === 'long');
+  }
+
+  function toggleMenu(open) {
+    const menu = document.getElementById('sideMenu');
+    const backdrop = document.getElementById('menuBackdrop');
+    if (!menu || !backdrop) return;
+    menu.classList.toggle('open', !!open);
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    backdrop.classList.toggle('hidden', !open);
+  }
+
+  function openServiceTab(tab, scroll) {
+    document.querySelectorAll('.service-tab').forEach((el) => {
+      el.classList.toggle('active', el.dataset.tab === tab);
+    });
+    document.querySelectorAll('.orbit-card').forEach((el) => {
+      el.classList.toggle('active', el.dataset.service === tab);
+    });
+    if (scroll) {
+      const host = document.getElementById('services-hub');
+      if (host) host.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function isValidEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || '').trim());
+  }
+
+  function svcSetResult(id, html) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = html;
+    el.classList.remove('hidden');
+  }
+
+  function runSvcNatal() {
+    const name = document.getElementById('svc-natal-name').value.trim();
+    const date = document.getElementById('svc-natal-date').value;
+    const time = document.getElementById('svc-natal-time').value;
+    const email = document.getElementById('svc-natal-email').value.trim();
+    if (!name || !date || !isValidEmail(email)) {
+      svcSetResult('svc-natal-out', '<div class="alert alert-error">Complète nom, date et email valide.</div>');
+      return;
+    }
+    const astro = predCalcAstro(date, time);
+    const asc = predGetAsc(date, time);
+    svcSetResult('svc-natal-out', `<div class="pred-card"><h3>Résultat express</h3><p><strong>${name}</strong> · Soleil en <span class="highlight">${astro['Sol'].sign}</span>, Lune en <span class="highlight">${astro['Luna'].sign}</span>, Ascendant <span class="highlight">${asc}</span>.</p><p>Ta demande est prête pour la lecture complète.</p></div>`);
+  }
+
+  function runSvcLive() {
+    const n1 = document.getElementById('svc-live-name').value.trim();
+    const d1 = document.getElementById('svc-live-date').value;
+    const n2 = document.getElementById('svc-live-target').value.trim();
+    const d2 = document.getElementById('svc-live-target-date').value;
+    const email = document.getElementById('svc-live-email').value.trim();
+    if (!n1 || !d1 || !n2 || !d2 || !isValidEmail(email)) {
+      svcSetResult('svc-live-out', '<div class="alert alert-error">Complète les deux profils et un email valide.</div>');
+      return;
+    }
+    const s1 = predCalcAstro(d1, '')['Sol'].sign;
+    const s2 = predCalcAstro(d2, '')['Sol'].sign;
+    const i1 = SIGNS_ES.indexOf(s1);
+    const i2 = SIGNS_ES.indexOf(s2);
+    const diff = Math.min(Math.abs(i1 - i2), 12 - Math.abs(i1 - i2));
+    const score = Math.max(52, 100 - diff * 9);
+    svcSetResult('svc-live-out', `<div class="pred-card"><h3>Compatibilité rapide</h3><p>${n1} (${s1}) × ${n2} (${s2})</p><p>Score estimé: <span class="highlight">${score}%</span>. La session live permettra d'affiner avec questions ciblées.</p></div>`);
+  }
+
+  function runSvcYear() {
+    const name = document.getElementById('svc-year-name').value.trim();
+    const date = document.getElementById('svc-year-date').value;
+    const focus = document.getElementById('svc-year-focus').value;
+    const email = document.getElementById('svc-year-email').value.trim();
+    if (!name || !date || !isValidEmail(email)) {
+      svcSetResult('svc-year-out', '<div class="alert alert-error">Complète nom, date et email valide.</div>');
+      return;
+    }
+    const sun = predCalcAstro(date, '')['Sol'].sign;
+    const f = { general:'équilibre', amour:'coeur', travail:'structure', argent:'abondance' }[focus] || 'équilibre';
+    const phases = ['Q1 lancement', 'Q2 expansion', 'Q3 ajustement', 'Q4 consolidation'];
+    svcSetResult('svc-year-out', `<div class="pred-card"><h3>Projection 1 an</h3><p>${name} · Soleil ${sun} · Focus ${focus}</p><p>${phases.map((p,i)=>`${p}: énergie ${f} ${i+1}`).join('<br>')}</p></div>`);
+  }
+
+  function runSvcLong() {
+    const name = document.getElementById('svc-long-name').value.trim();
+    const date = document.getElementById('svc-long-date').value;
+    const time = document.getElementById('svc-long-time').value;
+    const email = document.getElementById('svc-long-email').value.trim();
+    if (!name || !date || !isValidEmail(email)) {
+      svcSetResult('svc-long-out', '<div class="alert alert-error">Complète nom, date et email valide.</div>');
+      return;
+    }
+    const sun = predCalcAstro(date, time)['Sol'].sign;
+    const age = predAge(date);
+    const satReturn = age < 30 ? 29 : 58;
+    const gap = satReturn - age;
+    const trend = gap > 0 ? `Retour de Saturne dans ~${gap} ans.` : 'Cycle Saturne en intégration.';
+    svcSetResult('svc-long-out', `<div class="pred-card"><h3>Vision 5 ans</h3><p>${name} · Soleil ${sun} · ${trend}</p><p>Fenêtres fortes: année 1.5, 3 et 4.5 avec décisions structurantes.</p></div>`);
+  }
+
+  function runSvcOration() {
+    const name = document.getElementById('svc-ora-name').value.trim();
+    const honor = document.getElementById('svc-ora-honor').value.trim();
+    const date = document.getElementById('svc-ora-date').value;
+    const email = document.getElementById('svc-ora-email').value.trim();
+    const intent = document.getElementById('svc-ora-intent').value.trim();
+    if (!name || !honor || !intent || !date || !isValidEmail(email)) {
+      svcSetResult('svc-ora-out', '<div class="alert alert-error">Complète tous les champs avec email valide.</div>');
+      return;
+    }
+    const sun = predCalcAstro(date, '')['Sol'].sign;
+    const bestDay = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'][SIGNS_ES.indexOf(sun) % 7];
+    svcSetResult('svc-ora-out', `<div class="pred-card"><h3>Oraison recommandée</h3><p>Pour ${honor}, intention: <span class="highlight">${intent}</span>.</p><p>Signature énergétique ${sun}. Jour conseillé: <strong>${bestDay}</strong>.</p></div>`);
+  }
+
+  function runSvcWhatsApp() {
+    const name = document.getElementById('svc-wa-name').value.trim();
+    const service = document.getElementById('svc-wa-service').value;
+    const msg = document.getElementById('svc-wa-msg').value.trim();
+    if (!name || !msg) {
+      svcSetResult('svc-wa-out', '<div class="alert alert-error">Complète ton nom et ton message.</div>');
+      return;
+    }
+    const text = `Hola AdelineTarot, soy ${name}. Servicio: ${service}. Mensaje: ${msg}`;
+    const url = buildWhatsAppUrl(text);
+    svcSetResult('svc-wa-out', `<div class="pred-card"><h3>Message prêt</h3><p>Ton message est prêt pour WhatsApp.</p><p><a class="btn btn-primary" href="${url}" target="_blank" rel="noopener">Envoyer maintenant</a></p></div>`);
+  }
+
+  // ================================================================
+  //  CORTO PLAZO — Tirada de tarot interpretada
+  // ================================================================
+  const TAROT_ARCANA = [
+    {n:'El Loco',        k:'new_start'},
+    {n:'El Mago',        k:'will'},
+    {n:'La Suma Sacerdotisa', k:'intuition'},
+    {n:'La Emperatriz',  k:'abundance'},
+    {n:'El Emperador',   k:'structure'},
+    {n:'El Hierofante',  k:'wisdom'},
+    {n:'Los Amantes',    k:'choice'},
+    {n:'El Carro',       k:'victory'},
+    {n:'La Fuerza',      k:'courage'},
+    {n:'El Ermitaño',    k:'reflection'},
+    {n:'La Rueda',       k:'cycle'},
+    {n:'La Justicia',    k:'balance'},
+    {n:'El Colgado',     k:'pause'},
+    {n:'La Muerte',      k:'transform'},
+    {n:'La Templanza',   k:'harmony'},
+    {n:'El Diablo',      k:'shadow'},
+    {n:'La Torre',       k:'disruption'},
+    {n:'La Estrella',    k:'hope'},
+    {n:'La Luna',        k:'illusion'},
+    {n:'El Sol',         k:'clarity'},
+    {n:'El Juicio',      k:'renewal'},
+    {n:'El Mundo',       k:'completion'}
+  ];
+
+  const TAROT_INTERP = {
+    general: {
+      pasado: {
+        new_start:'Un período de transición marcó tu punto de partida. Dejaste atrás viejas certezas.',
+        will:'Tu voluntad y tus habilidades fueron el motor de los últimos eventos.',
+        intuition:'La quietud interior te llevó a decisiones sabias y momentos de claridad.',
+        abundance:'La energía femenina y creativa fluyó con generosidad en tu vida reciente.',
+        structure:'Una figura de autoridad o una estructura sólida definió el contexto pasado.',
+        wisdom:'El conocimiento acumulado y la tradición influyeron en tus últimas elecciones.',
+        choice:'Una elección significativa, especialmente en el corazón, marcó el período.',
+        victory:'Superaste obstáculos con determinación; el movimiento fue tu aliado.',
+        courage:'Domesticaste tus miedos con paciencia. La fuerza interior brilló.',
+        reflection:'Un período de retiro y búsqueda interior caracterizó tu pasado reciente.',
+        cycle:'La rueda giró; lo que se fue puede volver, y lo que llegó puede marcharse.',
+        balance:'La justicia y el equilibrio marcaron las decisiones pasadas.',
+        pause:'Una pausa forzada o voluntaria te permitió ver desde otro ángulo.',
+        transform:'Una transformación profunda, aunque difícil, fue necesaria.',
+        harmony:'Encontraste un punto medio entre extremos; la paciencia fue clave.',
+        shadow:'Ataduras o excesos marcaron este período; la toma de conciencia comenzó.',
+        disruption:'Un cambio repentino sacudió las estructuras establecidas.',
+        hope:'La esperanza y la fe iluminaron incluso los momentos más oscuros.',
+        illusion:'Las ilusiones y los miedos velaron la realidad; era tiempo de clarificar.',
+        clarity:'La luz y la alegría marcaron ese período; la energía estaba al máximo.',
+        renewal:'Un despertar, una segunda oportunidad se presentó en tu camino.',
+        completion:'Cerraste un ciclo importante; algo llegó a su plena madurez.'
+      },
+      presente: {
+        new_start:'Ahora comienzas algo nuevo. Atrévete a dar el primer paso sin miedo al fracaso.',
+        will:'Tienes todos los recursos para crear tu realidad. Actúa con intención.',
+        intuition:'Escucha tu voz interior; ella conoce la respuesta que buscas.',
+        abundance:'Un período de abundancia y creatividad se abre ante ti. Nutre tus proyectos.',
+        structure:'Es momento de establecer límites claros y construir sobre bases sólidas.',
+        wisdom:'Busca consejo en la sabiduría establecida o en una figura de guía espiritual.',
+        choice:'Estás en una encrucijada. Elige con el corazón, no solo con la mente.',
+        victory:'La acción decidida te lleva al éxito. Mantén el rumbo.',
+        courage:'La fuerza que necesitas está dentro de ti. Enfrenta tus miedos con gentileza.',
+        reflection:'Es tiempo de retirarte y escuchar en silencio. La respuesta emerge desde adentro.',
+        cycle:'Estás en pleno giro de la rueda. Lo que siembras ahora determinará el mañana.',
+        balance:'Evalúa la situación con equidad. La justicia estará de tu lado si actúas con integridad.',
+        pause:'Detente antes de decidir. Esta pausa es un regalo disfrazado.',
+        transform:'Una transformación profunda está en marcha. Suelta lo que ya no te sirve.',
+        harmony:'Busca el punto medio. La moderación y la paciencia son tus aliadas.',
+        shadow:'Examina tus sombras sin juzgarlas. La liberación comienza con la honestidad.',
+        disruption:'Un cambio inesperado se acerca. Lo que cae era frágil; lo que surge será más auténtico.',
+        hope:'La estrella brilla para ti. Confía en el universo y en tu camino.',
+        illusion:'Cuestiona lo que crees ver. Hay más verdad bajo la superficie.',
+        clarity:'El sol ilumina tu camino. Este es un momento de alegría y logro.',
+        renewal:'Es hora de responder al llamado de tu alma. Un nuevo capítulo comienza.',
+        completion:'Llegas al final de un ciclo con sabiduría. El mundo reconoce tu logro.'
+      },
+      futuro: {
+        new_start:'En las próximas semanas, una puerta nueva se abrirá. Sé flexible y abierto.',
+        will:'Tu habilidad de manifestar se amplificará. Enfoca tu intención con precisión.',
+        intuition:'Un mensaje profundo llegará a través de sueños o sincronicidades.',
+        abundance:'La prosperidad y la fertilidad creativa florecerán pronto en tu vida.',
+        structure:'Una figura de poder o una estructura institucional jugará un papel clave.',
+        wisdom:'Una enseñanza importante llegará a ti, posiblemente a través de otra persona.',
+        choice:'Deberás elegir. No hay respuesta incorrecta, solo diferentes caminos.',
+        victory:'El éxito está al alcance. Mantén el movimiento y no te detengas.',
+        courage:'Tu fortaleza interior será probada y celebrada en las próximas semanas.',
+        reflection:'Un período de soledad creativa te traerá respuestas valiosas.',
+        cycle:'La fortuna girará a tu favor. Un nuevo ciclo de oportunidades se inicia.',
+        balance:'Una situación llegará a su resolución justa en el corto plazo.',
+        pause:'Una espera necesaria precederá a un gran avance.',
+        transform:'Una metamorfosis se completa. Lo que muere da paso a algo más poderoso.',
+        harmony:'Un equilibrio se restablece. La serenidad regresa a tu vida.',
+        shadow:'Es momento de soltar cadenas invisibles. La liberación está cercana.',
+        disruption:'Un cambio brusco se avecina; aunque incómodo, libera energía estancada.',
+        hope:'La curación y la restauración llegan. Confía en el proceso.',
+        illusion:'Pronto verás con claridad lo que antes estaba velado.',
+        clarity:'Un período de éxito y alegría auténtica se aproxima. Mereces este brillo.',
+        renewal:'Una oportunidad de renacer llega. Responde a ella con valentía.',
+        completion:'Un logro significativo corona tu esfuerzo en las próximas semanas.'
+      }
+    }
+  };
+
+  function tarotDraw(seed) {
+    let s = seed;
+    const rng = () => { s = (s * 1664525 + 1013904223) & 0xffffffff; return Math.abs(s) / 0x80000000; };
+    const idxs = [];
+    while (idxs.length < 3) { const i = Math.floor(rng() * 22); if (!idxs.includes(i)) idxs.push(i); }
+    return idxs.map(i => TAROT_ARCANA[i]);
+  }
+
+  function dateSeed(dateStr, name) {
+    let h = 5381;
+    const s = (dateStr + name).replace(/[^a-zA-Z0-9]/g, '');
+    for (let i = 0; i < s.length; i++) h = ((h << 5) + h) + s.charCodeAt(i);
+    return Math.abs(h);
+  }
+
+  const TOPIC_KEYS = { general:'general', amor:'general', trabajo:'general', salud:'general', familia:'general' };
+  const TOPIC_LABELS = { general:'la situación general', amor:'el amor', trabajo:'el trabajo', salud:'la salud', familia:'la familia' };
+  const POSITIONS = ['Pasado', 'Presente', 'Futuro próximo'];
+  const POS_KEYS  = ['pasado', 'presente', 'futuro'];
+  let shortPredictionLockedHtml = '';
+  let longPredictionHtml = '';
+
+  function runShortTermPred() {
+    const name  = document.getElementById('pred-name-court').value.trim();
+    const date  = document.getElementById('pred-date-court').value;
+    const topic = document.getElementById('pred-question').value;
+    const wrap  = document.getElementById('pred-court-result');
+
+    if (!name || !date) {
+      wrap.style.display = 'block';
+      wrap.innerHTML = '<div class="alert alert-error">Por favor, ingresa tu nombre y fecha de nacimiento.</div>';
+      return;
+    }
+
+    wrap.style.display = 'block';
+    wrap.innerHTML = '<div class="pred-loader"><div class="pred-loader-ring"></div><p>Las cartas se están revelando para ti…</p></div>';
+
+    setTimeout(() => {
+      const astro = predCalcAstro(date, '');
+      const asc   = predGetAsc(date, '');
+      const seed  = dateSeed(date, name);
+      const cards = tarotDraw(seed);
+      const interp = TAROT_INTERP.general;
+      const topicLabel = TOPIC_LABELS[topic] || 'la situación';
+
+      let html = '';
+      // Astro bar
+      html += '<div class="pred-astro-bar">';
+      ['Sol','Luna','Venus'].forEach(p => {
+        const d = astro[p];
+        html += `<div class="pred-astro-item"><span class="planet-sym">${PLANETS_DEF[p].sym}</span><span class="planet-sign">${d.sign}</span><span style="font-size:.78rem;color:var(--muted)">${p}</span></div>`;
+      });
+      html += `<div class="pred-astro-item"><span class="planet-sym">↑</span><span class="planet-sign">${asc}</span><span style="font-size:.78rem;color:var(--muted)">Asc.</span></div>`;
+      html += '</div>';
+
+      // Intro
+      html += `<div class="pred-card" style="border-left:3px solid var(--gold);border-radius:0 18px 18px 0;margin-bottom:18px"><h3>🃏 Tirada de tres cartas · ${topicLabel}</h3><p>Una tirada personalizada para <span class="highlight">${name}</span>, guiada por tu Sol en <span class="highlight">${astro['Sol'].sign}</span> y tu Luna en <span class="highlight">${astro['Luna'].sign}</span>.</p></div>`;
+
+      // Three cards
+      cards.forEach((card, i) => {
+        const posKey = POS_KEYS[i];
+        const txt = (interp[posKey] && interp[posKey][card.k]) || '';
+        html += `<div class="pred-card pred-card-border-left">
+          <h3>${POSITIONS[i]} &mdash; <span class="highlight">${card.n}</span></h3>
+          <p>${txt}</p>
+        </div>`;
+      });
+
+      // Synthese
+      const synthesisCard = `<div class="pred-card" style="background:rgba(232,198,107,.05);border-color:rgba(232,198,107,.4)">
+        <h3>✨ Síntesis de las próximas semanas</h3>
+        <p>Las cartas revelan un ciclo de <strong class="highlight">${cards[1].n}</strong> en el presente, que requiere la lección de <strong class="highlight">${cards[0].n}</strong> del pasado para llegar a <strong class="highlight">${cards[2].n}</strong>. Tu energía astral — Sol en ${astro['Sol'].sign}, Luna en ${astro['Luna'].sign} — invita a escuchar tu intuición y actuar con autenticidad en el terreno de ${topicLabel}.</p>
+      </div>`;
+
+      // CTA reserva
+      const ctaCard = `<div class="pred-book-prompt">
+        <p>¿Quieres profundizar en esta lectura con una interpretación personal en vivo?</p>
+        <a href="#reservar" class="btn btn-primary">🔮 Reservar mi consulta</a>
+      </div>`;
+
+      const lockEnabled = !sessionStorage.getItem('adelinetarot_short_unlock');
+      shortPredictionLockedHtml = synthesisCard + ctaCard;
+
+      if (lockEnabled) {
+        html += `<div class="pred-locked-bloc">
+          <div class="pred-locked-fade">${shortPredictionLockedHtml}</div>
+          <div class="pred-locked-overlay">
+            <strong>🔒 Contenido bloqueado</strong>
+            <p>Has llegado al límite gratuito de 3 párrafos. Ingresa tu email para desbloquear el resto.</p>
+          </div>
+        </div>`;
+        document.getElementById('pred-court-gate').classList.remove('hidden');
+      } else {
+        html += shortPredictionLockedHtml;
+        document.getElementById('pred-court-gate').classList.add('hidden');
+      }
+
+      wrap.innerHTML = html;
+      wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 1400);
+  }
+
+  function unlockShortPrediction() {
+    const emailInput = document.getElementById('pred-unlock-email');
+    const msg = document.getElementById('pred-gate-msg');
+    const email = (emailInput?.value || '').trim();
+    if (!isValidEmail(email)) {
+      msg.textContent = 'Entre un email valide pour débloquer.';
+      return;
+    }
+
+    localStorage.setItem('adelinetarot_lead_email', email);
+    sessionStorage.setItem('adelinetarot_short_unlock', '1');
+    msg.textContent = 'Merci. Contenu débloqué.';
+
+    const wrap = document.getElementById('pred-court-result');
+    if (wrap && shortPredictionLockedHtml) {
+      const locked = wrap.querySelector('.pred-locked-bloc');
+      if (locked) locked.outerHTML = shortPredictionLockedHtml;
+    }
+    document.getElementById('pred-court-gate').classList.add('hidden');
+  }
+
+  function unlockLongPrediction() {
+    const emailInput = document.getElementById('pred-long-email');
+    const msg = document.getElementById('pred-long-msg');
+    const email = (emailInput?.value || '').trim();
+    if (!isValidEmail(email)) {
+      msg.textContent = 'Ingresa un email válido para desbloquear.';
+      return;
+    }
+
+    localStorage.setItem('adelinetarot_lead_long_email', email);
+    sessionStorage.setItem('adelinetarot_long_unlock', '1');
+    msg.textContent = 'Acceso desbloqueado. Ya puedes ver la predicción de 5 años.';
+    const gate = document.getElementById('pred-long-gate');
+    if (gate) gate.classList.add('hidden');
+    if (longPredictionHtml) {
+      const wrap = document.getElementById('pred-long-result');
+      wrap.style.display = 'block';
+      wrap.innerHTML = longPredictionHtml;
+    }
+  }
+
+  function buildWhatsAppUrl(text) {
+    return `https://wa.me/527227117122?text=${encodeURIComponent(text)}`;
+  }
+
+  function sendOrationRequest() {
+    const type = document.getElementById('oration-type').value;
+    const honor = document.getElementById('oration-honor').value.trim();
+    const intent = document.getElementById('oration-intent').value.trim();
+    const name = document.getElementById('oration-name').value.trim();
+    const email = document.getElementById('oration-email').value.trim();
+    const amount = parseInt(document.getElementById('oration-amount').value || '0', 10);
+    const msg = document.getElementById('oration-msg');
+
+    if (!honor || !intent || !name || !isValidEmail(email) || !Number.isFinite(amount) || amount < 1) {
+      msg.textContent = 'Complète les champs, email valide et contribution minimum 1 USD.';
+      return;
+    }
+
+    const text = `Hola AdelineTarot, deseo solicitar: ${type}. En honor de: ${honor}. Intención: ${intent}. Mi nombre: ${name}. Mi email: ${email}. Aporte: ${amount} USD.`;
+    window.open(buildWhatsAppUrl(text), '_blank', 'noopener');
+    msg.textContent = 'Demande prête. Prix libre enregistré et WhatsApp ouvert pour confirmation.';
+  }
+
+  function sendContactRequest() {
+    const name = document.getElementById('contact-name').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const reason = document.getElementById('contact-reason').value.trim();
+    const msg = document.getElementById('contact-msg');
+
+    if (!name || !reason || !isValidEmail(email)) {
+      msg.textContent = 'Complète nom, email valide et motif.';
+      return;
+    }
+
+    localStorage.setItem('adelinetarot_contact_lead', JSON.stringify({ name, email, reason, at: new Date().toISOString() }));
+    const text = `Hola, solicito llamada de regreso. Nombre: ${name}. Email: ${email}. Motivo: ${reason}.`;
+    window.open(buildWhatsAppUrl(text), '_blank', 'noopener');
+    msg.textContent = 'Demande envoyée. WhatsApp ouvert pour accélérer la réponse.';
+  }
+
+  function closeWaPopup() {
+    const popup = document.getElementById('waPopup');
+    if (popup) popup.classList.add('hidden');
+    sessionStorage.setItem('adelinetarot_wa_popup_closed_at', String(Date.now()));
+  }
+
+  function closeFreeReadingPopup() {
+    const popup = document.getElementById('freeReadingPopup');
+    if (popup) popup.classList.add('hidden');
+    sessionStorage.setItem('adelinetarot_free_popup_closed_at', String(Date.now()));
+  }
+
+  function showWaPopupOnce() {
+    const popup = document.getElementById('waPopup');
+    if (!popup) return;
+    const lastClosed = parseInt(sessionStorage.getItem('adelinetarot_wa_popup_closed_at') || '0', 10);
+    if (Date.now() - lastClosed < 15000) return;
+    popup.classList.remove('hidden');
+  }
+
+  function showFreeReadingPopupOnce() {
+    const popup = document.getElementById('freeReadingPopup');
+    if (!popup) return;
+    const lastClosed = parseInt(sessionStorage.getItem('adelinetarot_free_popup_closed_at') || '0', 10);
+    if (Date.now() - lastClosed < 60000) return;
+    popup.classList.remove('hidden');
+  }
+
+  function getPopupDelayMs() {
+    return window.matchMedia('(max-width: 768px)').matches ? 40000 : 70000;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(showFreeReadingPopupOnce, getPopupDelayMs());
+    setTimeout(showWaPopupOnce, 60000);
+    setInterval(showWaPopupOnce, 180000);
+  });
+
+  // ================================================================
+  //  LARGO PLAZO — Predicción astrológica 5 años
+  // ================================================================
+  const SIGN_TRAITS_ES = {
+    'Aries':      { el:'fuego',  traits:'impulsivo, valiente, pionero',          challenge:'la paciencia y la diplomacia' },
+    'Tauro':      { el:'tierra', traits:'estable, sensual, perseverante',         challenge:'la adaptación al cambio' },
+    'Géminis':    { el:'aire',   traits:'curioso, adaptable, comunicativo',       challenge:'la concentración y la profundidad' },
+    'Cáncer':     { el:'agua',   traits:'intuitivo, protector, emocional',        challenge:'soltar y confiar' },
+    'Leo':        { el:'fuego',  traits:'carismático, creativo, leal',            challenge:'la humildad y la escucha' },
+    'Virgo':      { el:'tierra', traits:'analítico, servicial, perfeccionista',   challenge:'aceptar la imperfección' },
+    'Libra':      { el:'aire',   traits:'diplomático, esteta, justo',             challenge:'la decisión y la asertividad' },
+    'Escorpio':   { el:'agua',   traits:'intenso, estratega, transformador',      challenge:'el perdón y la ligereza' },
+    'Sagitario':  { el:'fuego',  traits:'aventurero, filósofo, optimista',        challenge:'el compromiso y el rigor' },
+    'Capricornio':{ el:'tierra', traits:'ambicioso, disciplinado, pragmático',   challenge:'la espontaneidad y soltar' },
+    'Acuario':    { el:'aire',   traits:'original, humanista, independiente',     challenge:'la intimidad emocional' },
+    'Piscis':     { el:'agua',   traits:'compasivo, imaginativo, espiritual',     challenge:'los límites y la estructura' }
+  };
+
+  function getTraits(sign) {
+    return SIGN_TRAITS_ES[sign] || { el:'', traits:sign, challenge:'el equilibrio' };
+  }
+
+  function predLongWork(sun, jupiter, saturn) {
+    const st = getTraits(sun);
+    return `<p>Con tu <span class="highlight">Sol en ${sun}</span>, eres naturalmente <strong>${st.traits}</strong>. En los próximos 5 años, el tránsito de Júpiter en <span class="highlight">${jupiter.sign}</span> abrirá oportunidades de expansión profesional y reconocimiento. Periodos de aceleración se esperan cuando Júpiter active tu signo solar. Saturno en <span class="highlight">${saturn.sign}</span> exigirá disciplina y restructuración; los proyectos sólidos resistirán y crecerán.</p>
+    <p>Tus principales <span class="highlight">ventanas de oportunidad</span> se situarán a finales del primer año y a mediados del tercer año. Tu mayor desafío: <strong>${st.challenge}</strong>. Quien lo supere cosechará recompensas duraderas en lo profesional y financiero.</p>`;
+  }
+
+  function predLongLove(sun, venus, moon) {
+    const st = getTraits(sun);
+    return `<p>Venus en <span class="highlight">${venus.sign}</span> define cómo amas y lo que atraes hacia ti. En los próximos años, las relaciones se profundizarán y cobrarán un carácter más consciente. La Luna en <span class="highlight">${moon.sign}</span> revela tus necesidades emocionales más profundas — cuando sean honradas, las conexiones florecerán de forma auténtica.</p>
+    <p>Hacia el <span class="date-badge">2do–3er año</span>, un período de claridad emocional permite elegir o renovar vínculos con mayor autenticidad. Si estás en pareja, la consolidación o la redefinición de los pilares de la relación será el eje central. Si estás solo/a, el ciclo indica que la vulnerabilidad consciente abrirá puertas a un amor más profundo que lo conocido.</p>`;
+  }
+
+  function predLongFamily(sun, saturn) {
+    return `<p>Saturno en <span class="highlight">${saturn.sign}</span> trae responsabilidades familiares a primer plano. Este ciclo invita a sanar vínculos ancestrales y a construir sobre bases más honestas. Las relaciones con figuras parentales o con la propia familia núcleo entrarán en un proceso de revisión y, en muchos casos, de reconciliación profunda.</p>
+    <p>El hogar — como concepto y como espacio físico — puede experimentar cambios significativos: mudanzas, ampliaciones o reestructuraciones. El <span class="date-badge">3er–4to año</span> marca el momento de consolidación. Tu Sol en <span class="highlight">${sun}</span> aporta calidez e identidad al núcleo familiar.</p>`;
+  }
+
+  function predLongWellbeing(sun, mars, saturn) {
+    const st = getTraits(sun);
+    return `<p>Marte en <span class="highlight">${mars.sign}</span> define tu vitalidad y tu manera de gestionarla. Los ciclos de alta energía alternarán con períodos que requieren descanso activo. Saturno exige estructura y rutina: quienes establezcan hábitos sólidos de cuidado personal verán su capital de salud crecer con los años.</p>
+    <p>Presta especial atención en el <span class="date-badge">2do año</span> a la gestión del estrés — es el punto de mayor presión del ciclo. El sistema nervioso, bajo la influencia de tu elemento <strong>${st.el}</strong>, agradecerá prácticas regulares de movimiento, silencio y contacto con la naturaleza.</p>`;
+  }
+
+  function predLongFriends(sun, mercury) {
+    return `<p>Mercurio en <span class="highlight">${mercury.sign}</span> colorea tu manera de comunicarte y de crear vínculos. En los próximos 5 años, tu círculo social experimentará una renovación natural: algunas relaciones se profundizarán y otras se disolverán para dar paso a conexiones más afines a la versión que estás construyendo de ti mismo/a.</p>
+    <p>El liderazgo sutil, el intercambio de ideas y los proyectos colaborativos serán focos de expansión social. En el <span class="date-badge">4to año</span>, una comunidad o red nueva podría abrirte puertas inesperadas.</p>`;
+  }
+
+  function predLongPremium10y(sun, saturn, age) {
+    const satReturn = age < 30 ? 29 : 58;
+    const yearsTo   = satReturn - age;
+    const st = getTraits(sun);
+    let html = `<p>A horizonte decenal, te aproximas a tu <span class="highlight">retorno de Saturno</span> (hacia los ${satReturn} años) — uno de los momentos más transformadores de la vida adulta. Este tránsito marca el cierre de un ciclo de 29 años y el inicio de una nueva estructura de vida más auténtica.</p>`;
+    if (yearsTo > 0 && yearsTo < 8) {
+      html += `<p>En <strong>${yearsTo} años</strong>, este portal se abrirá para ti. Las decisiones que tomes entre hoy y entonces determinarán si lo vives como crisis o como consagración. Tu desafío esencial — <strong>${st.challenge}</strong> — encontrará aquí su prueba definitiva y, si se supera, su mayor recompensa.</p>`;
+    } else {
+      html += `<p>Acabas de pasar (o estás viviendo) esta transición fundamental. Las estructuras que consolidas ahora en trabajo, amor y propósito serán los pilares de la segunda gran etapa de tu vida. La madurez de tu Sol en <span class="highlight">${sun}</span> florece plenamente.</p>`;
+    }
+    html += `<p><strong>Consejos para los próximos 10 años:</strong> Invierte en tu formación continua, construye un patrimonio (material o intelectual) paso a paso, y prioriza las relaciones que te invitan a crecer. La coherencia entre tus valores y tus acciones será la clave de tu satisfacción profunda.</p>`;
+    return html;
+  }
+
+  function runLongTermPred() {
+    const name = document.getElementById('pred-name-long').value.trim();
+    const date = document.getElementById('pred-date-long').value;
+    const time = document.getElementById('pred-time-long').value;
+    const wrap = document.getElementById('pred-long-result');
+
+    if (!name || !date) {
+      wrap.style.display = 'block';
+      wrap.innerHTML = '<div class="alert alert-error">Por favor, ingresa tu nombre y fecha de nacimiento.</div>';
+      return;
+    }
+
+    wrap.style.display = 'block';
+    wrap.innerHTML = '<div class="pred-loader"><div class="pred-loader-ring"></div><p>Calculando tu tema natal completo…</p></div>';
+
+    setTimeout(() => {
+      const astro = predCalcAstro(date, time);
+      const asc   = predGetAsc(date, time);
+      const age   = predAge(date);
+      const sun   = astro['Sol'].sign;
+      const moon  = astro['Luna'].sign;
+      const venus = astro['Venus'];
+      const mars  = astro['Marte'];
+      const jup   = astro['Júpiter'];
+      const sat   = astro['Saturno'];
+      const merc  = astro['Mercurio'];
+
+      let html = '';
+
+      // Astro bar completa
+      html += '<div class="pred-astro-bar">';
+      Object.entries(PLANETS_DEF).forEach(([name, d]) => {
+        html += `<div class="pred-astro-item"><span class="planet-sym">${d.sym}</span><span class="planet-sign">${astro[name].sign}</span><span style="font-size:.75rem;color:var(--muted)">${name}</span></div>`;
+      });
+      html += `<div class="pred-astro-item"><span class="planet-sym">↑</span><span class="planet-sign">${asc}</span><span style="font-size:.75rem;color:var(--muted)">Asc.</span></div>`;
+      html += '</div>';
+
+      // Header
+      const st = getTraits(sun);
+      html += `<div class="pred-card" style="border-left:3px solid var(--gold);border-radius:0 18px 18px 0;margin-bottom:18px">
+        <h3>🌟 Predicción para ${name} · Sol en ${sun}</h3>
+        <p>Eres esencialmente <strong class="highlight">${st.traits}</strong>. Tu mayor reto transformador: <strong class="highlight">${st.challenge}</strong>. Esta lectura cubre los próximos <strong>5 años</strong> en todas las esferas de tu vida.</p>
+      </div>`;
+
+      // 5 domains
+      html += `<div class="pred-card pred-card-border-left"><h3>💼 Carrera &amp; Finanzas</h3>${predLongWork(sun, jup, sat)}</div>`;
+      html += `<div class="pred-card pred-card-border-left"><h3>💕 Amor &amp; Relaciones</h3>${predLongLove(sun, venus, astro['Luna'])}</div>`;
+      html += `<div class="pred-card pred-card-border-left"><h3>👨‍👩‍👧 Familia &amp; Hogar</h3>${predLongFamily(sun, sat)}</div>`;
+      html += `<div class="pred-card pred-card-border-left"><h3>🌿 Bienestar &amp; Salud</h3>${predLongWellbeing(sun, mars, sat)}</div>`;
+      html += `<div class="pred-card pred-card-border-left"><h3>🤝 Amigos &amp; Vida social</h3>${predLongFriends(sun, merc)}</div>`;
+
+      // Premium 10 años (visible con gate)
+      const premBlur = `<div class="pred-card"><h3>🔭 Visión a 10 años &amp; Plan personal</h3>${predLongPremium10y(sun, sat, age)}</div>`;
+      html += `<div class="pred-premium-wrap">
+        <div class="pred-premium-blur">${premBlur}</div>
+        <div class="pred-premium-gate">
+          <div class="gate-price">Consulta en vivo</div>
+          <p>Para una interpretación personal y profunda de tu visión a largo plazo, reserva tu sesión privada con AdelineTarot.</p>
+          <a href="#reservar" class="btn btn-primary">🔮 Reservar mi consulta</a>
+        </div>
+      </div>`;
+
+      // CTA
+      html += `<div class="pred-book-prompt" style="margin-top:32px">
+        <p>¿Lista para explorar tu camino con AdelineTarot en vivo? La carta astral y el tarot se revelan en toda su riqueza en la videollamada privada.</p>
+        <a href="#reservar" class="btn btn-primary">✨ Reservar mi sesión</a>
+      </div>`;
+
+      longPredictionHtml = html;
+
+      if (!sessionStorage.getItem('adelinetarot_long_unlock')) {
+        document.getElementById('pred-long-gate').classList.remove('hidden');
+        wrap.style.display = 'none';
+        document.getElementById('pred-long-gate').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+
+      document.getElementById('pred-long-gate').classList.add('hidden');
+      wrap.innerHTML = html;
+      wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 1800);
+  }
+  </script>
+
+  <!-- ===================== FIN SECCIÓN PREDICCIÓN ===================== -->
+
   </main>
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer">
     <div class="container">
-      <div class="brand"><span class="moon" aria-hidden="true"></span> AdelineTarot</div>
       <p class="muted">Astrología &amp; tarot con alma · Consultas privadas por videollamada</p>
       <p class="legal">Las lecturas tienen fines de orientación y entretenimiento. © <span id="year"></span> AdelineTarot.</p>
     </div>
   </footer>
 
-  <script src="assets/app.js"></script>
+  <script>
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
+

@@ -1,4 +1,4 @@
-/* AdelineTarot — estilos místicos (noche estrellada + oro) */
+﻿/* AdelineTarot — estilos místicos (noche estrellada + oro) */
 :root {
   --night: #0c0a1d;
   --night-2: #15122e;
@@ -7,9 +7,9 @@
   --border: rgba(232, 198, 107, 0.22);
   --gold: #e8c66b;
   --gold-deep: #c9a64a;
-  --lilac: #b9aef0;
-  --text: #efecff;
-  --muted: #a79ed0;
+  --lilac: #e8c66b;
+  --text: #e8c66b;
+  --muted: #e8c66b;
   --danger: #ff7a8a;
   --ok: #7ee0b0;
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
@@ -45,33 +45,19 @@ img, svg { max-width: 100%; height: auto; }
 /* Theme enchanteur avec image de fond */
 body::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: -2;
-  background: url("images/photo_2026-06-19_22-16-38.jpg") no-repeat center center;
-  background-size: cover;
-  opacity: 0.8; /* Légèrement estompé pour que le texte reste lisible */
+  background: url("images/FOND CLEAN.png") no-repeat top center;
+  background-size: 100% auto;
+  opacity: 0.9;
 }
 body::after {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: -1;
-  /* Couche d'assombrissement (overlay) du thème mystique */
-  background: linear-gradient(180deg, rgba(12,10,29,0.7) 0%, rgba(10,8,24,0.95) 100%);
-}
-  background-image:
-    radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,.9), transparent),
-    radial-gradient(1.5px 1.5px at 70% 20%, rgba(255,255,255,.7), transparent),
-    radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,.8), transparent),
-    radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,.6), transparent),
-    radial-gradient(1.5px 1.5px at 55% 85%, rgba(255,255,255,.7), transparent),
-    radial-gradient(1px 1px at 12% 80%, rgba(255,255,255,.6), transparent),
-    radial-gradient(1.5px 1.5px at 90% 35%, rgba(255,255,255,.75), transparent),
-    radial-gradient(1px 1px at 32% 12%, rgba(255,255,255,.6), transparent);
-  background-repeat: no-repeat;
-  opacity: .8;
-  animation: twinkle 7s ease-in-out infinite alternate;
+  background: linear-gradient(180deg, rgba(8,7,20,0.55) 0%, rgba(8,7,20,0.85) 100%);
 }
 @keyframes twinkle { from { opacity: .45; } to { opacity: .9; } }
 
@@ -100,20 +86,45 @@ a:hover { color: #f3dd9a; }
   background: rgba(10, 8, 24, 0.6);
   border-bottom: 1px solid var(--border);
 }
+.site-header .container {
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
 .nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
   align-items: center;
-  justify-content: space-between;
-  height: 72px;
+  height: 138px;
+  position: relative;
+  overflow: hidden;
+}
+.menu-toggle {
+  border: 1px solid var(--border);
+  background: rgba(12,10,29,.6);
+  color: var(--gold);
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  margin-left: 12px;
 }
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: "Cinzel", serif;
-  font-size: 1.35rem;
-  color: var(--text);
-  letter-spacing: .12em;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.brand-banner-img {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 .brand .moon {
   width: 30px; height: 30px;
@@ -124,6 +135,71 @@ a:hover { color: #f3dd9a; }
 .nav-links { display: flex; gap: 26px; align-items: center; }
 .nav-links a { color: var(--muted); font-size: 1.05rem; letter-spacing: .04em; }
 .nav-links a:hover { color: var(--gold); }
+.header-cta {
+  min-width: 62px !important;
+  min-height: 42px !important;
+  padding: 8px 9px !important;
+  font-size: .66rem !important;
+  letter-spacing: .04em !important;
+  line-height: 1;
+  white-space: nowrap;
+  width: auto;
+  align-self: center;
+  justify-self: end;
+  position: relative;
+  z-index: 2;
+  margin-right: 0;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(82vw, 340px);
+  background: rgba(10,8,24,.97);
+  border-right: 1px solid var(--border);
+  z-index: 90;
+  transform: translateX(-105%);
+  transition: transform .25s ease;
+  padding: 14px 14px 18px;
+}
+.side-menu.open { transform: translateX(0); }
+.side-menu-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.menu-close {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--gold);
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.side-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.side-menu-links a {
+  border: 1px solid rgba(232,198,107,.25);
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: var(--gold);
+  background: rgba(232,198,107,.06);
+}
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 80;
+}
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -158,6 +234,9 @@ a:hover { color: #f3dd9a; }
 .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
 .btn-block { width: 100%; }
 
+.top-cta-strip { padding: 10px 0 0; }
+.top-cta-wrap { display: flex; justify-content: center; }
+
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
@@ -182,10 +261,153 @@ a:hover { color: #f3dd9a; }
 }
 .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
+.services-hub {
+  padding-top: 24px;
+}
+.free-focus {
+  text-align: center;
+  max-width: 920px;
+  margin: 0 auto 30px;
+}
+.free-focus h2 {
+  font-size: clamp(2.1rem, 5.2vw, 3.4rem);
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.free-focus p {
+  font-size: 1.22rem;
+  color: var(--muted);
+  max-width: 760px;
+  margin: 0 auto 20px;
+}
+
+.orbit-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 30px;
+  width: 100%;
+}
+.orbit-ring {
+  position: relative;
+  width: min(92vw, 760px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 1px dashed rgba(232,198,107,.4);
+  animation: orbitSpin 44s linear infinite;
+}
+.orbit-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(var(--ang)) translate(0, -292px);
+  width: 208px;
+  min-height: 264px;
+  border: 1px solid rgba(232,198,107,.38);
+  border-radius: 14px;
+  background: linear-gradient(155deg, rgba(232,198,107,.18), rgba(16,12,36,.92));
+  color: var(--gold);
+  box-shadow: 0 14px 26px rgba(0,0,0,.35);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+.orbit-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
+  display: block;
+}
+.orbit-card span {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 7px;
+  padding: 2px 4px;
+  background: rgba(10,8,24,.62);
+  border-radius: 7px;
+  font-family: "Cinzel", serif;
+  font-size: .9rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.orbit-card.active,
+.orbit-card:hover {
+  border-color: rgba(232,198,107,.9);
+  background: linear-gradient(155deg, rgba(232,198,107,.34), rgba(16,12,36,.92));
+}
+.orbit-core {
+  position: absolute;
+  inset: 34%;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(232,198,107,.44);
+  background: rgba(14,11,30,.8);
+  color: var(--gold);
+  font-family: "Cinzel", serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: .82rem;
+}
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.service-tabs {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.service-tab {
+  display: none;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 26px;
+}
+.service-tab.active {
+  display: block;
+}
+.service-tab h3 {
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.service-tab p {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.svc-result {
+  margin-top: 12px;
+}
+
 .constellation {
-  width: 120px; height: 120px;
+  width: 240px; height: 240px;
   margin: 0 auto 26px;
   display: block;
+}
+.constellation .hex-yellow {
+  transform-origin: 60px 60px;
+  animation: spinClockwise 9s linear infinite;
+}
+.constellation .hex-violet {
+  transform-origin: 60px 60px;
+  animation: spinCounterClockwise 9s linear infinite;
+}
+@keyframes spinClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes spinCounterClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
 }
 
 /* ---------- Sections ---------- */
@@ -398,6 +620,305 @@ tbody tr:hover { background: rgba(232, 198, 107, .07); }
 .modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
 .icon-btn { background: transparent; border: 1px solid var(--border); color: var(--gold); border-radius: 10px; width: 40px; height: 40px; cursor: pointer; font-size: 1.2rem; }
 
+/* =========================================================
+   SECCIÓN PREDICCIÓN ASTRAL (court terme / long terme)
+   ========================================================= */
+#prediccion { padding: 64px 0; }
+
+/* Tabs court/long terme */
+.pred-tabs {
+  display: flex; gap: 0; justify-content: center;
+  background: rgba(12,10,29,.7);
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: 4px; max-width: 420px; margin: 0 auto 40px;
+}
+.pred-tab {
+  flex: 1; padding: 12px 20px;
+  background: transparent; border: none; border-radius: 999px;
+  color: var(--muted); font-family: "Cinzel", serif;
+  font-size: .88rem; letter-spacing: .1em; text-transform: uppercase;
+  cursor: pointer; transition: all .25s ease;
+}
+.pred-tab.active {
+  background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+  color: #2a200a;
+  box-shadow: 0 6px 20px rgba(232,198,107,.3);
+}
+.pred-tab:hover:not(.active) { color: var(--gold); }
+
+/* Panels du contenu */
+.pred-panel { display: none; }
+.pred-panel.active { display: block; }
+
+/* Formulaire d'identité pour la prédiction */
+.pred-form-wrap { max-width: 680px; margin: 0 auto; }
+.pred-input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.pred-input-grid .full { grid-column: 1 / -1; }
+.pred-field { display: flex; flex-direction: column; gap: 6px; }
+.pred-field label {
+  font-family: "Cinzel", serif; font-size: .78rem;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--lilac);
+}
+.pred-field input, .pred-field select {
+  background: rgba(12,10,29,.6); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px 16px;
+  color: var(--text); font-family: inherit; font-size: 1.05rem;
+  transition: border-color .2s ease;
+}
+.pred-field input:focus, .pred-field select:focus {
+  outline: none; border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(232,198,107,.13);
+}
+.pred-field select option { background: #15122e; }
+
+/* Résultats */
+.pred-result {
+  max-width: 760px; margin: 32px auto 0;
+  animation: predFadeIn .5s ease;
+}
+@keyframes predFadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+.pred-astro-bar {
+  display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+  background: rgba(12,10,29,.55); border: 1px solid var(--border);
+  border-radius: 16px; padding: 18px 22px; margin-bottom: 24px;
+}
+.pred-astro-item { text-align: center; min-width: 80px; }
+.pred-astro-item .planet-sym { font-size: 1.6rem; display: block; }
+.pred-astro-item .planet-sign { color: var(--gold); font-family: "Cinzel", serif; font-size: .82rem; display: block; margin-top: 4px; }
+
+/* Carte tarot */
+.pred-card {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 26px 28px; margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+.pred-card h3 {
+  font-family: "Cinzel", serif; color: var(--gold);
+  margin-bottom: 14px; font-size: 1.3rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.pred-card p { color: var(--muted); line-height: 1.85; font-size: 1.08rem; }
+.pred-card .highlight { color: var(--gold); font-weight: 600; }
+.pred-card .date-badge {
+  display: inline-block; background: rgba(232,198,107,.14);
+  color: var(--gold); padding: 2px 10px; border-radius: 8px;
+  font-family: "Cinzel", serif; font-size: .82rem; font-weight: 600;
+}
+.pred-card-border-left { border-left: 3px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; }
+
+/* Section premium long terme */
+.pred-premium-wrap { position: relative; margin-top: 24px; }
+.pred-premium-blur { filter: blur(4px); user-select: none; pointer-events: none; }
+.pred-premium-gate {
+  position: absolute; inset: 0;
+  background: rgba(12,10,29,.82); backdrop-filter: blur(8px);
+  border-radius: var(--radius); border: 1px solid var(--border);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; padding: 32px;
+  pointer-events: all;
+}
+.pred-premium-gate .gate-price {
+  font-family: "Cinzel", serif; font-size: 2.4rem;
+  color: var(--gold); margin-bottom: 8px;
+}
+.pred-premium-gate p { color: var(--muted); margin-bottom: 20px; font-size: 1.05rem; }
+
+/* Loader */
+.pred-loader {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 48px 0; gap: 18px;
+}
+.pred-loader-ring {
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 3px solid rgba(232,198,107,.18);
+  border-top-color: var(--gold);
+  animation: spin .9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.pred-loader p { color: var(--muted); font-size: 1.05rem; }
+
+/* Infobox "réserver" */
+.pred-book-prompt {
+  background: rgba(232,198,107,.07); border: 1px solid rgba(232,198,107,.3);
+  border-radius: 16px; padding: 22px 26px; margin-top: 24px; text-align: center;
+}
+.pred-book-prompt p { color: var(--muted); margin-bottom: 14px; }
+
+/* Verrou court terme */
+.pred-gate-box {
+  margin-top: 18px;
+  background: rgba(12,10,29,.6);
+  border: 1px solid rgba(232,198,107,.28);
+  border-radius: 16px;
+  padding: 18px;
+}
+.pred-gate-box h3 {
+  color: var(--gold);
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+}
+.pred-gate-box p {
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.pred-gate-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+.pred-gate-row input {
+  background: rgba(12,10,29,.6);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.pred-locked-bloc {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(232,198,107,.25);
+}
+.pred-locked-fade {
+  filter: blur(3px);
+  user-select: none;
+  pointer-events: none;
+}
+.pred-locked-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 18px;
+  background: rgba(12,10,29,.7);
+}
+.pred-locked-overlay strong {
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.pred-locked-overlay p {
+  color: var(--muted);
+  max-width: 420px;
+}
+
+/* Orations + contact */
+.oration-panel,
+.contact-panel {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* WhatsApp popup */
+.wa-popup {
+  position: fixed;
+  right: 18px;
+  bottom: 90px;
+  z-index: 120;
+  width: min(370px, calc(100vw - 24px));
+  background: linear-gradient(150deg, rgba(11,16,33,.95), rgba(22,40,36,.95));
+  border: 1px solid rgba(232,198,107,.35);
+  border-radius: 18px;
+  box-shadow: 0 24px 50px rgba(0,0,0,.45);
+  padding: 18px 18px 16px;
+}
+.wa-popup h3 {
+  color: var(--gold);
+  margin-bottom: 8px;
+  font-size: 1.15rem;
+}
+.wa-popup p {
+  color: var(--gold);
+  font-size: .98rem;
+  margin-bottom: 12px;
+}
+.wa-popup-btn { gap: 8px; }
+.wa-logo {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+}
+.wa-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  color: var(--gold);
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+.wa-fab {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #1faa59;
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(0,0,0,.4);
+  z-index: 130;
+}
+.wa-fab .wa-logo {
+  width: 28px;
+  height: 28px;
+}
+
+.center-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  background: rgba(6, 5, 16, .72);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+.center-popup-card {
+  width: min(620px, 96vw);
+  background: linear-gradient(160deg, rgba(20,17,44,.96), rgba(10,8,24,.98));
+  border: 1px solid rgba(232,198,107,.4);
+  border-radius: 22px;
+  box-shadow: 0 28px 60px rgba(0,0,0,.5);
+  padding: 24px;
+  text-align: center;
+  position: relative;
+}
+.center-popup-card h3 {
+  color: var(--gold);
+  margin-bottom: 10px;
+  font-size: clamp(1.3rem, 3.6vw, 2rem);
+}
+.center-popup-card p {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.center-popup-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: 1px solid var(--border);
+  background: rgba(12,10,29,.7);
+  color: var(--gold);
+  border-radius: 10px;
+  width: 34px;
+  height: 34px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* =========================================================
+   FIN SECTION PRÉDICTION
+   ========================================================= */
+
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .grid-3 { grid-template-columns: 1fr; }
@@ -405,6 +926,24 @@ tbody tr:hover { background: rgba(232, 198, 107, .07); }
   .nav-links { display: none; }
   section { padding: 48px 0; }
   .modal { padding: 22px; border-radius: 16px; }
+  .pred-input-grid { grid-template-columns: 1fr; }
+  .orbit-ring { width: min(92vw, 620px); }
+  .orbit-card {
+    width: 168px;
+    min-height: 214px;
+    transform: translate(-50%, -50%) rotate(var(--ang)) translate(0, -238px);
+  }
+  .orbit-card span { font-size: .74rem; }
+}
+
+@media (max-width: 700px) {
+  .orbit-ring { width: min(90vw, 320px); }
+  .orbit-card {
+    width: 90px;
+    min-height: 116px;
+    transform: translate(-50%, -50%) rotate(var(--ang)) translate(0, -100px);
+  }
+  .orbit-card span { font-size: .52rem; }
 }
 
 @media (max-width: 560px) {
@@ -413,13 +952,18 @@ tbody tr:hover { background: rgba(232, 198, 107, .07); }
   html { scroll-padding-top: 70px; }
 
   .site-header { backdrop-filter: blur(8px); }
-  .nav { height: 60px; }
-  .brand { font-size: 1.1rem; letter-spacing: .08em; gap: 9px; }
-  .brand .moon { width: 24px; height: 24px; }
+  .nav { height: 104px; }
+  .brand-banner-img { width: 100%; max-width: none; height: 100%; }
+  .header-cta { min-width: 56px !important; min-height: 36px !important; padding: 6px 7px !important; font-size: .58rem !important; }
+  .menu-toggle { width: 38px; height: 38px; font-size: 1.1rem; }
+  .orbit-ring { width: min(92vw, 286px); }
+  .orbit-card { width: 82px; min-height: 104px; transform: translate(-50%, -50%) rotate(var(--ang)) translate(0, -90px); }
+  .orbit-card span { font-size: .5rem; }
+  
 
   .hero { padding: 52px 0 40px; }
   .hero .eyebrow { font-size: .72rem; letter-spacing: .22em; }
-  .constellation { width: 92px; height: 92px; margin-bottom: 18px; }
+  .constellation { width: 184px; height: 184px; margin-bottom: 18px; }
   .hero p.lead { font-size: 1.12rem; }
   .hero-cta { gap: 12px; }
   .hero-cta .btn { width: 100%; }
@@ -444,9 +988,18 @@ tbody tr:hover { background: rgba(232, 198, 107, .07); }
   .modal-overlay { padding: 0; }
   .modal { max-height: 100vh; max-height: 100dvh; border-radius: 0; }
   .tarot-mini { min-width: 100%; }
+  .pred-gate-row { grid-template-columns: 1fr; }
+  .wa-popup {
+    right: 10px;
+    left: 10px;
+    width: auto;
+    bottom: 10px;
+  }
 }
 
 @media (max-width: 380px) {
   .hero h1 { font-size: 2.1rem; }
   .btn { padding: 13px 20px; font-size: .92rem; }
 }
+
+

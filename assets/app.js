@@ -614,21 +614,34 @@
 
   // -------------------- enlaces / arranque --------------------
   function wireControls() {
-    $("bookingForm").addEventListener("submit", handleSubmit);
-    $("confirmPaidBtn").addEventListener("click", function () {
-      claimPayment("paypalme", null);
-    });
+    var form = $("bookingForm");
+    if (!form) {
+      var yOnly = $("year");
+      if (yOnly) yOnly.textContent = new Date().getFullYear();
+      return;
+    }
+
+    form.addEventListener("submit", handleSubmit);
+    var confirmBtn = $("confirmPaidBtn");
+    if (confirmBtn) {
+      confirmBtn.addEventListener("click", function () {
+        claimPayment("paypalme", null);
+      });
+    }
     var stripeBtn = $("stripeBtn");
     if (stripeBtn) { stripeBtn.addEventListener("click", startStripeCheckout); }      var stripeAppleBtn = $("stripeAppleBtn");
       if (stripeAppleBtn) { stripeAppleBtn.addEventListener("click", startStripeCheckout); }
       var stripeGoogleBtn = $("stripeGoogleBtn");
       if (stripeGoogleBtn) { stripeGoogleBtn.addEventListener("click", startStripeCheckout); }
-          $("backToForm").addEventListener("click", function (e) {
-      e.preventDefault();
-      $("stepPay").classList.add("hidden");
-      $("stepForm").classList.remove("hidden");
-      $("stepForm").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+    var backToForm = $("backToForm");
+    if (backToForm) {
+      backToForm.addEventListener("click", function (e) {
+        e.preventDefault();
+        $("stepPay").classList.add("hidden");
+        $("stepForm").classList.remove("hidden");
+        $("stepForm").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
     var y = $("year");
     if (y) y.textContent = new Date().getFullYear();
   }
