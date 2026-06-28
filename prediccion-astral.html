@@ -12,11 +12,11 @@
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="index.html#inicio">
+      <a class="brand" href="index#inicio">
         <img src="assets/images/bandeau v3.jpg" class="brand-banner-img" alt="AdelineTarot" />
       </a>
-      <a href="index.html#inicio" class="btn btn-ghost" style="justify-self:start; position:relative; z-index:2; margin-left:12px;">Home</a>
-      <a href="reserva-tu-lectura.html" class="btn btn-primary header-cta">Reservar</a>
+      <a href="index#inicio" class="btn btn-ghost" style="justify-self:start; position:relative; z-index:2; margin-left:12px;">Home</a>
+      <a href="reserva-tu-lectura" class="btn btn-primary header-cta">Reservar</a>
     </div>
   </header>
 
@@ -108,6 +108,7 @@
     </div>
   </footer>
 
+  <script src="assets/site.js"></script>
   <script>
     const SIGNS_ES = ['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'];
     const SIGN_SYMBOLS = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
@@ -210,7 +211,7 @@
         const c = cards[i];
         html += `<div class="pred-card pred-card-border-left"><h3>${pos} — <span class="highlight">${c.n}</span></h3><p>${TAROT_TEXT[c.k]}</p></div>`;
       });
-      shortPredictionLockedHtml = `<div class="pred-card"><h3>✨ Síntesis</h3><p>Tu lectura muestra una progresión real de apertura, decisión y foco.</p><a href="reserva-tu-lectura.html" class="btn btn-primary">🔮 Reservar mi consulta</a></div>`;
+      shortPredictionLockedHtml = `<div class="pred-card"><h3>✨ Síntesis</h3><p>Tu lectura muestra una progresión real de apertura, decisión y foco.</p><a href="reserva-tu-lectura" class="btn btn-primary">🔮 Reservar mi consulta</a></div>`;
       if (!sessionStorage.getItem('adelinetarot_short_unlock')) {
         html += `<div class="pred-locked-bloc"><div class="pred-locked-fade">${shortPredictionLockedHtml}</div><div class="pred-locked-overlay"><strong>🔒 Contenido bloqueado</strong><p>Ingresa tu email para desbloquear.</p></div></div>`;
         document.getElementById('pred-court-gate').classList.remove('hidden');
@@ -257,7 +258,7 @@
       }
       const astro = predCalcAstro(date, time);
       const age = predAge(date);
-      longPredictionHtml = `<div class="pred-card"><h3>🌟 Predicción para ${name}</h3><p>Sol en <span class="highlight">${astro['Sol'].sign}</span>, Luna en <span class="highlight">${astro['Luna'].sign}</span>. Esta lectura cubre tus próximos 5 años.</p></div><div class="pred-card pred-card-border-left"><h3>💼 Carrera y finanzas</h3><p>Etapa de consolidación progresiva con aperturas en el segundo y cuarto año.</p></div><div class="pred-card pred-card-border-left"><h3>💕 Amor y relaciones</h3><p>Mayor claridad emocional y vínculos más conscientes.</p></div><div class="pred-card pred-card-border-left"><h3>👨‍👩‍👧 Familia y hogar</h3><p>Reorganización positiva de estructuras familiares.</p></div><div class="pred-card pred-card-border-left"><h3>🌿 Bienestar</h3><p>Necesidad de ritmo estable, descanso y hábitos sostenibles.</p></div><div class="pred-card"><h3>🔭 Visión 10 años</h3><p>Edad actual: ${age}. La maduración de tus ciclos será clave para decisiones de largo plazo.</p><a href="reserva-tu-lectura.html" class="btn btn-primary">✨ Reservar mi sesión</a></div>`;
+      longPredictionHtml = `<div class="pred-card"><h3>🌟 Predicción para ${name}</h3><p>Sol en <span class="highlight">${astro['Sol'].sign}</span>, Luna en <span class="highlight">${astro['Luna'].sign}</span>. Esta lectura cubre tus próximos 5 años.</p></div><div class="pred-card pred-card-border-left"><h3>💼 Carrera y finanzas</h3><p>Etapa de consolidación progresiva con aperturas en el segundo y cuarto año.</p></div><div class="pred-card pred-card-border-left"><h3>💕 Amor y relaciones</h3><p>Mayor claridad emocional y vínculos más conscientes.</p></div><div class="pred-card pred-card-border-left"><h3>👨‍👩‍👧 Familia y hogar</h3><p>Reorganización positiva de estructuras familiares.</p></div><div class="pred-card pred-card-border-left"><h3>🌿 Bienestar</h3><p>Necesidad de ritmo estable, descanso y hábitos sostenibles.</p></div><div class="pred-card"><h3>🔭 Visión 10 años</h3><p>Edad actual: ${age}. La maduración de tus ciclos será clave para decisiones de largo plazo.</p><a href="reserva-tu-lectura" class="btn btn-primary">✨ Reservar mi sesión</a></div>`;
       if (!sessionStorage.getItem('adelinetarot_long_unlock')) {
         wrap.style.display = 'none';
         document.getElementById('pred-long-gate').classList.remove('hidden');

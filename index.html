@@ -24,7 +24,7 @@
       <a class="brand" href="#inicio">
         <img src="assets/images/bandeau v3.jpg" class="brand-banner-img" alt="AdelineTarot" />
       </a>
-      <a href="reserva-tu-lectura.html" class="btn btn-primary header-cta">Reservar</a>
+      <a href="reserva-tu-lectura" class="btn btn-primary header-cta">Reservar</a>
     </div>
   </header>
 
@@ -35,16 +35,16 @@
     </div>
     <nav class="side-menu-links" onclick="toggleMenu(false)">
         <a href="#inicio">HOME</a>
-      <a href="lectura-de-carta-natal.html">Lectura de carta natal gratuita</a>
+      <a href="lectura-de-carta-natal">Lectura de carta natal gratuita</a>
         <a href="#services-hub" onclick="openServiceTab('live', true)">Tirada en tiempo real</a>
-        <a href="prediccion-astral.html#pred-panel-court">Predicción gratuita</a>
-        <a href="prediccion-astral.html#pred-panel-long">Lectura a 1 año</a>
-        <a href="prediccion-astral.html#pred-panel-long">Predicción a 5 años</a>
-      <a href="oraciones.html">Oraciones</a>
+        <a href="prediccion-astral#pred-panel-court">Predicción gratuita</a>
+        <a href="prediccion-astral#pred-panel-long">Lectura a 1 año</a>
+        <a href="prediccion-astral#pred-panel-long">Predicción a 5 años</a>
+      <a href="oraciones">Oraciones</a>
         <a href="#services-hub" onclick="openServiceTab('whatsapp', true)">Atención WhatsApp</a>
         <a href="#como-funciona">Cómo funciona</a>
         <a href="#incluye">Qué incluye</a>
-        <a href="reserva-tu-lectura.html">Reservar</a>
+        <a href="reserva-tu-lectura">Reservar</a>
         <a href="#contacto">Contacto</a>
     </nav>
   </aside>
@@ -100,11 +100,11 @@
           que ilumina tu camino a corto plazo. Todo en una videollamada privada.
         </p>
         <div class="hero-cta">
-          <a href="reserva-tu-lectura.html" class="btn btn-primary">Reservar mi consulta</a>
-          <a href="oraciones.html" class="btn btn-ghost">Oraciones</a>
-          <a href="lectura-de-carta-natal.html" class="btn btn-ghost">Lectura de carta natal gratuita</a>
-          <a href="prediccion-astral.html#pred-panel-long" class="btn btn-ghost">Lectura a 1 año</a>
-          <a href="prediccion-astral.html#pred-panel-long" class="btn btn-ghost">Predicción a 5 años</a>
+          <a href="reserva-tu-lectura" class="btn btn-primary">Reservar mi consulta</a>
+          <a href="oraciones" class="btn btn-ghost">Oraciones</a>
+          <a href="lectura-de-carta-natal" class="btn btn-ghost">Lectura de carta natal gratuita</a>
+          <a href="prediccion-astral#pred-panel-long" class="btn btn-ghost">Lectura a 1 año</a>
+          <a href="prediccion-astral#pred-panel-long" class="btn btn-ghost">Predicción a 5 años</a>
           <a href="#como-funciona" class="btn btn-ghost">Saber más</a>
         </div>
       </div>
@@ -115,7 +115,7 @@
       <div class="container">
         <div class="orbit-wrap">
           <div class="orbit-ring">
-            <button class="orbit-card active" style="--ang:0deg" data-service="natal" onclick="window.location.href='lectura-de-carta-natal.html'"><img src="assets/images/service-card-1.jpg" alt="Carta natal" /><span>Carta natal</span></button>
+            <button class="orbit-card active" style="--ang:0deg" data-service="natal" onclick="goToSitePath('lectura-de-carta-natal')"><img src="assets/images/service-card-1.jpg" alt="Carta natal" /><span>Carta natal</span></button>
             <button class="orbit-card" style="--ang:60deg" data-service="live" onclick="openServiceTab('live', true)"><img src="assets/images/service-card-2.jpg" alt="Tiempo real" /><span>Tiempo real</span></button>
             <button class="orbit-card" style="--ang:120deg" data-service="year" onclick="openServiceTab('year', true)"><img src="assets/images/service-card-3.jpg" alt="1 año" /><span>1 año</span></button>
             <button class="orbit-card" style="--ang:180deg" data-service="long" onclick="openServiceTab('long', true)"><img src="assets/images/service-card-4.jpg" alt="5 años" /><span>5 años</span></button>
@@ -175,7 +175,7 @@
             </div>
             <button type="button" class="btn btn-primary" onclick="runSvcOration()">Créer l'oraison recommandée</button>
             <div id="svc-ora-out" class="svc-result hidden"></div>
-            <a href="oraciones.html" class="btn btn-ghost" style="margin-top:10px">Ir al formulario completo</a>
+            <a href="oraciones" class="btn btn-ghost" style="margin-top:10px">Ir al formulario completo</a>
           </article>
           <article class="service-tab" data-tab="whatsapp">
             <h3>💬 Atención WhatsApp</h3>
@@ -287,7 +287,7 @@
       <p class="eyebrow" style="margin-bottom:10px">Gratis</p>
       <h3>Lectura de carta natal gratuita</h3>
       <p>Empieza aquí: tu lectura gratuita es el elemento principal. Haz clic para abrir directamente la predicción y recibir tus primeros resultados.</p>
-      <a href="lectura-de-carta-natal.html" class="btn btn-primary">Abrir la lectura gratuita</a>
+      <a href="lectura-de-carta-natal" class="btn btn-primary">Abrir la lectura gratuita</a>
     </div>
   </div>
   <a class="wa-fab" href="https://wa.me/527227117122" target="_blank" rel="noopener" aria-label="Ouvrir WhatsApp AdelineTarot">
@@ -965,6 +965,7 @@
     </div>
   </footer>
 
+  <script src="assets/site.js"></script>
   <script>
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();

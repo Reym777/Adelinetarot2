@@ -10,11 +10,12 @@ from __future__ import annotations
 
 import logging
 from contextlib import asynccontextmanager
+from pathlib import Path
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, JSONResponse, Response
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
@@ -130,6 +131,16 @@ if settings.serve_frontend and (settings.frontend_path / "index.html").exists():
     frontend = settings.frontend_path
     assets_dir = frontend / "assets"
 
+    def frontend_page_response(page_name: str) -> FileResponse:
+        safe_name = Path(page_name).name
+        if safe_name != page_name:
+            raise HTTPException(status_code=404, detail="Not found")
+        html_name = safe_name if safe_name.endswith(".html") else f"{safe_name}.html"
+        file_path = frontend / html_name
+        if not file_path.is_file():
+            raise HTTPException(status_code=404, detail="Not found")
+        return FileResponse(file_path)
+
     # Mount ONLY the assets folder — never the site root. A catch-all mount at
     # "/" would swallow every unmatched /api/* request and let StaticFiles answer
     # "405 Method Not Allowed" on POST (e.g. a stray trailing slash). With assets
@@ -139,14 +150,22 @@ if settings.serve_frontend and (settings.frontend_path / "index.html").exists():
         app.mount("/assets", StaticFiles(directory=str(assets_dir)), name="assets")
 
     @app.get("/", include_in_schema=False)
-    @app.get("/index.html", include_in_schema=False)
     def index() -> FileResponse:
         return FileResponse(frontend / "index.html")
+
+    @app.get("/index", include_in_schema=False)
+    @app.get("/index.html", include_in_schema=False)
+    def index_redirect() -> RedirectResponse:
+        return RedirectResponse(url="/", status_code=308)
 
     @app.get("/admin", include_in_schema=False)
     @app.get("/admin.html", include_in_schema=False)
     def admin_page() -> FileResponse:
         return FileResponse(frontend / "admin.html")
+
+    @app.get("/{page_name}", include_in_schema=False)
+    def frontend_page(page_name: str) -> FileResponse:
+        return frontend_page_response(page_name)
 
     @app.get("/favicon.ico", include_in_schema=False)
     def favicon() -> Response:

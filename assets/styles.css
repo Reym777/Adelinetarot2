@@ -48,7 +48,7 @@ body::before {
   position: absolute;
   inset: 0;
   z-index: -2;
-  background: url("images/FOND CLEAN.png") no-repeat top center;
+  background: url("images/FOND CLEAN.png") repeat-y top center;
   background-size: 100% auto;
   opacity: 0.9;
 }
@@ -96,7 +96,8 @@ a:hover { color: #f3dd9a; }
   grid-template-columns: auto 1fr auto;
   gap: 10px;
   align-items: center;
-  height: 138px;
+  aspect-ratio: 1024 / 167;
+  min-height: 64px;
   position: relative;
   overflow: hidden;
 }
@@ -952,7 +953,7 @@ tbody tr:hover { background: rgba(232, 198, 107, .07); }
   html { scroll-padding-top: 70px; }
 
   .site-header { backdrop-filter: blur(8px); }
-  .nav { height: 104px; }
+  .nav { min-height: 56px; }
   .brand-banner-img { width: 100%; max-width: none; height: 100%; }
   .header-cta { min-width: 56px !important; min-height: 36px !important; padding: 6px 7px !important; font-size: .58rem !important; }
   .menu-toggle { width: 38px; height: 38px; font-size: 1.1rem; }
