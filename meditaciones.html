@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meditaciones por WhatsApp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .med-page { padding: 110px 0 60px; }
+    .med-wrap { max-width: 940px; margin: 0 auto; }
+    .med-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .med-grid .full { grid-column: 1 / -1; }
+    .med-note { margin-top: 10px; color: var(--muted); font-size: .95rem; }
+    @media (max-width: 760px) {
+      .med-page { padding-top: 90px; }
+      .med-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index#inicio">
+        <img src="assets/images/bandeauv5.png" class="brand-banner-img" alt="Adeline" />
+      </a>
+      <a href="index#inicio" class="btn btn-ghost" style="justify-self:start; position:relative; z-index:2; margin-left:12px;">Home</a>
+      <a href="tarot-terapeutico" class="btn btn-primary header-cta">Tarot terapéutico</a>
+    </div>
+  </header>
+
+  <main class="med-page">
+    <section>
+      <div class="container med-wrap">
+        <div class="panel">
+          <h1 style="margin-bottom:8px">Meditaciones por WhatsApp</h1>
+          <p class="section-sub">33 USD por 33 min.</p>
+          <div class="med-grid">
+            <div class="pred-field"><label for="med-name">Nombre o alias</label><input id="med-name" type="text" maxlength="80" placeholder="Nombre o alias" /></div>
+            <div class="pred-field"><label for="med-reason">Motivo o razón</label><input id="med-reason" type="text" maxlength="160" placeholder="Motivo" /></div>
+            <div class="pred-field full"><label for="med-heal">Qué te gustaría sanar a través de la meditación</label><input id="med-heal" type="text" maxlength="220" placeholder="Describe tu intención" /></div>
+            <div class="pred-field"><label for="med-date">Fecha</label><input id="med-date" type="date" /></div>
+            <div class="pred-field full"><label for="med-hour">Hora preferida</label>
+              <select id="med-hour">
+                <option value="06:00">6:00</option>
+                <option value="20:00">20:00</option>
+              </select>
+            </div>
+            <div class="pred-field full"><label><input id="med-recorded" type="checkbox" /> Meditación pregrabada personalizada enviada por correo (60 USD, solo en español)</label></div>
+          </div>
+          <div class="med-note">Las sesiones se agendan con cupo limitado y confirmación manual.</div>
+          <div style="margin-top:18px">
+            <a href="oraciones" class="btn btn-primary">Ir a oraciones</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="muted">Meditaciones por WhatsApp · acompañamiento espiritual</p>
+      <p class="legal">© <span id="year"></span> Adeline.</p>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>const yearEl = document.getElementById('year'); if (yearEl) yearEl.textContent = new Date().getFullYear();</script>
+</body>
+</html>

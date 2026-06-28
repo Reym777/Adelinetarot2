@@ -1,0 +1,61 @@
+TASK1
+remplacer le bandeau V3 par le bandeauv4.png , supprimer les occurences de adelinetarot en Adeline
+
+TASK2 :
+enlever le pop up de carte natale gratis
+TASK 3 :
+changer 'Tu cielo tiene un mensaje' en 'tu oracion puede ser escuchado por dios' ou 'elevamos tu oracion al creador (y el cielo responde) ' 
+TASK 4 : 
+change : 'Astrología · Tarot · Videollamada privada' en 'oraciones y resos  por pedido, orientacion basica de carta natal y tarot terapeutico'
+TASK 5 :
+changer 'Con tu fecha, nombre y lugar de nacimiento, AdelineTarot traza tu carta astral y la interpreta en vivo, junto a una lectura de tarot que ilumina tu camino a corto plazo. Todo en una videollamada privada.' en 'Adeline es un puente lleno de fe y amor para conectar tu peticion a los oidos del creador , permiteme sumarme a tu oracion'
+
+TASK6 : 
+supprime les boutons 'Reservar mi consulta
+Oraciones
+Lectura de carta natal gratuita
+Lectura a 1 año
+Predicción a 5 años
+Saber más' 
+ajoute un  bouton 'solicitar mi oration' avec ecrit en petit 'qui renvoie vers la page oracion et un bouton 'tarot terapeutico' qui renvoie vers une page a créer 'Tarot terapeutico'
+et un bouton 'meditaciones por whatsapp' qui renvoie vers une page a créer 'meditaciones'
+TASK 7 : 
+change 'Página de oraciones
+Indica tus datos, tu intención y el importe que deseas aportar. El precio es libre.' en 
+'oraciones de sanacion y de purificacion'
+ 'completa la informacion par elevar el reso '
+et en petit 'nota : una vez realisado el pago, deveras colocar un vaso de cristal con agua en un espacio de paz dentro de tu hogar'
+TASK 8 : 
+le nom prenom ne sont pas obligatoires 
+change 'Comentario para la oración' en 'describe lo mas claro posible tu peticion'
+et ajoute une case 'informacion complementaria ( persona, cituacion, mascota, ciudad, nombre de proceso..)'
+TASK 9 : 
+afficher le prix , pas de 'Aporte libre (USD)'
+'oracion por 3 dias' = 60 dollars
+
+TASK10 : 
+dans la page nouvelle de tarot terapeutico : 30 min : 30 dlrs    45min : 45dlrs    90min : 90 dolrs
+speech : 'pasado y futuro estan comprimidos en el presente, permiteme ser un canal para interpretar tu energia a traves de las cartas del tarot'
+ajouter dans la page des cases a remplir nombre ,pais , whatsapp, correo electronico
+TASK 11 : 
+calendrier a ajouter dans la page nouvelle de tarot terapeutico, consultations en espagnol e en ingles 3 max par jours entre 7am heure perou 11 am 3.33 pm 
+
+TASK12 : dans l'inicio 
+supprimer  ; Contacto & rappel
+Laisse ton email et ton motif, AdelineTarot peut te reco et le como fonciona ' 
+
+TASK13 : 
+dans la page nouvelle meditaciones por whatsapp , 33dlsr 33 min a calendrier a 6am y 8pm tout les jours , heure a eligir
+dans la page nouvelle meditaciones por whatsapp , cases a remplir : nombre o alias , motivo o razon que tiene el solicitante, que te gustaria sana a traves de la meditacion
+
+TASK 14 : 
+ajoute une case a cocher : meditacion pre enregistr  personnalis e envoye par courrier (60 dollars) seulement en espagnol 
+
+TASK 15 : 
+enlever le pop up WhatsApp
+ne pas mettre le bouton whatsapp en bas a droite (pas de whatsapp sans paiement 
+
+TASK 16 : 
+paquete Adeline incluye ; 3 meditaciones de 33 min + 1 lectura de tarot terapeutico 30 min + un pdf con recommendaciones para apertura de caminos y autosanacion por 144dlrs 
+le paquete Adeline est en haut a droite a la place de RESERVAR  dan le bandeau 
+ 

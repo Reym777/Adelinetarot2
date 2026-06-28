@@ -124,7 +124,7 @@ a:hover { color: #f3dd9a; }
   width: 100%;
   max-width: none;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
 .brand .moon {
@@ -261,6 +261,19 @@ a:hover { color: #f3dd9a; }
   color: var(--muted);
 }
 .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.hero-action-stack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.hero-action-note {
+  color: rgba(232, 198, 107, 0.78);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-left: 10px;
+}
 
 .services-hub {
   padding-top: 24px;
@@ -954,7 +967,7 @@ tbody tr:hover { background: rgba(232, 198, 107, .07); }
 
   .site-header { backdrop-filter: blur(8px); }
   .nav { min-height: 56px; }
-  .brand-banner-img { width: 100%; max-width: none; height: 100%; }
+  .brand-banner-img { width: 100%; max-width: none; height: 100%; object-fit: cover; object-position: center; }
   .header-cta { min-width: 56px !important; min-height: 36px !important; padding: 6px 7px !important; font-size: .58rem !important; }
   .menu-toggle { width: 38px; height: 38px; font-size: 1.1rem; }
   .orbit-ring { width: min(92vw, 286px); }

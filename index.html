@@ -9,8 +9,8 @@
        backend, p. ej. content="https://tu-backend.onrender.com" -->
   <meta name="adeline-api-base" content="" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23e8c66b'/%3E%3Ccircle cx='11' cy='13' r='10' fill='%230c0a1d'/%3E%3C/svg%3E" />
-  <title>AdelineTarot · Carta Astral & Tarot en videollamada</title>
-  <meta name="description" content="Descubre tu carta astral y una lectura de tarot en una videollamada privada con AdelineTarot. Reserva con tu fecha, nombre y lugar de nacimiento." />
+  <title>Adeline · Carta astral, oraciones y tarot terapéutico</title>
+  <meta name="description" content="Adeline acompaña oraciones, tarot terapéutico y carta astral con una propuesta íntima y espiritual." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
@@ -22,9 +22,9 @@
     <div class="container nav">
       <button type="button" class="menu-toggle" aria-label="Abrir menú" onclick="toggleMenu(true)">☰</button>
       <a class="brand" href="#inicio">
-        <img src="assets/images/bandeau v3.jpg" class="brand-banner-img" alt="AdelineTarot" />
+        <img src="assets/images/bandeauv5.png" class="brand-banner-img" alt="Adeline" />
       </a>
-      <a href="reserva-tu-lectura" class="btn btn-primary header-cta">Reservar</a>
+      <a href="#paquete-adeline" class="btn btn-primary header-cta">Paquete Adeline</a>
     </div>
   </header>
 
@@ -35,17 +35,15 @@
     </div>
     <nav class="side-menu-links" onclick="toggleMenu(false)">
         <a href="#inicio">HOME</a>
-      <a href="lectura-de-carta-natal">Lectura de carta natal gratuita</a>
+      <a href="oraciones">Oraciones</a>
+      <a href="tarot-terapeutico">Tarot terapéutico</a>
+      <a href="meditaciones">Meditaciones por WhatsApp</a>
+      <a href="synastria">Sinastría</a>
         <a href="#services-hub" onclick="openServiceTab('live', true)">Tirada en tiempo real</a>
         <a href="prediccion-astral#pred-panel-court">Predicción gratuita</a>
         <a href="prediccion-astral#pred-panel-long">Lectura a 1 año</a>
         <a href="prediccion-astral#pred-panel-long">Predicción a 5 años</a>
-      <a href="oraciones">Oraciones</a>
-        <a href="#services-hub" onclick="openServiceTab('whatsapp', true)">Atención WhatsApp</a>
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#incluye">Qué incluye</a>
-        <a href="reserva-tu-lectura">Reservar</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#paquete-adeline">Paquete Adeline</a>
     </nav>
   </aside>
   <div id="menuBackdrop" class="menu-backdrop hidden" onclick="toggleMenu(false)"></div>
@@ -89,23 +87,16 @@
             <circle cx="25.36" cy="40" r="4.5" fill="#e8c66b"/>
           </g>
         </svg>
-        <p class="eyebrow">Astrología · Tarot · Videollamada privada</p>
-        <h1>
-          Tu cielo tiene un mensaje
-          <span class="thin">y las cartas, un camino</span>
-        </h1>
+        <p class="eyebrow">Oraciones · Tarot terapéutico · Meditaciones</p>
+        <h1>tu primer acercamiento a tu carta astral</h1>
         <p class="lead">
-          Con tu fecha, nombre y lugar de nacimiento, <strong class="gold">AdelineTarot</strong>
-          traza tu carta astral y la interpreta en vivo, junto a una lectura de tarot
-          que ilumina tu camino a corto plazo. Todo en una videollamada privada.
+          Adeline es un puente lleno de fe y amor para conectar tu petición a los oídos del creador,
+          permiteme sumarme a tu oración con tarot terapéutico y orientación de carta natal.
         </p>
         <div class="hero-cta">
-          <a href="reserva-tu-lectura" class="btn btn-primary">Reservar mi consulta</a>
-          <a href="oraciones" class="btn btn-ghost">Oraciones</a>
-          <a href="lectura-de-carta-natal" class="btn btn-ghost">Lectura de carta natal gratuita</a>
-          <a href="prediccion-astral#pred-panel-long" class="btn btn-ghost">Lectura a 1 año</a>
-          <a href="prediccion-astral#pred-panel-long" class="btn btn-ghost">Predicción a 5 años</a>
-          <a href="#como-funciona" class="btn btn-ghost">Saber más</a>
+          <a href="oraciones" class="btn btn-ghost">Solicitar mi oración</a>
+          <a href="tarot-terapeutico" class="btn btn-ghost">Tarot terapéutico</a>
+          <a href="meditaciones" class="btn btn-ghost">Meditaciones por WhatsApp</a>
         </div>
       </div>
     </section>
@@ -120,7 +111,7 @@
             <button class="orbit-card" style="--ang:120deg" data-service="year" onclick="openServiceTab('year', true)"><img src="assets/images/service-card-3.jpg" alt="1 año" /><span>1 año</span></button>
             <button class="orbit-card" style="--ang:180deg" data-service="long" onclick="openServiceTab('long', true)"><img src="assets/images/service-card-4.jpg" alt="5 años" /><span>5 años</span></button>
             <button class="orbit-card" style="--ang:240deg" data-service="oraciones" onclick="openServiceTab('oraciones', true)"><img src="assets/images/service-card-5.jpg" alt="Oraciones" /><span>Oraciones</span></button>
-            <button class="orbit-card" style="--ang:300deg" data-service="whatsapp" onclick="openServiceTab('whatsapp', true)"><img src="assets/images/service-card-6.jpg" alt="WhatsApp" /><span>WhatsApp</span></button>
+            <button class="orbit-card" style="--ang:300deg" data-service="meditaciones" onclick="goToSitePath('meditaciones')"><img src="assets/images/service-card-6.jpg" alt="Meditaciones" /><span>Meditaciones</span></button>
             <div class="orbit-core"></div>
           </div>
         </div>
@@ -177,126 +168,34 @@
             <div id="svc-ora-out" class="svc-result hidden"></div>
             <a href="oraciones" class="btn btn-ghost" style="margin-top:10px">Ir al formulario completo</a>
           </article>
-          <article class="service-tab" data-tab="whatsapp">
-            <h3>💬 Atención WhatsApp</h3>
-            <p>Demande d'information + moteur de message prérempli prêt à envoyer.</p>
-            <div class="pred-input-grid">
-              <div class="pred-field"><label for="svc-wa-name">Ton nom</label><input id="svc-wa-name" type="text" maxlength="80" /></div>
-              <div class="pred-field"><label for="svc-wa-service">Service</label><select id="svc-wa-service"><option value="Carte natale">Carte natale</option><option value="Tiempo real">Tiempo real</option><option value="1 año">1 año</option><option value="5 años">5 años</option><option value="Orations">Orations</option></select></div>
-              <div class="pred-field full"><label for="svc-wa-msg">Message</label><input id="svc-wa-msg" type="text" maxlength="220" placeholder="Je souhaite des informations" /></div>
-            </div>
-            <button type="button" class="btn btn-primary" onclick="runSvcWhatsApp()">Générer le message WhatsApp</button>
-            <div id="svc-wa-out" class="svc-result hidden"></div>
+          <article class="service-tab" data-tab="meditaciones">
+            <h3>🕊️ Meditaciones por WhatsApp</h3>
+            <p>Sesiones de 33 minutos, agenda diaria y acompañamiento espiritual en un canal privado.</p>
+            <p><a href="meditaciones" class="btn btn-primary">Abrir la página de meditaciones</a></p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ===================== CÓMO FUNCIONA ===================== -->
-    <section id="como-funciona">
-      <div class="container">
-        <h2 class="section-title">Cómo funciona</h2>
-        <p class="section-sub">Tres pasos para encontrarnos bajo las estrellas.</p>
-        <div class="grid-3">
-          <div class="card">
-            <span class="icon">🌙</span>
-            <span class="step-num">PASO 01</span>
-            <h3>Comparte tu nacimiento</h3>
-            <p>Tu nombre, fecha, hora (si la conoces) y lugar de nacimiento. Con eso nace tu carta astral.</p>
-          </div>
-          <div class="card">
-            <span class="icon">🔮</span>
-            <span class="step-num">PASO 02</span>
-            <h3>Reserva en línea</h3>
-            <p>Elige tu plan y paga de forma segura. Para sesión privada, tarifa especial desde 5 USD.</p>
-          </div>
-          <div class="card">
-            <span class="icon">✨</span>
-            <span class="step-num">PASO 03</span>
-            <h3>Nos vemos en la videollamada</h3>
-            <p>Recibe tu enlace único y privado. AdelineTarot te recibe con tu carta astral y tu tirada de tarot.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== QUÉ INCLUYE ===================== -->
-    <section id="incluye">
-      <div class="container">
-        <h2 class="section-title">Qué incluye tu consulta</h2>
-        <p class="section-sub">Una lectura completa de tu cielo y tus cartas.</p>
-        <div class="grid-3">
-          <div class="card">
-            <span class="icon">☉</span>
-            <h3>Carta astral</h3>
-            <p>Sol, Luna, Ascendente y planetas: el retrato profundo de quién eres y cómo brillas.</p>
-          </div>
-          <div class="card">
-            <span class="icon">🃏</span>
-            <h3>Lectura de tarot</h3>
-            <p>Pasado, presente y futuro próximo: una visión clara de tu camino a corto plazo.</p>
-          </div>
-          <div class="card">
-            <span class="icon">🎥</span>
-            <h3>Videollamada privada</h3>
-            <p>Un encuentro íntimo, sólo tú y AdelineTarot, en un enlace único y seguro.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  <!-- ===================== CONTACT ===================== -->
-  <section id="contacto">
+  <!-- ===================== PAQUETE ADELINE ===================== -->
+  <section id="paquete-adeline">
     <div class="container">
-      <h2 class="section-title">Contacto & rappel</h2>
-      <p class="section-sub">Laisse ton email et ton motif, AdelineTarot peut te recontacter.</p>
-      <div class="panel contact-panel">
-        <div class="pred-input-grid">
-          <div class="pred-field">
-            <label for="contact-name">Nom</label>
-            <input id="contact-name" type="text" maxlength="120" placeholder="Ton nom" />
-          </div>
-          <div class="pred-field">
-            <label for="contact-email">Email</label>
-            <input id="contact-email" type="email" maxlength="254" placeholder="email@exemple.com" />
-          </div>
-          <div class="pred-field full">
-            <label for="contact-reason">Motif</label>
-            <input id="contact-reason" type="text" maxlength="220" placeholder="Je souhaite être rappelé(e) pour..." />
-          </div>
+      <div class="panel">
+        <h2 class="section-title">Paquete Adeline</h2>
+        <p class="section-sub">3 meditaciones de 33 min + 1 lectura de tarot terapéutico de 30 min + PDF con recomendaciones para apertura de caminos y autosanación por 144 USD.</p>
+        <div class="grid-3">
+          <div class="card"><span class="icon">🕊️</span><h3>3 meditaciones</h3><p>Sesiones guiadas de 33 minutos, en horarios seleccionados, con foco en sanación interior.</p></div>
+          <div class="card"><span class="icon">🃏</span><h3>Tarot terapéutico</h3><p>Una lectura de 30 minutos para ordenar preguntas, claridad emocional y dirección.</p></div>
+          <div class="card"><span class="icon">📘</span><h3>PDF de apoyo</h3><p>Recomendaciones para apertura de caminos y autosanación para acompañar el proceso.</p></div>
         </div>
-        <button type="button" class="btn btn-primary" onclick="sendContactRequest()">Demander un rappel</button>
-        <p class="hint" id="contact-msg" style="margin-top:12px"></p>
+        <p style="margin-top:18px"><a href="tarot-terapeutico" class="btn btn-primary">Comprar el paquete ADELINE</a></p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== WHATSAPP POPUP ===================== -->
-  <div id="waPopup" class="wa-popup hidden" role="dialog" aria-live="polite" aria-label="Servicios por WhatsApp">
-    <button class="wa-close" type="button" aria-label="Cerrar" onclick="closeWaPopup()">×</button>
-    <h3>💬 Atención por WhatsApp</h3>
-    <p>Lectura rápida, consulta privada, oraciones y velas en honor especial.</p>
-    <a class="btn btn-primary wa-popup-btn" href="https://wa.me/527227117122" target="_blank" rel="noopener">
-      <svg class="wa-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.52 3.48A11.78 11.78 0 0 0 12.13 0C5.57 0 .23 5.34.23 11.9c0 2.1.55 4.16 1.6 5.98L0 24l6.31-1.78a11.88 11.88 0 0 0 5.82 1.48h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.52-8.42m-8.39 18.2h-.01a9.85 9.85 0 0 1-5.02-1.37l-.36-.22-3.74 1.05 1-3.65-.24-.37a9.84 9.84 0 0 1-1.51-5.22c0-5.46 4.44-9.9 9.9-9.9 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 6.99c0 5.46-4.45 9.9-9.91 9.9m5.43-7.39c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.66-.5l-.56-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.87 1.2 3.07c.15.2 2.08 3.18 5.04 4.46.71.3 1.27.48 1.7.62.71.23 1.35.2 1.86.12.56-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.56-.35"/></svg>
-      Escribir al +52 722 711 7122
-    </a>
-  </div>
-  <div id="freeReadingPopup" class="center-popup hidden" role="dialog" aria-live="polite" aria-label="Lectura de carta natal gratuita">
-    <div class="center-popup-card">
-      <button class="center-popup-close" type="button" aria-label="Cerrar" onclick="closeFreeReadingPopup()">×</button>
-      <p class="eyebrow" style="margin-bottom:10px">Gratis</p>
-      <h3>Lectura de carta natal gratuita</h3>
-      <p>Empieza aquí: tu lectura gratuita es el elemento principal. Haz clic para abrir directamente la predicción y recibir tus primeros resultados.</p>
-      <a href="lectura-de-carta-natal" class="btn btn-primary">Abrir la lectura gratuita</a>
-    </div>
-  </div>
-  <a class="wa-fab" href="https://wa.me/527227117122" target="_blank" rel="noopener" aria-label="Ouvrir WhatsApp AdelineTarot">
-    <svg class="wa-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.52 3.48A11.78 11.78 0 0 0 12.13 0C5.57 0 .23 5.34.23 11.9c0 2.1.55 4.16 1.6 5.98L0 24l6.31-1.78a11.88 11.88 0 0 0 5.82 1.48h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.52-8.42m-8.39 18.2h-.01a9.85 9.85 0 0 1-5.02-1.37l-.36-.22-3.74 1.05 1-3.65-.24-.37a9.84 9.84 0 0 1-1.51-5.22c0-5.46 4.44-9.9 9.9-9.9 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 6.99c0 5.46-4.45 9.9-9.91 9.9m5.43-7.39c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.66-.5l-.56-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.87 1.2 3.07c.15.2 2.08 3.18 5.04 4.46.71.3 1.27.48 1.7.62.71.23 1.35.2 1.86.12.56-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.56-.35"/></svg>
-  </a>
-
   <script>
   // ================================================================
-  //  MOTOR DE PREDICCIÓN ASTRAL — AdelineTarot
+  //  MOTOR DE PREDICCIÓN ASTRAL — Adeline
   //  (basado en HumanPredict, integrado 2026-06)
   // ================================================================
 
@@ -463,19 +362,6 @@
     const sun = predCalcAstro(date, '')['Sol'].sign;
     const bestDay = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'][SIGNS_ES.indexOf(sun) % 7];
     svcSetResult('svc-ora-out', `<div class="pred-card"><h3>Oraison recommandée</h3><p>Pour ${honor}, intention: <span class="highlight">${intent}</span>.</p><p>Signature énergétique ${sun}. Jour conseillé: <strong>${bestDay}</strong>.</p></div>`);
-  }
-
-  function runSvcWhatsApp() {
-    const name = document.getElementById('svc-wa-name').value.trim();
-    const service = document.getElementById('svc-wa-service').value;
-    const msg = document.getElementById('svc-wa-msg').value.trim();
-    if (!name || !msg) {
-      svcSetResult('svc-wa-out', '<div class="alert alert-error">Complète ton nom et ton message.</div>');
-      return;
-    }
-    const text = `Hola AdelineTarot, soy ${name}. Servicio: ${service}. Mensaje: ${msg}`;
-    const url = buildWhatsAppUrl(text);
-    svcSetResult('svc-wa-out', `<div class="pred-card"><h3>Message prêt</h3><p>Ton message est prêt pour WhatsApp.</p><p><a class="btn btn-primary" href="${url}" target="_blank" rel="noopener">Envoyer maintenant</a></p></div>`);
   }
 
   // ================================================================
@@ -745,7 +631,7 @@
       return;
     }
 
-    const text = `Hola AdelineTarot, deseo solicitar: ${type}. En honor de: ${honor}. Intención: ${intent}. Mi nombre: ${name}. Mi email: ${email}. Aporte: ${amount} USD.`;
+    const text = `Hola Adeline, deseo solicitar: ${type}. En honor de: ${honor}. Intención: ${intent}. Mi nombre: ${name}. Mi email: ${email}. Aporte: ${amount} USD.`;
     window.open(buildWhatsAppUrl(text), '_blank', 'noopener');
     msg.textContent = 'Demande prête. Prix libre enregistré et WhatsApp ouvert pour confirmation.';
   }
@@ -766,44 +652,6 @@
     window.open(buildWhatsAppUrl(text), '_blank', 'noopener');
     msg.textContent = 'Demande envoyée. WhatsApp ouvert pour accélérer la réponse.';
   }
-
-  function closeWaPopup() {
-    const popup = document.getElementById('waPopup');
-    if (popup) popup.classList.add('hidden');
-    sessionStorage.setItem('adelinetarot_wa_popup_closed_at', String(Date.now()));
-  }
-
-  function closeFreeReadingPopup() {
-    const popup = document.getElementById('freeReadingPopup');
-    if (popup) popup.classList.add('hidden');
-    sessionStorage.setItem('adelinetarot_free_popup_closed_at', String(Date.now()));
-  }
-
-  function showWaPopupOnce() {
-    const popup = document.getElementById('waPopup');
-    if (!popup) return;
-    const lastClosed = parseInt(sessionStorage.getItem('adelinetarot_wa_popup_closed_at') || '0', 10);
-    if (Date.now() - lastClosed < 15000) return;
-    popup.classList.remove('hidden');
-  }
-
-  function showFreeReadingPopupOnce() {
-    const popup = document.getElementById('freeReadingPopup');
-    if (!popup) return;
-    const lastClosed = parseInt(sessionStorage.getItem('adelinetarot_free_popup_closed_at') || '0', 10);
-    if (Date.now() - lastClosed < 60000) return;
-    popup.classList.remove('hidden');
-  }
-
-  function getPopupDelayMs() {
-    return window.matchMedia('(max-width: 768px)').matches ? 40000 : 70000;
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(showFreeReadingPopupOnce, getPopupDelayMs());
-    setTimeout(showWaPopupOnce, 60000);
-    setInterval(showWaPopupOnce, 180000);
-  });
 
   // ================================================================
   //  LARGO PLAZO — Predicción astrológica 5 años
@@ -926,14 +774,14 @@
         <div class="pred-premium-blur">${premBlur}</div>
         <div class="pred-premium-gate">
           <div class="gate-price">Consulta en vivo</div>
-          <p>Para una interpretación personal y profunda de tu visión a largo plazo, reserva tu sesión privada con AdelineTarot.</p>
+          <p>Para una interpretación personal y profunda de tu visión a largo plazo, reserva tu sesión privada con Adeline.</p>
           <a href="#reservar" class="btn btn-primary">🔮 Reservar mi consulta</a>
         </div>
       </div>`;
 
       // CTA
       html += `<div class="pred-book-prompt" style="margin-top:32px">
-        <p>¿Lista para explorar tu camino con AdelineTarot en vivo? La carta astral y el tarot se revelan en toda su riqueza en la videollamada privada.</p>
+        <p>¿Lista para explorar tu camino con Adeline en vivo? La carta astral y el tarot se revelan en toda su riqueza en la videollamada privada.</p>
         <a href="#reservar" class="btn btn-primary">✨ Reservar mi sesión</a>
       </div>`;
 
@@ -961,7 +809,7 @@
   <footer class="site-footer">
     <div class="container">
       <p class="muted">Astrología &amp; tarot con alma · Consultas privadas por videollamada</p>
-      <p class="legal">Las lecturas tienen fines de orientación y entretenimiento. © <span id="year"></span> AdelineTarot.</p>
+      <p class="legal">Las lecturas tienen fines de orientación y entretenimiento. © <span id="year"></span> Adeline.</p>
     </div>
   </footer>
 

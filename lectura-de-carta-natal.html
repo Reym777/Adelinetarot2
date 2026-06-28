@@ -21,8 +21,19 @@
     .natal-report h4 { color: var(--gold); margin: 12px 0 6px; font-size: 1.1rem; }
     .natal-report ul { margin: 0 0 12px 20px; }
     .natal-chip { display: inline-block; margin: 0 6px 8px 0; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: rgba(232,198,107,.08); color: var(--gold); font-family: "Cinzel", serif; font-size: .78rem; }
+    .planet-table { width: 100%; border-collapse: collapse; margin-top: 12px; overflow: hidden; }
+    .planet-table th, .planet-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+    .planet-table th { color: var(--gold); font-family: "Cinzel", serif; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+    .planet-table tr:last-child td { border-bottom: 0; }
+    .astro-wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 16px; align-items: center; margin-top: 14px; }
+    .astro-wheel { position: relative; width: 100%; max-width: 560px; margin: 0 auto; aspect-ratio: 1; }
+    .astro-wheel svg { width: 100%; height: 100%; display: block; }
+    .astro-legend { display: flex; flex-wrap: wrap; gap: 8px; }
+    .astro-pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,.03); color: var(--text); font-size: .86rem; }
+    .astro-pill b { color: var(--gold); font-family: "Cinzel", serif; font-size: .76rem; }
     @media (max-width: 760px) {
       .natal-grid { grid-template-columns: 1fr; }
+      .astro-wrap { grid-template-columns: 1fr; }
       .natal-page { padding-top: 90px; }
       .natal-top { flex-direction: column; align-items: flex-start; }
     }
@@ -32,9 +43,9 @@
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="index#inicio">
-        <img src="assets/images/bandeau v3.jpg" class="brand-banner-img" alt="AdelineTarot" />
+        <img src="assets/images/bandeauv5.png" class="brand-banner-img" alt="Adeline" />
       </a>
-      <a href="index#inicio" class="btn btn-ghost" style="justify-self:start; position:relative; z-index:2; margin-left:12px;">Home</a>
+      <a href="index#inicio" class="btn btn-ghost" style="justify-self:start; position:relative; z-index:2; margin-left:12px;">Inicio</a>
       <a href="oraciones" class="btn btn-primary header-cta">Oraciones</a>
     </div>
   </header>
@@ -50,8 +61,9 @@
             <div class="pred-field"><label for="natal-place">Lugar de nacimiento</label><input id="natal-place" type="text" maxlength="120" placeholder="Ciudad y país" /></div>
             <div class="pred-field"><label for="natal-date">Fecha de nacimiento</label><input id="natal-date" type="date" /></div>
             <div class="pred-field"><label for="natal-time">Hora de nacimiento (opcional)</label><input id="natal-time" type="time" /></div>
-            <div class="pred-field full"><button id="natal-run" class="btn btn-primary">Generar mi carta natal completa</button></div>
           </div>
+
+          <div class="pred-field full" style="margin-top:16px"><button id="natal-run" class="btn btn-primary">Generar mi carta natal completa</button></div>
           <p id="natal-msg" class="hint" style="margin-top:10px"></p>
         </div>
 
@@ -77,6 +89,34 @@
       Urano: { sym: '♅', speed: 0.0117, base: 314.05, key: 'innovacion, cambio y libertad' },
       Neptuno: { sym: '♆', speed: 0.0060, base: 304.35, key: 'intuicion, idealismo y sensibilidad' },
       Pluton: { sym: '♇', speed: 0.0040, base: 238.93, key: 'poder interno, crisis y renacimiento' }
+    };
+
+    const PLANET_COLORS = {
+      Sol: '#f6cf75',
+      Luna: '#c7d5ff',
+      Mercurio: '#95e5cb',
+      Venus: '#f3a7c6',
+      Marte: '#ff8a7f',
+      Jupiter: '#8fd5ff',
+      Saturno: '#cfb8ff',
+      Urano: '#9df0e6',
+      Neptuno: '#9bb6ff',
+      Pluton: '#ffa8dc'
+    };
+
+    const SIGN_COLORS = {
+      Aries: '#ff8576',
+      Tauro: '#7fd6b9',
+      Geminis: '#f4ce73',
+      Cancer: '#8ac2ff',
+      Leo: '#ffb374',
+      Virgo: '#90d1b9',
+      Libra: '#e8a6d7',
+      Escorpio: '#b18cff',
+      Sagitario: '#ff9b6d',
+      Capricornio: '#86bb9d',
+      Acuario: '#8de0ff',
+      Piscis: '#9fb6ff'
     };
 
     const SIGN_TONES = {
@@ -193,15 +233,15 @@
     }
 
     function textPlanetSign(planet, sign) {
-      return `Con ${planet} en ${sign}, tu energia se expresa de forma ${SIGN_TONES[sign]}. Esta combinacion activa ${PLANETS[planet].key} con un estilo ${SIGN_TONES[sign]}, por lo que tus decisiones tienden a seguir ese tono en relaciones, trabajo y vida personal.`;
+      return `${planet} en ${sign}: energia ${SIGN_TONES[sign]} orientada a ${PLANETS[planet].key}. En la practica, esto colorea tus decisiones, tu tono relacional y la forma de concretar lo que quieres.`;
     }
 
     function textPlanetHouse(planet, house) {
-      return `${planet} en casa ${house} enfatiza ${HOUSE_KEYS[house]}. Aqui se mueve tu ${PLANETS[planet].key}: cuando cultivas orden y conciencia en este sector, tu crecimiento se vuelve visible y sostenible.`;
+      return `${planet} en casa ${house} activa ${HOUSE_KEYS[house]}. Ese sector muestra donde esta planeta trabaja con mas fuerza y donde tu experiencia gana forma.`;
     }
 
     function textAspect(item) {
-      return `${item.p1} y ${item.p2} forman ${item.name.toLowerCase()} (${item.orbValue}° de orbe): esta dinamica ${item.tone}. En la practica, conviene observar como equilibras ${PLANETS[item.p1].key} con ${PLANETS[item.p2].key}.`;
+      return `${item.p1} y ${item.p2} forman ${item.name.toLowerCase()} (${item.orbValue}°): ${item.tone}. Aqui conviene mirar como se combinan ${PLANETS[item.p1].key} y ${PLANETS[item.p2].key}.`;
     }
 
     function ageFromDate(dateStr) {
@@ -210,6 +250,94 @@
       let a = t.getFullYear() - b.getFullYear();
       if (t.getMonth() < b.getMonth() || (t.getMonth() === b.getMonth() && t.getDate() < b.getDate())) a--;
       return a;
+    }
+
+    function renderPlanetTable(planets) {
+      const rows = Object.keys(PLANETS).map((planet) => {
+        const data = planets[planet];
+        return `<tr><td>${PLANETS[planet].sym} ${planet}</td><td>${data.sign}</td><td>${data.degInSign}°</td><td>${PLANETS[planet].key}</td></tr>`;
+      }).join('');
+      return `<table class="planet-table"><thead><tr><th>Planeta</th><th>Signo</th><th>Grado</th><th>Clave</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+    function renderAstroWheel(planets, asc) {
+      function polar(angleDeg, radius) {
+        const rad = (Math.PI / 180) * (angleDeg - 90);
+        return {
+          x: 500 + Math.cos(rad) * radius,
+          y: 500 + Math.sin(rad) * radius
+        };
+      }
+
+      const ascShift = asc.idx * 30;
+
+      const houseLines = Array.from({ length: 12 }, (_, i) => {
+        const p1 = polar(ascShift + i * 30, 190);
+        const p2 = polar(ascShift + i * 30, 440);
+        return `<line x1="${p1.x.toFixed(1)}" y1="${p1.y.toFixed(1)}" x2="${p2.x.toFixed(1)}" y2="${p2.y.toFixed(1)}" stroke="rgba(235,231,255,.2)" stroke-width="2.4"/>`;
+      }).join('');
+
+      const houseLabels = Array.from({ length: 12 }, (_, i) => {
+        const center = polar(ascShift + i * 30 + 15, 248);
+        return `<text x="${center.x.toFixed(1)}" y="${center.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(236,224,164,.88)" font-size="15" font-family="Cinzel, serif">${i + 1}</text>`;
+      }).join('');
+
+      const signLabels = SIGNS.map((sign, idx) => {
+        const center = polar(idx * 30 + 15, 406);
+        const symbolP = polar(idx * 30 + 15, 372);
+        return `
+          <text x="${symbolP.x.toFixed(1)}" y="${symbolP.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="${SIGN_COLORS[sign]}" font-size="22" font-family="Cinzel, serif">${SIGN_SYMBOLS[idx]}</text>
+          <text x="${center.x.toFixed(1)}" y="${center.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="${SIGN_COLORS[sign]}" font-size="14" font-family="Cormorant Garamond, serif">${sign}</text>
+        `;
+      }).join('');
+
+      const grouped = Object.keys(PLANETS)
+        .map((planet) => ({ planet, ...planets[planet] }))
+        .sort((a, b) => a.lon - b.lon);
+
+      let prevLon = -999;
+      let stack = 0;
+      const markers = grouped.map((entry) => {
+        if (Math.abs(entry.lon - prevLon) < 8) {
+          stack += 1;
+        } else {
+          stack = 0;
+        }
+        prevLon = entry.lon;
+        const radius = 338 - Math.min(stack, 3) * 26;
+        const p = polar(entry.lon, radius);
+        const label = polar(entry.lon, radius + 23);
+        const color = PLANET_COLORS[entry.planet] || '#e8c66b';
+        return `
+          <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="14" fill="${color}" stroke="rgba(12,10,29,.9)" stroke-width="2"/>
+          <text x="${p.x.toFixed(1)}" y="${(p.y + 1).toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="#0f0a24" font-size="16" font-family="Cinzel, serif">${PLANETS[entry.planet].sym}</text>
+          <text x="${label.x.toFixed(1)}" y="${label.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="${color}" font-size="12" font-family="Cinzel, serif">${entry.planet}</text>
+        `;
+      }).join('');
+
+      const ascPoint = polar(ascShift, 452);
+      const ascInner = polar(ascShift, 372);
+
+      return `
+        <div class="astro-wheel">
+          <svg viewBox="0 0 1000 1000" aria-hidden="true" class="wheel-svg">
+            <defs>
+              <linearGradient id="astroRing" x1="0%" x2="100%">
+                <stop offset="0%" stop-color="#f0d9a0"/>
+                <stop offset="100%" stop-color="#8e7cf2"/>
+              </linearGradient>
+            </defs>
+            <circle cx="500" cy="500" r="452" fill="rgba(255,255,255,.02)" stroke="url(#astroRing)" stroke-width="16"/>
+            <circle cx="500" cy="500" r="355" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6" stroke-dasharray="10 14"/>
+            <circle cx="500" cy="500" r="190" fill="rgba(16,11,42,.55)" stroke="rgba(255,255,255,.14)" stroke-width="4"/>
+            ${houseLines}
+            ${houseLabels}
+            ${signLabels}
+            <line x1="${ascPoint.x.toFixed(1)}" y1="${ascPoint.y.toFixed(1)}" x2="${ascInner.x.toFixed(1)}" y2="${ascInner.y.toFixed(1)}" stroke="#f7d98a" stroke-width="4"/>
+            <text x="${ascPoint.x.toFixed(1)}" y="${(ascPoint.y - 14).toFixed(1)}" text-anchor="middle" fill="#f7d98a" font-size="13" font-family="Cinzel, serif">ASC</text>
+            ${markers}
+          </svg>
+        </div>`;
     }
 
     function renderReport(name, place, date, time) {
@@ -238,6 +366,8 @@
         : '<p>No se detectaron aspectos mayores cerrados con el orbe configurado.</p>';
 
       const summary = `<p>Tu carta sugiere un perfil donde el ascendente en <strong>${asc.sign}</strong> colorea tu forma de iniciar etapas, mientras que Sol en <strong>${planets.Sol.sign}</strong> y Luna en <strong>${planets.Luna.sign}</strong> marcan la combinacion central entre identidad y mundo emocional. Las casas activas muestran donde suceden los aprendizajes clave de esta etapa.</p>`;
+      const astroWheel = renderAstroWheel(planets, asc);
+      const planetTable = renderPlanetTable(planets);
 
       return `
         <h2 style="margin-bottom:10px">Informe de carta natal: ${name}</h2>
@@ -251,6 +381,19 @@
         <ul>${byHouse}</ul>
         <h3>Aspectos principales entre planetas</h3>
         ${aspectHtml}
+        <h3>Resumen visual de la carta astral</h3>
+        <div class="astro-wrap">
+          ${astroWheel}
+          <div>
+            <p>Este esquema visual muestra la distribución general de tus planetas y el ascendente. La tabla de abajo resume signo, grado y clave principal de cada planeta.</p>
+            <div class="astro-legend">
+              <span class="astro-pill"><b>☉</b>Sol: identidad</span>
+              <span class="astro-pill"><b>☽</b>Luna: emociones</span>
+              <span class="astro-pill"><b>ASC</b>Ascendente: estilo</span>
+            </div>
+          </div>
+        </div>
+        ${planetTable}
       `;
     }
 

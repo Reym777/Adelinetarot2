@@ -7,7 +7,10 @@
     'reserva-tu-lectura',
     'prediccion-astral',
     'lectura-de-carta-natal',
+    'synastria',
     'oraciones',
+    'tarot-terapeutico',
+    'meditaciones',
   ]);
 
   function splitHref(href) {

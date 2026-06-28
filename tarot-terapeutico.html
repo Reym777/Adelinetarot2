@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarot terapéutico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .thera-page { padding: 110px 0 60px; }
+    .thera-wrap { max-width: 980px; margin: 0 auto; }
+    .thera-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .thera-grid .full { grid-column: 1 / -1; }
+    .thera-note { margin-top: 10px; color: var(--muted); font-size: .95rem; }
+    @media (max-width: 760px) {
+      .thera-page { padding-top: 90px; }
+      .thera-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index#inicio">
+        <img src="assets/images/bandeauv5.png" class="brand-banner-img" alt="Adeline" />
+      </a>
+      <a href="index#inicio" class="btn btn-ghost" style="justify-self:start; position:relative; z-index:2; margin-left:12px;">Home</a>
+      <a href="oraciones" class="btn btn-primary header-cta">Oraciones</a>
+    </div>
+  </header>
+
+  <main class="thera-page">
+    <section>
+      <div class="container thera-wrap">
+        <div class="panel">
+          <h1 style="margin-bottom:8px;text-align:center;">Tarot terapéutico</h1>
+          <p class="section-sub">Pasado y futuro están comprimidos en el presente, permíteme ser un canal para interpretar tu energía a través de las cartas del tarot.</p>
+          <div class="thera-grid">
+            <div class="pred-field"><label for="thera-name">Nombre</label><input id="thera-name" type="text" maxlength="80" placeholder="Tu nombre" /></div>
+            <div class="pred-field"><label for="thera-country">País</label><input id="thera-country" type="text" maxlength="80" placeholder="Tu país" /></div>
+            <div class="pred-field"><label for="thera-whatsapp">WhatsApp</label><input id="thera-whatsapp" type="tel" maxlength="30" placeholder="+52..." /></div>
+            <div class="pred-field"><label for="thera-email">Correo electrónico</label><input id="thera-email" type="email" maxlength="254" placeholder="correo@ejemplo.com" /></div>
+            <div class="pred-field"><label for="thera-date">Fecha</label><input id="thera-date" type="date" /></div>
+            <div class="pred-field"><label for="thera-time">Hora (Perú)</label>
+              <select id="thera-time">
+                <option value="07:00">07:00</option>
+                <option value="11:00">11:00</option>
+                <option value="15:33">15:33</option>
+              </select>
+            </div>
+            <div class="pred-field full"><label for="thera-session">Duración</label>
+              <select id="thera-session">
+                <option value="30">30 min · 30 USD</option>
+                <option value="45">45 min · 45 USD</option>
+                <option value="90">90 min · 90 USD</option>
+              </select>
+            </div>
+          </div>
+          <div class="thera-note">Consultas en español e inglés, con un máximo de 3 por día entre 7:00 y 15:20 hora Perú.</div>
+          <div style="margin-top:18px">
+            <a href="reserva-tu-lectura" class="btn btn-primary">Reservar sesión</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="muted">Tarot terapéutico · acompañamiento espiritual</p>
+      <p class="legal">© <span id="year"></span> Adeline.</p>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>const yearEl = document.getElementById('year'); if (yearEl) yearEl.textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -25,10 +25,10 @@
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="index#inicio">
-        <img src="assets/images/bandeau v3.jpg" class="brand-banner-img" alt="AdelineTarot" />
+        <img src="assets/images/bandeauv5.png" class="brand-banner-img" alt="Adeline" />
       </a>
       <a href="index#inicio" class="btn btn-ghost" style="justify-self:start; position:relative; z-index:2; margin-left:12px;">Home</a>
-      <a href="lectura-de-carta-natal" class="btn btn-primary header-cta">Carta natal</a>
+      <a href="index#paquete-adeline" class="btn btn-primary header-cta">Paquete Adeline</a>
     </div>
   </header>
 
@@ -36,15 +36,17 @@
     <section>
       <div class="container ora-wrap">
         <div class="panel">
-          <h1 style="margin-bottom:8px">Página de oraciones</h1>
-          <p class="muted" style="margin-bottom:16px">Indica tus datos, tu intención y el importe que deseas aportar. El precio es libre.</p>
+          <h1 style="margin-bottom:8px">Oraciones de sanacion y de purificacion</h1>
+          <p class="muted" style="margin-bottom:16px">Completa la informacion para elevar el rezo.</p>
+          <p class="muted" style="margin-top:-8px;margin-bottom:16px;font-size:.92rem">Nota: una vez realizado el pago, deberás colocar un vaso de cristal con agua en un espacio de paz dentro de tu hogar.</p>
 
           <div class="ora-grid">
-            <div class="pred-field"><label for="ora-nombre">Nombre</label><input id="ora-nombre" type="text" maxlength="80" placeholder="Nombre" /></div>
-            <div class="pred-field"><label for="ora-apellido">Apellido</label><input id="ora-apellido" type="text" maxlength="80" placeholder="Apellido" /></div>
+            <div class="pred-field"><label for="ora-nombre">Nombre (facultatif)</label><input id="ora-nombre" type="text" maxlength="80" placeholder="Nombre" /></div>
+            <div class="pred-field"><label for="ora-apellido">Apellido (facultatif)</label><input id="ora-apellido" type="text" maxlength="80" placeholder="Apellido" /></div>
             <div class="pred-field full"><label for="ora-email">Email</label><input id="ora-email" type="email" maxlength="254" placeholder="correo@ejemplo.com" /></div>
-            <div class="pred-field full"><label for="ora-comentario">Comentario para la oración</label><input id="ora-comentario" type="text" maxlength="280" placeholder="Escribe tu intención" /></div>
-            <div class="pred-field"><label for="ora-monto">Aporte libre (USD)</label><input id="ora-monto" type="number" min="1" step="1" placeholder="Ejemplo: 7" /></div>
+            <div class="pred-field full"><label for="ora-comentario">Describe lo mas claro posible tu peticion</label><textarea id="ora-comentario" maxlength="1200" placeholder="Escribe tu intención" style="min-height:180px;"></textarea></div>
+            <div class="pred-field full"><label for="ora-extra">Informacion complementaria (persona, cituacion, mascota, ciudad, nombre de proceso...)</label><input id="ora-extra" type="text" maxlength="280" placeholder="Detalles adicionales" /></div>
+            <div class="pred-field full"><label>Oraciones por 3 dias = 60 USD</label></div>
           </div>
 
           <div class="ora-actions">
@@ -63,17 +65,15 @@
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || '').trim());
     }
 
-    function buildPaypal(amount) {
+    function buildPaypal() {
       const base = 'https://www.paypal.com/paypalme/adelinetaroterapeu';
-      const n = Number(amount || 0);
-      if (!Number.isFinite(n) || n < 1) return base;
-      return `${base}/${Math.floor(n)}`;
+      return `${base}/60`;
     }
 
-    function buildMailTo(nombre, apellido, email, comentario, monto) {
+    function buildMailTo(nombre, apellido, email, comentario, monto, extra) {
       const subject = encodeURIComponent('Solicitud de oración personalizada');
       const body = encodeURIComponent(
-        `Nombre: ${nombre} ${apellido}\nEmail: ${email}\nAporte (USD): ${monto || 'No indicado'}\nComentario: ${comentario}`
+        `Nombre: ${nombre} ${apellido}\nEmail: ${email}\nAporte (USD): ${monto || 'No indicado'}\nComentario: ${comentario}\nInformación complementaria: ${extra || 'No indicada'}`
       );
       return `mailto:adelinetarot.contacto@gmail.com?subject=${subject}&body=${body}`;
     }
@@ -83,18 +83,18 @@
       const apellido = document.getElementById('ora-apellido').value.trim();
       const email = document.getElementById('ora-email').value.trim();
       const comentario = document.getElementById('ora-comentario').value.trim();
-      const monto = document.getElementById('ora-monto').value;
+      const extra = document.getElementById('ora-extra').value.trim();
       const msg = document.getElementById('ora-msg');
       const mailBtn = document.getElementById('ora-mail');
 
-      if (!nombre || !apellido || !comentario || !validEmail(email)) {
-        msg.textContent = 'Completa nombre, apellido, email valido y comentario.';
+      if (!comentario || !validEmail(email)) {
+        msg.textContent = 'Completa email valido y comentario.';
         return;
       }
 
-      mailBtn.href = buildMailTo(nombre, apellido, email, comentario, monto);
-      msg.textContent = 'Datos listos. Se abrirá PayPal para completar el aporte libre.';
-      window.open(buildPaypal(monto), '_blank', 'noopener');
+      mailBtn.href = buildMailTo(nombre, apellido, email, comentario, '60', extra);
+      msg.textContent = 'Datos listos. Se abrirá PayPal para completar el aporte.';
+      window.open(buildPaypal(), '_blank', 'noopener');
     });
   </script>
 </body>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synastria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .syn-page { padding: 110px 0 60px; }
+    .syn-wrap { max-width: 980px; margin: 0 auto; }
+    .syn-form { margin-bottom: 20px; }
+    .syn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .syn-grid .full { grid-column: 1 / -1; }
+    .syn-report { line-height: 1.8; color: var(--muted); }
+    .syn-report h3 { color: var(--gold); margin: 16px 0 8px; }
+    .syn-report h4 { color: var(--gold); margin: 12px 0 6px; font-size: 1.1rem; }
+    .compat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 12px 0 16px; }
+    .compat-box { padding: 14px; border: 1px solid var(--border); border-radius: 18px; background: rgba(255,255,255,.03); }
+    .compat-box strong { color: var(--gold); }
+    .compat-score { display: block; margin-top: 4px; color: var(--gold); font-family: "Cinzel", serif; font-size: 1.45rem; }
+    .compat-bar { margin-top: 10px; height: 10px; border-radius: 999px; background: rgba(255,255,255,.08); overflow: hidden; }
+    .compat-bar > span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #d9b96d, #8e7cf2); }
+    .planet-table { width: 100%; border-collapse: collapse; margin-top: 12px; overflow: hidden; }
+    .planet-table th, .planet-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+    .planet-table th { color: var(--gold); font-family: "Cinzel", serif; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+    .planet-table tr:last-child td { border-bottom: 0; }
+    .astro-wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 16px; align-items: center; margin-top: 14px; }
+    .astro-wheel { position: relative; width: 100%; max-width: 560px; margin: 0 auto; aspect-ratio: 1; }
+    .astro-wheel svg { width: 100%; height: 100%; display: block; }
+    .astro-legend { display: flex; flex-wrap: wrap; gap: 8px; }
+    .astro-pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,.03); color: var(--text); font-size: .86rem; }
+    .astro-pill b { color: var(--gold); font-family: "Cinzel", serif; font-size: .76rem; }
+    @media (max-width: 760px) {
+      .syn-grid { grid-template-columns: 1fr; }
+      .compat-grid { grid-template-columns: 1fr; }
+      .astro-wrap { grid-template-columns: 1fr; }
+      .syn-page { padding-top: 90px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index#inicio">
+        <img src="assets/images/bandeauv5.png" class="brand-banner-img" alt="Adeline" />
+      </a>
+      <a href="index#inicio" class="btn btn-ghost" style="justify-self:start; position:relative; z-index:2; margin-left:12px;">Inicio</a>
+      <a href="lectura-de-carta-natal" class="btn btn-primary header-cta">Carta natal</a>
+    </div>
+  </header>
+
+  <main class="syn-page">
+    <section>
+      <div class="container syn-wrap">
+        <div class="panel syn-form">
+          <h1 style="margin-bottom:8px">Synastría</h1>
+          <p class="muted" style="margin-bottom:16px">Introduce los datos de dos personas para analizar su compatibilidad con aspectos, signos y planetas cruzados.</p>
+          <div class="syn-grid">
+            <div class="pred-field"><label for="syn-a-name">Nombre de la persona A</label><input id="syn-a-name" type="text" maxlength="80" placeholder="Nombre o apodo" /></div>
+            <div class="pred-field"><label for="syn-a-place">Lugar de nacimiento</label><input id="syn-a-place" type="text" maxlength="120" placeholder="Ciudad y país" /></div>
+            <div class="pred-field"><label for="syn-a-date">Fecha de nacimiento</label><input id="syn-a-date" type="date" /></div>
+            <div class="pred-field"><label for="syn-a-time">Hora de nacimiento (opcional)</label><input id="syn-a-time" type="time" /></div>
+            <div class="pred-field"><label for="syn-b-name">Nombre de la persona B</label><input id="syn-b-name" type="text" maxlength="80" placeholder="Nombre o apodo" /></div>
+            <div class="pred-field"><label for="syn-b-place">Lugar de nacimiento</label><input id="syn-b-place" type="text" maxlength="120" placeholder="Ciudad y país" /></div>
+            <div class="pred-field"><label for="syn-b-date">Fecha de nacimiento</label><input id="syn-b-date" type="date" /></div>
+            <div class="pred-field"><label for="syn-b-time">Hora de nacimiento (opcional)</label><input id="syn-b-time" type="time" /></div>
+            <div class="pred-field full"><button id="syn-run" class="btn btn-primary">Generar sinastría completa</button></div>
+          </div>
+          <p id="syn-msg" class="hint" style="margin-top:10px"></p>
+        </div>
+
+        <div id="syn-report" class="panel syn-report hidden"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/site.js"></script>
+  <script>
+    const SIGNS = ['Aries', 'Tauro', 'Geminis', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Escorpio', 'Sagitario', 'Capricornio', 'Acuario', 'Piscis'];
+    const SIGN_SYMBOLS = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+    const PLANETS = {
+      Sol: { sym: '☉', speed: 0.9856, base: 280.46, key: 'identidad, vitalidad y proposito' },
+      Luna: { sym: '☽', speed: 13.1764, base: 218.32, key: 'emociones, necesidades y refugio' },
+      Mercurio: { sym: '☿', speed: 4.0923, base: 252.25, key: 'mente, lenguaje y aprendizaje' },
+      Venus: { sym: '♀', speed: 1.6021, base: 181.98, key: 'amor, gustos y valores' },
+      Marte: { sym: '♂', speed: 0.5240, base: 355.43, key: 'accion, deseo y coraje' },
+      Jupiter: { sym: '♃', speed: 0.0831, base: 34.35, key: 'expansion, fe y crecimiento' },
+      Saturno: { sym: '♄', speed: 0.0334, base: 50.08, key: 'disciplina, limites y estructura' },
+      Urano: { sym: '♅', speed: 0.0117, base: 314.05, key: 'innovacion, cambio y libertad' },
+      Neptuno: { sym: '♆', speed: 0.0060, base: 304.35, key: 'intuicion, idealismo y sensibilidad' },
+      Pluton: { sym: '♇', speed: 0.0040, base: 238.93, key: 'poder interno, crisis y renacimiento' }
+    };
+
+    const PLANET_COLORS = {
+      Sol: '#f6cf75',
+      Luna: '#c7d5ff',
+      Mercurio: '#95e5cb',
+      Venus: '#f3a7c6',
+      Marte: '#ff8a7f',
+      Jupiter: '#8fd5ff',
+      Saturno: '#cfb8ff',
+      Urano: '#9df0e6',
+      Neptuno: '#9bb6ff',
+      Pluton: '#ffa8dc'
+    };
+
+    const SIGN_COLORS = {
+      Aries: '#ff8576',
+      Tauro: '#7fd6b9',
+      Geminis: '#f4ce73',
+      Cancer: '#8ac2ff',
+      Leo: '#ffb374',
+      Virgo: '#90d1b9',
+      Libra: '#e8a6d7',
+      Escorpio: '#b18cff',
+      Sagitario: '#ff9b6d',
+      Capricornio: '#86bb9d',
+      Acuario: '#8de0ff',
+      Piscis: '#9fb6ff'
+    };
+
+    const ASPECTS = [
+      { name: 'Conjuncion', angle: 0, orb: 8, tone: 'fusiona energias y concentra foco' },
+      { name: 'Sextil', angle: 60, orb: 5, tone: 'abre oportunidades fluidas y colaborativas' },
+      { name: 'Cuadratura', angle: 90, orb: 6, tone: 'genera tension creativa para evolucionar' },
+      { name: 'Trigono', angle: 120, orb: 6, tone: 'facilita talentos naturales y armonia' },
+      { name: 'Oposicion', angle: 180, orb: 8, tone: 'pide balance entre polos complementarios' }
+    ];
+
+    const RELATION_WEIGHTS = {
+      Sol: { Venus: 1.25, Luna: 1.2, Marte: 1.05, Mercurio: 1.0, Jupiter: 1.08, Saturno: 0.95 },
+      Luna: { Luna: 1.3, Venus: 1.18, Marte: 1.08, Mercurio: 1.0, Jupiter: 1.06, Saturno: 1.0 },
+      Mercurio: { Mercurio: 1.25, Sol: 1.05, Luna: 1.0, Venus: 0.96, Marte: 1.02, Saturno: 1.08 },
+      Venus: { Venus: 1.25, Marte: 1.3, Luna: 1.16, Sol: 1.12, Jupiter: 1.08, Saturno: 0.92 },
+      Marte: { Marte: 1.25, Venus: 1.28, Luna: 1.08, Sol: 1.08, Jupiter: 0.98, Saturno: 0.9 },
+      Jupiter: { Jupiter: 1.12, Sol: 1.05, Luna: 1.05, Venus: 1.04, Saturno: 1.02, Mercurio: 0.96 },
+      Saturno: { Saturno: 1.15, Sol: 0.94, Luna: 0.95, Venus: 0.92, Marte: 0.9, Mercurio: 1.05 },
+      Urano: { Urano: 1.05, Marte: 0.95, Venus: 0.92, Mercurio: 1.0, Sol: 0.96, Luna: 0.94 },
+      Neptuno: { Neptuno: 1.04, Luna: 1.0, Venus: 0.98, Sol: 0.96, Marte: 0.92, Mercurio: 0.96 },
+      Pluton: { Pluton: 1.08, Venus: 1.0, Marte: 1.12, Sol: 0.98, Luna: 0.98, Mercurio: 0.95 }
+    };
+
+    function hashText(text) {
+      let h = 0;
+      const raw = String(text || '').toLowerCase();
+      for (let i = 0; i < raw.length; i++) h = (h * 31 + raw.charCodeAt(i)) % 100000;
+      return h;
+    }
+
+    function julianFromDate(dateStr, timeStr) {
+      const dt = new Date(dateStr + 'T' + (timeStr || '12:00'));
+      return dt.getTime() / 86400000 + 2440587.5;
+    }
+
+    function planetPositions(dateStr, timeStr) {
+      const jd = julianFromDate(dateStr, timeStr);
+      const out = {};
+      for (const [name, meta] of Object.entries(PLANETS)) {
+        let lon = (meta.base + meta.speed * (jd - 2451545.0)) % 360;
+        if (lon < 0) lon += 360;
+        lon = (lon + Math.sin(jd * 0.01 + meta.base) * 2.2) % 360;
+        if (lon < 0) lon += 360;
+        const signIdx = Math.floor(lon / 30) % 12;
+        out[name] = {
+          lon,
+          signIdx,
+          sign: SIGNS[signIdx],
+          signSym: SIGN_SYMBOLS[signIdx],
+          degInSign: (lon % 30).toFixed(1)
+        };
+      }
+      return out;
+    }
+
+    function calcAscendant(dateStr, timeStr, place) {
+      const dt = new Date(dateStr + 'T' + (timeStr || '12:00'));
+      const hour = dt.getHours();
+      const month = dt.getMonth();
+      const day = dt.getDate();
+      const placeBoost = hashText(place) % 12;
+      const ascIdx = (Math.floor(hour / 2) + month + day + placeBoost) % 12;
+      return { idx: ascIdx, sign: SIGNS[ascIdx], signSym: SIGN_SYMBOLS[ascIdx] };
+    }
+
+    function nearestAspect(diff) {
+      for (const a of ASPECTS) {
+        const delta = Math.min(Math.abs(diff - a.angle), Math.abs((360 - diff) - a.angle));
+        if (delta <= a.orb) return { ...a, orbValue: delta.toFixed(1) };
+      }
+      return null;
+    }
+
+    function aspectScore(name) {
+      if (name === 'Trigono') return 4;
+      if (name === 'Sextil') return 3;
+      if (name === 'Conjuncion') return 2;
+      if (name === 'Oposicion') return -3;
+      if (name === 'Cuadratura') return -4;
+      return 0;
+    }
+
+    function normalizeScore(value) {
+      return Math.max(0, Math.min(100, Math.round(value)));
+    }
+
+    function compatibilityTone(score) {
+      if (score >= 75) return 'muy alta';
+      if (score >= 60) return 'alta';
+      if (score >= 45) return 'media';
+      if (score >= 30) return 'variable';
+      return 'retadora';
+    }
+
+    function pairWeight(planetA, planetB) {
+      const left = RELATION_WEIGHTS[planetA] || {};
+      const right = RELATION_WEIGHTS[planetB] || {};
+      return ((left[planetB] || 1) + (right[planetA] || 1)) / 2;
+    }
+
+    function classifyAspect(p1, p2, aspect) {
+      const set = new Set([p1, p2]);
+      const has = (x) => set.has(x);
+      const conflict = aspect === 'Cuadratura' || aspect === 'Oposicion';
+      const soft = aspect === 'Trigono' || aspect === 'Sextil';
+
+      const tags = [];
+      if (soft) tags.push('Aspecto armónico');
+      if (conflict) tags.push('Aspecto de conflicto');
+
+      if ((has('Venus') && has('Marte')) || (has('Luna') && has('Marte')) || (has('Sol') && has('Venus'))) {
+        tags.push('Aspecto de pasión');
+      }
+      if (conflict && has('Luna') && (has('Marte') || has('Saturno') || has('Pluton'))) {
+        tags.push('Aspecto de dolor emocional');
+      }
+      if ((aspect === 'Conjuncion' && has('Saturno') && has('Luna')) || (aspect === 'Conjuncion' && has('Saturno') && has('Saturno')) || (aspect === 'Conjuncion' && has('Sol') && has('Luna'))) {
+        tags.push('Aspecto clave');
+      }
+      if (!tags.length) tags.push('Aspecto de aprendizaje');
+      return tags;
+    }
+
+    function clampScore(value) {
+      return Math.max(5, Math.min(95, Math.round(value)));
+    }
+
+    function categoryWeight(p1, p2) {
+      const key = [p1, p2].sort().join('-');
+      const affectionSet = new Set(['Luna-Luna', 'Luna-Venus', 'Luna-Sol', 'Venus-Venus', 'Sol-Venus']);
+      const sexualitySet = new Set(['Venus-Marte', 'Marte-Marte', 'Luna-Marte', 'Venus-Pluton']);
+      const collaborationSet = new Set(['Mercurio-Mercurio', 'Mercurio-Saturno', 'Sol-Mercurio', 'Saturno-Saturno']);
+      const mutualSet = new Set(['Jupiter-Jupiter', 'Sol-Jupiter', 'Luna-Jupiter', 'Saturno-Venus', 'Saturno-Luna']);
+      return {
+        affection: affectionSet.has(key) ? 1.45 : 1,
+        sexuality: sexualitySet.has(key) ? 1.5 : 1,
+        collaboration: collaborationSet.has(key) ? 1.45 : 1,
+        mutual: mutualSet.has(key) ? 1.35 : 1
+      };
+    }
+
+    function buildCompatibility(planetsA, planetsB) {
+      const pairs = [];
+      let sum = 0;
+      let maxRange = 0;
+
+      let sumAffection = 0;
+      let sumSexuality = 0;
+      let sumCollaboration = 0;
+      let sumMutual = 0;
+
+      let rangeAffection = 0;
+      let rangeSexuality = 0;
+      let rangeCollaboration = 0;
+      let rangeMutual = 0;
+
+      for (const [p1, pa] of Object.entries(planetsA)) {
+        for (const [p2, pb] of Object.entries(planetsB)) {
+          let diff = Math.abs(pa.lon - pb.lon);
+          if (diff > 180) diff = 360 - diff;
+          const aspect = nearestAspect(diff);
+          if (!aspect) continue;
+
+          const signed = aspectScore(aspect.name);
+          const weight = pairWeight(p1, p2);
+          const closeness = Math.max(0.1, 1 - Number(aspect.orbValue) / aspect.orb);
+          const base = signed * closeness * weight;
+          const span = (Math.abs(signed) + 1.2) * closeness * weight;
+
+          const cw = categoryWeight(p1, p2);
+
+          sum += base;
+          maxRange += span;
+
+          sumAffection += base * cw.affection;
+          sumSexuality += base * cw.sexuality;
+          sumCollaboration += base * cw.collaboration;
+          sumMutual += base * cw.mutual;
+
+          rangeAffection += span * cw.affection;
+          rangeSexuality += span * cw.sexuality;
+          rangeCollaboration += span * cw.collaboration;
+          rangeMutual += span * cw.mutual;
+
+          pairs.push({
+            p1,
+            p2,
+            aspect: aspect.name,
+            orb: aspect.orbValue,
+            tone: aspect.tone,
+            points: Number(base.toFixed(2)),
+            tags: classifyAspect(p1, p2, aspect.name)
+          });
+        }
+      }
+
+      const ratio = maxRange ? sum / maxRange : 0;
+      const ratioAffection = rangeAffection ? sumAffection / rangeAffection : 0;
+      const ratioSexuality = rangeSexuality ? sumSexuality / rangeSexuality : 0;
+      const ratioCollaboration = rangeCollaboration ? sumCollaboration / rangeCollaboration : 0;
+      const ratioMutual = rangeMutual ? sumMutual / rangeMutual : 0;
+
+      return {
+        score: clampScore(50 + 42 * ratio),
+        affection: clampScore(50 + 40 * ratioAffection),
+        sexuality: clampScore(50 + 40 * ratioSexuality),
+        collaboration: clampScore(50 + 40 * ratioCollaboration),
+        mutual: clampScore(50 + 40 * ratioMutual),
+        pairs
+      };
+    }
+
+    function relationSummary(items) {
+      const opp = items.filter((item) => item.aspect === 'Oposicion').length;
+      const sq = items.filter((item) => item.aspect === 'Cuadratura').length;
+      const tri = items.filter((item) => item.aspect === 'Trigono').length;
+      const sex = items.filter((item) => item.aspect === 'Sextil').length;
+      const conj = items.filter((item) => item.aspect === 'Conjuncion').length;
+      return `Se detectan ${conj} conjunciones, ${tri} trígonos, ${sex} sextiles, ${sq} cuadraturas y ${opp} oposiciones. No hay un aspecto único que cree o destruya la relación: el balance entre apoyos y tensiones define el resultado global.`;
+    }
+
+    function renderCompatibility(personA, personB) {
+      const compat = buildCompatibility(personA.planets, personB.planets);
+      const tone = compatibilityTone(compat.score);
+      const focus = compat.pairs
+        .sort((a, b) => Math.abs(b.points) - Math.abs(a.points))
+        .slice(0, 12);
+      const list = focus.length
+        ? `<ul>${focus.map((item) => `<li><strong>${item.p1} ${item.aspect.toLowerCase()} ${item.p2}</strong> (${item.orb}°): ${item.tone}. <em>${item.tags.join(' · ')}</em>. <strong>${item.points >= 0 ? '+' : ''}${item.points} pts</strong>.</li>`).join('')}</ul>`
+        : '<p>No se registran aspectos cerrados entre ambas cartas con el orbe seleccionado.</p>';
+
+      return `
+        <h3>Compatibilidad entre dos cartas</h3>
+        <p>${relationSummary(compat.pairs)}</p>
+        <div class="compat-grid">
+          <div class="compat-box"><strong>Compatibilidad general</strong><span class="compat-score">${compat.score}%</span><span class="hint">Lectura global ${tone}</span><div class="compat-bar"><span style="width:${compat.score}%"></span></div></div>
+          <div class="compat-box"><strong>Afecto</strong><span class="compat-score">${compat.affection}%</span><span class="hint">Vínculo emocional y cuidado mutuo</span><div class="compat-bar"><span style="width:${compat.affection}%"></span></div></div>
+          <div class="compat-box"><strong>Sexualidad</strong><span class="compat-score">${compat.sexuality}%</span><span class="hint">Atracción, deseo y química</span><div class="compat-bar"><span style="width:${compat.sexuality}%"></span></div></div>
+          <div class="compat-box"><strong>Colaboración</strong><span class="compat-score">${compat.collaboration}%</span><span class="hint">Trabajo en equipo y acuerdos</span><div class="compat-bar"><span style="width:${compat.collaboration}%"></span></div></div>
+          <div class="compat-box" style="grid-column: 1 / -1;"><strong>Aporte mutuo</strong><span class="compat-score">${compat.mutual}%</span><span class="hint">Lo que cada persona aporta al crecimiento de la otra</span><div class="compat-bar"><span style="width:${compat.mutual}%"></span></div></div>
+        </div>
+        <h4>Aspectos más relevantes entre ambas cartas</h4>
+        ${list}
+      `;
+    }
+
+    function renderPlanetTable(planets) {
+      const rows = Object.keys(PLANETS).map((planet) => {
+        const data = planets[planet];
+        return `<tr><td>${PLANETS[planet].sym} ${planet}</td><td>${data.sign}</td><td>${data.degInSign}°</td><td>${PLANETS[planet].key}</td></tr>`;
+      }).join('');
+      return `<table class="planet-table"><thead><tr><th>Planeta</th><th>Signo</th><th>Grado</th><th>Clave</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+    function renderAstroWheel(planets, asc) {
+      function polar(angleDeg, radius) {
+        const rad = (Math.PI / 180) * (angleDeg - 90);
+        return {
+          x: 500 + Math.cos(rad) * radius,
+          y: 500 + Math.sin(rad) * radius
+        };
+      }
+
+      const ascShift = asc.idx * 30;
+
+      const houseLines = Array.from({ length: 12 }, (_, i) => {
+        const p1 = polar(ascShift + i * 30, 190);
+        const p2 = polar(ascShift + i * 30, 440);
+        return `<line x1="${p1.x.toFixed(1)}" y1="${p1.y.toFixed(1)}" x2="${p2.x.toFixed(1)}" y2="${p2.y.toFixed(1)}" stroke="rgba(235,231,255,.2)" stroke-width="2.4"/>`;
+      }).join('');
+
+      const houseLabels = Array.from({ length: 12 }, (_, i) => {
+        const center = polar(ascShift + i * 30 + 15, 248);
+        return `<text x="${center.x.toFixed(1)}" y="${center.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(236,224,164,.88)" font-size="15" font-family="Cinzel, serif">${i + 1}</text>`;
+      }).join('');
+
+      const signLabels = SIGNS.map((sign, idx) => {
+        const center = polar(idx * 30 + 15, 406);
+        const symbolP = polar(idx * 30 + 15, 372);
+        return `
+          <text x="${symbolP.x.toFixed(1)}" y="${symbolP.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="${SIGN_COLORS[sign]}" font-size="22" font-family="Cinzel, serif">${SIGN_SYMBOLS[idx]}</text>
+          <text x="${center.x.toFixed(1)}" y="${center.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="${SIGN_COLORS[sign]}" font-size="14" font-family="Cormorant Garamond, serif">${sign}</text>
+        `;
+      }).join('');
+
+      const grouped = Object.keys(PLANETS)
+        .map((planet) => ({ planet, ...planets[planet] }))
+        .sort((a, b) => a.lon - b.lon);
+
+      let prevLon = -999;
+      let stack = 0;
+      const markers = grouped.map((entry) => {
+        if (Math.abs(entry.lon - prevLon) < 8) {
+          stack += 1;
+        } else {
+          stack = 0;
+        }
+        prevLon = entry.lon;
+        const radius = 338 - Math.min(stack, 3) * 26;
+        const p = polar(entry.lon, radius);
+        const label = polar(entry.lon, radius + 23);
+        const color = PLANET_COLORS[entry.planet] || '#e8c66b';
+        return `
+          <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="14" fill="${color}" stroke="rgba(12,10,29,.9)" stroke-width="2"/>
+          <text x="${p.x.toFixed(1)}" y="${(p.y + 1).toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="#0f0a24" font-size="16" font-family="Cinzel, serif">${PLANETS[entry.planet].sym}</text>
+          <text x="${label.x.toFixed(1)}" y="${label.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="${color}" font-size="12" font-family="Cinzel, serif">${entry.planet}</text>
+        `;
+      }).join('');
+
+      const ascPoint = polar(ascShift, 452);
+      const ascInner = polar(ascShift, 372);
+
+      return `
+        <div class="astro-wheel">
+          <svg viewBox="0 0 1000 1000" aria-hidden="true" class="wheel-svg">
+            <defs>
+              <linearGradient id="astroRing" x1="0%" x2="100%">
+                <stop offset="0%" stop-color="#f0d9a0"/>
+                <stop offset="100%" stop-color="#8e7cf2"/>
+              </linearGradient>
+            </defs>
+            <circle cx="500" cy="500" r="452" fill="rgba(255,255,255,.02)" stroke="url(#astroRing)" stroke-width="16"/>
+            <circle cx="500" cy="500" r="355" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6" stroke-dasharray="10 14"/>
+            <circle cx="500" cy="500" r="190" fill="rgba(16,11,42,.55)" stroke="rgba(255,255,255,.14)" stroke-width="4"/>
+            ${houseLines}
+            ${houseLabels}
+            ${signLabels}
+            <line x1="${ascPoint.x.toFixed(1)}" y1="${ascPoint.y.toFixed(1)}" x2="${ascInner.x.toFixed(1)}" y2="${ascInner.y.toFixed(1)}" stroke="#f7d98a" stroke-width="4"/>
+            <text x="${ascPoint.x.toFixed(1)}" y="${(ascPoint.y - 14).toFixed(1)}" text-anchor="middle" fill="#f7d98a" font-size="13" font-family="Cinzel, serif">ASC</text>
+            ${markers}
+          </svg>
+        </div>`;
+    }
+
+    function renderReport(aName, aPlace, aDate, aTime, bName, bPlace, bDate, bTime) {
+      const planetsA = planetPositions(aDate, aTime);
+      const ascA = calcAscendant(aDate, aTime, aPlace);
+      const planetsB = planetPositions(bDate, bTime);
+      const ascB = calcAscendant(bDate, bTime, bPlace);
+      const compatibility = buildCompatibility(planetsA, planetsB);
+
+      const chips = [
+        `<span class="natal-chip">Persona A: ${aName}</span>`,
+        `<span class="natal-chip">Persona B: ${bName}</span>`,
+        `<span class="natal-chip">Asc A: ${ascA.signSym} ${ascA.sign}</span>`,
+        `<span class="natal-chip">Asc B: ${ascB.signSym} ${ascB.sign}</span>`
+      ].join('');
+
+      const topPairs = compatibility.pairs.slice(0, 6).map((item) => `<li><strong>${item.p1} ${item.aspect.toLowerCase()} ${item.p2}</strong> (${item.orb}°): ${item.tone}.</li>`).join('');
+
+      return `
+        <h2 style="margin-bottom:10px">Informe de sinastría</h2>
+        <div>${chips}</div>
+        <p>La comparación entre ambas cartas muestra cómo se mezclan los signos, los planetas y los aspectos. Los resultados siguientes te dan una lectura general, emocional y práctica.</p>
+        ${renderCompatibility({ planets: planetsA }, { planets: planetsB })}
+        <h3>Principales contactos entre las dos cartas</h3>
+        <ul>${topPairs || '<li>No se detectan aspectos cerrados con el orbe actual.</li>'}</ul>
+        <h3>Carta visual de la persona A</h3>
+        <div class="astro-wrap">
+          ${renderAstroWheel(planetsA, ascA)}
+          <div>
+            <p>La rueda muestra la distribución general de la persona A. La tabla posterior resume sus planetas y signos para una lectura rápida.</p>
+            <div class="astro-legend">
+              <span class="astro-pill"><b>☉</b>Sol</span>
+              <span class="astro-pill"><b>☽</b>Luna</span>
+              <span class="astro-pill"><b>ASC</b>Ascendente</span>
+            </div>
+          </div>
+        </div>
+        ${renderPlanetTable(planetsA)}
+      `;
+    }
+
+    document.getElementById('syn-run').addEventListener('click', () => {
+      const aName = document.getElementById('syn-a-name').value.trim();
+      const aPlace = document.getElementById('syn-a-place').value.trim();
+      const aDate = document.getElementById('syn-a-date').value;
+      const aTime = document.getElementById('syn-a-time').value;
+      const bName = document.getElementById('syn-b-name').value.trim();
+      const bPlace = document.getElementById('syn-b-place').value.trim();
+      const bDate = document.getElementById('syn-b-date').value;
+      const bTime = document.getElementById('syn-b-time').value;
+      const msg = document.getElementById('syn-msg');
+      const out = document.getElementById('syn-report');
+
+      if (!aName || !aPlace || !aDate || !bName || !bPlace || !bDate) {
+        msg.textContent = 'Completa nombre, lugar y fecha de ambas personas.';
+        out.classList.add('hidden');
+        return;
+      }
+
+      msg.textContent = '';
+      out.innerHTML = renderReport(aName, aPlace, aDate, aTime, bName, bPlace, bDate, bTime);
+      out.classList.remove('hidden');
+      out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
+</body>
+</html>
