@@ -22,7 +22,7 @@
     <div class="container nav">
       <button type="button" class="menu-toggle" aria-label="Abrir menú" onclick="toggleMenu(true)">☰</button>
       <a class="brand" href="#inicio">
-        <img src="assets/images/bandeauv5.png" class="brand-banner-img" alt="Adeline" />
+        <img src="assets/images/bandeauv7.png" class="brand-banner-img" alt="Adeline" />
       </a>
       <a href="#paquete-adeline" class="btn btn-primary header-cta">Paquete Adeline</a>
     </div>
@@ -35,13 +35,12 @@
     </div>
     <nav class="side-menu-links" onclick="toggleMenu(false)">
         <a href="#inicio">HOME</a>
-      <a href="oraciones">Oraciones</a>
-      <a href="tarot-terapeutico">Tarot terapéutico</a>
-      <a href="meditaciones">Meditaciones por WhatsApp</a>
+      <a href="oraciones" class="hero-link-highlight">Solicitar mi oración</a>
+      <a href="tarot-terapeutico" class="hero-link-highlight">Tarot terapéutico</a>
+      <a href="meditaciones" class="hero-link-highlight">Meditaciones via telephonica</a>
       <a href="synastria">Sinastría</a>
-        <a href="#services-hub" onclick="openServiceTab('live', true)">Tirada en tiempo real</a>
-        <a href="prediccion-astral#pred-panel-court">Predicción gratuita</a>
-        <a href="prediccion-astral#pred-panel-long">Lectura a 1 año</a>
+        <a href="mapa_bienestar_astral test.html">Mapa del bienestar Astral</a>
+        <a href="lectura-de-carta-natal">Lectura de carta natal</a>
         <a href="prediccion-astral#pred-panel-long">Predicción a 5 años</a>
         <a href="#paquete-adeline">Paquete Adeline</a>
     </nav>
@@ -90,13 +89,13 @@
         <p class="eyebrow">Oraciones · Tarot terapéutico · Meditaciones</p>
         <h1>tu primer acercamiento a tu carta astral</h1>
         <p class="lead">
-          Adeline es un puente lleno de fe y amor para conectar tu petición a los oídos del creador,
-          permiteme sumarme a tu oración con tarot terapéutico y orientación de carta natal.
+          <strong>ADELINE</strong> es un puente lleno de fe y amor para conectar tu petición a los oídos del creador,
+          permiteme sumarme a tu oración y elevar el reso
         </p>
         <div class="hero-cta">
-          <a href="oraciones" class="btn btn-ghost">Solicitar mi oración</a>
-          <a href="tarot-terapeutico" class="btn btn-ghost">Tarot terapéutico</a>
-          <a href="meditaciones" class="btn btn-ghost">Meditaciones por WhatsApp</a>
+          <a href="oraciones" class="btn btn-ghost hero-link-highlight">Solicitar mi oración</a>
+          <a href="tarot-terapeutico" class="btn btn-ghost hero-link-highlight">Tarot terapéutico</a>
+          <a href="meditaciones" class="btn btn-ghost hero-link-highlight">Meditaciones via telephonica</a>
         </div>
       </div>
     </section>
@@ -112,6 +111,7 @@
             <button class="orbit-card" style="--ang:180deg" data-service="long" onclick="openServiceTab('long', true)"><img src="assets/images/service-card-4.jpg" alt="5 años" /><span>5 años</span></button>
             <button class="orbit-card" style="--ang:240deg" data-service="oraciones" onclick="openServiceTab('oraciones', true)"><img src="assets/images/service-card-5.jpg" alt="Oraciones" /><span>Oraciones</span></button>
             <button class="orbit-card" style="--ang:300deg" data-service="meditaciones" onclick="goToSitePath('meditaciones')"><img src="assets/images/service-card-6.jpg" alt="Meditaciones" /><span>Meditaciones</span></button>
+            <button class="orbit-card" style="--ang:330deg" data-service="bienestar" onclick="location.href='mapa_bienestar_astral test.html'"><img src="assets/images/service-card-3.jpg" alt="Mapa del bienestar Astral" /><span>Mapa del bienestar Astral</span></button>
             <div class="orbit-core"></div>
           </div>
         </div>
@@ -131,7 +131,7 @@
             <div id="svc-live-out" class="svc-result hidden"></div>
           </article>
           <article class="service-tab" data-tab="year">
-            <h3>📆 Lectura a 1 año</h3>
+            <h3>📆 Predicción a 5 años</h3>
             <p>Demande d'information + moteur annuel en 4 trimestres.</p>
             <div class="pred-input-grid">
               <div class="pred-field"><label for="svc-year-name">Nom</label><input id="svc-year-name" type="text" maxlength="80" /></div>
@@ -169,10 +169,11 @@
             <a href="oraciones" class="btn btn-ghost" style="margin-top:10px">Ir al formulario completo</a>
           </article>
           <article class="service-tab" data-tab="meditaciones">
-            <h3>🕊️ Meditaciones por WhatsApp</h3>
+            <h3>🕊️ Meditaciones via telephonica</h3>
             <p>Sesiones de 33 minutos, agenda diaria y acompañamiento espiritual en un canal privado.</p>
             <p><a href="meditaciones" class="btn btn-primary">Abrir la página de meditaciones</a></p>
           </article>
+
         </div>
       </div>
     </section>
@@ -215,24 +216,121 @@
     'Plutón':  { sym:'♇', speed:0.0040,  base:238.93 }
   };
 
+  const _AX_EARTH = { L0: 100.4664825, dL: 36000.7698, a: 1.0, e0: 0.01671, de: -0.00004, om: 102.9373 };
+  const _AX_PLANETS = {
+    Mercurio: { L0: 252.2507519, dL: 149472.6742, a: 0.38710, e0: 0.20563, de:  0.000020, om:  77.4561 },
+    Venus:    { L0: 181.9798085, dL:  58517.8153, a: 0.72333, e0: 0.00677, de: -0.000050, om: 131.5637 },
+    Marte:    { L0: 355.4332750, dL:  19140.2993, a: 1.52366, e0: 0.09341, de:  0.000090, om: 336.0602 },
+    Jupiter:  { L0:  34.3514816, dL:   3034.9057, a: 5.20336, e0: 0.04839, de: -0.000130, om:  14.3320 },
+    Saturno:  { L0:  50.0774443, dL:   1221.5515, a: 9.53707, e0: 0.05415, de: -0.000500, om:  93.0572 },
+    Urano:    { L0: 314.0550187, dL:    428.4748, a: 19.1913, e0: 0.04717, de: -0.000050, om: 173.0052 },
+    Neptuno:  { L0: 304.3486683, dL:    218.4600, a: 30.0690, e0: 0.00859, de:  0.000005, om:  48.1235 },
+    Pluton:   { L0: 238.9290293, dL:    145.1786, a: 39.4817, e0: 0.24883, de:  0.000050, om: 224.0690 }
+  };
+  const _AX_MOON_TERMS = [
+    [0,0,1,0,6288774],[2,0,-1,0,1274027],[2,0,0,0,658314],[0,0,2,0,213618],
+    [0,1,0,0,-185116],[0,0,0,2,-114332],[2,0,-2,0,58793],[2,-1,-1,0,57066],
+    [2,0,1,0,53322],[2,-1,0,0,45758],[0,1,-1,0,-40923],[1,0,0,0,-34720],
+    [0,1,1,0,-30383],[2,0,0,-2,15327],[0,0,1,2,-12528],[0,0,1,-2,10980],
+    [4,0,-1,0,10675],[0,0,3,0,10034],[4,0,-2,0,8548],[2,1,-1,0,-7888],
+    [2,1,0,0,-6766],[1,0,-1,0,-5163],[1,1,0,0,4987],[2,-1,1,0,4036],
+    [2,0,2,0,3994],[4,0,0,0,3861],[2,0,-3,0,3665],[0,1,-2,0,-2689],
+    [2,0,-1,2,-2602],[2,-1,-2,0,2390],[1,0,1,0,-2348],[2,-2,0,0,2236],
+    [0,1,2,0,-2120],[0,2,0,0,-2069],[2,-2,-1,0,2048],[2,0,1,-2,-1773],
+    [2,0,0,2,-1595],[4,-1,-1,0,1215],[0,0,2,2,-1110],[3,0,-1,0,-892],
+    [2,1,1,0,-810],[4,-1,-2,0,759],[0,2,-1,0,-713],[2,2,-1,0,-700],
+    [2,1,-2,0,691],[2,-1,0,-2,596],[4,0,1,0,549],[0,0,4,0,537],
+    [4,-1,0,0,520],[1,0,-2,0,-487],[2,1,0,-2,-399],[0,0,2,-2,-381],
+    [1,1,1,0,351],[3,0,-2,0,-340],[4,0,-3,0,330],[2,-1,2,0,327],
+    [0,2,1,0,-323],[1,1,-1,0,299],[2,0,3,0,294]
+  ];
+  const _axToR = (d) => d * Math.PI / 180;
+  function _axRev(x) { return ((x % 360) + 360) % 360; }
+  function _axJD(dateStr, timeStr, tzOffset) {
+    const p = String(dateStr).split('-').map(Number);
+    if (p.length !== 3 || p.some((n) => !Number.isFinite(n))) return NaN;
+    const hm = (timeStr || '12:00').split(':');
+    const utcH = Number(hm[0] || 12) + Number(hm[1] || 0) / 60 - (tzOffset || 0);
+    let Y = p[0], M = p[1]; const D = p[2] + utcH / 24;
+    if (M <= 2) { Y--; M += 12; }
+    const A = Math.floor(Y / 100), B = 2 - A + Math.floor(A / 4);
+    return Math.floor(365.25 * (Y + 4716)) + Math.floor(30.6001 * (M + 1)) + D + B - 1524.5;
+  }
+  function _axHelioXY(el, T) {
+    const L = _axRev(el.L0 + el.dL * T), e = el.e0 + el.de * T, om = el.om;
+    const M = _axRev(L - om), Mr = _axToR(M);
+    const C = (2*e - 0.25*e*e*e)*Math.sin(Mr) + 1.25*e*e*Math.sin(2*Mr) + (13/12)*e*e*e*Math.sin(3*Mr);
+    const vLon = _axRev(M + C * 180 / Math.PI + om);
+    const r = el.a * (1 - e*e) / (1 + e * Math.cos(_axToR(_axRev(M + C * 180 / Math.PI))));
+    return { x: r * Math.cos(_axToR(vLon)), y: r * Math.sin(_axToR(vLon)) };
+  }
+  function _axMoonLon(T) {
+    const Lp = _axRev(218.3164477 + 481267.88123421*T - 0.0015786*T*T + T*T*T/538841 - T*T*T*T/65194000);
+    const D  = _axRev(297.8501921 + 445267.1114034*T - 0.0018819*T*T + T*T*T/545868 - T*T*T*T/113065000);
+    const Msun = _axRev(357.5291092 + 35999.0502909*T - 0.0001536*T*T + T*T*T/24490000);
+    const Mp = _axRev(134.9633964 + 477198.8675055*T + 0.0087414*T*T + T*T*T/69699 - T*T*T*T/14712000);
+    const F  = _axRev(93.2720950 + 483202.0175233*T - 0.0036539*T*T - T*T*T/3526000 + T*T*T*T/863310000);
+    const E  = 1 - 0.002516*T - 0.0000074*T*T;
+    const A1 = _axRev(119.75 + 131.849*T);
+    const A2 = _axRev(53.09 + 479264.290*T);
+    let suml = 0;
+    for (let i = 0; i < _AX_MOON_TERMS.length; i++) {
+      const tm = _AX_MOON_TERMS[i];
+      let coef = tm[4];
+      const am = Math.abs(tm[1]);
+      if (am === 1) coef *= E; else if (am === 2) coef *= E*E;
+      suml += coef * Math.sin(_axToR(tm[0]*D + tm[1]*Msun + tm[2]*Mp + tm[3]*F));
+    }
+    suml += 3958*Math.sin(_axToR(A1)) + 1962*Math.sin(_axToR(Lp - F)) + 318*Math.sin(_axToR(A2));
+    return _axRev(Lp + suml/1000000);
+  }
+  function _axLongitudes(dateStr, timeStr, tzOffset) {
+    const jd = _axJD(dateStr, timeStr, tzOffset || 0);
+    if (isNaN(jd)) return {};
+    const T = (jd - 2451545.0) / 36525;
+    const L0s = _axRev(280.46646 + 36000.76983 * T);
+    const Ms  = _axToR(_axRev(357.52911 + 35999.05029 * T));
+    const Cs  = (1.914602 - 0.004817*T)*Math.sin(Ms) + (0.019993 - 0.000101*T)*Math.sin(2*Ms) + 0.000289*Math.sin(3*Ms);
+    const Om  = _axToR(_axRev(125.04452 - 1934.136261 * T));
+    const solLon = _axRev(L0s + Cs - 0.00569 - 0.00478 * Math.sin(Om));
+    const lunLon = _axMoonLon(T);
+    const earth = _axHelioXY(_AX_EARTH, T);
+    const lons = { Sol: solLon, Luna: lunLon };
+    for (const [name, el] of Object.entries(_AX_PLANETS)) {
+      const ph = _axHelioXY(el, T);
+      lons[name] = _axRev(Math.atan2(ph.y - earth.y, ph.x - earth.x) * 180 / Math.PI);
+    }
+    return lons;
+  }
+  function _axAscLon(dateStr, timeStr, tzOffset, latDeg, lonDeg) {
+    const jd = _axJD(dateStr, timeStr, tzOffset || 0);
+    if (isNaN(jd)) return NaN;
+    const T = (jd - 2451545.0) / 36525;
+    const GMST = _axRev(280.46061837 + 360.98564736629 * (jd - 2451545.0) + 0.000387933 * T * T);
+    const geoLon = (lonDeg != null) ? lonDeg : 0;
+    const LST  = _axRev(GMST + geoLon);
+    const eps  = 23.4397 - 0.0130 * T;
+    const RAMC = _axToR(LST), e = _axToR(eps), lat = _axToR(latDeg != null ? latDeg : 45);
+    return _axRev(Math.atan2(Math.cos(RAMC), -(Math.sin(e) * Math.tan(lat) + Math.cos(e) * Math.sin(RAMC))) * 180 / Math.PI);
+  }
+  const _AX_KEYMAP = { Sol:'Sol', Luna:'Luna', Mercurio:'Mercurio', Venus:'Venus', Marte:'Marte', Jupiter:'Júpiter', Saturno:'Saturno', Urano:'Urano', Neptuno:'Neptuno', Pluton:'Plutón' };
+
   function predCalcAstro(dateStr, timeStr) {
-    const dt = new Date(dateStr + 'T' + (timeStr || '12:00'));
-    const jd = dt.getTime() / 86400000 + 2440587.5;
+    const lons = _axLongitudes(dateStr, timeStr, 0);
     const res = {};
-    for (const [name, d] of Object.entries(PLANETS_DEF)) {
-      let lon = (d.base + d.speed * (jd - 2451545.0)) % 360;
-      if (lon < 0) lon += 360;
-      lon = (lon + Math.sin(jd * 0.01 + d.base) * 2) % 360;
-      const idx = Math.floor(lon / 30) % 12;
-      res[name] = { sign: SIGNS_ES[idx], symbol: d.sym, sigSym: SIGN_SYMBOLS[idx], lon };
+    for (const [k, lon] of Object.entries(lons)) {
+      const key = _AX_KEYMAP[k] || k;
+      const def = PLANETS_DEF[key] || {};
+      const idx = Math.floor(_axRev(lon) / 30) % 12;
+      res[key] = { sign: SIGNS_ES[idx], symbol: def.sym, sigSym: SIGN_SYMBOLS[idx], lon };
     }
     return res;
   }
 
   function predGetAsc(dateStr, timeStr) {
-    const hour = parseInt((timeStr || '12:00').split(':')[0]);
-    const month = new Date(dateStr).getMonth();
-    return SIGNS_ES[Math.floor((hour + month) / 2) % 12];
+    const ascLon = _axAscLon(dateStr, timeStr || '12:00', 0);
+    if (isNaN(ascLon)) return SIGNS_ES[0];
+    return SIGNS_ES[Math.floor(ascLon / 30) % 12];
   }
 
   function predAge(dateStr) {
@@ -362,6 +460,155 @@
     const sun = predCalcAstro(date, '')['Sol'].sign;
     const bestDay = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'][SIGNS_ES.indexOf(sun) % 7];
     svcSetResult('svc-ora-out', `<div class="pred-card"><h3>Oraison recommandée</h3><p>Pour ${honor}, intention: <span class="highlight">${intent}</span>.</p><p>Signature énergétique ${sun}. Jour conseillé: <strong>${bestDay}</strong>.</p></div>`);
+  }
+
+  const WELLNESS_ZODIAC = [
+    { name: 'Capricornio', element: 'tierra', dates: ['01-01', '01-19'] },
+    { name: 'Acuario', element: 'aire', dates: ['01-20', '02-18'] },
+    { name: 'Piscis', element: 'agua', dates: ['02-19', '03-20'] },
+    { name: 'Aries', element: 'fuego', dates: ['03-21', '04-19'] },
+    { name: 'Tauro', element: 'tierra', dates: ['04-20', '05-20'] },
+    { name: 'Geminis', element: 'aire', dates: ['05-21', '06-20'] },
+    { name: 'Cancer', element: 'agua', dates: ['06-21', '07-22'] },
+    { name: 'Leo', element: 'fuego', dates: ['07-23', '08-22'] },
+    { name: 'Virgo', element: 'tierra', dates: ['08-23', '09-22'] },
+    { name: 'Libra', element: 'aire', dates: ['09-23', '10-22'] },
+    { name: 'Escorpio', element: 'agua', dates: ['10-23', '11-21'] },
+    { name: 'Sagitario', element: 'fuego', dates: ['11-22', '12-21'] },
+    { name: 'Capricornio', element: 'tierra', dates: ['12-22', '12-31'] }
+  ];
+
+  const WELLNESS_CITIES = [
+    { name: 'Kioto, Japon', tags: ['espiritualidad', 'tranquilidad', 'cultura'], description: 'Templos y jardines que estabilizan la mente y favorecen el crecimiento interior.', bestFor: ['agua', 'tierra'], lon: 135.7 },
+    { name: 'Santorini, Grecia', tags: ['romance', 'mar', 'inspiracion'], description: 'Un paisaje luminoso que activa creatividad, alegria y apertura afectiva.', bestFor: ['fuego', 'aire'], lon: 25.4 },
+    { name: 'Machu Picchu, Peru', tags: ['aventura', 'energia', 'montana'], description: 'Territorio de altura con gran fuerza para resetear decisiones vitales.', bestFor: ['tierra', 'fuego'], lon: -72.5 },
+    { name: 'Reikiavik, Islandia', tags: ['auroras', 'naturaleza', 'introspeccion'], description: 'Paisajes extremos que amplifican intuicion y claridad emocional.', bestFor: ['agua', 'aire'], lon: -21.9 },
+    { name: 'Marrakech, Marruecos', tags: ['color', 'cultura', 'pasion'], description: 'Ciudad intensa para recuperar motivacion y energia de accion.', bestFor: ['fuego', 'tierra'], lon: -7.9 },
+    { name: 'Queenstown, Nueva Zelanda', tags: ['libertad', 'naturaleza', 'aventura'], description: 'Ideal para reinicio personal con movimiento, aire puro y foco.', bestFor: ['aire', 'agua'], lon: 168.7 },
+    { name: 'Toscana, Italia', tags: ['armonia', 'arte', 'bienestar'], description: 'Ritmo equilibrado entre belleza, placer simple y estabilidad.', bestFor: ['tierra', 'agua'], lon: 11.2 },
+    { name: 'Bali, Indonesia', tags: ['bienestar', 'espiritualidad', 'comunidad'], description: 'Escenario potente para sanar habitos y elevar el estado emocional.', bestFor: ['agua', 'fuego'], lon: 115.2 },
+    { name: 'Patagonia, Argentina/Chile', tags: ['grandeza', 'silencio', 'naturaleza'], description: 'Horizontes amplios que limpian saturacion mental y devuelven direccion.', bestFor: ['aire', 'tierra'], lon: -73.0 },
+    { name: 'Lisboa, Portugal', tags: ['luz', 'alegria', 'mar'], description: 'Ciudad suave y vital para combinar expansion social y descanso.', bestFor: ['fuego', 'aire'], lon: -9.1 }
+  ];
+
+  function wellParseOffset(timezoneText) {
+    const raw = String(timezoneText || '').trim();
+    if (!raw) return 0;
+    const utcMatch = raw.toUpperCase().replace('GMT', 'UTC').match(/^UTC\s*([+-])\s*(\d{1,2})(?::?(\d{2}))?$/);
+    if (utcMatch) {
+      const sign = utcMatch[1] === '+' ? 1 : -1;
+      const h = Number(utcMatch[2]);
+      const m = Number(utcMatch[3] || 0);
+      return sign * (h + m / 60);
+    }
+    try {
+      const probe = new Date();
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: raw,
+        timeZoneName: 'shortOffset',
+        hour: '2-digit',
+        minute: '2-digit'
+      }).formatToParts(probe);
+      const tzName = (parts.find((p) => p.type === 'timeZoneName') || {}).value || 'GMT+0';
+      const m = tzName.match(/GMT([+-]\d{1,2})(?::?(\d{2}))?/i);
+      if (!m) return 0;
+      const hh = Number(m[1]);
+      const mm = Number(m[2] || '0');
+      return hh + (hh >= 0 ? mm / 60 : -mm / 60);
+    } catch (_e) {
+      return 0;
+    }
+  }
+
+  function wellGetZodiac(dateObj) {
+    const month = dateObj.getMonth() + 1;
+    const day = dateObj.getDate();
+    const key = String(month).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+    return WELLNESS_ZODIAC.find((z) => key >= z.dates[0] && key <= z.dates[1]) || WELLNESS_ZODIAC[0];
+  }
+
+  function wellGetRising(dateObj, timeText, tzOffset) {
+    const ds = dateObj.getFullYear() + '-' + String(dateObj.getMonth() + 1).padStart(2, '0') + '-' + String(dateObj.getDate()).padStart(2, '0');
+    const ascLon = _axAscLon(ds, timeText || '12:00', tzOffset || 0, null, (tzOffset || 0) * 15);
+    if (isNaN(ascLon)) return SIGNS_ES[0];
+    return SIGNS_ES[Math.floor(ascLon / 30) % 12];
+  }
+
+  function wellGetMoon(dateObj) {
+    const ds = dateObj.getFullYear() + '-' + String(dateObj.getMonth() + 1).padStart(2, '0') + '-' + String(dateObj.getDate()).padStart(2, '0');
+    const lon = _axLongitudes(ds, '12:00', 0).Luna;
+    if (lon == null) return SIGNS_ES[0];
+    return SIGNS_ES[Math.floor(_axRev(lon) / 30) % 12];
+  }
+
+  function wellLifePath(dateStr) {
+    const digits = String(dateStr || '').replace(/[^0-9]/g, '').split('').map(Number);
+    let sum = digits.reduce((a, b) => a + b, 0);
+    while (sum > 9) sum = String(sum).split('').map(Number).reduce((a, b) => a + b, 0);
+    return sum;
+  }
+
+  function wellCityScore(zodiac, city, tzOffset, birthPlace) {
+    let score = 54;
+    if (city.bestFor.includes(zodiac.element)) score += 24;
+    const tzCityApprox = city.lon / 15;
+    const tzDelta = Math.abs(tzOffset - tzCityApprox);
+    score += Math.max(0, 13 - Math.round(tzDelta));
+    const seed = (zodiac.name.length * 7 + city.name.length * 3 + String(birthPlace || '').length) % 9;
+    score += seed;
+    return Math.max(60, Math.min(98, score));
+  }
+
+  function runSvcWellness() {
+    const date = document.getElementById('svc-well-date').value;
+    const time = document.getElementById('svc-well-time').value;
+    const tzText = document.getElementById('svc-well-tz').value.trim();
+    const place = document.getElementById('svc-well-place').value.trim();
+    const out = document.getElementById('svc-well-out');
+    if (!date || !time || !tzText || !place) {
+      svcSetResult('svc-well-out', '<div class="alert alert-error">Completa fecha, hora, fuseau horario y lugar de nacimiento.</div>');
+      return;
+    }
+
+    const birthDate = new Date(date + 'T12:00:00');
+    const zodiac = wellGetZodiac(birthDate);
+    const tzOffset = wellParseOffset(tzText);
+    const asc = wellGetRising(birthDate, time, tzOffset);
+    const moon = wellGetMoon(birthDate);
+    const lifePath = wellLifePath(date);
+
+    const ranked = WELLNESS_CITIES
+      .map((city) => ({ ...city, score: wellCityScore(zodiac, city, tzOffset, place) }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 10);
+
+    let html = `
+      <div class="pred-card" style="margin-bottom:14px">
+        <h3>Tu perfil astral de bienestar</h3>
+        <p>Signo solar: <strong>${zodiac.name}</strong> (${zodiac.element}) · Ascendente: <strong>${asc}</strong> · Luna: <strong>${moon}</strong> · Camino de vida: <strong>${lifePath}</strong>.</p>
+        <p>Base de calculo: ${date} ${time}, ${tzText}, ${place}.</p>
+      </div>
+    `;
+
+    ranked.forEach((city, idx) => {
+      const rank = idx + 1;
+      const tags = city.tags.map((t) => `<span class="natal-chip" style="margin-right:6px">${t}</span>`).join('');
+      html += `
+        <div class="pred-card" style="margin-bottom:10px;border-left:4px solid rgba(232,198,107,.7)">
+          <h3>#${rank} ${city.name} · <span class="highlight">${city.score}%</span></h3>
+          <div style="margin:8px 0 10px;height:10px;background:rgba(255,255,255,.1);border-radius:999px;overflow:hidden">
+            <div style="width:${city.score}%;height:100%;background:linear-gradient(90deg,#d9b96d,#8e7cf2)"></div>
+          </div>
+          <div style="margin-bottom:8px">${tags}</div>
+          <p>${city.description}</p>
+          <p style="margin-top:8px"><strong>Por que te favorece:</strong> resonancia con elemento ${zodiac.element}, compatibilidad de ritmo horario y afinidad energetica con tu mapa natal.</p>
+        </div>
+      `;
+    });
+
+    out.innerHTML = html;
+    out.classList.remove('hidden');
+    out.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // ================================================================
@@ -808,7 +1055,7 @@
   <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer">
     <div class="container">
-      <p class="muted">Astrología &amp; tarot con alma · Consultas privadas por videollamada</p>
+      <p class="muted">Astrología &amp; tarot con alma · Consultas privadas via telefonica</p>
       <p class="legal">Las lecturas tienen fines de orientación y entretenimiento. © <span id="year"></span> Adeline.</p>
     </div>
   </footer>
@@ -820,5 +1067,6 @@
   </script>
 </body>
 </html>
+
 
 

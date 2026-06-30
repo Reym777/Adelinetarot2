@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Bienestar Astral - Adeline</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            padding-top: 110px;
+            padding-bottom: 60px;
+        }
+
+        .mapa-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .form-section {
+            background: rgba(255,255,255,0.04);
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border, rgba(255,255,255,0.12));
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gold, #e8c66b);
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 0.9em;
+            letter-spacing: .06em;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #f39c12;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .row { grid-template-columns: 1fr; }
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(90deg, var(--gold, #e8c66b), #8e7cf2);
+            border: none;
+            border-radius: 12px;
+            color: #0c0a1d;
+            font-family: 'Cinzel', serif;
+            font-size: 1em;
+            font-weight: 700;
+            letter-spacing: .06em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(243,156,18,0.4);
+        }
+
+        .results {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .birth-chart {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .birth-chart h2, .places-section h2 {
+            color: var(--gold, #e8c66b);
+            font-family: 'Cinzel', serif;
+            letter-spacing: .06em;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .chart-item {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .chart-item .label {
+            font-size: 0.85em;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
+        .chart-item .value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .places-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .places-section h2 {
+            color: #f39c12;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            text-align: center;
+        }
+
+        .place-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .place-card:hover {
+            transform: translateX(5px);
+        }
+
+        .place-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+        }
+
+        .place-card.rank-1::before { background: linear-gradient(to bottom, #f1c40f, #f39c12); }
+        .place-card.rank-2::before { background: linear-gradient(to bottom, #bdc3c7, #95a5a6); }
+        .place-card.rank-3::before { background: linear-gradient(to bottom, #cd7f32, #a0522d); }
+        .place-card.rank-4::before { background: linear-gradient(to bottom, #3498db, #2980b9); }
+        .place-card.rank-5::before { background: linear-gradient(to bottom, #9b59b6, #8e44ad); }
+        .place-card.rank-6::before { background: linear-gradient(to bottom, #1abc9c, #16a085); }
+        .place-card.rank-7::before { background: linear-gradient(to bottom, #e67e22, #d35400); }
+        .place-card.rank-8::before { background: linear-gradient(to bottom, #e74c3c, #c0392b); }
+        .place-card.rank-9::before { background: linear-gradient(to bottom, #34495e, #2c3e50); }
+        .place-card.rank-10::before { background: linear-gradient(to bottom, #7f8c8d, #95a5a6); }
+
+        .place-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .place-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .place-rank {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .rank-1 .place-rank { color: #f1c40f; }
+        .rank-2 .place-rank { color: #bdc3c7; }
+        .rank-3 .place-rank { color: #cd7f32; }
+        .rank-4 .place-rank { color: #3498db; }
+        .rank-5 .place-rank { color: #9b59b6; }
+        .rank-6 .place-rank { color: #1abc9c; }
+        .rank-7 .place-rank { color: #e67e22; }
+        .rank-8 .place-rank { color: #e74c3c; }
+        .rank-9 .place-rank { color: #95a5a6; }
+        .rank-10 .place-rank { color: #7f8c8d; }
+
+        .percentage-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            height: 30px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .percentage-fill {
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            font-weight: bold;
+            color: #fff;
+            transition: width 1.5s ease;
+            width: 0;
+        }
+
+        .rank-1 .percentage-fill { background: linear-gradient(90deg, #f1c40f, #f39c12); }
+        .rank-2 .percentage-fill { background: linear-gradient(90deg, #bdc3c7, #95a5a6); }
+        .rank-3 .percentage-fill { background: linear-gradient(90deg, #cd7f32, #a0522d); }
+        .rank-4 .percentage-fill { background: linear-gradient(90deg, #3498db, #2980b9); }
+        .rank-5 .percentage-fill { background: linear-gradient(90deg, #9b59b6, #8e44ad); }
+        .rank-6 .percentage-fill { background: linear-gradient(90deg, #1abc9c, #16a085); }
+        .rank-7 .percentage-fill { background: linear-gradient(90deg, #e67e22, #d35400); }
+        .rank-8 .percentage-fill { background: linear-gradient(90deg, #e74c3c, #c0392b); }
+        .rank-9 .percentage-fill { background: linear-gradient(90deg, #34495e, #2c3e50); }
+        .rank-10 .percentage-fill { background: linear-gradient(90deg, #7f8c8d, #95a5a6); }
+
+        .reasons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .reason-tag {
+            background: rgba(243,156,18,0.15);
+            border: 1px solid rgba(243,156,18,0.3);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            color: #f39c12;
+        }
+
+        .place-description {
+            color: #ccc;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .zodiac-icon {
+            font-size: 1.5em;
+            margin-right: 5px;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 30px;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .crown {
+            font-size: 1.2em;
+        }
+
+        .best-match-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #f1c40f, #f39c12);
+            color: #1a1a2e;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .element-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .element-fuego { background: rgba(231,76,60,0.2); color: #e74c3c; }
+        .element-tierra { background: rgba(243,156,18,0.2); color: #f39c12; }
+        .element-aire { background: rgba(52,152,219,0.2); color: #3498db; }
+        .element-agua { background: rgba(155,89,182,0.2); color: #9b59b6; }
+    </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index#inicio">
+        <img src="assets/images/bandeauv7.png" class="brand-banner-img" alt="Adeline" />
+      </a>
+      <a href="index#inicio" style="justify-self:start; position:relative; z-index:2; margin-left:14px; color:var(--gold); font-family:'Cinzel',serif; font-size:.9rem; letter-spacing:.06em; text-decoration:none; background:transparent; border:none; padding:6px 0; opacity:.85;">Inicio</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="mapa-container">
+        <h1>✨ Mapa de Bienestar Astral</h1>
+        <p class="subtitle">Descubre los lugares donde tu ser se sentirá más pleno y feliz</p>
+
+        <div class="form-section" id="formSection">
+            <div class="form-group">
+                <label for="birthDate">📅 Fecha de Nacimiento</label>
+                <input type="date" id="birthDate" required>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="birthTime">⏰ Hora de Nacimiento</label>
+                    <input type="time" id="birthTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="timezone">🌍 Zona Horaria</label>
+                    <select id="timezone" required>
+                        <option value="UTC-12">UTC-12:00</option>
+                        <option value="UTC-11">UTC-11:00</option>
+                        <option value="UTC-10">UTC-10:00</option>
+                        <option value="UTC-9">UTC-09:00</option>
+                        <option value="UTC-8">UTC-08:00 (PST)</option>
+                        <option value="UTC-7">UTC-07:00 (MST)</option>
+                        <option value="UTC-6">UTC-06:00 (CST)</option>
+                        <option value="UTC-5">UTC-05:00 (EST)</option>
+                        <option value="UTC-4">UTC-04:00</option>
+                        <option value="UTC-3">UTC-03:00</option>
+                        <option value="UTC-2">UTC-02:00</option>
+                        <option value="UTC-1">UTC-01:00</option>
+                        <option value="UTC+0" selected>UTC+00:00 (GMT)</option>
+                        <option value="UTC+1">UTC+01:00 (CET)</option>
+                        <option value="UTC+2">UTC+02:00 (CEST)</option>
+                        <option value="UTC+3">UTC+03:00 (Moscú)</option>
+                        <option value="UTC+4">UTC+04:00</option>
+                        <option value="UTC+5">UTC+05:00</option>
+                        <option value="UTC+5.5">UTC+05:30 (India)</option>
+                        <option value="UTC+6">UTC+06:00</option>
+                        <option value="UTC+7">UTC+07:00 (Bangkok)</option>
+                        <option value="UTC+8">UTC+08:00 (Pekín)</option>
+                        <option value="UTC+9">UTC+09:00 (Tokio)</option>
+                        <option value="UTC+10">UTC+10:00</option>
+                        <option value="UTC+11">UTC+11:00</option>
+                        <option value="UTC+12">UTC+12:00</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="birthPlace">📍 Ciudad/Lugar de Nacimiento</label>
+                <input type="text" id="birthPlace" placeholder="Ej: Madrid, España" required>
+            </div>
+
+            <button class="btn" onclick="calculateMap()">🌟 Revelar Mi Mapa de Bienestar</button>
+        </div>
+
+        <div class="results" id="results">
+            <div class="birth-chart" id="birthChart"></div>
+            <div class="places-section" id="placesSection"></div>
+            <div class="footer-note">
+                ✨ Esta herramienta combina astrología, numerología y geografía energética para ofrecerte orientación.<br>
+                Recuerda que la felicidad también depende de tus decisiones y acciones. 🌟
+            </div>
+        </div>
+    </div>
+  </main>
+
+  <script src="assets/site.js"></script>
+  <script>
+        const zodiacSigns = [
+            { name: "Capricornio", element: "tierra", icon: "♑", dates: ["01-01", "01-19"] },
+            { name: "Acuario", element: "aire", icon: "♒", dates: ["01-20", "02-18"] },
+            { name: "Piscis", element: "agua", icon: "♓", dates: ["02-19", "03-20"] },
+            { name: "Aries", element: "fuego", icon: "♈", dates: ["03-21", "04-19"] },
+            { name: "Tauro", element: "tierra", icon: "♉", dates: ["04-20", "05-20"] },
+            { name: "Géminis", element: "aire", icon: "♊", dates: ["05-21", "06-20"] },
+            { name: "Cáncer", element: "agua", icon: "♋", dates: ["06-21", "07-22"] },
+            { name: "Leo", element: "fuego", icon: "♌", dates: ["07-23", "08-22"] },
+            { name: "Virgo", element: "tierra", icon: "♍", dates: ["08-23", "09-22"] },
+            { name: "Libra", element: "aire", icon: "♎", dates: ["09-23", "10-22"] },
+            { name: "Escorpio", element: "agua", icon: "♏", dates: ["10-23", "11-21"] },
+            { name: "Sagitario", element: "fuego", icon: "♐", dates: ["11-22", "12-21"] },
+            { name: "Capricornio", element: "tierra", icon: "♑", dates: ["12-22", "12-31"] }
+        ];
+
+        const cities = [
+            {
+                name: "Kioto, Japón",
+                lat: 35.0, lon: 135.7,
+                tags: ["espiritualidad", "tranquilidad", "cultura", "naturaleza"],
+                description: "Un santuario de paz donde los templos zen y los jardines milenarios armonizan tu energía interior. Ideal para la meditación y el crecimiento espiritual.",
+                bestFor: ["agua", "tierra"]
+            },
+            {
+                name: "Santorini, Grecia",
+                lat: 36.4, lon: 25.4,
+                tags: ["romance", "mar", "inspiración", "belleza"],
+                description: "Las puestas de sol doradas sobre el mar Egeo despiertan tu creatividad y pasión. Un lugar donde el corazón late más fuerte.",
+                bestFor: ["fuego", "aire"]
+            },
+            {
+                name: "Machu Picchu, Perú",
+                lat: -13.2, lon: -72.5,
+                tags: ["aventura", "energía", "historia", "montaña"],
+                description: "La energía mística de los Andes conecta con tu fuerza interior. Un destino que transforma el espíritu y fortalece la voluntad.",
+                bestFor: ["tierra", "fuego"]
+            },
+            {
+                name: "Reikiavik, Islandia",
+                lat: 64.1, lon: -21.9,
+                tags: ["auroras", "naturaleza", "introspección", "magia"],
+                description: "Bajo las auroras boreales, tu intuición se agudiza. Un territorio de hielo y fuego que potencia tu visión interior.",
+                bestFor: ["agua", "aire"]
+            },
+            {
+                name: "Marrakech, Marruecos",
+                lat: 31.6, lon: -7.9,
+                tags: ["color", "pasión", "cultura", "vida"],
+                description: "Los zocos vibrantes y la arquitectura exótica despiertan tus sentidos. Un lugar que celebra la vida con intensidad.",
+                bestFor: ["fuego", "tierra"]
+            },
+            {
+                name: "Queenstown, Nueva Zelanda",
+                lat: -45.0, lon: 168.7,
+                tags: ["aventura", "naturaleza", "libertad", "paisaje"],
+                description: "Entre lagos cristalinos y montañas majestuosas, encuentras la libertad absoluta. La naturaleza en su expresión más pura.",
+                bestFor: ["aire", "agua"]
+            },
+            {
+                name: "Toscana, Italia",
+                lat: 43.8, lon: 11.2,
+                tags: ["arte", "gastronomía", "belleza", "armonía"],
+                description: "Los viñedos dorados y las colinas ondulantes nutren tu alma con belleza y placer. La dolce vita hecha realidad.",
+                bestFor: ["tierra", "agua"]
+            },
+            {
+                name: "Bali, Indonesia",
+                lat: -8.5, lon: 115.2,
+                tags: ["espiritualidad", "naturaleza", "bienestar", "comunidad"],
+                description: "La isla de los dioses donde el yoga, el surf y la espiritualidad se funden en una experiencia transformadora.",
+                bestFor: ["agua", "fuego"]
+            },
+            {
+                name: "Patagonia, Argentina/Chile",
+                lat: -49.3, lon: -73.0,
+                tags: ["aventura", "naturaleza", "grandeza", "silencio"],
+                description: "Los glaciares y las estepas infinitas te recuerdan la grandeza del universo. Un lugar para encontrar tu propósito.",
+                bestFor: ["aire", "tierra"]
+            },
+            {
+                name: "Lisboa, Portugal",
+                lat: 38.7, lon: -9.1,
+                tags: ["luz", "historia", "alegría", "mar"],
+                description: "La ciudad de la luz donde el océano Atlántico besa las calles empedradas. Alegría contagiosa y un ritmo de vida envidiable.",
+                bestFor: ["fuego", "aire"]
+            },
+            {
+                name: "Cuzco, Perú",
+                lat: -13.5, lon: -71.9,
+                tags: ["mística", "cultura", "altura", "energía"],
+                description: "El ombligo del mundo inca donde la energía ancestral fluye por cada piedra. Conexión profunda con la tierra.",
+                bestFor: ["tierra", "agua"]
+            },
+            {
+                name: "Aurora Boreal, Noruega",
+                lat: 69.6, lon: 23.7,
+                tags: ["magia", "naturaleza", "asombro", "paz"],
+                description: "Bajo el cielo danzante de Tromsø, el alma encuentra su ritmo cósmico. Un espectáculo que renueva la fe en la maravilla.",
+                bestFor: ["agua", "aire"]
+            },
+            {
+                name: "Sedona, EE.UU.",
+                lat: 34.9, lon: -111.8,
+                tags: ["energía", "espiritualidad", "rojo", "transformación"],
+                description: "Los vórtices energéticos de las rocas rojas catalizan tu transformación personal. Un centro de poder espiritual reconocido mundialmente.",
+                bestFor: ["fuego", "tierra"]
+            },
+            {
+                name: "Kerala, India",
+                lat: 10.8, lon: 76.2,
+                tags: ["ayurveda", "tranquilidad", "agua", "sanación"],
+                description: "Los backwaters serpenteantes y la medicina ayurvédica ancestral ofrecen sanación profunda para cuerpo y alma.",
+                bestFor: ["agua", "tierra"]
+            },
+            {
+                name: "Edimburgo, Escocia",
+                lat: 55.9, lon: -3.2,
+                tags: ["misterio", "historia", "literatura", "niebla"],
+                description: "Las calles empedradas y los castillos góticos alimentan tu imaginación. Un lugar donde la magia medieval sigue viva.",
+                bestFor: ["aire", "agua"]
+            }
+        ];
+
+        function getZodiacSign(date) {
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            const dateStr = String(month).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+
+            for (let sign of zodiacSigns) {
+                if (dateStr >= sign.dates[0] && dateStr <= sign.dates[1]) {
+                    return sign;
+                }
+            }
+            return zodiacSigns[0];
+        }
+
+        function getRisingSign(birthDate, birthTime) {
+            const hour = parseInt(birthTime.split(':')[0]);
+            const signs = ["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"];
+            const index = (hour + birthDate.getDate()) % 12;
+            return signs[index];
+        }
+
+        function getMoonSign(birthDate) {
+            const day = birthDate.getDate();
+            const signs = ["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"];
+            return signs[day % 12];
+        }
+
+        function getLifePathNumber(date) {
+            const digits = date.replace(/-/g, '').split('').map(Number);
+            let sum = digits.reduce((a, b) => a + b, 0);
+            while (sum > 9) {
+                sum = String(sum).split('').map(Number).reduce((a, b) => a + b, 0);
+            }
+            return sum;
+        }
+
+        function getChineseZodiac(year) {
+            const animals = ["Mono", "Gallo", "Perro", "Cerdo", "Rata", "Buey", "Tigre", "Conejo", "Dragón", "Serpiente", "Caballo", "Cabra"];
+            return animals[year % 12];
+        }
+
+        function calculateCompatibility(sign, city) {
+            let score = 50;
+
+            // Element match
+            if (city.bestFor.includes(sign.element)) {
+                score += 25;
+            }
+
+            // Time-based variation
+            const date = new Date();
+            score += (date.getDate() % 10);
+
+            // Random but deterministic variation
+            const seed = sign.name.length + city.name.length;
+            score += (seed % 15);
+
+            // Cap between 60 and 98
+            return Math.min(98, Math.max(60, score));
+        }
+
+        function calculateMap() {
+            const birthDate = document.getElementById('birthDate').value;
+            const birthTime = document.getElementById('birthTime').value;
+            const timezone = document.getElementById('timezone').value;
+            const birthPlace = document.getElementById('birthPlace').value;
+
+            if (!birthDate || !birthTime || !birthPlace) {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+
+            const dateObj = new Date(birthDate);
+            const sign = getZodiacSign(dateObj);
+            const rising = getRisingSign(dateObj, birthTime);
+            const moon = getMoonSign(dateObj);
+            const lifePath = getLifePathNumber(birthDate);
+            const chinese = getChineseZodiac(dateObj.getFullYear());
+
+            // Calculate scores for each city
+            const scoredCities = cities.map(city => {
+                return {
+                    ...city,
+                    score: calculateCompatibility(sign, city)
+                };
+            }).sort((a, b) => b.score - a.score);
+
+            // Render birth chart
+            const chartHTML = `
+                <h2>🌙 Tu Carta Astral de Nacimiento</h2>
+                <div class="chart-grid">
+                    <div class="chart-item">
+                        <div class="label">Signo Solar</div>
+                        <div class="value"><span class="zodiac-icon">${sign.icon}</span>${sign.name} <span class="element-badge element-${sign.element}">${sign.element}</span></div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="label">Ascendente</div>
+                        <div class="value">${rising}</div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="label">Signo Lunar</div>
+                        <div class="value">${moon}</div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="label">Número de Vida</div>
+                        <div class="value">${lifePath}</div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="label">Horóscopo Chino</div>
+                        <div class="value">${chinese}</div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="label">Lugar de Nacimiento</div>
+                        <div class="value">${birthPlace}</div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="label">Hora de Nacimiento</div>
+                        <div class="value">${birthTime}</div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="label">Zona Horaria</div>
+                        <div class="value">${timezone}</div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('birthChart').innerHTML = chartHTML;
+
+            // Render places
+            let placesHTML = '<h2>🏆 Top Lugares Donde Tu Ser Brillará Más</h2>';
+
+            scoredCities.forEach((city, index) => {
+                const rank = index + 1;
+                const crown = rank === 1 ? '👑 ' : '';
+                const bestBadge = rank === 1 ? '<span class="best-match-badge">MEJOR MATCH</span>' : '';
+
+                placesHTML += `
+                    <div class="place-card rank-${rank}">
+                        ${bestBadge}
+                        <div class="place-header">
+                            <div class="place-name">${crown}${city.name}</div>
+                            <div class="place-rank">#${rank}</div>
+                        </div>
+                        <div class="percentage-bar">
+                            <div class="percentage-fill" data-width="${city.score}%">${city.score}% compatibilidad</div>
+                        </div>
+                        <div class="reasons">
+                            ${city.tags.map(tag => `<span class="reason-tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="place-description">${city.description}</div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('placesSection').innerHTML = placesHTML;
+
+            // Show results
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('formSection').style.display = 'none';
+
+            // Animate bars
+            setTimeout(() => {
+                document.querySelectorAll('.percentage-fill').forEach(bar => {
+                    bar.style.width = bar.getAttribute('data-width');
+                });
+            }, 300);
+
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

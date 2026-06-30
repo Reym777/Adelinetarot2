@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -25,7 +25,7 @@
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="index#inicio">
-        <img src="assets/images/bandeauv5.png" class="brand-banner-img" alt="Adeline" />
+        <img src="assets/images/bandeauv7.png" class="brand-banner-img" alt="Adeline" />
       </a>
       <a href="index#inicio" class="btn btn-ghost" style="justify-self:start; position:relative; z-index:2; margin-left:12px;">Home</a>
       <a href="index#paquete-adeline" class="btn btn-primary header-cta">Paquete Adeline</a>
@@ -38,13 +38,13 @@
         <div class="panel">
           <h1 style="margin-bottom:8px">Oraciones de sanacion y de purificacion</h1>
           <p class="muted" style="margin-bottom:16px">Completa la informacion para elevar el rezo.</p>
-          <p class="muted" style="margin-top:-8px;margin-bottom:16px;font-size:.92rem">Nota: una vez realizado el pago, deberás colocar un vaso de cristal con agua en un espacio de paz dentro de tu hogar.</p>
+          <p class="muted" style="margin-top:-8px;margin-bottom:16px;font-size:.92rem">Nota: una vez realizado el pago, deberÃ¡s colocar un vaso de cristal con agua en un espacio de paz dentro de tu hogar.</p>
 
           <div class="ora-grid">
             <div class="pred-field"><label for="ora-nombre">Nombre (facultatif)</label><input id="ora-nombre" type="text" maxlength="80" placeholder="Nombre" /></div>
             <div class="pred-field"><label for="ora-apellido">Apellido (facultatif)</label><input id="ora-apellido" type="text" maxlength="80" placeholder="Apellido" /></div>
             <div class="pred-field full"><label for="ora-email">Email</label><input id="ora-email" type="email" maxlength="254" placeholder="correo@ejemplo.com" /></div>
-            <div class="pred-field full"><label for="ora-comentario">Describe lo mas claro posible tu peticion</label><textarea id="ora-comentario" maxlength="1200" placeholder="Escribe tu intención" style="min-height:180px;"></textarea></div>
+            <div class="pred-field full"><label for="ora-comentario">Describe lo mas claro posible tu peticion</label><textarea id="ora-comentario" maxlength="1200" placeholder="Escribe tu intenciÃ³n" style="min-height:180px;"></textarea></div>
             <div class="pred-field full"><label for="ora-extra">Informacion complementaria (persona, cituacion, mascota, ciudad, nombre de proceso...)</label><input id="ora-extra" type="text" maxlength="280" placeholder="Detalles adicionales" /></div>
             <div class="pred-field full"><label>Oraciones por 3 dias = 60 USD</label></div>
           </div>
@@ -71,9 +71,9 @@
     }
 
     function buildMailTo(nombre, apellido, email, comentario, monto, extra) {
-      const subject = encodeURIComponent('Solicitud de oración personalizada');
+      const subject = encodeURIComponent('Solicitud de oraciÃ³n personalizada');
       const body = encodeURIComponent(
-        `Nombre: ${nombre} ${apellido}\nEmail: ${email}\nAporte (USD): ${monto || 'No indicado'}\nComentario: ${comentario}\nInformación complementaria: ${extra || 'No indicada'}`
+        `Nombre: ${nombre} ${apellido}\nEmail: ${email}\nAporte (USD): ${monto || 'No indicado'}\nComentario: ${comentario}\nInformaciÃ³n complementaria: ${extra || 'No indicada'}`
       );
       return `mailto:adelinetarot.contacto@gmail.com?subject=${subject}&body=${body}`;
     }
@@ -93,9 +93,10 @@
       }
 
       mailBtn.href = buildMailTo(nombre, apellido, email, comentario, '60', extra);
-      msg.textContent = 'Datos listos. Se abrirá PayPal para completar el aporte.';
+      msg.textContent = 'Datos listos. Se abrirÃ¡ PayPal para completar el aporte.';
       window.open(buildPaypal(), '_blank', 'noopener');
     });
   </script>
 </body>
 </html>
+

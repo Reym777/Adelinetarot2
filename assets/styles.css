@@ -232,6 +232,16 @@ a:hover { color: #f3dd9a; }
   color: var(--gold);
 }
 .btn-ghost:hover { background: rgba(232, 198, 107, .08); transform: translateY(-2px); }
+.hero-link-highlight {
+  background: #e8c66b;
+  border-color: #e8c66b;
+  color: #000;
+}
+.hero-link-highlight:hover {
+  background: #f3dd9a;
+  border-color: #f3dd9a;
+  color: #000;
+}
 .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
 .btn-block { width: 100%; }
 
