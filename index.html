@@ -18,11 +18,11 @@
 </head>
 <body>
   <div class="ambient-decor" aria-hidden="true">
-    <span class="bug butterfly" style="top:12%;font-size:1.7rem;animation-duration:16s;animation-delay:0s">🦋</span>
-    <span class="bug butterfly" style="top:30%;font-size:1.3rem;animation-duration:23s;animation-delay:6s">🦋</span>
-    <span class="bug butterfly" style="top:54%;font-size:2rem;animation-duration:19s;animation-delay:11s">🦋</span>
-    <span class="bug butterfly" style="top:72%;font-size:1.4rem;animation-duration:26s;animation-delay:3s">🦋</span>
-    <span class="bug butterfly" style="top:88%;font-size:1.6rem;animation-duration:18s;animation-delay:14s">🦋</span>
+    <span class="bug butterfly" style="top:12%;--size:34px;animation-duration:16s;animation-delay:0s"></span>
+    <span class="bug butterfly" style="top:30%;--size:26px;animation-duration:23s;animation-delay:6s"></span>
+    <span class="bug butterfly" style="top:54%;--size:38px;animation-duration:19s;animation-delay:11s"></span>
+    <span class="bug butterfly" style="top:72%;--size:28px;animation-duration:26s;animation-delay:3s"></span>
+    <span class="bug butterfly" style="top:88%;--size:32px;animation-duration:18s;animation-delay:14s"></span>
     <span class="bug leaf" style="top:18%;font-size:1.5rem;animation-duration:21s;animation-delay:2s">�</span>
     <span class="bug leaf" style="top:40%;font-size:1.2rem;animation-duration:27s;animation-delay:8s">🍂</span>
     <span class="bug leaf" style="top:62%;font-size:1.8rem;animation-duration:17s;animation-delay:12s">🍂</span>
@@ -36,7 +36,7 @@
       <a class="brand" href="#inicio">
         <img src="assets/images/bandeauv7.png" class="brand-banner-img" alt="Adeline" />
       </a>
-      <a href="#paquete-adeline" class="btn btn-primary header-cta">Paquete<br><strong>ADELINE</strong></a>
+      <a href="#paquete-adeline" class="btn btn-primary header-cta"><span class="cta-top">Paquete</span><strong>MÁGICA</strong></a>
     </div>
   </header>
 
@@ -47,14 +47,15 @@
     </div>
     <nav class="side-menu-links" onclick="toggleMenu(false)">
         <a href="#inicio">HOME</a>
-      <a href="oraciones" class="hero-link-highlight">Solicitar mi oración</a>
+      <a href="oraciones" class="hero-link-highlight">Solicita tu oración hoy mismo</a>
+      <a href="meditaciones" class="hero-link-highlight">Meditaciones vía Telefónica</a>
       <a href="tarot-terapeutico" class="hero-link-highlight">Tarot terapéutico</a>
-      <a href="meditaciones" class="hero-link-highlight">Meditaciones via telephonica</a>
+      <a href="#paquete-adeline" class="hero-link-highlight">Paquete MÁGICA</a>
+      <div class="side-menu-note">work in progress</div>
       <a href="synastria">Sinastría</a>
         <a href="mapa_bienestar_astral test.html">Mapa del bienestar Astral</a>
         <a href="lectura-de-carta-natal">Lectura de carta natal</a>
         <a href="prediccion-astral#pred-panel-long">Predicción a 5 años</a>
-        <a href="#paquete-adeline">Paquete Adeline</a>
     </nav>
   </aside>
   <div id="menuBackdrop" class="menu-backdrop hidden" onclick="toggleMenu(false)"></div>
@@ -99,15 +100,15 @@
           </g>
         </svg>
         <p class="eyebrow">Oraciones · Tarot terapéutico · Meditaciones</p>
-        <h1>tu primer acercamiento a tu carta astral</h1>
+        <h1>Elevamos tu oración al creador y el cielo responde</h1>
         <p class="lead">
           <strong>ADELINE</strong> es un puente lleno de fe y amor para conectar tu petición a los oídos del creador,
           permiteme sumarme a tu oración y elevar el rezo
         </p>
         <div class="hero-cta">
-          <a href="oraciones" class="btn btn-ghost hero-link-highlight">Solicitar mi oración</a>
+          <a href="oraciones" class="btn btn-ghost hero-link-highlight">Solicitar oración / rezo</a>
           <a href="tarot-terapeutico" class="btn btn-ghost hero-link-highlight">Tarot terapéutico</a>
-          <a href="meditaciones" class="btn btn-ghost hero-link-highlight">Meditaciones via telephonica</a>
+          <a href="meditaciones" class="btn btn-ghost hero-link-highlight">Meditaciones vía Telefónica</a>
         </div>
       </div>
     </section>
@@ -181,7 +182,7 @@
             <a href="oraciones" class="btn btn-ghost" style="margin-top:10px">Ir al formulario completo</a>
           </article>
           <article class="service-tab" data-tab="meditaciones">
-            <h3>🕊️ Meditaciones via telephonica</h3>
+            <h3>🕊️ Meditaciones vía Telefónica</h3>
             <p>Sesiones de 33 minutos, agenda diaria y acompañamiento espiritual en un canal privado.</p>
             <p><a href="meditaciones" class="btn btn-primary">Abrir la página de meditaciones</a></p>
           </article>
@@ -190,18 +191,18 @@
       </div>
     </section>
 
-  <!-- ===================== PAQUETE ADELINE ===================== -->
+  <!-- ===================== PAQUETE MÁGICA ===================== -->
   <section id="paquete-adeline">
     <div class="container">
       <div class="panel">
-        <h2 class="section-title">Paquete Adeline</h2>
+        <h2 class="section-title">Paquete Mágica</h2>
         <p class="section-sub">3 meditaciones de 33 min + 1 lectura de tarot terapéutico de 30 min + PDF con recomendaciones para apertura de caminos y autosanación por 144 USD.</p>
         <div class="grid-3">
-          <div class="card"><span class="icon">🕊️</span><h3>3 meditaciones</h3><p>Sesiones guiadas de 33 minutos, en horarios seleccionados, con foco en sanación interior.</p></div>
-          <div class="card"><span class="icon">🃏</span><h3>Tarot terapéutico</h3><p>Una lectura de 30 minutos para ordenar preguntas, claridad emocional y dirección.</p></div>
-          <div class="card"><span class="icon">📘</span><h3>PDF de apoyo</h3><p>Recomendaciones para apertura de caminos y autosanación para acompañar el proceso.</p></div>
+          <div class="card"><img class="icon package-icon" src="assets/images/meditacion PAQUETE.png" alt="3 meditaciones" /><h3>3 meditaciones</h3><p>Sesiones de 33 minutos vía telefónica con foco en sanación interior.</p></div>
+          <div class="card"><img class="icon package-icon" src="assets/images/carte PAQUETE.png" alt="Tarot terapéutico" /><h3>Tarot terapéutico</h3><p>Una lectura de 30 minutos que abrirá paso a tu claridad mental y equilibrio emocional.</p></div>
+          <div class="card"><img class="icon package-icon" src="assets/images/livre PAQUETE.png" alt="PDF de apoyo" /><h3>PDF de apoyo</h3><p>Con un modelo de 7 páginas para digerir en tu tiempo libre. Permite que desarrolles autosanación, apertura de caminos y enfoque.</p></div>
         </div>
-        <p style="margin-top:18px"><a href="tarot-terapeutico" class="btn btn-primary">Comprar el paquete ADELINE</a></p>
+        <p style="margin-top:18px"><a href="tarot-terapeutico" class="btn btn-primary">Adquiere hoy</a></p>
       </div>
     </div>
   </section>
@@ -1067,7 +1068,7 @@
   <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer">
     <div class="container">
-      <p class="muted">Astrología &amp; tarot con alma · Consultas privadas via telefonica</p>
+      <p class="muted">Acompañamiento espiritual de alto valor y en tiempo real - Consultas previa agenda</p>
       <p class="legal">Las lecturas tienen fines de orientación y entretenimiento. © <span id="year"></span> Adeline.</p>
     </div>
   </footer>
