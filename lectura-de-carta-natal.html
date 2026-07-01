@@ -65,11 +65,11 @@
           <p class="muted" style="margin-bottom:16px">Completa tus datos para generar una interpretación amplia en español con planetas, casas, signos y aspectos.</p>
           <div class="natal-grid">
             <div class="pred-field"><label for="natal-name">Nombre</label><input id="natal-name" type="text" maxlength="80" placeholder="Tu nombre" /></div>
-            <div class="pred-field"><label for="natal-tz">Fuseau horaire</label><select id="natal-tz"><option value="UTC-5">UTC-05:00 (New York, Lima)</option><option value="UTC-4">UTC-04:00 (Santo Domingo, Caracas)</option><option value="UTC-3">UTC-03:00 (Buenos Aires, Montevideo)</option><option value="UTC-2">UTC-02:00 (Azores)</option><option value="UTC-1">UTC-01:00 (Cabo Verde)</option><option value="UTC+0">UTC+00:00 (Londres, Reykjavik)</option><option value="UTC+1" selected>UTC+01:00 (Paris, Madrid, Berlin, Rome)</option><option value="UTC+2">UTC+02:00 (Atenas, Cairo)</option><option value="UTC+3">UTC+03:00 (Moscow, Nairobi)</option><option value="UTC+4">UTC+04:00 (Dubai)</option><option value="UTC+5">UTC+05:00 (Karachi, Tashkent)</option><option value="UTC+5.5">UTC+05:30 (India)</option><option value="UTC+6">UTC+06:00 (Dhaka)</option><option value="UTC+7">UTC+07:00 (Bangkok, Jakarta)</option><option value="UTC+8">UTC+08:00 (Pekin, Singapur)</option><option value="UTC+9">UTC+09:00 (Tokio, Seúl)</option><option value="UTC+10">UTC+10:00 (Sydney)</option></select></div>
+            <div class="pred-field"><label for="natal-tz">Zona horaria</label><select id="natal-tz"><option value="UTC-9">UTC-09:00 (Anchorage)</option><option value="UTC-8">UTC-08:00 (Los Ángeles, Tijuana, Vancouver)</option><option value="UTC-7">UTC-07:00 (Denver, Chihuahua, Phoenix)</option><option value="UTC-6">UTC-06:00 (Ciudad de México, Guatemala, Chicago)</option><option value="UTC-5">UTC-05:00 (New York, Lima)</option><option value="UTC-4">UTC-04:00 (Santo Domingo, Caracas)</option><option value="UTC-3">UTC-03:00 (Buenos Aires, Montevideo)</option><option value="UTC-2">UTC-02:00 (Azores)</option><option value="UTC-1">UTC-01:00 (Cabo Verde)</option><option value="UTC+0">UTC+00:00 (Londres, Reykjavik)</option><option value="UTC+1" selected>UTC+01:00 (Paris, Madrid, Berlin, Rome)</option><option value="UTC+2">UTC+02:00 (Atenas, Cairo)</option><option value="UTC+3">UTC+03:00 (Moscow, Nairobi)</option><option value="UTC+4">UTC+04:00 (Dubai)</option><option value="UTC+5">UTC+05:00 (Karachi, Tashkent)</option><option value="UTC+5.5">UTC+05:30 (India)</option><option value="UTC+6">UTC+06:00 (Dhaka)</option><option value="UTC+7">UTC+07:00 (Bangkok, Jakarta)</option><option value="UTC+8">UTC+08:00 (Pekin, Singapur)</option><option value="UTC+9">UTC+09:00 (Tokio, Seúl)</option><option value="UTC+10">UTC+10:00 (Sydney)</option></select></div>
             <div class="pred-field"><label for="natal-date">Fecha de nacimiento</label><input id="natal-date" type="date" /></div>
             <div class="pred-field"><label for="natal-time">Hora de nacimiento (opcional)</label><input id="natal-time" type="time" /></div>
-            <div class="pred-field"><label for="natal-place">Lieu de naissance</label><input id="natal-place" type="text" placeholder="Ex: Paris, France" /></div>
-            <div class="pred-field"><label for="natal-dst">Heure d'été / d'hiver</label><select id="natal-dst"><option value="0" selected>Heure d'hiver — Hiver standard (ex: CET, UTC+1)</option><option value="1">Heure d'été — +1h DST (ex: CEST, UTC+2)</option></select></div>
+            <div class="pred-field"><label for="natal-place">Lugar de nacimiento</label><input id="natal-place" type="text" placeholder="Ej: Madrid, España" /></div>
+            <div class="pred-field"><label for="natal-dst">Horario de verano / invierno</label><select id="natal-dst"><option value="0" selected>Horario de invierno — estándar (ej: CET, UTC+1)</option><option value="1">Horario de verano — +1h (ej: CEST, UTC+2)</option></select></div>
           </div>
 
           <div class="pred-field full" style="margin-top:16px"><button id="natal-run" class="btn btn-primary">Generar mi carta natal completa</button></div>
@@ -599,12 +599,12 @@
       const houses = assignHouses(planets, asc.idx);
       const aspects = computeAspects(planets);
       const age = ageFromDate(date);
-      const dstLabel = dst ? "Heure d'\u00e9t\u00e9 (+1h)" : "Heure d'hiver";
-      const locLabel = coords ? `${coords.display} (${coords.lat.toFixed(2)}\u00b0, ${coords.lon.toFixed(2)}\u00b0)` : 'lat.\u202f45\u00b0N / lon.\u202f2\u00b0E (par d\u00e9faut — lieu non renseign\u00e9)';
+      const dstLabel = dst ? "Horario de verano (+1h)" : "Horario de invierno";
+      const locLabel = coords ? `${coords.display} (${coords.lat.toFixed(2)}\u00b0, ${coords.lon.toFixed(2)}\u00b0)` : 'lat.\u202f45\u00b0N / lon.\u202f2\u00b0E (por defecto — lugar no indicado)';
 
       const chips = [
         `<span class="natal-chip">Nombre: ${name}</span>`,
-        `<span class="natal-chip">Fuseau: ${timezone} ${dstLabel}</span>`,
+        `<span class="natal-chip">Zona: ${timezone} ${dstLabel}</span>`,
         `<span class="natal-chip">Edad: ${age} años</span>`,
         `<span class="natal-chip">ASC: ${asc.signSym} ${asc.sign}</span>`,
         `<span class="natal-chip">MC: ${angles ? angles.MC.signSym+' '+angles.MC.sign+' '+angles.MC.degInSign+'°' : 'N/D'}</span>`,
@@ -612,7 +612,7 @@
         `<span class="natal-chip">IC: ${angles ? angles.IC.signSym+' '+angles.IC.sign : 'N/D'}</span>`
       ].join('');
 
-      const methodNote = `<p class="hint" style="margin-top:6px;font-size:.8rem;opacity:.7;">Syst\u00e8me: <strong>Placidus</strong> \u2014 Orbe: <strong>5\u00b0</strong> \u2014 Lieu: <em>${locLabel}</em></p>`;
+      const methodNote = `<p class="hint" style="margin-top:6px;font-size:.8rem;opacity:.7;">Sistema: <strong>Placidus</strong> \u2014 Orbe: <strong>5\u00b0</strong> \u2014 Lugar: <em>${locLabel}</em></p>`;
 
       const core = renderPlanetEntries(planets, ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte']);
       const extended = renderPlanetEntries(planets, ['Jupiter', 'Saturno', 'Urano', 'Neptuno', 'Pluton']);
@@ -623,7 +623,7 @@
         ? `<ul>${aspects.slice(0, 16).map((a) => `<li>${textAspect(a)}</li>`).join('')}</ul>`
         : '<p>No se detectaron aspectos mayores cerrados con el orbe configurado.</p>';
 
-      const summary = `<p>Tu carta sugiere un perfil donde el ascendente en <strong>${asc.sign}</strong> colorea tu forma de iniciar etapas, mientras que Sol en <strong>${planets.Sol.sign}</strong> y Luna en <strong>${planets.Luna.sign}</strong> marcan la combinacion central entre identidad y mundo emocional.</p><p>El ascendente se calcula con tu hora local y el fuseau horario indicado (${timezone}, UTC${asc.offset >= 0 ? '+' : ''}${asc.offset}), para reflejar mejor el contexto de nacimiento.</p><p>Las casas activas muestran donde suceden los aprendizajes clave de esta etapa.</p>`;
+      const summary = `<p>Tu carta sugiere un perfil donde el ascendente en <strong>${asc.sign}</strong> colorea tu forma de iniciar etapas, mientras que Sol en <strong>${planets.Sol.sign}</strong> y Luna en <strong>${planets.Luna.sign}</strong> marcan la combinacion central entre identidad y mundo emocional.</p><p>El ascendente se calcula con tu hora local y la zona horaria indicada (${timezone}, UTC${asc.offset >= 0 ? '+' : ''}${asc.offset}), para reflejar mejor el contexto de nacimiento.</p><p>Las casas activas muestran donde suceden los aprendizajes clave de esta etapa.</p>`;
       const astroWheel = renderAstroWheel(planets, asc);
       const planetTable = renderPlanetTable(planets);
 
@@ -659,7 +659,7 @@
     async function geocodePlace(placeName) {
       if (!placeName || placeName.length < 2) return null;
       try {
-        const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(placeName)}&count=1&language=fr&format=json`;
+        const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(placeName)}&count=1&language=es&format=json`;
         const r = await fetch(url);
         const data = await r.json();
         if (data.results && data.results.length > 0) {
@@ -681,15 +681,15 @@
       const out = document.getElementById('natal-report');
 
       if (!name || !timezone || !date) {
-        msg.textContent = 'Completa nombre, fuseau horario y fecha de nacimiento.';
+        msg.textContent = 'Completa nombre, zona horaria y fecha de nacimiento.';
         out.classList.add('hidden');
         return;
       }
 
-      msg.textContent = place ? 'G\u00e9ocodification du lieu de naissance...' : '';
+      msg.textContent = place ? 'Geolocalizando el lugar de nacimiento...' : '';
       out.classList.add('hidden');
       const coords = place ? await geocodePlace(place) : null;
-      if (place && !coords) msg.textContent = 'Lieu introuvable \u2014 coordonn\u00e9es par d\u00e9faut (lat\u202f45\u00b0N / lon\u202f2\u00b0E).';
+      if (place && !coords) msg.textContent = 'Lugar no encontrado \u2014 coordenadas por defecto (lat\u202f45\u00b0N / lon\u202f2\u00b0E).';
       else msg.textContent = '';
       const dst = Number(document.getElementById('natal-dst').value) || 0;
       out.innerHTML = renderReport(name, timezone, date, time, dst, coords);

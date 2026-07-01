@@ -1,0 +1,192 @@
+Actúa como un Senior Product Designer especializado en aplicaciones de astrología, visualización de datos y diseño de interfaces premium.
+
+Tengo dos ruedas astrales:
+
+La rueda morada corresponde a mi aplicación actual.
+La rueda blanca representa el nivel de claridad, equilibrio y modernidad que quiero alcanzar.
+Objetivo
+
+No quiero copiar el diseño de la rueda blanca.
+
+Quiero conservar la identidad visual de mi aplicación (tema oscuro, tonos morados y dorados), pero rediseñar la rueda para que transmita la misma sensación de calidad, limpieza y profesionalismo que la rueda blanca.
+
+Debe sentirse como una evolución natural de mi diseño.
+
+Analiza ambas ruedas
+
+Compara ambas interfaces desde los siguientes aspectos:
+
+jerarquía visual;
+distribución del espacio;
+legibilidad;
+equilibrio gráfico;
+contraste;
+percepción de profundidad;
+minimalismo;
+experiencia de usuario;
+organización de la información.
+
+Identifica por qué la rueda blanca resulta visualmente más agradable.
+
+Aspectos que quiero mejorar
+1. Espaciado
+
+La rueda morada se siente demasiado compacta.
+
+Quiero que exista más aire entre:
+
+los signos zodiacales;
+el anillo exterior;
+las cúspides de las casas;
+los planetas;
+el círculo interior.
+
+Todo debe respirar mejor.
+
+2. Proporciones
+
+La rueda blanca utiliza proporciones mucho más elegantes.
+
+Analiza:
+
+grosor de cada anillo;
+diámetro del círculo interior;
+tamaño de las casas;
+distancia entre elementos.
+
+Propón nuevas proporciones para la rueda morada.
+
+3. Casas
+
+Los números de las casas deben parecer parte del diseño.
+
+Quiero:
+
+números más discretos;
+mejor alineación;
+una tipografía refinada;
+un tamaño equilibrado.
+4. Planetas
+
+Actualmente los planetas parecen simplemente colocados sobre la rueda.
+
+Quiero una integración mucho más elegante.
+
+Analiza:
+
+tamaño;
+alineación;
+separación;
+etiquetas;
+posición radial.
+
+Diseña un algoritmo que evite automáticamente las superposiciones cuando varios planetas estén muy próximos.
+
+Nunca debe modificarse la posición astronómica.
+
+Solo la representación gráfica.
+
+5. Cúspides de las casas
+
+Las líneas divisorias deberían parecer más sofisticadas.
+
+Inspírate en la rueda blanca:
+
+líneas finas;
+colores sutiles;
+opacidad equilibrada;
+mejor jerarquía visual.
+6. Signos zodiacales
+
+Mantener los iconos morados.
+
+Pero quiero que estén mejor integrados.
+
+Analiza:
+
+tamaño;
+separación;
+borde;
+iluminación;
+sombras;
+contraste.
+7. Colores
+
+Mantener la identidad visual oscura.
+
+Pero crear una paleta más elegante.
+
+Reducir el exceso de colores saturados.
+
+Buscar una apariencia más premium.
+
+8. Tipografía
+
+Quiero una jerarquía tipográfica mucho más limpia.
+
+Analiza:
+
+nombres de los planetas;
+números de las casas;
+ASC;
+DESC;
+signos.
+
+Propón combinaciones modernas y elegantes.
+
+9. Centro de la rueda
+
+Actualmente el centro parece demasiado vacío.
+
+Propón ideas discretas para enriquecerlo.
+
+Por ejemplo:
+
+degradados;
+textura muy sutil;
+constelaciones;
+patrón geométrico;
+brillo radial.
+
+Nunca debe distraer.
+
+10. Sensación general
+
+La rueda blanca transmite:
+
+claridad;
+precisión;
+elegancia;
+equilibrio;
+profesionalismo.
+
+Quiero que la rueda morada transmita exactamente esas mismas sensaciones conservando su identidad visual.
+
+Debe parecer una aplicación premium de 2025.
+
+Restricciones
+
+No modificar:
+
+posiciones planetarias;
+signos;
+casas;
+aspectos;
+ascendente;
+medio cielo;
+cálculos astrológicos.
+
+Solo modificar el diseño y la representación visual.
+
+Resultado esperado
+
+Quiero que entregues:
+
+Una auditoría comparativa entre ambas ruedas.
+Los puntos débiles de la rueda morada.
+Una propuesta completa de rediseño.
+Nuevas proporciones para todos los elementos.
+Reglas de diseño para mantener la consistencia.
+Un algoritmo de distribución automática de planetas para evitar colisiones.
+Una guía visual (Design System) con colores, tipografías, espaciados y tamaños.
+Recomendaciones para que la rueda tenga un nivel de calidad comparable al de aplicaciones de referencia como TimePassages, Astro Gold, Astro.com, Co–Star o The Pattern, pero conservando una identidad propia, moderna y exclusiva.

@@ -17,6 +17,18 @@
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+  <div class="ambient-decor" aria-hidden="true">
+    <span class="bug butterfly" style="top:12%;font-size:1.7rem;animation-duration:16s;animation-delay:0s">🦋</span>
+    <span class="bug butterfly" style="top:30%;font-size:1.3rem;animation-duration:23s;animation-delay:6s">🦋</span>
+    <span class="bug butterfly" style="top:54%;font-size:2rem;animation-duration:19s;animation-delay:11s">🦋</span>
+    <span class="bug butterfly" style="top:72%;font-size:1.4rem;animation-duration:26s;animation-delay:3s">🦋</span>
+    <span class="bug butterfly" style="top:88%;font-size:1.6rem;animation-duration:18s;animation-delay:14s">🦋</span>
+    <span class="bug leaf" style="top:18%;font-size:1.5rem;animation-duration:21s;animation-delay:2s">�</span>
+    <span class="bug leaf" style="top:40%;font-size:1.2rem;animation-duration:27s;animation-delay:8s">🍂</span>
+    <span class="bug leaf" style="top:62%;font-size:1.8rem;animation-duration:17s;animation-delay:12s">🍂</span>
+    <span class="bug leaf" style="top:80%;font-size:1.3rem;animation-duration:24s;animation-delay:5s">🍂</span>
+    <span class="bug leaf" style="top:6%;font-size:1.5rem;animation-duration:22s;animation-delay:16s">🍂</span>
+  </div>
   <!-- ===================== HEADER ===================== -->
   <header class="site-header">
     <div class="container nav">
@@ -24,7 +36,7 @@
       <a class="brand" href="#inicio">
         <img src="assets/images/bandeauv7.png" class="brand-banner-img" alt="Adeline" />
       </a>
-      <a href="#paquete-adeline" class="btn btn-primary header-cta">Paquete Adeline</a>
+      <a href="#paquete-adeline" class="btn btn-primary header-cta">Paquete<br><strong>ADELINE</strong></a>
     </div>
   </header>
 
@@ -90,7 +102,7 @@
         <h1>tu primer acercamiento a tu carta astral</h1>
         <p class="lead">
           <strong>ADELINE</strong> es un puente lleno de fe y amor para conectar tu petición a los oídos del creador,
-          permiteme sumarme a tu oración y elevar el reso
+          permiteme sumarme a tu oración y elevar el rezo
         </p>
         <div class="hero-cta">
           <a href="oraciones" class="btn btn-ghost hero-link-highlight">Solicitar mi oración</a>
@@ -119,52 +131,52 @@
         <div class="service-tabs" id="serviceTabs">
           <article class="service-tab" data-tab="live">
             <h3>🃏 Tirada en tiempo real</h3>
-            <p>Demande d'information + moteur compatibilité rapide pour la session live.</p>
+            <p>Solicitud de información + motor de compatibilidad rápida para la sesión en vivo.</p>
             <div class="pred-input-grid">
-              <div class="pred-field"><label for="svc-live-name">Ton nom</label><input id="svc-live-name" type="text" maxlength="80" /></div>
-              <div class="pred-field"><label for="svc-live-date">Ta date</label><input id="svc-live-date" type="date" /></div>
-              <div class="pred-field"><label for="svc-live-target">Nom cible</label><input id="svc-live-target" type="text" maxlength="80" /></div>
-              <div class="pred-field"><label for="svc-live-target-date">Date cible</label><input id="svc-live-target-date" type="date" /></div>
+              <div class="pred-field"><label for="svc-live-name">Tu nombre</label><input id="svc-live-name" type="text" maxlength="80" /></div>
+              <div class="pred-field"><label for="svc-live-date">Tu fecha</label><input id="svc-live-date" type="date" /></div>
+              <div class="pred-field"><label for="svc-live-target">Nombre objetivo</label><input id="svc-live-target" type="text" maxlength="80" /></div>
+              <div class="pred-field"><label for="svc-live-target-date">Fecha objetivo</label><input id="svc-live-target-date" type="date" /></div>
               <div class="pred-field full"><label for="svc-live-email">Email</label><input id="svc-live-email" type="email" maxlength="254" /></div>
             </div>
-            <button type="button" class="btn btn-primary" onclick="runSvcLive()">Analyser la compatibilité</button>
+            <button type="button" class="btn btn-primary" onclick="runSvcLive()">Analizar la compatibilidad</button>
             <div id="svc-live-out" class="svc-result hidden"></div>
           </article>
           <article class="service-tab" data-tab="year">
             <h3>📆 Predicción a 5 años</h3>
-            <p>Demande d'information + moteur annuel en 4 trimestres.</p>
+            <p>Solicitud de información + motor anual en 4 trimestres.</p>
             <div class="pred-input-grid">
-              <div class="pred-field"><label for="svc-year-name">Nom</label><input id="svc-year-name" type="text" maxlength="80" /></div>
-              <div class="pred-field"><label for="svc-year-date">Date de naissance</label><input id="svc-year-date" type="date" /></div>
-              <div class="pred-field"><label for="svc-year-focus">Focus</label><select id="svc-year-focus"><option value="general">Général</option><option value="amour">Amour</option><option value="travail">Travail</option><option value="argent">Argent</option></select></div>
+              <div class="pred-field"><label for="svc-year-name">Nombre</label><input id="svc-year-name" type="text" maxlength="80" /></div>
+              <div class="pred-field"><label for="svc-year-date">Fecha de nacimiento</label><input id="svc-year-date" type="date" /></div>
+              <div class="pred-field"><label for="svc-year-focus">Enfoque</label><select id="svc-year-focus"><option value="general">General</option><option value="amor">Amor</option><option value="trabajo">Trabajo</option><option value="dinero">Dinero</option></select></div>
               <div class="pred-field"><label for="svc-year-email">Email</label><input id="svc-year-email" type="email" maxlength="254" /></div>
             </div>
-            <button type="button" class="btn btn-primary" onclick="runSvcYear()">Générer mon année</button>
+            <button type="button" class="btn btn-primary" onclick="runSvcYear()">Generar mi año</button>
             <div id="svc-year-out" class="svc-result hidden"></div>
           </article>
           <article class="service-tab" data-tab="long">
             <h3>🔭 Predicción a 5 años</h3>
-            <p>Demande d'information + moteur long terme (cap décennal et retour de Saturne).</p>
+            <p>Solicitud de información + motor de largo plazo (horizonte decenal y retorno de Saturno).</p>
             <div class="pred-input-grid">
-              <div class="pred-field"><label for="svc-long-name">Nom</label><input id="svc-long-name" type="text" maxlength="80" /></div>
-              <div class="pred-field"><label for="svc-long-date">Date de naissance</label><input id="svc-long-date" type="date" /></div>
-              <div class="pred-field"><label for="svc-long-time">Heure</label><input id="svc-long-time" type="time" /></div>
+              <div class="pred-field"><label for="svc-long-name">Nombre</label><input id="svc-long-name" type="text" maxlength="80" /></div>
+              <div class="pred-field"><label for="svc-long-date">Fecha de nacimiento</label><input id="svc-long-date" type="date" /></div>
+              <div class="pred-field"><label for="svc-long-time">Hora</label><input id="svc-long-time" type="time" /></div>
               <div class="pred-field"><label for="svc-long-email">Email</label><input id="svc-long-email" type="email" maxlength="254" /></div>
             </div>
-            <button type="button" class="btn btn-primary" onclick="runSvcLong()">Calculer ma vision 5 ans</button>
+            <button type="button" class="btn btn-primary" onclick="runSvcLong()">Calcular mi visión 5 años</button>
             <div id="svc-long-out" class="svc-result hidden"></div>
           </article>
           <article class="service-tab" data-tab="oraciones">
-            <h3>🙏 Demande d'orations</h3>
-            <p>Demande d'information + moteur d'intention alignée au signe.</p>
+            <h3>🙏 Solicitud de oraciones</h3>
+            <p>Solicitud de información + motor de intención alineada al signo.</p>
             <div class="pred-input-grid">
-              <div class="pred-field"><label for="svc-ora-name">Nom</label><input id="svc-ora-name" type="text" maxlength="80" /></div>
-              <div class="pred-field"><label for="svc-ora-honor">En honneur de</label><input id="svc-ora-honor" type="text" maxlength="120" /></div>
-              <div class="pred-field"><label for="svc-ora-date">Date de naissance</label><input id="svc-ora-date" type="date" /></div>
+              <div class="pred-field"><label for="svc-ora-name">Nombre</label><input id="svc-ora-name" type="text" maxlength="80" /></div>
+              <div class="pred-field"><label for="svc-ora-honor">En honor de</label><input id="svc-ora-honor" type="text" maxlength="120" /></div>
+              <div class="pred-field"><label for="svc-ora-date">Fecha de nacimiento</label><input id="svc-ora-date" type="date" /></div>
               <div class="pred-field"><label for="svc-ora-email">Email</label><input id="svc-ora-email" type="email" maxlength="254" /></div>
-              <div class="pred-field full"><label for="svc-ora-intent">Intention</label><input id="svc-ora-intent" type="text" maxlength="220" /></div>
+              <div class="pred-field full"><label for="svc-ora-intent">Intención</label><input id="svc-ora-intent" type="text" maxlength="220" /></div>
             </div>
-            <button type="button" class="btn btn-primary" onclick="runSvcOration()">Créer l'oraison recommandée</button>
+            <button type="button" class="btn btn-primary" onclick="runSvcOration()">Crear la oración recomendada</button>
             <div id="svc-ora-out" class="svc-result hidden"></div>
             <a href="oraciones" class="btn btn-ghost" style="margin-top:10px">Ir al formulario completo</a>
           </article>
@@ -388,12 +400,12 @@
     const time = document.getElementById('svc-natal-time').value;
     const email = document.getElementById('svc-natal-email').value.trim();
     if (!name || !date || !isValidEmail(email)) {
-      svcSetResult('svc-natal-out', '<div class="alert alert-error">Complète nom, date et email valide.</div>');
+      svcSetResult('svc-natal-out', '<div class="alert alert-error">Completa nombre, fecha y email válido.</div>');
       return;
     }
     const astro = predCalcAstro(date, time);
     const asc = predGetAsc(date, time);
-    svcSetResult('svc-natal-out', `<div class="pred-card"><h3>Résultat express</h3><p><strong>${name}</strong> · Soleil en <span class="highlight">${astro['Sol'].sign}</span>, Lune en <span class="highlight">${astro['Luna'].sign}</span>, Ascendant <span class="highlight">${asc}</span>.</p><p>Ta demande est prête pour la lecture complète.</p></div>`);
+    svcSetResult('svc-natal-out', `<div class="pred-card"><h3>Resultado exprés</h3><p><strong>${name}</strong> · Sol en <span class="highlight">${astro['Sol'].sign}</span>, Luna en <span class="highlight">${astro['Luna'].sign}</span>, Ascendente <span class="highlight">${asc}</span>.</p><p>Tu solicitud está lista para la lectura completa.</p></div>`);
   }
 
   function runSvcLive() {
@@ -403,7 +415,7 @@
     const d2 = document.getElementById('svc-live-target-date').value;
     const email = document.getElementById('svc-live-email').value.trim();
     if (!n1 || !d1 || !n2 || !d2 || !isValidEmail(email)) {
-      svcSetResult('svc-live-out', '<div class="alert alert-error">Complète les deux profils et un email valide.</div>');
+      svcSetResult('svc-live-out', '<div class="alert alert-error">Completa los dos perfiles y un email válido.</div>');
       return;
     }
     const s1 = predCalcAstro(d1, '')['Sol'].sign;
@@ -412,7 +424,7 @@
     const i2 = SIGNS_ES.indexOf(s2);
     const diff = Math.min(Math.abs(i1 - i2), 12 - Math.abs(i1 - i2));
     const score = Math.max(52, 100 - diff * 9);
-    svcSetResult('svc-live-out', `<div class="pred-card"><h3>Compatibilité rapide</h3><p>${n1} (${s1}) × ${n2} (${s2})</p><p>Score estimé: <span class="highlight">${score}%</span>. La session live permettra d'affiner avec questions ciblées.</p></div>`);
+    svcSetResult('svc-live-out', `<div class="pred-card"><h3>Compatibilidad rápida</h3><p>${n1} (${s1}) × ${n2} (${s2})</p><p>Puntaje estimado: <span class="highlight">${score}%</span>. La sesión en vivo permitirá afinar con preguntas específicas.</p></div>`);
   }
 
   function runSvcYear() {
@@ -421,13 +433,13 @@
     const focus = document.getElementById('svc-year-focus').value;
     const email = document.getElementById('svc-year-email').value.trim();
     if (!name || !date || !isValidEmail(email)) {
-      svcSetResult('svc-year-out', '<div class="alert alert-error">Complète nom, date et email valide.</div>');
+      svcSetResult('svc-year-out', '<div class="alert alert-error">Completa nombre, fecha y email válido.</div>');
       return;
     }
     const sun = predCalcAstro(date, '')['Sol'].sign;
-    const f = { general:'équilibre', amour:'coeur', travail:'structure', argent:'abondance' }[focus] || 'équilibre';
-    const phases = ['Q1 lancement', 'Q2 expansion', 'Q3 ajustement', 'Q4 consolidation'];
-    svcSetResult('svc-year-out', `<div class="pred-card"><h3>Projection 1 an</h3><p>${name} · Soleil ${sun} · Focus ${focus}</p><p>${phases.map((p,i)=>`${p}: énergie ${f} ${i+1}`).join('<br>')}</p></div>`);
+    const f = { general:'equilibrio', amor:'corazón', trabajo:'estructura', dinero:'abundancia' }[focus] || 'equilibrio';
+    const phases = ['Q1 lanzamiento', 'Q2 expansión', 'Q3 ajuste', 'Q4 consolidación'];
+    svcSetResult('svc-year-out', `<div class="pred-card"><h3>Proyección 1 año</h3><p>${name} · Sol ${sun} · Enfoque ${focus}</p><p>${phases.map((p,i)=>`${p}: energía ${f} ${i+1}`).join('<br>')}</p></div>`);
   }
 
   function runSvcLong() {
@@ -436,15 +448,15 @@
     const time = document.getElementById('svc-long-time').value;
     const email = document.getElementById('svc-long-email').value.trim();
     if (!name || !date || !isValidEmail(email)) {
-      svcSetResult('svc-long-out', '<div class="alert alert-error">Complète nom, date et email valide.</div>');
+      svcSetResult('svc-long-out', '<div class="alert alert-error">Completa nombre, fecha y email válido.</div>');
       return;
     }
     const sun = predCalcAstro(date, time)['Sol'].sign;
     const age = predAge(date);
     const satReturn = age < 30 ? 29 : 58;
     const gap = satReturn - age;
-    const trend = gap > 0 ? `Retour de Saturne dans ~${gap} ans.` : 'Cycle Saturne en intégration.';
-    svcSetResult('svc-long-out', `<div class="pred-card"><h3>Vision 5 ans</h3><p>${name} · Soleil ${sun} · ${trend}</p><p>Fenêtres fortes: année 1.5, 3 et 4.5 avec décisions structurantes.</p></div>`);
+    const trend = gap > 0 ? `Retorno de Saturno en ~${gap} años.` : 'Ciclo de Saturno en integración.';
+    svcSetResult('svc-long-out', `<div class="pred-card"><h3>Visión 5 años</h3><p>${name} · Sol ${sun} · ${trend}</p><p>Ventanas fuertes: año 1.5, 3 y 4.5 con decisiones estructurantes.</p></div>`);
   }
 
   function runSvcOration() {
@@ -454,12 +466,12 @@
     const email = document.getElementById('svc-ora-email').value.trim();
     const intent = document.getElementById('svc-ora-intent').value.trim();
     if (!name || !honor || !intent || !date || !isValidEmail(email)) {
-      svcSetResult('svc-ora-out', '<div class="alert alert-error">Complète tous les champs avec email valide.</div>');
+      svcSetResult('svc-ora-out', '<div class="alert alert-error">Completa todos los campos con email válido.</div>');
       return;
     }
     const sun = predCalcAstro(date, '')['Sol'].sign;
-    const bestDay = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'][SIGNS_ES.indexOf(sun) % 7];
-    svcSetResult('svc-ora-out', `<div class="pred-card"><h3>Oraison recommandée</h3><p>Pour ${honor}, intention: <span class="highlight">${intent}</span>.</p><p>Signature énergétique ${sun}. Jour conseillé: <strong>${bestDay}</strong>.</p></div>`);
+    const bestDay = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'][SIGNS_ES.indexOf(sun) % 7];
+    svcSetResult('svc-ora-out', `<div class="pred-card"><h3>Oración recomendada</h3><p>Para ${honor}, intención: <span class="highlight">${intent}</span>.</p><p>Firma energética ${sun}. Día sugerido: <strong>${bestDay}</strong>.</p></div>`);
   }
 
   const WELLNESS_ZODIAC = [
@@ -566,7 +578,7 @@
     const place = document.getElementById('svc-well-place').value.trim();
     const out = document.getElementById('svc-well-out');
     if (!date || !time || !tzText || !place) {
-      svcSetResult('svc-well-out', '<div class="alert alert-error">Completa fecha, hora, fuseau horario y lugar de nacimiento.</div>');
+      svcSetResult('svc-well-out', '<div class="alert alert-error">Completa fecha, hora, zona horaria y lugar de nacimiento.</div>');
       return;
     }
 
@@ -823,13 +835,13 @@
     const msg = document.getElementById('pred-gate-msg');
     const email = (emailInput?.value || '').trim();
     if (!isValidEmail(email)) {
-      msg.textContent = 'Entre un email valide pour débloquer.';
+      msg.textContent = 'Ingresa un email válido para desbloquear.';
       return;
     }
 
     localStorage.setItem('adelinetarot_lead_email', email);
     sessionStorage.setItem('adelinetarot_short_unlock', '1');
-    msg.textContent = 'Merci. Contenu débloqué.';
+    msg.textContent = 'Gracias. Contenido desbloqueado.';
 
     const wrap = document.getElementById('pred-court-result');
     if (wrap && shortPredictionLockedHtml) {
@@ -874,13 +886,13 @@
     const msg = document.getElementById('oration-msg');
 
     if (!honor || !intent || !name || !isValidEmail(email) || !Number.isFinite(amount) || amount < 1) {
-      msg.textContent = 'Complète les champs, email valide et contribution minimum 1 USD.';
+      msg.textContent = 'Completa los campos, email válido y aporte mínimo de 1 USD.';
       return;
     }
 
     const text = `Hola Adeline, deseo solicitar: ${type}. En honor de: ${honor}. Intención: ${intent}. Mi nombre: ${name}. Mi email: ${email}. Aporte: ${amount} USD.`;
     window.open(buildWhatsAppUrl(text), '_blank', 'noopener');
-    msg.textContent = 'Demande prête. Prix libre enregistré et WhatsApp ouvert pour confirmation.';
+    msg.textContent = 'Solicitud lista. Precio libre registrado y WhatsApp abierto para confirmación.';
   }
 
   function sendContactRequest() {
@@ -890,14 +902,14 @@
     const msg = document.getElementById('contact-msg');
 
     if (!name || !reason || !isValidEmail(email)) {
-      msg.textContent = 'Complète nom, email valide et motif.';
+      msg.textContent = 'Completa nombre, email válido y motivo.';
       return;
     }
 
     localStorage.setItem('adelinetarot_contact_lead', JSON.stringify({ name, email, reason, at: new Date().toISOString() }));
     const text = `Hola, solicito llamada de regreso. Nombre: ${name}. Email: ${email}. Motivo: ${reason}.`;
     window.open(buildWhatsAppUrl(text), '_blank', 'noopener');
-    msg.textContent = 'Demande envoyée. WhatsApp ouvert pour accélérer la réponse.';
+    msg.textContent = 'Solicitud enviada. WhatsApp abierto para acelerar la respuesta.';
   }
 
   // ================================================================

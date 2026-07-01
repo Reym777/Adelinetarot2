@@ -1,0 +1,304 @@
+task 1 a utilizar por carta de nacimiento, synastria, mapa del bienestar astral 
+'''Actúa como un ingeniero experto en astronomía computacional, efemérides y motores de cálculo astrológico.
+
+No quiero una interpretación astrológica.
+
+Quiero que audites el motor de cálculo y detectes por qué está generando resultados incorrectos.
+
+Datos reales de nacimiento
+Fecha de nacimiento: 07/09/1994
+Hora de nacimiento: 01:00
+Ascendente: Cáncer
+Signo solar: Virgo
+Resultado actual de la aplicación
+Sol: Cáncer 18.9°
+Luna: Cáncer 24.1°
+Mercurio: Piscis 5.1°
+Venus: Escorpio 3.3°
+Marte: Aries 27.8°
+
+Este resultado es incoherente.
+
+Una persona nacida el 7 de septiembre de 1994 no puede tener el Sol en Cáncer en astrología tropical. El Sol debería estar en Virgo.
+
+No quiero que intentes justificar esos resultados. Quiero que identifiques el error del motor.
+
+Analiza el sistema como si fueras el responsable del algoritmo.
+
+Revisa las posibles causas:
+
+conversión incorrecta entre hora local y UTC;
+error de zona horaria;
+inversión entre día y mes (07/09 ? 09/07);
+año incorrecto;
+cálculo erróneo del Día Juliano;
+uso de efemérides incorrectas o incompletas;
+confusión entre zodíaco tropical y sideral;
+error en el cálculo de la longitud eclíptica;
+error al convertir la longitud (0°–360°) en signos zodiacales;
+desplazamiento de calendario;
+uso accidental de datos de demostración o de otro usuario;
+error en la integración con Swiss Ephemeris o JPL;
+bug en la lógica que calcula las posiciones planetarias.
+
+Después, explica cuál de estas hipótesis es la más probable y por qué.
+
+Arquitectura esperada del motor
+
+El flujo correcto debería ser:
+
+Fecha + hora + lugar de nacimiento
+        ?
+Conversión de hora local ? UTC
+        ?
+Cálculo del Día Juliano
+        ?
+Cálculo astronómico de las posiciones planetarias
+        ?
+Longitud eclíptica tropical (0°–360°)
+        ?
+Asignación correcta del signo zodiacal
+        ?
+Cálculo del Ascendente
+        ?
+Cálculo del Medio Cielo
+        ?
+Cálculo de las casas
+        ?
+Cálculo de los aspectos
+        ?
+Interpretación
+
+El motor no debe deducir las posiciones planetarias mediante un modelo de IA, heurísticas o aproximaciones estadísticas.
+
+Debe utilizar efemérides astronómicas reales, como:
+
+Swiss Ephemeris (recomendado);
+JPL DE441/DE440 (NASA).
+
+Finalmente:
+
+identifica exactamente dónde se rompe la cadena de cálculo;
+propone las correcciones necesarias;
+indica qué pruebas unitarias deberían añadirse para garantizar que una persona nacida el 07/09/1994 a las 01:00 nunca pueda ser clasificada con el Sol en Cáncer;
+si detectas otros errores en las posiciones planetarias, descríbelos y explica su causa técnica.'''
+
+
+task2 : integrer la mapa del bienestar astral a adelinetarot et avec le bandeau en faut et le fond comme inicio et les autre pages 
+
+task3 : Actúa como un Senior UX/UI Designer especializado en aplicaciones de astrología, visualización de datos y diseño de interfaces premium.
+
+No quiero modificar el cálculo astrológico.
+
+Quiero mejorar el diseño de la rueda de la carta natal para que sea más elegante, moderna, legible y profesional.
+
+Analiza esta rueda desde el punto de vista de:
+
+jerarquía visual
+equilibrio gráfico
+legibilidad
+experiencia de usuario
+diseño editorial
+visualización de información
+accesibilidad
+estética premium
+Problemas que debes analizar
+1. Colisiones visuales
+
+Actualmente varios planetas se superponen.
+
+Ejemplos:
+
+Mercurio
+Plutón
+Júpiter
+
+están prácticamente uno encima del otro.
+
+Lo mismo ocurre con:
+
+Urano
+Neptuno
+
+Necesito un algoritmo inteligente que:
+
+detecte automáticamente las colisiones;
+redistribuya ligeramente los planetas sobre el radio;
+mantenga la posición angular exacta;
+nunca altere la longitud eclíptica real;
+preserve la precisión astrológica.
+2. Tamaño de las casas
+
+Los números gigantes (1–12) ocupan demasiado espacio.
+
+Propón una solución más elegante:
+
+números más pequeños;
+tipografía refinada;
+mejor alineación;
+mayor espacio para los planetas.
+3. Ascendente y Descendente
+
+Actualmente:
+
+ASC
+
+y
+
+DESC
+
+parecen añadidos posteriormente.
+
+Quiero una representación mucho más elegante.
+
+Propón:
+
+líneas más finas;
+etiquetas mejor integradas;
+iconografía moderna;
+colores coherentes con el resto del diseño.
+4. Planetas
+
+Actualmente los planetas utilizan imágenes realistas mezcladas con texto.
+
+Quiero una identidad visual consistente.
+
+Evalúa dos opciones:
+
+Opción A
+
+símbolos astrológicos clásicos
+monocromáticos
+estilo minimalista
+
+Opción B
+
+pequeñas ilustraciones premium
+mismo estilo artístico
+misma iluminación
+mismo tamaño
+misma perspectiva
+
+Indica cuál ofrece una mejor experiencia.
+
+5. Signos zodiacales
+
+Los iconos morados parecen demasiado grandes.
+
+Analiza:
+
+tamaño
+espaciado
+contraste
+borde
+color
+
+Propón una versión más premium.
+
+6. Colores
+
+Analiza la paleta completa.
+
+Actualmente hay:
+
+morado
+dorado
+azul claro
+blanco
+imágenes de planetas muy saturadas
+
+Quiero una identidad visual más coherente.
+
+Propón una nueva paleta.
+
+7. Tipografía
+
+Analiza:
+
+nombres de planetas
+números
+ASC
+DESC
+
+Sugiere una combinación tipográfica moderna y elegante.
+
+8. Casas
+
+Las líneas de separación son poco visibles.
+
+Propón:
+
+mejor grosor
+opacidad
+color
+profundidad
+
+sin recargar la interfaz.
+
+9. Distribución radial
+
+Analiza si existe suficiente espacio entre:
+
+rueda exterior
+signos
+planetas
+casas
+círculo interior
+
+Si no, propón nuevas proporciones.
+
+10. Diseño premium
+
+Quiero que la rueda transmita una sensación similar a una aplicación de lujo.
+
+Inspírate en principios de diseño utilizados por:
+
+Apple
+Linear
+Arc Browser
+Notion Calendar
+Flighty
+
+No copies su estilo.
+
+Solo utiliza sus principios de:
+
+simplicidad
+equilibrio
+jerarquía visual
+consistencia
+minimalismo
+Mejoras funcionales
+
+Propón además funcionalidades como:
+
+zoom suave;
+tooltips al pasar sobre un planeta;
+selección de aspectos;
+resaltado de una casa al seleccionarla;
+modo claro y modo oscuro;
+exportación en alta resolución;
+animaciones discretas al cargar la carta.
+Restricciones
+
+No modificar nunca:
+
+la posición astronómica de los planetas;
+la longitud eclíptica;
+las casas;
+el ascendente;
+los aspectos.
+
+Solo se puede modificar la representación gráfica.
+
+Resultado esperado
+
+Quiero que entregues:
+
+Una auditoría completa del diseño actual.
+Una lista priorizada de problemas (de mayor a menor impacto).
+Soluciones concretas para cada problema.
+Recomendaciones UX/UI justificadas.
+Propuestas de mejora visual con ejemplos.
+Algoritmos para evitar colisiones entre planetas.
+Una descripción de cómo debería verse una versión premium de esta rueda, comparable al nivel de calidad visual de las mejores aplicaciones de astrología actuales.

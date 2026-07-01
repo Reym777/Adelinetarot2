@@ -154,6 +154,18 @@ class Settings(BaseSettings):
         hosts = list(self.allowed_hosts)
         if "*" in hosts:
             return hosts
+
+        # Hard safety-net for production domains so requests are accepted even
+        # if ADELINE_ALLOWED_HOSTS is missing or incomplete.
+        for fixed_host in (
+            "adelinemagica.com",
+            "www.adelinemagica.com",
+            "adelinetarot2.onrender.com",
+            "*.onrender.com",
+        ):
+            if fixed_host not in hosts:
+                hosts.append(fixed_host)
+
         for var in ("RENDER_EXTERNAL_HOSTNAME", "WEBSITE_HOSTNAME"):
             external = os.environ.get(var, "").strip()
             if external and external not in hosts:

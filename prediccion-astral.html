@@ -56,11 +56,11 @@
             <button class="btn btn-primary btn-block" onclick="runShortTermPred()" style="margin-top:6px">Ver mi lectura de tarot</button>
             <div id="pred-court-result" class="pred-result" style="display:none"></div>
             <div id="pred-court-gate" class="pred-gate-box hidden">
-              <h3>Continuer la lecture complète</h3>
-              <p>Les 3 premiers paragraphes sont visibles. Pour débloquer toute la prédiction, envoie ton email.</p>
+              <h3>Continuar la lectura completa</h3>
+              <p>Los 3 primeros párrafos son visibles. Para desbloquear toda la predicción, envía tu email.</p>
               <div class="pred-gate-row">
                 <input id="pred-unlock-email" type="email" placeholder="Tu email" maxlength="254" autocomplete="email" />
-                <button type="button" class="btn btn-primary" onclick="unlockShortPrediction()">Débloquer</button>
+                <button type="button" class="btn btn-primary" onclick="unlockShortPrediction()">Desbloquear</button>
               </div>
               <p class="hint" id="pred-gate-msg"></p>
             </div>
@@ -224,9 +224,9 @@
     function unlockShortPrediction() {
       const email = (document.getElementById('pred-unlock-email').value || '').trim();
       const msg = document.getElementById('pred-gate-msg');
-      if (!isValidEmail(email)) { msg.textContent = 'Entre un email valide pour débloquer.'; return; }
+      if (!isValidEmail(email)) { msg.textContent = 'Ingresa un email válido para desbloquear.'; return; }
       sessionStorage.setItem('adelinetarot_short_unlock', '1');
-      msg.textContent = 'Merci. Contenu débloqué.';
+      msg.textContent = 'Gracias. Contenido desbloqueado.';
       const wrap = document.getElementById('pred-court-result');
       const locked = wrap.querySelector('.pred-locked-bloc');
       if (locked) locked.outerHTML = shortPredictionLockedHtml;
