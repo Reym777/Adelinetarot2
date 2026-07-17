@@ -465,8 +465,17 @@
               }
 
               var selected = list[pickNum - 1];
-              requestJson(base + "/api/articles/" + encodeURIComponent(selected.slug))
-                .then(loadDraftToEditor)
+              requestJson(base + "/api/articles/admin/export")
+                .then(function (allArticles) {
+                  var rows = Array.isArray(allArticles) ? allArticles : [];
+                  var draft = rows.find(function (a) {
+                    return a && a.slug === selected.slug;
+                  });
+                  if (!draft) {
+                    throw new Error("No se encontro el contenido del borrador.");
+                  }
+                  loadDraftToEditor(draft);
+                })
                 .catch(function (err) {
                   if (reviewResult) {
                     reviewResult.textContent = (err && err.message) ? err.message : "No se pudo abrir el borrador.";
