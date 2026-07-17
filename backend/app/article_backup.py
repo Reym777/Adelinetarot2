@@ -26,6 +26,16 @@ def _github_api_url() -> str:
     )
 
 
+def _github_api_url_for_path(path: str) -> str:
+    repo = settings.articles_backup_github_repo.strip()
+    clean_path = str(path or "").strip().lstrip("/")
+    branch = settings.articles_backup_github_branch.strip() or "main"
+    return (
+        "https://api.github.com/repos/"
+        f"{repo}/contents/{parse.quote(clean_path)}?ref={parse.quote(branch)}"
+    )
+
+
 def _github_headers() -> Dict[str, str]:
     return {
         "Accept": "application/vnd.github+json",
@@ -78,6 +88,27 @@ def _article_to_dict(row: Article) -> Dict[str, Any]:
 def _list_local_articles(db: Session) -> List[Dict[str, Any]]:
     rows = db.query(Article).order_by(Article.created_at.asc(), Article.id.asc()).all()
     return [_article_to_dict(row) for row in rows]
+
+
+def _draft_backup_path(slug: str) -> str:
+    clean_slug = str(slug or "").strip()
+    if not clean_slug:
+        clean_slug = "borrador"
+    return f"admin/borradores/{clean_slug}.json"
+
+
+def _read_remote_sha(path: str) -> Optional[str]:
+    try:
+        payload = _request_json(_github_api_url_for_path(path))
+    except error.HTTPError as exc:
+        if exc.code == 404:
+            return None
+        logger.warning("GitHub backup read sha failed (HTTP %s) for %s", exc.code, path)
+        return None
+    except Exception:
+        logger.warning("GitHub backup read sha failed for %s", path, exc_info=True)
+        return None
+    return payload.get("sha")
 
 
 def load_remote_articles() -> Tuple[List[Dict[str, Any]], Optional[str]]:
@@ -219,3 +250,61 @@ def restore_articles_from_backup(db: Session) -> Dict[str, int]:
     if changed:
         db.commit()
     return result
+
+
+def push_draft_snapshot(row: Article, reason: str = "draft") -> bool:
+    """Push one draft JSON file to GitHub under admin/borradores/<slug>.json."""
+    if not settings.articles_backup_enabled:
+        return False
+
+    path = _draft_backup_path(row.slug)
+    payload_obj = {
+        "version": 1,
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "reason": reason,
+        "draft": _article_to_dict(row),
+    }
+    payload_text = json.dumps(payload_obj, ensure_ascii=False, indent=2)
+    content_b64 = base64.b64encode(payload_text.encode("utf-8")).decode("ascii")
+
+    body: Dict[str, Any] = {
+        "message": f"chore(drafts): backup {row.slug}",
+        "content": content_b64,
+        "branch": settings.articles_backup_github_branch.strip() or "main",
+    }
+    remote_sha = _read_remote_sha(path)
+    if remote_sha:
+        body["sha"] = remote_sha
+
+    try:
+        _request_json(_github_api_url_for_path(path), method="PUT", payload=body)
+        logger.info("Draft backup pushed to GitHub (%s)", path)
+        return True
+    except Exception:
+        logger.warning("Failed to push draft backup to GitHub (%s)", path, exc_info=True)
+        return False
+
+
+def delete_draft_snapshot(slug: str, reason: str = "cleanup") -> bool:
+    """Delete one draft JSON file from GitHub when it is no longer a draft."""
+    if not settings.articles_backup_enabled:
+        return False
+
+    path = _draft_backup_path(slug)
+    remote_sha = _read_remote_sha(path)
+    if not remote_sha:
+        return False
+
+    body: Dict[str, Any] = {
+        "message": f"chore(drafts): delete {slug} ({reason})",
+        "sha": remote_sha,
+        "branch": settings.articles_backup_github_branch.strip() or "main",
+    }
+
+    try:
+        _request_json(_github_api_url_for_path(path), method="DELETE", payload=body)
+        logger.info("Draft backup deleted from GitHub (%s)", path)
+        return True
+    except Exception:
+        logger.warning("Failed to delete draft backup from GitHub (%s)", path, exc_info=True)
+        return False

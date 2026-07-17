@@ -9,7 +9,7 @@ from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from ..article_backup import push_articles_snapshot
+from ..article_backup import delete_draft_snapshot, push_articles_snapshot, push_draft_snapshot
 from ..database import get_db
 from ..mailer import send_article_copy_to_contact
 from ..models import Article
@@ -216,6 +216,7 @@ def save_draft(
     db.commit()
     db.refresh(row)
     push_articles_snapshot(db, reason=f"draft:{row.slug}")
+    push_draft_snapshot(row, reason=f"draft:{row.slug}")
     return ArticleDetail(
         slug=row.slug,
         title=row.title,
@@ -260,6 +261,7 @@ def publish_draft(
     db.commit()
     db.refresh(row)
     push_articles_snapshot(db, reason=f"publish-draft:{slug}")
+    delete_draft_snapshot(slug, reason="published")
     return ArticleDetail(
         slug=row.slug,
         title=row.title,
@@ -334,6 +336,7 @@ def delete_article(
     db.delete(row)
     db.commit()
     push_articles_snapshot(db, reason=f"delete:{slug}")
+    delete_draft_snapshot(slug, reason="deleted")
     return {"ok": True, "slug": slug}
 
 
