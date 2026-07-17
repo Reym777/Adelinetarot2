@@ -153,7 +153,7 @@ class Settings(BaseSettings):
     # ephemeral disks). When configured, published articles are mirrored to a
     # JSON file in a GitHub repository and restored on startup.
     articles_backup_github_repo: str = ""       # format: owner/repo
-    articles_backup_github_path: str = "data/articles.json"
+    articles_backup_github_path: str = "main/articulos"
     articles_backup_github_branch: str = "main"
     articles_backup_github_token: str = ""
 

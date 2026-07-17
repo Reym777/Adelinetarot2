@@ -372,7 +372,10 @@
     $("tokenInput").addEventListener("keydown", function (e) {
       if (e.key === "Enter") doLogin();
     });
-    $("refreshBtn").addEventListener("click", loadBookings);
+    var refreshBtn = $("refreshBtn");
+    if (refreshBtn) {
+      refreshBtn.addEventListener("click", loadBookings);
+    }
     $("logoutLink").addEventListener("click", function (e) { e.preventDefault(); logout(); });
     $("closeModal").addEventListener("click", closeModal);
     $("detailModal").addEventListener("click", function (e) {

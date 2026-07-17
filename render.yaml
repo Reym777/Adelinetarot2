@@ -87,7 +87,7 @@ services:
       - key: ADELINE_ARTICLES_BACKUP_GITHUB_REPO
         value: ""
       - key: ADELINE_ARTICLES_BACKUP_GITHUB_PATH
-        value: "data/articles.json"
+        value: "main/articulos"
       - key: ADELINE_ARTICLES_BACKUP_GITHUB_BRANCH
         value: "main"
       - key: ADELINE_ARTICLES_BACKUP_GITHUB_TOKEN
