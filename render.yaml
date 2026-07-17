@@ -1,0 +1,95 @@
+﻿# ============================================================================
+#  Render Blueprint â€” Adelinemagica (todo en uno: API FastAPI + sitio estatico)
+# ----------------------------------------------------------------------------
+#  Despliegue en 4 pasos:
+#   1) Sube la carpeta Adelinemagica/ a un repositorio de GitHub
+#      (este archivo render.yaml debe quedar en la RAIZ del repo).
+#   2) En https://dashboard.render.com  ->  New +  ->  Blueprint
+#      ->  conecta tu repo. Render leera este archivo y creara el servicio.
+#   3) Pulsa "Apply". Al terminar, abre https://<nombre>.onrender.com
+#      Ese mismo dominio sirve el sitio (/) y la API (/api/...): sin CORS.
+#   4) Panel privado en  /admin . El token se genera solo y queda guardado
+#      en Render (variable ADELINE_ADMIN_TOKEN, visible en Environment).
+#
+#  Notas:
+#   - El plan free "duerme" tras inactividad: la 1a visita puede tardar ~50s.
+#   - SQLite vive en disco efimero del plan free: las reservas se pierden al
+#     redeploy/reinicio. Para conservarlas usa un Render Disk o Postgres.
+#   - PayPal: pega tu client-id en ADELINE_PAYPAL_CLIENT_ID para activar los
+#     botones in-page; si lo dejas vacio se usa el enlace PayPal.Me.
+# ============================================================================
+services:
+  - type: web
+    name: adelinemagica
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: ADELINE_DEBUG
+        value: "false"
+      - key: ADELINE_CORS_ORIGINS
+        value: "https://adelinemagica.com,https://www.adelinemagica.com,https://adelinetarot2.onrender.com"
+      # Token de administracion estable (Render genera un valor seguro y lo fija).
+      - key: ADELINE_ADMIN_TOKEN
+        generateValue: true
+      # PayPal.Me para el pago manual (cambialo por tu usuario real de PayPal).
+      - key: ADELINE_PAYPAL_ME_HANDLE
+        value: adelinemagica
+      # Opcional: client-id de PayPal para los botones in-page. Vacio = solo PayPal.Me.
+      - key: ADELINE_PAYPAL_CLIENT_ID
+        value: ""
+      # Correo saliente (SMTP o Resend segun implementacion del backend)
+      - key: ADELINE_SMTP_HOST
+        value: ""
+      - key: ADELINE_SMTP_PORT
+        value: "587"
+      - key: ADELINE_SMTP_USER
+        value: ""
+      - key: ADELINE_SMTP_PASSWORD
+        value: ""
+      - key: ADELINE_SMTP_FROM
+        value: ""
+      - key: ADELINE_SMTP_USE_TLS
+        value: "true"
+      - key: ADELINE_SMTP_USE_SSL
+        value: "false"
+      - key: ADELINE_MAIL_REPLY_TO
+        value: ""
+      - key: ADELINE_NOTIFY_TO
+        value: "garaizaoregel@gmail.com"
+      - key: ADELINE_RESEND_API_KEY
+        value: ""
+      - key: ADELINE_RESEND_FROM
+        value: ""
+      - key: ADELINE_DIRECT_SCHEDULE_TIMEZONE
+        value: "America/Lima"
+      - key: ADELINE_GOOGLE_CALENDAR_ENABLED
+        value: "false"
+      - key: ADELINE_GOOGLE_CALENDAR_ID
+        value: "primary"
+      - key: ADELINE_GOOGLE_CALENDAR_CREDENTIALS_JSON
+        value: ""
+      - key: ADELINE_GOOGLE_CALENDAR_SEND_UPDATES
+        value: "all"
+      - key: ADELINE_GOOGLE_CALENDAR_DELEGATE_USER
+        value: ""
+      - key: ADELINE_GOOGLE_CALENDAR_DEFAULT_STATUS
+        value: "tentative"
+      # Backup durable des articles (/admin -> /articulos) via GitHub API.
+      # Configure owner/repo + token (classic PAT avec scope `repo` sur un repo privé,
+      # ou `contents:write` sur un fine-grained token) pour survivre aux redeploys.
+      - key: ADELINE_ARTICLES_BACKUP_GITHUB_REPO
+        value: ""
+      - key: ADELINE_ARTICLES_BACKUP_GITHUB_PATH
+        value: "data/articles.json"
+      - key: ADELINE_ARTICLES_BACKUP_GITHUB_BRANCH
+        value: "main"
+      - key: ADELINE_ARTICLES_BACKUP_GITHUB_TOKEN
+        value: ""
+

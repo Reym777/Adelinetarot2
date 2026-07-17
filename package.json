@@ -1,0 +1,15 @@
+{
+  "name": "adelinemagica-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Asset optimization pipeline for Adelinemagica",
+  "scripts": {
+    "build:assets": "node tools/build-assets.mjs",
+    "build:minify-inline": "node tools/minify-inline-scripts.mjs",
+    "build:images-responsive": "node tools/build-responsive-images.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.9",
+    "sharp": "^0.35.3"
+  }
+}

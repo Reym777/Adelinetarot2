@@ -1,0 +1,126 @@
+================================================================================
+LES PHASES DE LA LUNE ET LES NOMS DES PLEINES LUNES
+================================================================================
+
+Ce document présente le fonctionnement des phases lunaires, le cycle complet
+de la lunaison, ainsi que l'origine et les noms traditionnels des 12 (parfois 13) 
+Pleines Lunes de l'année.
+
+--------------------------------------------------------------------------------
+1. COMPRENDRE LES PHASES DE LA LUNE
+--------------------------------------------------------------------------------
+Le cycle lunaire (ou lunaison) dure environ 29,5 jours. Durant cette période, 
+la Lune passe par 8 phases distinctes en fonction de sa position par rapport 
+à la Terre et au Soleil :
+
+1. Nouvelle Lune (Lune noire) :
+   La Lune se trouve entre la Terre et le Soleil. Sa face éclairée tourne le dos 
+   à la Terre, elle est donc invisible dans le ciel nocturne.
+   
+2. Premier Croissant :
+   Une fine silhouette lumineuse apparaît en forme de "C" inversé (dans l'hémisphère 
+   nord), grossissant de jour en jour.
+   
+3. Premier Quartier :
+   La moitié droite de la Lune est illuminée (ressemble à la lettre "D" pour 
+   "Dernier" ou plutôt "Demi" au début de sa croissance).
+   
+4. Lune Gibbeuse Croissante :
+   La partie éclairée continue de grandir, représentant plus de la moitié du disque.
+   
+5. Pleine Lune :
+   La Terre est située entre le Soleil et la Lune. Toute la face visible de la 
+   Lune est illuminée, formant un disque parfait.
+   
+6. Lune Gibbeuse Décroissante :
+   La Lune commence à perdre de sa luminosité par la droite.
+   
+7. Dernier Quartier :
+   La moitié gauche de la Lune est illuminée (ressemble à la lettre "C" pour 
+   "Croissant" en fin de course).
+   
+8. Dernier Croissant :
+   Un fin croissant de lumière subsiste à gauche avant de disparaître totalement 
+   pour laisser place à une nouvelle lunaison.
+
+--------------------------------------------------------------------------------
+2. LES NOMS DES PLEINES LUNES (Traditionnels & Amérindiens)
+--------------------------------------------------------------------------------
+Les noms attribués aux Pleines Lunes proviennent principalement des traditions 
+des tribus amérindiennes d'Amérique du Nord, qui utilisaient le calendrier lunaire 
+pour suivre les saisons, les récoltes, les migrations et le comportement des animaux.
+
+Voici les 12 noms traditionnels les plus célèbres mois par mois :
+
+* JANVIER : La Pleine Lune du Loup (Wolf Moon)
+  - Origine : Les loups hurlaient de faim près des villages amérindiens au cœur de 
+    l'hiver froid et enneigé.
+  - Autre nom : Lune de Glace.
+
+* FÉVRIER : La Pleine Lune de Neige (Snow Moon)
+  - Origine : Février est historiquement le mois où les chutes de neige sont les 
+    plus abondantes dans l'hémisphère nord, rendant la chasse difficile.
+  - Autre nom : Lune de la Faim.
+
+* MARS : La Pleine Lune de Ver (Worm Moon)
+  - Origine : Avec la fin de l'hiver et le dégel des sols, les turricules de vers 
+    de terre réapparaissent, attirant les oiseaux (signe du printemps).
+  - Autre nom : Lune de Sève, Lune de Carême.
+
+* AVRIL : La Pleine Lune Rose (Pink Moon)
+  - Origine : Nommée d'après l'apparition des premières fleurs sauvages du printemps, 
+    notamment le phlox sauvage (phlox subulata), de couleur rose printanière.
+  - Autre nom : Lune de l'Herbe Germante.
+
+* MAI : La Pleine Lune des Fleurs (Flower Moon)
+  - Origine : Symbole de l'explosion florale et de l'abondance de la nature à la 
+    fin du printemps.
+  - Autre nom : Lune de la Plantation du Maïs.
+
+* JUIN : La Pleine Lune des Fraises (Strawberry Moon)
+  - Origine : Cette période de l'année coïncide avec la récolte à court terme des 
+    fraises sauvages en Amérique du Nord.
+  - Autre nom : Lune des Roses (en Europe).
+
+* JUILLET : La Pleine Lune du Cerf (Buck Moon)
+  - Origine : C'est le moment de l'année où les jeunes bois des cerfs mâles sortent 
+    de leur front et commencent à grandir activement.
+  - Autre nom : Lune du Tonnerre (en raison des nombreux orages estivaux).
+
+* AOÛT : La Pleine Lune de l'Esturgeon (Sturgeon Moon)
+  - Origine : Les grands lacs et fleuves regorgeaient d'esturgeons, des poissons 
+    géants faciles à capturer à cette période.
+  - Autre nom : Lune Rouge.
+
+* SEPTEMBRE : La Pleine Lune des Moissons (Harvest Moon)
+  - Origine : C'est la Pleine Lune la plus proche de l'équinoxe d'automne. Sa lumière 
+    intense permettait aux agriculteurs de travailler tard dans la nuit pour récolter.
+  - Autre nom : Lune du Maïs.
+
+* OCTOBRE : La Pleine Lune du Chasseur (Hunter's Moon)
+  - Origine : Avec les champs fraîchement coupés, les chasseurs voyaient plus 
+    facilement le gibier (comme les cerfs ou les renards) qui sortait pour se nourrir.
+  - Autre nom : Lune des Feuilles Tombantes.
+
+* NOVEMBRE : La Pleine Lune du Castor (Beaver Moon)
+  - Origine : Les castors finissent de préparer leurs barrages et réserves pour l'hiver. 
+    C'était aussi le moment de poser des pièges avant que l'eau ne gèle.
+  - Autre nom : Lune du Gel.
+
+* DÉCEMBRE : La Pleine Lune Froide (Cold Moon)
+  - Origine : Marque l'arrivée des températures glaciales de l'hiver et les nuits 
+    les plus longues de l'année autour du solstice d'hiver.
+  - Autre nom : Lune de la Longue Nuit.
+
+--------------------------------------------------------------------------------
+3. CAS PARTICULIER : LA LUNE BLEUE
+--------------------------------------------------------------------------------
+Une "Lune Bleue" ne désigne pas une lune de couleur bleue, mais correspond à :
+- Soit la deuxième Pleine Lune survenant au cours d'un même mois calendaire 
+  (ce qui arrive environ tous les 2,7 ans car le mois lunaire est plus court).
+- Soit la 4e Pleine Lune d'une même saison astronomique (qui n'en compte 
+  généralement que 3).
+
+================================================================================
+Fin du document.
+================================================================================

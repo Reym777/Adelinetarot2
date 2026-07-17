@@ -1,0 +1,38 @@
+/* Ajustements UI globaux demandes */
+.brand {
+  inset: 0 !important;
+}
+
+.hero {
+  padding-top: 24px !important;
+}
+
+:is(.ora-page, .med-page, .tarot-page, .natal-page, .syn-page, .pack-page, .contact-page, .confirm-page) {
+  padding-top: 28px !important;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    padding-top: 18px !important;
+  }
+
+  :is(.ora-page, .med-page, .tarot-page, .natal-page, .syn-page, .pack-page, .contact-page, .confirm-page) {
+    padding-top: 20px !important;
+  }
+}
+
+/* Empêche les couches du menu fermé de bloquer les taps sur mobile */
+.side-menu {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.side-menu.open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.menu-backdrop.hidden {
+  display: none !important;
+  pointer-events: none !important;
+}

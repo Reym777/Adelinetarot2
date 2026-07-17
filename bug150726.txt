@@ -1,0 +1,42 @@
+paquete-magica.html:687 Connecting to 'https://adelinetarot2.onrender.com/api/bookings/direct-availability?service=tarot-terapeutico&days=60' violates the following Content Security Policy directive: "connect-src 'self' https://www.paypal.com https://www.sandbox.paypal.com https://api-m.paypal.com https://api-m.sandbox.paypal.com https://pay.google.com https://api.stripe.com https://r.stripe.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://geocoding-api.open-meteo.com". The action has been blocked.
+loadAvailability @ paquete-magica.html:687
+loadAvailability @ paquete-magica.html:720
+FullCalendarSlotPicker.load @ fullcalendar-slot-picker.js:224
+bindPicker @ paquete-magica.html:730
+initPackageCalendars @ paquete-magica.html:907
+await in initPackageCalendars
+document.addEventListener.once @ paquete-magica.html:962
+paquete-magica.html:687 Fetch API cannot load https://adelinetarot2.onrender.com/api/bookings/direct-availability?service=tarot-terapeutico&days=60. Refused to connect because it violates the document's Content Security Policy.
+loadAvailability @ paquete-magica.html:687
+loadAvailability @ paquete-magica.html:720
+FullCalendarSlotPicker.load @ fullcalendar-slot-picker.js:224
+bindPicker @ paquete-magica.html:730
+initPackageCalendars @ paquete-magica.html:907
+await in initPackageCalendars
+document.addEventListener.once @ paquete-magica.html:962
+paquete-magica.html:687 Connecting to 'https://adelinetarot2.onrender.com/api/bookings/direct-availability?service=meditaciones&days=60' violates the following Content Security Policy directive: "connect-src 'self' https://www.paypal.com https://www.sandbox.paypal.com https://api-m.paypal.com https://api-m.sandbox.paypal.com https://pay.google.com https://api.stripe.com https://r.stripe.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://geocoding-api.open-meteo.com". The action has been blocked.
+loadAvailability @ paquete-magica.html:687
+loadAvailability @ paquete-magica.html:720
+FullCalendarSlotPicker.load @ fullcalendar-slot-picker.js:224
+bindPicker @ paquete-magica.html:730
+initPackageCalendars @ paquete-magica.html:927
+await in initPackageCalendars
+document.addEventListener.once @ paquete-magica.html:962
+paquete-magica.html:687 Fetch API cannot load https://adelinetarot2.onrender.com/api/bookings/direct-availability?service=meditaciones&days=60. Refused to connect because it violates the document's Content Security Policy.
+loadAvailability @ paquete-magica.html:687
+loadAvailability @ paquete-magica.html:720
+FullCalendarSlotPicker.load @ fullcalendar-slot-picker.js:224
+bindPicker @ paquete-magica.html:730
+initPackageCalendars @ paquete-magica.html:927
+await in initPackageCalendars
+document.addEventListener.once @ paquete-magica.html:962
+favicon.ico:1  GET https://adelinemagica.com/favicon.ico 404 (Not Found)
+VM758 vendor.js:132 Uncaught (in promise) Error: Uncaught Error: No Listener: tabs:outgoing.message.ready
+
+
+(index):151 Uncaught ReferenceError: toggleMenu is not defined
+    at HTMLButtonElement.onclick ((index):151:100)
+onclick @ (index):151
+VM18 vendor.js:132 Uncaught (in promise) Error: Uncaught Error: No Listener: tabs:outgoing.message.ready
+Fetch API cannot load https://adelinetarot2.onrender.com/api/bookings/direct-availability?service=meditaciones&days=45. Refused to connect because it violates the document's Content Security Policy.
+Uncaught (in promise) Error: Uncaught Error: No Listener: tabs:outgoing.message.ready

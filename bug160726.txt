@@ -1,0 +1,28 @@
+Les décalages de mise en page se produisent lorsque des éléments se déplacent sans aucune interaction de l'utilisateur. Étudiez les causes des décalages de mise en page, comme l'ajout ou la suppression d'éléments, ou le changement de polices lors du chargement de la page.CLSNon noté
+
+ORACIONES · TAROT TERAPÉUTICO · MEDITACIONES Elevo tu oración al creador y el …
+<div class="container">
+
+ORACIONES · TAROT TERAPÉUTICO · MEDITACIONES Elevo tu oración al creador y el …
+<main id="inicio">
+
+ORACIONES · TAROT TERAPÉUTICO · MEDITACIONES Elevo tu oración al creador y el …
+<section class="hero">
+
+ORACIONES · TAROT TERAPÉUTICO · MEDITACIONES Elevo tu oración al creador y el …
+<div class="container">
+
+ADELINE es un puente lleno de fe y amor para conectar tu petición a los oídos d…
+<p class="lead">
+
+Réduire le temps de téléchargement des images peut améliorer le temps de chargement perçu de la page et le LCP
+
+<img src="assets/images/bandeau10_upscaled_1280.webp" srcset="assets/images/bandeau10_upscaled_1280.webp 1280w, assets/images/bandeau10_…" sizes="(max-width: 900px) 92vw, 1287px" width="2200" height="369" class="brand-banner-img" alt="Adeline" loading="eager" fetchpriority="high" decoding="async">
+	
+Augmenter le taux de compression de l'image pourrait réduire sa taille de téléchargement.
+23,9 KiB
+Compte tenu de ses dimensions affichées (697x118), ce fichier image est plus volumineux que nécessaire (1280x216). Utilisez des images responsives pour réduire la taille de téléchargement de l'image.
+
+
+
+Réduisez la taille des ressources JavaScript inline: // =================================…

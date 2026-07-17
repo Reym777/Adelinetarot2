@@ -1,0 +1,596 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+    <meta name="description" content="Consultas de tarot terap&eacute;utico, oraciones y meditaciones guiadas por video." />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://adelinemagica.com/lectura-de-carta-natal" />
+  <link rel="alternate" hreflang="fr" href="https://adelinemagica.com/fr/lectura-de-carta-natal" />
+  <link rel="alternate" hreflang="en" href="https://adelinemagica.com/en/lectura-de-carta-natal" />
+  <link rel="alternate" hreflang="es" href="https://adelinemagica.com/lectura-de-carta-natal" />
+  <link rel="alternate" hreflang="x-default" href="https://adelinemagica.com/lectura-de-carta-natal" />
+  <title>Lectura de tarot y carta astral online | Adeline M&aacute;gica</title>
+  <meta property="og:url" content="https://adelinemagica.com/lectura-de-carta-natal" />
+<link rel="preload" as="style" href="/assets/fonts/google-fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="/assets/fonts/google-fonts.css" rel="stylesheet" /></noscript>
+  <link rel="preload" as="style" href="assets/styles.min.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <link rel="preload" as="style" href="assets/site-overrides.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="assets/styles.min.css" /></noscript>
+  <noscript><link rel="stylesheet" href="assets/site-overrides.css" /></noscript>
+  <style>
+    .natal-page { padding: 55px 0 60px; }
+    .natal-wrap { max-width: 920px; margin: 0 auto; }
+    .natal-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .natal-top a { font-family: "Cinzel", serif; letter-spacing: .08em; font-size: .82rem; }
+    .natal-form { margin-bottom: 20px; }
+    .natal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .natal-grid .full { grid-column: 1 / -1; }
+    .natal-date-field {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .natal-date-field input[type="text"] {
+      flex: 1;
+    }
+    .natal-date-open {
+      min-width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(232,198,107,.08);
+      color: var(--gold);
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .natal-date-native {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+      left: 0;
+      top: 0;
+    }
+    .natal-report { line-height: 1.8; color: var(--muted); max-width: 100%; overflow-x: hidden; }
+    .natal-report p { margin: 0 0 16px; }
+    .natal-report h3 { color: var(--gold); margin: 28px 0 12px; }
+    .natal-report h4 { color: var(--gold); margin: 12px 0 6px; font-size: 1.1rem; }
+    .natal-summary p { font-size: .9rem; line-height: 1.58; margin-bottom: 10px; }
+    .report-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 14px; }
+    .report-tab-btn { border: 1px solid var(--border); background: rgba(255,255,255,.03); color: var(--gold); border-radius: 999px; padding: 10px 14px; font-family: "Cinzel", serif; font-size: .82rem; letter-spacing: .05em; cursor: pointer; }
+    .report-tab-btn.is-active { background: var(--gold); color: #0c0a1d; border-color: var(--gold); }
+    .report-tab-panel { display: none; }
+    .report-tab-panel.is-active { display: block; }
+    .natal-report ul { margin: 0 0 12px 20px; }
+    .natal-list { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 12px; }
+    .planet-entry { padding: 14px; border: 1px solid var(--border); border-radius: 14px; background: rgba(255,255,255,.03); }
+    .planet-title { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; font-family: "Cinzel", serif; font-size: 1.28rem; color: var(--gold); }
+    .planet-title strong { font-weight: 700; }
+    .planet-icon { width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(232,198,107,.22); border: 1px solid rgba(232,198,107,.42); font-size: 1.1rem; }
+    .planet-entry p { margin: 0; }
+    .natal-literal p { margin: 0 0 18px; }
+    .natal-literal p:last-child { margin-bottom: 0; }
+    .natal-chip { display: inline-block; margin: 0 6px 8px 0; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: rgba(232,198,107,.08); color: var(--gold); font-family: "Cinzel", serif; font-size: .78rem; }
+    .planet-table-wrap { width: 100%; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 12px; }
+    .planet-table { width: 100%; min-width: 620px; border-collapse: collapse; overflow: hidden; }
+    .planet-table th, .planet-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+    .planet-table th { color: var(--gold); font-family: "Cinzel", serif; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+    .planet-table tr:last-child td { border-bottom: 0; }
+    .aspect-pyramid-wrap { margin-top: 12px; border: 1px solid var(--border); border-radius: 12px; padding: 8px; overflow-x: auto; background: rgba(255,255,255,.02); }
+    .aspect-pyramid { border-collapse: separate; border-spacing: 4px; min-width: 0; }
+    .aspect-pyramid td, .aspect-pyramid th { border: 1px solid rgba(232,198,107,.24); width: 29px; height: 26px; text-align: center; vertical-align: middle; font-size: 1.05rem; border-radius: 6px; background: rgba(18,12,42,.3); }
+    .aspect-pyramid th { color: var(--gold); font-family: "Cinzel", serif; font-size: .62rem; letter-spacing: .05em; min-width: 34px; }
+    .aspect-cell { text-shadow: 0 0 8px rgba(255,255,255,.28); font-weight: 700; }
+    .aspect-soft { color: #6fa0ff; }
+    .aspect-hard { color: #ff6f6f; }
+    .aspect-conj { color: #d8d8d8; }
+    .aspect-empty { color: rgba(255,255,255,.2); }
+    .aspect-filter-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .aspect-filter-bar label { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: .86rem; }
+    .aspect-item.is-filtered { display: none; }
+    .aspect-cell.is-filtered { opacity: .2; }
+    .jyotish-wrap { margin-top: 8px; }
+    .jyotish-note { margin: 0 0 10px; font-size: .9rem; color: var(--muted); }
+    .astro-controls { margin-top: 10px; display: flex; align-items: center; gap: 10px; }
+    .astro-controls label { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: .9rem; }
+    .astro-wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 16px; align-items: center; margin-top: 14px; }
+    .astro-wheel { position: relative; width: 100%; max-width: 700px; margin: 0 auto; aspect-ratio: 1; }
+    .astro-wheel svg { width: 100%; height: 100%; display: block; }
+    .astro-wheel-viewport { overflow: hidden; border-radius: 14px; touch-action: none; }
+    .astro-wheel .wheel-svg { transform-origin: 50% 50%; transition: transform .22s ease; }
+    .astro-wheel-tooltip {
+      position: absolute;
+      pointer-events: none;
+      min-width: 210px;
+      max-width: min(320px, 80vw);
+      padding: 10px 12px;
+      border: 1px solid rgba(232,198,107,.42);
+      border-radius: 10px;
+      background: rgba(8,6,20,.94);
+      color: #efe8d0;
+      font-size: .8rem;
+      line-height: 1.35;
+      opacity: 0;
+      transform: translate(-50%, -110%);
+      transition: opacity .15s ease;
+      z-index: 8;
+    }
+    .astro-wheel-tooltip.is-visible { opacity: 1; }
+    .wheel-planet { cursor: pointer; outline: none; transition: transform .22s ease, opacity .2s ease; }
+    .wheel-planet.is-active { transform: scale(1.2); }
+    .wheel-planet.is-dim { opacity: .25; }
+    .wheel-planet:focus-visible circle { stroke: #fff7d2; stroke-width: 2.4; }
+    .wheel-aspect-link { transition: opacity .2s ease, stroke-width .2s ease; }
+    .wheel-aspect-link.is-related { opacity: .95 !important; stroke-width: 2.4 !important; }
+    .wheel-aspect-link.is-dim { opacity: .2 !important; }
+    .wheel-angle-label { paint-order: stroke fill; stroke: rgba(8,6,20,.9); stroke-width: 2; }
+    .wheel-degree-tick { stroke: rgba(232,198,107,.45); stroke-width: clamp(.65px, .14vw, 1px); }
+    .wheel-degree-tick.major { stroke: rgba(247,226,170,.86); stroke-width: clamp(1.05px, .27vw, 1.8px); }
+    .wheel-sign-glyph { font-size: clamp(22px, 4.7vw, 36px); }
+    .wheel-house-number { font-size: clamp(17px, 3.2vw, 26px); }
+    .wheel-sign-degree { font-size: clamp(7px, 1.45vw, 10px); }
+    .wheel-angle-label { font-size: clamp(9.5px, 2vw, 13px); }
+    .wheel-planet-name { font-size: clamp(9px, 1.9vw, 13px); }
+    .wheel-planet-degree { font-size: clamp(8px, 1.7vw, 12px); }
+    .astro-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .astro-actions .btn { padding: 8px 12px; }
+    @media (prefers-contrast: more) {
+      .astro-wheel-tooltip { border-color: #ffffff; color: #ffffff; }
+      .wheel-aspect-link { opacity: .88 !important; }
+      .wheel-degree-tick { stroke: #fff2cc; }
+    }
+    .astro-legend { display: flex; flex-wrap: wrap; gap: 8px; }
+    .astro-pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,.03); color: var(--text); font-size: .86rem; }
+    .astro-pill b { color: var(--gold); font-family: "Cinzel", serif; font-size: .76rem; }
+    @media (max-width: 760px) {
+      .container { padding-left: 0 !important; padding-right: 0 !important; }
+      .natal-grid { grid-template-columns: 1fr; }
+      .astro-wrap { grid-template-columns: 1fr; }
+      .natal-page { padding-top: 45px; }
+      .natal-top { flex-direction: column; align-items: flex-start; }
+      .natal-wrap { max-width: 100%; }
+      .astro-wheel { max-width: 100%; width: 100%; }
+      .natal-form { margin-bottom: 12px; }
+      .natal-form h1 { font-size: 1.7rem; line-height: 1.05; }
+      .natal-form .muted { font-size: .96rem; line-height: 1.45; }
+      .natal-report h3 { margin: 20px 0 8px; }
+      .natal-report { font-size: .98rem; line-height: 1.72; }
+      .natal-report p { margin-bottom: 12px; }
+      .astro-wrap { margin-top: 10px; gap: 12px; }
+      .planet-table-wrap { overflow-x: hidden; margin-left: 0; margin-right: 0; }
+      .planet-table { min-width: 0; width: 100%; table-layout: fixed; }
+      .planet-table th, .planet-table td { padding: 8px 6px; font-size: .78rem; word-break: break-word; }
+      .planet-title { font-size: 1rem; }
+      .planet-icon { width: 28px; height: 28px; }
+      .planet-entry { padding: 10px; }
+      .natal-chip { font-size: .74rem; margin: 0 4px 6px 0; }
+      .natal-chip { max-width: 100%; }
+      .astro-legend { gap: 6px; }
+      .astro-pill { padding: 6px 8px; font-size: .82rem; }
+    }
+    @media (max-width: 560px) {
+      .astro-wheel-tooltip { min-width: 170px; padding: 8px 9px; font-size: .72rem; }
+      .wheel-angle-label { letter-spacing: .01em; }
+      .wheel-sign-degree { opacity: .72; }
+      .wheel-planet-name { font-size: 9px; }
+      .wheel-planet-degree { font-size: 8px; }
+    }
+    @media (max-width: 430px) {
+      .wheel-planet-name { display: none; }
+      .wheel-angle-label { font-size: 9px; }
+      .wheel-sign-glyph { font-size: 22px; }
+      .wheel-sign-degree { font-size: 7px; opacity: .65; }
+      .astro-wheel .wheel-svg { transform: translateY(1px); }
+    }
+    @media (max-width: 390px) {
+      .wheel-angle-label { font-size: 8.5px; letter-spacing: 0; }
+      .wheel-house-number { font-size: 15px; }
+      .wheel-sign-glyph { font-size: 20px; }
+      .wheel-sign-degree { font-size: 6.5px; opacity: .58; }
+      .wheel-degree-tick { stroke-width: .7px; }
+      .wheel-degree-tick.major { stroke-width: 1.2px; }
+      .astro-wheel-tooltip { max-width: min(270px, 88vw); }
+    }
+    @media (max-width: 360px) {
+      .wheel-angle-label { font-size: 8px; }
+      .wheel-house-number { font-size: 14px; }
+      .wheel-sign-glyph { font-size: 18px; }
+      .wheel-sign-degree { font-size: 6px; opacity: .5; }
+      .wheel-planet-degree { font-size: 7.5px; }
+      .wheel-degree-tick { stroke-width: .62px; }
+      .wheel-degree-tick.major { stroke-width: 1.05px; }
+    }
+    @media (max-width: 320px) {
+      .wheel-angle-label { font-size: 7.2px; }
+      .wheel-house-number { font-size: 12px; }
+      .wheel-sign-glyph { font-size: 16px; }
+      .wheel-sign-degree { font-size: 5.4px; opacity: .42; }
+      .wheel-planet-degree { font-size: 7px; }
+      .wheel-degree-tick { opacity: .7; }
+      .wheel-degree-tick.major { opacity: .92; }
+      .astro-wheel-tooltip { max-width: min(250px, 90vw); font-size: .68rem; }
+    }
+  </style>
+
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lectura de tarot y carta astral online | Adeline M&aacute;gica" />
+  <meta property="og:description" content="Consultas de tarot terap&eacute;utico, oraciones y meditaciones guiadas por video." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lectura de tarot y carta astral online | Adeline M&aacute;gica" />
+  <meta name="twitter:description" content="Consultas de tarot terap&eacute;utico, oraciones y meditaciones guiadas por video." />
+  <meta name="keywords" content="tarot terapeutico, oraciones personalizadas, meditaciones guiadas, carta astral, espiritualidad, adeline" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Carta natal personalizada",
+  "description": "Analisis astrologico completo de tu tema natal con interpretacion de planetas, signos y ascendente.",
+  "url": "https://adelinemagica.com/lectura-de-carta-natal",
+  "provider": {
+    "@type": "Organization",
+    "name": "Adeline Magica"
+  },
+  "areaServed": "Worldwide",
+  "availableLanguage": ["es"],
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD",
+    "price": "30"
+  },
+  "inLanguage": "es"
+}
+</script>
+</head>
+<body>
+  <script>typeof window.toggleMenu!="function"&&(window.toggleMenu=function(o){const e=document.getElementById("sideMenu"),n=document.getElementById("menuBackdrop");if(!e||!n)return;const t=!!o;e.classList.toggle("open",t),e.setAttribute("aria-hidden",t?"false":"true"),n.classList.toggle("hidden",!t)});
+</script>
+  <header class="site-header">
+    <div class="container nav">
+      <button type="button" class="menu-toggle" aria-label="Abrir menú" onclick="toggleMenu(true)">&#9776;</button>
+      <a class="brand" href="index#inicio">
+        <img src="assets/images/bandeau10_upscaled_1280_11zon-768w.webp" srcset="assets/images/bandeau10_upscaled_1280_11zon-480w.webp 480w, assets/images/bandeau10_upscaled_1280_11zon-768w.webp 768w, assets/images/bandeau10_upscaled_1280_11zon-1024w.webp 1024w, assets/images/bandeau10_upscaled_1280_11zon-1280w.webp 1280w" sizes="(max-width: 900px) 92vw, 1287px" width="2200" height="369" class="brand-banner-img" alt="Adeline" loading="eager" fetchpriority="high" decoding="async" />
+      </a>
+      <a href="index#paquete-adeline" class="btn btn-primary header-cta package-cta-btn">Adquiere Paquete <strong style="color:#000;font-weight:900;">MAGICA</strong></a>
+    </div>
+  </header>
+
+  <aside id="sideMenu" class="side-menu" aria-hidden="true" inert>
+    <div class="side-menu-head">
+      <span>Menú</span>
+            <div class="side-menu-lang-top" onclick="event.stopPropagation()" style="display:flex;align-items:center;gap:10px;margin-left:auto;margin-right:10px">
+        <a href="/en/" aria-label="English" style="color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.06em">EN</a>
+        <a href="/" aria-label="Español" style="color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.06em">ES</a>
+        <a href="/fr/" aria-label="Français" style="color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.06em">FR</a>
+      </div><button type="button" class="menu-close" aria-label="Cerrar menú" onclick="toggleMenu(false)">&times;</button>
+    </div>
+    <nav class="side-menu-links" onclick="toggleMenu(false)">
+      <a href="index#inicio">Inicio</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <a href="oraciones" class="hero-link-highlight">Solicita tu oración hoy mismo</a>
+      <a href="meditaciones" class="hero-link-highlight">Meditaciones vía llamada de voz</a>
+      <a href="tarot-terapeutico" class="hero-link-highlight">Tarot terapéutico</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <span class="side-menu-note">Mundo astrológico</span>
+      <a href="lectura-de-carta-natal">Lectura de carta natal</a>
+      <a href="horoscopo.html">Horoscopo diaria</a>
+      <a href="sinastria">Sinastría</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <a href="paquete-magica.html" class="hero-link-highlight side-menu-package">Paquete MÁGICA</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <a href="articles" class="hero-link-highlight">Articles</a>
+      <a href="contact" class="hero-link-highlight">Contacto</a>
+</nav>
+  </aside>
+  <div id="menuBackdrop" class="menu-backdrop hidden" onclick="toggleMenu(false)"></div>
+
+  <main class="natal-page">
+    <section>
+      <div class="container natal-wrap">
+        <div class="panel natal-form">
+          <h1 style="margin-bottom:8px">Lectura de carta natal</h1>
+          <p class="muted" style="margin-bottom:16px">Completa tus datos para generar una interpretación amplia en español con planetas, casas, signos y aspectos.</p>
+          <div class="natal-grid">
+            <div class="pred-field"><label for="natal-name">Nombre</label><input id="natal-name" type="text" maxlength="80" placeholder="Tu nombre" /></div>
+            <div class="pred-field">
+              <label for="natal-date-display">Fecha de nacimiento</label>
+              <div class="natal-date-field">
+                <input id="natal-date-display" type="text" inputmode="numeric" placeholder="AAAA/MM/JJ" maxlength="10" autocomplete="bday" />
+                <button id="natal-date-open" type="button" class="natal-date-open" aria-label="Abrir calendario">&#128197;</button>
+                <input id="natal-date" class="natal-date-native" type="date" />
+              </div>
+            </div>
+            <div class="pred-field"><label for="natal-country">País de nacimiento</label><input id="natal-country" type="text" list="natal-country-list" maxlength="80" placeholder="Ej: Francia" autocomplete="country-name" /></div>
+            <div class="pred-field"><label for="natal-city">Ciudad o provincia de nacimiento</label><input id="natal-city" type="text" maxlength="80" placeholder="Ej: París o Île-de-France" /></div>
+            <div class="pred-field"><label for="natal-time">Hora de nacimiento (Opcional)*</label><input id="natal-time" type="time" /><p class="hint" style="margin-top:6px">* entre mas precisa la hora de nacimiento , mas preciso sera tu resultado</p></div>
+          </div>
+          <datalist id="natal-country-list">
+            <option value="Afganistán"></option>
+            <option value="Alemania"></option>
+            <option value="Arabia Saudita"></option>
+            <option value="Argelia"></option>
+            <option value="Argentina"></option>
+            <option value="Australia"></option>
+            <option value="Austria"></option>
+            <option value="Bélgica"></option>
+            <option value="Bolivia"></option>
+            <option value="Brasil"></option>
+            <option value="Bulgaria"></option>
+            <option value="Canadá"></option>
+            <option value="Chile"></option>
+            <option value="China"></option>
+            <option value="Colombia"></option>
+            <option value="Corea del Sur"></option>
+            <option value="Costa Rica"></option>
+            <option value="Croacia"></option>
+            <option value="Cuba"></option>
+            <option value="Dinamarca"></option>
+            <option value="Ecuador"></option>
+            <option value="Egipto"></option>
+            <option value="El Salvador"></option>
+            <option value="Emiratos Árabes Unidos"></option>
+            <option value="España"></option>
+            <option value="Estados Unidos"></option>
+            <option value="Estonia"></option>
+            <option value="Filipinas"></option>
+            <option value="Finlandia"></option>
+            <option value="Francia"></option>
+            <option value="Grecia"></option>
+            <option value="Guatemala"></option>
+            <option value="Honduras"></option>
+            <option value="Hungría"></option>
+            <option value="India"></option>
+            <option value="Indonesia"></option>
+            <option value="Irlanda"></option>
+            <option value="Islandia"></option>
+            <option value="Israel"></option>
+            <option value="Italia"></option>
+            <option value="Japón"></option>
+            <option value="Luxemburgo"></option>
+            <option value="Marruecos"></option>
+            <option value="México"></option>
+            <option value="Nicaragua"></option>
+            <option value="Noruega"></option>
+            <option value="Nueva Zelanda"></option>
+            <option value="Países Bajos"></option>
+            <option value="Panamá"></option>
+            <option value="Paraguay"></option>
+            <option value="Perú"></option>
+            <option value="Polonia"></option>
+            <option value="Portugal"></option>
+            <option value="Reino Unido"></option>
+            <option value="República Checa"></option>
+            <option value="República Dominicana"></option>
+            <option value="Rumanía"></option>
+            <option value="Rusia"></option>
+            <option value="Suecia"></option>
+            <option value="Suiza"></option>
+            <option value="Tailandia"></option>
+            <option value="Turquéa"></option>
+            <option value="Ucrania"></option>
+            <option value="Uruguay"></option>
+            <option value="Venezuela"></option>
+            <option value="Vietnam"></option>
+          </datalist>
+
+          <div class="pred-field full" style="margin-top:16px"><button id="natal-run" type="button" class="btn btn-primary">Generar mi carta natal completa</button></div>
+          <p id="natal-msg" class="hint" style="margin-top:10px"></p>
+        </div>
+
+        <div id="natal-report" class="panel natal-report hidden"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="muted">Acompañamiento espiritual de alto valor y en tiempo real - Consultas con agenda previa</p>
+      <div class="social-share" aria-label="Compartir esta página">
+        <span class="share-label">Compartir:</span>
+        <a class="share-pill" href="https://wa.me/?text=Lectura%20de%20tarot%20y%20carta%20astral%20online%20con%20Adeline%20M%C3%A1gica%20https%3A%2F%2Fadelinemagica.com%2F%23inicio" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="share-pill" href="https://instagram.com/adelinemagica" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="social-links" aria-label="Redes sociales">
+        <a href="https://facebook.com/adelinemagica" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://youtube.com/@adelinemagica" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://tiktok.com/@adelinemagica" target="_blank" rel="noopener">TikTok</a>
+      </div>
+      <p class="legal">Las lecturas tienen fines de orientación y entretenimiento. © 2026 Adeline.</p>
+    </div>
+  </footer>
+
+  <script src="assets/i18n.min.js" defer></script>
+  <script src="assets/site.min.js" defer></script>
+  <script src="assets/natal-descriptions.min.js" defer></script>
+  <script>const SIGNS=["Aries","Tauro","Geminis","Cancer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"],SIGN_SYMBOLS=["\u2648","\u2649","\u264A","\u264B","\u264C","\u264D","\u264E","\u264F","\u2650","\u2651","\u2652","\u2653"],HOUSES=["Yo y la identidad","Recursos y dinero","Comunicacion y entorno","Hogar y raiz","Creatividad y placer","Trabajo y salud","Relaciones y pareja","Transformacion y poder","Filosofia y viajes","Vocacion y carrera","Comunidad y redes","Mundo interior y espiritualidad"],PLANETS={Sol:{sym:"\u2609",speed:.9856,base:280.46,key:"identidad, vitalidad y proposito"},Luna:{sym:"\u263D",speed:13.1764,base:218.32,key:"emociones, necesidades y refugio"},Mercurio:{sym:"\u263F",speed:4.0923,base:252.25,key:"mente, lenguaje y aprendizaje"},Venus:{sym:"\u2640",speed:1.6021,base:181.98,key:"amor, gustos y valores"},Marte:{sym:"\u2642",speed:.524,base:355.43,key:"accion, deseo y coraje"},Jupiter:{sym:"\u2643",speed:.0831,base:34.35,key:"expansion, fe y crecimiento"},Saturno:{sym:"\u2644",speed:.0334,base:50.08,key:"disciplina, limites y estructura"},Urano:{sym:"\u2645",speed:.0117,base:314.05,key:"innovacion, cambio y libertad"},Neptuno:{sym:"\u2646",speed:.006,base:304.35,key:"intuicion, idealismo y sensibilidad"},Pluton:{sym:"\u2647",speed:.004,base:238.93,key:"poder interno, crisis y renacimiento"}},PLANET_BADGES={Sol:"SOL",Luna:"LUN",Mercurio:"MER",Venus:"VEN",Marte:"MAR",Jupiter:"JUP",Saturno:"SAT",Urano:"URA",Neptuno:"NEP",Pluton:"PLU"};function setReportTab(e,t){e&&(Array.prototype.forEach.call(e.querySelectorAll(".report-tab-btn"),function(a){var o=a.dataset.tab===t;a.classList.toggle("is-active",o),a.setAttribute("aria-selected",o?"true":"false")}),Array.prototype.forEach.call(e.querySelectorAll(".report-tab-panel"),function(a){a.classList.toggle("is-active",a.dataset.tabPanel===t)}))}function bindReportTabs(e){if(e){var t=e.querySelectorAll(".report-tab-btn");t.length&&(Array.prototype.forEach.call(t,function(a){a.addEventListener("click",function(){setReportTab(e,a.dataset.tab)})}),setReportTab(e,t[0].dataset.tab||"aspects"))}}const PLANET_COLORS={Sol:"#f6cf75",Luna:"#c7d5ff",Mercurio:"#95e5cb",Venus:"#f3a7c6",Marte:"#ff8a7f",Jupiter:"#8fd5ff",Saturno:"#cfb8ff",Urano:"#9df0e6",Neptuno:"#9bb6ff",Pluton:"#ffa8dc"},PLANET_IMAGES={Sol:"assets/images/soleil_18_11zon.webp",Luna:"assets/images/lune_11_11zon.webp",Mercurio:"assets/images/mercure_14_11zon.webp",Venus:"assets/images/venus.webp",Marte:"assets/images/mars_12_11zon.webp",Jupiter:"assets/images/jupiter_9_11zon.webp",Saturno:"assets/images/saturne.webp",Urano:"assets/images/uranus.webp",Neptuno:"assets/images/neptune.webp",Pluton:"assets/images/pluton_16_11zon.webp"},SIGN_COLORS={Aries:"#ff8576",Tauro:"#7fd6b9",Geminis:"#f4ce73",Cancer:"#8ac2ff",Leo:"#ffb374",Virgo:"#90d1b9",Libra:"#e8a6d7",Escorpio:"#b18cff",Sagitario:"#ff9b6d",Capricornio:"#86bb9d",Acuario:"#8de0ff",Piscis:"#9fb6ff"},PLANET_LABELS_EN={Sol:"Sun",Luna:"Moon",Mercurio:"Mercury",Venus:"Venus",Marte:"Mars",Jupiter:"Jupiter",Saturno:"Saturn",Urano:"Uranus",Neptuno:"Neptune",Pluton:"Pluto"},SIGN_LABELS_EN={Aries:"Aries",Tauro:"Taurus",Geminis:"Gemini",Cancer:"Cancer",Leo:"Leo",Virgo:"Virgo",Libra:"Libra",Escorpio:"Scorpio",Sagitario:"Sagittarius",Capricornio:"Capricorn",Acuario:"Aquarius",Piscis:"Pisces"},PLANET_KEYS_EN={Sol:"identity, vitality and purpose",Luna:"emotions, needs and inner safety",Mercurio:"mind, language and learning",Venus:"love, values and aesthetics",Marte:"action, desire and courage",Jupiter:"expansion, trust and growth",Saturno:"discipline, limits and structure",Urano:"innovation, change and freedom",Neptuno:"intuition, sensitivity and ideals",Pluton:"inner power, crisis and transformation"},SIGN_TRAITS_EN={Aries:"initiative, momentum and bold starts",Tauro:"stability, patience and consistency",Geminis:"curiosity, communication and versatility",Cancer:"emotional depth, care and belonging",Leo:"creative confidence, visibility and leadership",Virgo:"precision, service and practical improvement",Libra:"balance, diplomacy and relational intelligence",Escorpio:"intensity, depth and emotional truth",Sagitario:"expansion, meaning and long-term vision",Capricornio:"strategy, maturity and long-term building",Acuario:"originality, systems thinking and independence",Piscis:"empathy, imagination and spiritual receptivity"};function getCurrentLang(){let e="es";try{e=String(localStorage.getItem("adelinemagica_lang")||"es").toLowerCase()}catch(t){e="es"}return e==="en"?"en":"es"}function locPlanet(e,t){return t==="en"&&PLANET_LABELS_EN[e]||e}function locSign(e,t){return t==="en"&&SIGN_LABELS_EN[e]||e}function yesNo(e,t){return t==="en"?e?"Yes":"No":e?"S":"No"}const ASCENDANT_SIGN_UNIQUE={Aries:"Tu ascendente Aries abre caminos con rapidez: llegas con decisi\xF3n, marcas ritmo y contagias coraje para empezar.",Tauro:"Tu ascendente Tauro transmite calma s\xF3lida: proyectas confianza, estabilidad y un estilo sereno de construir.",Geminis:"Tu ascendente G\xE9minis entra conectando ideas: te perciben curiosa/o, vers\xE1til y h\xE1bil para adaptarte.",Cancer:"Tu ascendente C\xE1ncer muestra sensibilidad protectora: inspiras cercan\xEDa, cuidado y escucha emocional.",Leo:"Tu ascendente Leo se nota por presencia c\xE1lida: irradias dignidad, creatividad y liderazgo natural.",Virgo:"Tu ascendente Virgo proyecta orden fino: te leen precisa/o, \xFAtil y enfocada/o en mejorar lo esencial.",Libra:"Tu ascendente Libra armoniza ambientes: llegas con diplomacia, buen gusto y vocacin de equilibrio.",Escorpio:"Tu ascendente Escorpio imprime intensidad: transmites profundidad, reserva y magnetismo aut\xE9ntico.",Sagitario:"Tu ascendente Sagitario abre horizontes: te perciben franca/o, optimista y orientada/o al crecimiento.",Capricornio:"Tu ascendente Capricornio comunica firmeza: entras con responsabilidad, estrategia y visi\xF3n de largo plazo.",Acuario:"Tu ascendente Acuario muestra originalidad: proyectas independencia, mirada futura y esp\xEDritu innovador.",Piscis:"Tu ascendente Piscis envuelve con empat\xEDa: te ven sensible, intuitiva/o y conectada/o con lo simb\xF3lico."},ASCENDANT_LOVE_UNIQUE={Aries:"En el amor, Ascendente Aries inicia r\xE1pido: la clave est\xE1 en sostener el fuego sin atropellar tiempos del v\xEDnculo.",Tauro:"En el amor, Ascendente Tauro prioriza seguridad: floreces en relaciones constantes donde el cuidado se demuestra.",Geminis:"En el amor, Ascendente G\xE9minis necesita conversaci\xF3n viva: la atracci\xF3n crece cuando hay curiosidad mutua.",Cancer:"En el amor, Ascendente C\xE1ncer busca refugio emocional: te expandes con ternura, lealtad y hogar afectivo.",Leo:"En el amor, Ascendente Leo necesita reciprocidad visible: te abres cuando hay admiraci\xF3n sincera y calidez.",Virgo:"En el amor, Ascendente Virgo ama en detalles: confianza, coherencia y presencia diaria son tu lenguaje.",Libra:"En el amor, Ascendente Libra pide equilibrio: eliges v\xEDnculos donde ambas partes cuidan la armon\xEDa.",Escorpio:"En el amor, Ascendente Escorpio exige verdad profunda: solo entregas de verdad cuando hay lealtad real.",Sagitario:"En el amor, Ascendente Sagitario necesita libertad honesta: compromiso s\xED, pero sin perder expansi\xF3n.",Capricornio:"En el amor, Ascendente Capricornio construye despacio: buscas estabilidad, proyecto y madurez emocional.",Acuario:"En el amor, Ascendente Acuario valora autenticidad: la conexi\xF3n crece cuando hay espacio y respeto mutuo.",Piscis:"En el amor, Ascendente Piscis vibra en sensibilidad: te hace bien un v\xEDnculo emp\xE1tico con l\xEDmites sanos."},HOUSE_KEYS={1:"como te muestras, tu estilo y tu impulso inicial",2:"economia personal, autoestima y administracion de recursos",3:"comunicacion diaria, estudio y hermanos",4:"familia, seguridad emocional y hogar",5:"romance, talento, arte y disfrute",6:"rutina, trabajo, salud y habitos",7:"pareja, acuerdos y cooperacion",8:"intimidad, cambios profundos y finanzas compartidas",9:"creencias, viajes y expansion de conciencia",10:"carrera, metas y reputacion",11:"amistades, proyectos colectivos y futuro",12:"inconsciente, retiro y sanacion espiritual"},HOUSE_KEYS_EN={1:"self-image, style and first impulse",2:"personal resources, self-worth and money habits",3:"daily communication, learning and close environment",4:"home, roots and emotional security",5:"romance, creativity and joy",6:"routine, work, health and habits",7:"partnerships, agreements and cooperation",8:"intimacy, deep change and shared resources",9:"beliefs, travel and perspective",10:"career, goals and public image",11:"community, friends and long-term projects",12:"inner world, retreat and spiritual healing"},ASPECTS=[{name:"Conjuncion",angle:0,orb:5,tone:"fusiona energias y concentra foco",major:!0},{name:"Sextil",angle:60,orb:5,tone:"abre oportunidades fluidas y colaborativas",major:!0},{name:"Cuadratura",angle:90,orb:5,tone:"genera tension creativa para evolucionar",major:!0},{name:"Trigono",angle:120,orb:5,tone:"facilita talentos naturales y armonia",major:!0},{name:"Oposicion",angle:180,orb:5,tone:"pide balance entre polos complementarios",major:!0},{name:"Quincuncio",angle:150,orb:2,tone:"ajuste fino entre ritmos internos",major:!1},{name:"Semisextil",angle:30,orb:2,tone:"detalle sutil de integraci\xF3n progresiva",major:!1}],ASPECT_LABELS_EN={Conjuncion:"Conjunction",Sextil:"Sextile",Cuadratura:"Square",Trigono:"Trine",Oposicion:"Opposition",Quincuncio:"Quincunx",Semisextil:"Semi-sextile"},PLANET_DIGNITIES={Sol:{own:["Leo"],exalted:"Aries"},Luna:{own:["Cancer"],exalted:"Tauro"},Mercurio:{own:["Geminis","Virgo"],exalted:"Virgo"},Venus:{own:["Tauro","Libra"],exalted:"Piscis"},Marte:{own:["Aries","Escorpio"],exalted:"Capricornio"},Jupiter:{own:["Sagitario","Piscis"],exalted:"Cancer"},Saturno:{own:["Capricornio","Acuario"],exalted:"Libra"},Urano:{own:["Acuario"],exalted:null},Neptuno:{own:["Piscis"],exalted:null},Pluton:{own:["Escorpio"],exalted:null}};function getPlanetDignity(e,t,a){const o=PLANET_DIGNITIES[e];return o?Array.isArray(o.own)&&o.own.includes(t)?a==="en"?"Domicile":"Domicilio":o.exalted&&o.exalted===t?a==="en"?"Exaltation":"Exaltacion":"Neutral":"Neutral"}function aspectLabel(e,t){return t==="en"&&ASPECT_LABELS_EN[e]||e}function splitDateParts(e){const t=String(e||"").split("-").map(a=>Number(a));return t.length!==3||t.some(a=>!Number.isFinite(a))?null:{year:t[0],month:t[1],day:t[2]}}function parseUtcOffsetToken(e){const t=String(e||"").trim().toUpperCase().replace("GMT","UTC").match(/^UTC\s*([+-])\s*(\d{1,2})(?::?(\d{2}))?$/);if(!t)return null;const a=t[1]==="+"?1:-1,o=Number(t[2]),n=Number(t[3]||0);return o>14||n>59?null:a*(o+n/60)}function offsetFromIana(e,t,a){try{const o=new Date(`${e}T${t||"12:00"}:00Z`),n=new Intl.DateTimeFormat("en-US",{timeZone:a,hour12:!1,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"}).formatToParts(o),r=Object.fromEntries(n.map(s=>[s.type,s.value]));return(Date.UTC(Number(r.year),Number(r.month)-1,Number(r.day),Number(r.hour),Number(r.minute))-o.getTime())/36e5}catch(o){return null}}function resolveTimezoneOffset(e,t,a){const o=String(a||"").trim();if(!o)return 0;const n=parseUtcOffsetToken(o);if(n!==null)return n;const r=offsetFromIana(e,t,o);return r!==null?r:0}function isDaylightSavingTime(e,t,a){const o=String(a||"").trim();if(!o||parseUtcOffsetToken(o)!==null)return!1;const n=Number(String(e||"").slice(0,4));if(!Number.isFinite(n))return!1;const r=offsetFromIana(`${n}-01-15`,"12:00",o),s=offsetFromIana(`${n}-07-15`,"12:00",o),l=offsetFromIana(e,t||"12:00",o);if(r===null||s===null||l===null||Math.abs(r-s)<.001)return!1;const i=Math.max(r,s);return Math.abs(l-i)<.001}const birthPlaceCache=new Map;function normalizeLocationToken(e){return String(e||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim()}async function resolveBirthPlace(e,t){const a=String(e||"").trim(),o=String(t||"").trim();if(!a||!o)return null;const n=`${normalizeLocationToken(a)}|${normalizeLocationToken(o)}`;if(birthPlaceCache.has(n))return birthPlaceCache.get(n);const r=`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(o)}&count=10&language=es&format=json`,s=await fetch(r);if(!s.ok)return null;const l=await s.json(),i=Array.isArray(l&&l.results)?l.results:[];if(!i.length)return null;const d=normalizeLocationToken(a),u=i.find(c=>normalizeLocationToken(c.country||"").includes(d))||i[0];if(!u||!u.timezone)return null;const m={timezone:u.timezone,lat:Number(u.latitude),lon:Number(u.longitude),city:u.name||o,country:u.country||a};return birthPlaceCache.set(n,m),m}function julianFromDate(e,t){return computeJD(e,t,0)}function computeJD(e,t,a){const o=e.split("-").map(Number);if(o.length!==3||o.some(m=>!Number.isFinite(m)))return NaN;const n=(t||"12:00").split(":"),r=Number(n[0]||12)+Number(n[1]||0)/60-(a||0);let s=o[0],l=o[1];const i=o[2]+r/24;l<=2&&(s--,l+=12);const d=Math.floor(s/100),u=2-d+Math.floor(d/4);return Math.floor(365.25*(s+4716))+Math.floor(30.6001*(l+1))+i+u-1524.5}const _toR=e=>e*Math.PI/180;function _revDeg(e){return(e%360+360)%360}function normalizeLon(e){return _revDeg(e)}function shortestSignedDelta(e,t){let a=normalizeLon(t)-normalizeLon(e);return a>180&&(a-=360),a<-180&&(a+=360),a}const _EL_EARTH={L0:100.4664825,dL:36000.7698,a:1,e0:.01671,de:-4e-5,om:102.9373},_EL_PLANETS={Mercurio:{L0:252.2507519,dL:149472.6742,a:.3871,e0:.20563,de:2e-5,om:77.4561},Venus:{L0:181.9798085,dL:58517.8153,a:.72333,e0:.00677,de:-5e-5,om:131.5637},Marte:{L0:355.433275,dL:19140.2993,a:1.52366,e0:.09341,de:9e-5,om:336.0602},Jupiter:{L0:34.3514816,dL:3034.9057,a:5.20336,e0:.04839,de:-13e-5,om:14.332},Saturno:{L0:50.0774443,dL:1221.5515,a:9.53707,e0:.05415,de:-5e-4,om:93.0572},Urano:{L0:314.0550187,dL:428.4748,a:19.1913,e0:.04717,de:-5e-5,om:173.0052},Neptuno:{L0:304.3486683,dL:218.46,a:30.069,e0:.00859,de:5e-6,om:48.1235},Pluton:{L0:238.9290293,dL:145.1786,a:39.4817,e0:.24883,de:5e-5,om:224.069}};function _helioXY(e,t){const a=_revDeg(e.L0+e.dL*t),o=e.e0+e.de*t,n=e.om,r=_revDeg(a-n),s=_toR(r),l=(2*o-.25*o*o*o)*Math.sin(s)+1.25*o*o*Math.sin(2*s)+13/12*o*o*o*Math.sin(3*s),i=_revDeg(r+l*180/Math.PI+n),d=e.a*(1-o*o)/(1+o*Math.cos(_toR(_revDeg(r+l*180/Math.PI))));return{x:d*Math.cos(_toR(i)),y:d*Math.sin(_toR(i))}}const _MOON_LON_TERMS=[[0,0,1,0,6288774],[2,0,-1,0,1274027],[2,0,0,0,658314],[0,0,2,0,213618],[0,1,0,0,-185116],[0,0,0,2,-114332],[2,0,-2,0,58793],[2,-1,-1,0,57066],[2,0,1,0,53322],[2,-1,0,0,45758],[0,1,-1,0,-40923],[1,0,0,0,-34720],[0,1,1,0,-30383],[2,0,0,-2,15327],[0,0,1,2,-12528],[0,0,1,-2,10980],[4,0,-1,0,10675],[0,0,3,0,10034],[4,0,-2,0,8548],[2,1,-1,0,-7888],[2,1,0,0,-6766],[1,0,-1,0,-5163],[1,1,0,0,4987],[2,-1,1,0,4036],[2,0,2,0,3994],[4,0,0,0,3861],[2,0,-3,0,3665],[0,1,-2,0,-2689],[2,0,-1,2,-2602],[2,-1,-2,0,2390],[1,0,1,0,-2348],[2,-2,0,0,2236],[0,1,2,0,-2120],[0,2,0,0,-2069],[2,-2,-1,0,2048],[2,0,1,-2,-1773],[2,0,0,2,-1595],[4,-1,-1,0,1215],[0,0,2,2,-1110],[3,0,-1,0,-892],[2,1,1,0,-810],[4,-1,-2,0,759],[0,2,-1,0,-713],[2,2,-1,0,-700],[2,1,-2,0,691],[2,-1,0,-2,596],[4,0,1,0,549],[0,0,4,0,537],[4,-1,0,0,520],[1,0,-2,0,-487],[2,1,0,-2,-399],[0,0,2,-2,-381],[1,1,1,0,351],[3,0,-2,0,-340],[4,0,-3,0,330],[2,-1,2,0,327],[0,2,1,0,-323],[1,1,-1,0,299],[2,0,3,0,294]];function _moonLongitude(e){const t=_revDeg(218.3164477+481267.88123421*e-.0015786*e*e+e*e*e/538841-e*e*e*e/65194e3),a=_revDeg(297.8501921+445267.1114034*e-.0018819*e*e+e*e*e/545868-e*e*e*e/113065e3),o=_revDeg(357.5291092+35999.0502909*e-1536e-7*e*e+e*e*e/2449e4),n=_revDeg(134.9633964+477198.8675055*e+.0087414*e*e+e*e*e/69699-e*e*e*e/14712e3),r=_revDeg(93.272095+483202.0175233*e-.0036539*e*e-e*e*e/3526e3+e*e*e*e/86331e4),s=1-.002516*e-74e-7*e*e,l=_revDeg(119.75+131.849*e),i=_revDeg(53.09+479264.29*e);let d=0;for(let u=0;u<_MOON_LON_TERMS.length;u++){const m=_MOON_LON_TERMS[u];let c=m[4];const y=Math.abs(m[1]);y===1?c*=s:y===2&&(c*=s*s),d+=c*Math.sin(_toR(m[0]*a+m[1]*o+m[2]*n+m[3]*r))}return d+=3958*Math.sin(_toR(l))+1962*Math.sin(_toR(t-r))+318*Math.sin(_toR(i)),_revDeg(t+d/1e6)}function _planetLongitudesAtJD(e){const t=(e-2451545)/36525,a=_revDeg(280.46646+36000.76983*t),o=_toR(_revDeg(357.52911+35999.05029*t)),n=(1.914602-.004817*t)*Math.sin(o)+(.019993-101e-6*t)*Math.sin(2*o)+289e-6*Math.sin(3*o),r=_toR(_revDeg(125.04452-1934.136261*t)),s=_revDeg(a+n-.00569-.00478*Math.sin(r)),l=_moonLongitude(t),i=_helioXY(_EL_EARTH,t),d={Sol:s,Luna:l};for(const[u,m]of Object.entries(_EL_PLANETS)){const c=_helioXY(m,t);d[u]=_revDeg(Math.atan2(c.y-i.y,c.x-i.x)*180/Math.PI)}return d}function planetPositions(e,t,a){const o=computeJD(e,t,a||0);if(isNaN(o))return{};const n=_planetLongitudesAtJD(o),r=_planetLongitudesAtJD(o+1),s={};for(const[l,i]of Object.entries(n)){const d=shortestSignedDelta(i,r[l]),u=Math.floor(i/30)%12;s[l]={lon:i,signIdx:u,sign:SIGNS[u],signSym:SIGN_SYMBOLS[u],degInSign:(i%30).toFixed(1),motionPerDay:Number(d.toFixed(3)),retrograde:d<0}}return s}function calcAscendant(e,t,a,o,n,r){const s=resolveTimezoneOffset(e,t,a),l=computeJD(e,t,s);if(isNaN(l))return{idx:0,sign:SIGNS[0],signSym:SIGN_SYMBOLS[0],offset:0,lon:r||0};const i=(l-2451545)/36525,d=_revDeg(280.46061837+360.98564736629*(l-2451545)+387933e-9*i*i),u=r!=null?r:s*15,m=_revDeg(d+u),c=23.4397-.013*i,y=_toR(m),x=_toR(c),S=_toR(n!=null?n:45),A=_revDeg(Math.atan2(Math.cos(y),-(Math.sin(x)*Math.tan(S)+Math.cos(x)*Math.sin(y)))*180/Math.PI),w=Math.floor(A/30)%12;return{idx:w,sign:SIGNS[w],signSym:SIGN_SYMBOLS[w],offset:Number(s.toFixed(2)),lon:u}}function calcAngles(e,t,a,o,n,r){const s=resolveTimezoneOffset(e,t,a),l=computeJD(e,t,s);if(isNaN(l))return null;const i=(l-2451545)/36525,d=_revDeg(280.46061837+360.98564736629*(l-2451545)+387933e-9*i*i),u=r!=null?r:s*15,m=_revDeg(d+u),c=23.4397-.013*i,y=_toR(m),x=_toR(c),S=_toR(n!=null?n:45),A=_revDeg(Math.atan2(Math.sin(y),Math.cos(x)*Math.cos(y))*180/Math.PI),w=_revDeg(Math.atan2(Math.cos(y),-(Math.sin(x)*Math.tan(S)+Math.cos(x)*Math.sin(y)))*180/Math.PI);function f(E){const F=Math.floor(E/30)%12;return{lon:E,signIdx:F,sign:SIGNS[F],signSym:SIGN_SYMBOLS[F],degInSign:(E%30).toFixed(1)}}return{ASC:f(w),DSC:f(_revDeg(w+180)),MC:f(A),IC:f(_revDeg(A+180))}}function assignHouses(e,t){const a={};for(const[o,n]of Object.entries(e)){const r=(n.signIdx-t+12)%12+1;a[o]=r}return a}function nearestAspect(e){for(const t of ASPECTS){const a=Math.min(Math.abs(e-t.angle),Math.abs(360-e-t.angle));if(a<=t.orb)return{...t,orbValue:a.toFixed(1)}}return null}function computeAspects(e){const t=Object.entries(e),a=[];for(let o=0;o<t.length;o++)for(let n=o+1;n<t.length;n++){const[r,s]=t[o],[l,i]=t[n];let d=Math.abs(s.lon-i.lon);d>180&&(d=360-d);const u=nearestAspect(d);u&&a.push({p1:r,p2:l,...u})}return a.sort((o,n)=>Number(o.orbValue)-Number(n.orbValue))}const AgentX=(()=>{function e(l){return String(l||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim()}function t(l){const i=e(l).split(" ").filter(Boolean);if(i.length<4)return i.length?[i.join(" ")]:[];const d=[];for(let u=0;u<=i.length-4;u++)d.push(i.slice(u,u+4).join(" "));return d}function a(){return{lines:new Set,parts:new Set}}function o(l,i){const d=e(l);let u=i.lines.has(d)?10:0;for(const m of t(l))i.parts.has(m)&&(u+=1);return u}function n(l,i){const d=e(l);d&&i.lines.add(d);for(const u of t(l))i.parts.add(u)}function r(l){const i=a(),d=[],u=[],m=new Set;for(const c of l){const y=e(c);y&&i.lines.has(y)&&d.push(c);const x=t(c);for(const S of x)m.has(S)&&u.push(S),m.add(S);n(c,i)}return{exactDuplicates:d,repeatedParts:Array.from(new Set(u))}}function s(l,i){let d=String(l[0]||""),u=Number.POSITIVE_INFINITY;for(const m of l){const c=String(m||"").trim();if(!c)continue;const y=o(c,i);if(y<u&&(d=c,u=y,y===0))break}return n(d,i),d}return{createTracker:a,pick:s,registerText:n,auditTexts:r}})(),LITERAL_NATAL_SOURCE="/Zodiaco%20132%20description.txt",LITERAL_HOUSES_SOURCE="/Zodiaco%20planeta%20en%20casas.txt";let literalNatalDescriptions=null,literalNatalDescriptionsPromise=null,literalHouseDescriptions=null,literalHouseDescriptionsPromise=null;function normalizeAstroLabel(e){return String(e||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z]/g,"")}function canonicalPlanetName(e){const t=normalizeAstroLabel(e);return{sol:"Sol",luna:"Luna",mercurio:"Mercurio",venus:"Venus",marte:"Marte",jupiter:"Jupiter",saturno:"Saturno",urano:"Urano",neptuno:"Neptuno",pluton:"Pluton"}[t]||null}function canonicalSignName(e){const t=normalizeAstroLabel(e);return{aries:"Aries",tauro:"Tauro",geminis:"Geminis",cancer:"Cancer",leo:"Leo",virgo:"Virgo",libra:"Libra",escorpio:"Escorpio",sagitario:"Sagitario",capricornio:"Capricornio",acuario:"Acuario",piscis:"Piscis"}[t]||null}function literalKey(e,t){return`${e}|${t}`}function literalHouseKey(e,t){return`${e}|${t}`}function finalizeLiteralNatalDescriptions(e){const t=parseLiteralNatalDescriptions(e);literalNatalDescriptions=t;const a=AgentX.auditTexts(Object.values(t));return window.__agentXNatalAudit=a,(a.exactDuplicates.length||a.repeatedParts.length)&&console.warn("AgentX detecto coincidencias en las descripciones natales cargadas.",a),t}function parseLiteralNatalDescriptions(e){const t=String(e||"").replace(/\uFEFF/g,"").split(/\r?\n/),a={};let o=null,n=[];function r(){if(!o||!n.length)return;const s=n.join(`
+`).trim();s&&(a[o]=s),n=[]}for(const s of t){const l=s.trim();if(!l){n.length&&n.push("");continue}if(/^[A-Z\s]+$/.test(l)&&/SIGNOS/.test(l)){r(),o=null;continue}const i=canonicalSignName(l);if(i){r(),o=literalKey("Sol",i);continue}const d=l.match(/^(.+?)\s+en\s+(.+)$/i);if(d){const u=canonicalPlanetName(d[1]),m=canonicalSignName(d[2]);if(u&&m){r(),o=literalKey(u,m);continue}}o&&n.push(l)}return r(),a}async function ensureLiteralNatalDescriptions(){if(literalNatalDescriptions)return literalNatalDescriptions;if(!literalNatalDescriptionsPromise){const e=typeof window!="undefined"?window.__LITERAL_NATAL_RAW:null;e?literalNatalDescriptionsPromise=Promise.resolve(finalizeLiteralNatalDescriptions(e)):literalNatalDescriptionsPromise=fetch(LITERAL_NATAL_SOURCE).then(t=>{if(!t.ok)throw new Error(`No se pudo cargar ${LITERAL_NATAL_SOURCE}`);return t.arrayBuffer()}).then(t=>{const a=new TextDecoder("windows-1252").decode(t);return finalizeLiteralNatalDescriptions(a)}).catch(t=>(console.warn("No se pudo cargar el archivo literal de descripciones natales.",t),literalNatalDescriptions=null,literalNatalDescriptions))}return literalNatalDescriptionsPromise}function finalizeLiteralHouseDescriptions(e){const t=parseLiteralHouseDescriptions(e);return literalHouseDescriptions=t,t}function parseLiteralHouseDescriptions(e){const t=String(e||"").replace(/\uFEFF/g,"").split(/\r?\n/),a={};let o=null,n=[];function r(){if(!o||!n.length)return;const s=n.join(`
+`).trim();s&&(a[o]=s),n=[]}for(const s of t){const l=s.trim();if(!l){n.length&&n.push("");continue}const i=l.match(/^(.+?)\s+en\s+Casa\s+(\d{1,2})$/i);if(i){const d=canonicalPlanetName(i[1]),u=Number(i[2]);if(d&&u>=1&&u<=12){r(),o=literalHouseKey(d,u);continue}}o&&n.push(l)}return r(),a}async function ensureLiteralHouseDescriptions(){return literalHouseDescriptions||(literalHouseDescriptionsPromise||(literalHouseDescriptionsPromise=fetch(LITERAL_HOUSES_SOURCE).then(e=>{if(!e.ok)throw new Error(`No se pudo cargar ${LITERAL_HOUSES_SOURCE}`);return e.arrayBuffer()}).then(e=>{const t=new TextDecoder("windows-1252").decode(e);return finalizeLiteralHouseDescriptions(t)}).catch(e=>(console.warn("No se pudo cargar el archivo literal de descripciones por casas.",e),literalHouseDescriptions=null,literalHouseDescriptions))),literalHouseDescriptionsPromise)}function splitIntoThreeParagraphs(e){const t=(String(e||"").match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[]).map(n=>n.trim()).filter(Boolean);if(t.length<=3)return t;const a=Math.ceil(t.length/3),o=[];for(let n=0;n<t.length;n+=a)o.push(t.slice(n,n+a).join(" ").trim());for(;o.length>3;){const n=o.pop();o[o.length-1]=`${o[o.length-1]} ${n}`.trim()}return o.filter(Boolean)}function renderLiteralNatalDescription(e,t,a){let o=String(e||"").split(/\n\s*\n/).map(n=>n.trim()).filter(Boolean);if(a!=="Sol"&&o.length===1&&(o=splitIntoThreeParagraphs(o[0])),t)for(const n of o)AgentX.registerText(n,t);return`<div class="natal-literal">${o.map(n=>`<p>${n}</p>`).join("")}</div>`}function textPlanetSign(e,t,a,o){if(o==="en"){const l=locPlanet(e,"en"),i=locSign(t.sign,"en"),d=PLANET_KEYS_EN[e]||"core expression",u=SIGN_TRAITS_EN[t.sign]||"a distinct life tone";return`<div class="natal-literal"><p><strong>${l} in ${i}</strong> emphasizes ${d}. In this chart, this placement tends to express through ${u}, shaping how your energy becomes visible in daily life.</p><p>At a practical level, this position works best when you align your choices with your natural rhythm instead of forcing a style that is not yours. Your consistency here strengthens confidence and clarity.</p><p>As this placement matures, it becomes a reliable inner resource: less reactivity, more intention, and better decisions that match who you are becoming.</p></div>`}const n=t.sign,r=literalNatalDescriptions?literalNatalDescriptions[literalKey(e,n)]:null,s=a||AgentX.createTracker();return r?renderLiteralNatalDescription(r,s,e):`<div class="natal-literal"><p>No se encontr\xF3 la descripci\xF3n literal de ${e} en ${n} en el archivo fuente.</p></div>`}function textAscendant(e,t,a,o){if(o==="en"){const d=locSign(e.sign,"en"),u=locSign(t,"en"),m=locSign(a,"en"),c=SIGN_TRAITS_EN[e.sign]||"a unique social style";return`<p>Your <strong>Ascendant in ${d}</strong> defines your first impact: ${c}. It shapes how you enter rooms, start processes and set the tone in new situations.</p><p>Combined with <strong>Sun in ${u}</strong> and <strong>Moon in ${m}</strong>, this creates a clear personal signature between identity, emotional needs and social expression.</p><p>In relationships and long-term goals, your Ascendant becomes most powerful when your outer style and inner truth move in the same direction.</p>`}const n=ASCENDANT_SIGN_UNIQUE[e.sign]||`Tu ascendente ${e.sign} marca una forma particular de iniciar procesos y presentarte al mundo.`,r=ASCENDANT_LOVE_UNIQUE[e.sign]||`En el amor, tu ascendente ${e.sign} pide coherencia entre lo que sientes y lo que expresas.`,s=Math.max(0,SIGNS.indexOf(e.sign))%3,l=[`<p>${n}</p>`,`<p>Tu <strong>Ascendente en ${e.sign}</strong> se reconoce con facilidad: ${n.charAt(0).toLowerCase()+n.slice(1)}</p>`,`<p>En la forma en que te presentas al mundo, el <strong>Ascendente en ${e.sign}</strong> deja una huella muy clara: ${n.charAt(0).toLowerCase()+n.slice(1)}</p>`][s],i=[`<p>Al combinarse con <strong>Sol en ${t}</strong> y <strong>Luna en ${a}</strong>, tu <strong>Ascendente en ${e.sign}</strong> define una firma personal irrepetible entre imagen, identidad y emoci\xF3n; esa integraci\xF3n mejora tu toma de decisiones y vuelve tu presencia m\xE1s coherente.</p>`,`<p>La mezcla entre <strong>Ascendente en ${e.sign}</strong>, <strong>Sol en ${t}</strong> y <strong>Luna en ${a}</strong> crea una presencia muy singular: lo que proyectas, lo que eres y lo que sientes empiezan a trabajar en la misma direcci\xF3n.</p>`,`<p>Cuando tu <strong>Ascendente en ${e.sign}</strong> dialoga con <strong>Sol en ${t}</strong> y <strong>Luna en ${a}</strong>, aparece una forma de estar en el mundo m\xE1s coherente, m\xE1s legible y m\xE1s alineada con tu verdad emocional.</p>`][(s+1)%3];return`
+        ${l}
+        ${i}
+        <p>${r}</p>
+      `}function textPlanetHouse(e,t,a){return a==="en"?`${locPlanet(e,"en")} in house ${t} activates a key life area connected to ${HOUSE_KEYS_EN[t]}. This is where your growth becomes concrete through daily choices and practical integration.`:`${e} en casa ${t} despierta ${HOUSE_KEYS[t]} y muestra un territorio de vida donde tu energ\xEDa busca expresarse con m\xE1s verdad. Cuando atiendes este sector con conciencia, la experiencia deja de sentirse dispersa y empieza a revelar una direcci\xF3n interior m\xE1s clara.`}function textAspect(e,t){if(t==="en"){const r=locPlanet(e.p1,"en"),s=locPlanet(e.p2,"en");return`<div class="natal-literal"><p>${`${r} and ${s} form a ${e.name.toLowerCase()} (${e.orbValue}), linking ${PLANET_KEYS_EN[e.p1]||"core drives"} with ${PLANET_KEYS_EN[e.p2]||"inner patterns"}.`}</p><p>In real life, this aspect can feel fluid, demanding, or highly creative depending on your current context. The key is to work with it consciously rather than react automatically.</p><p>When integrated, this dynamic becomes a growth lever: better emotional regulation, clearer priorities, and more aligned decision-making.</p></div>`}const a=`${e.p1} y ${e.p2} forman ${e.name.toLowerCase()} (${e.orbValue}), creando un di\xE1logo vivo entre ${PLANETS[e.p1].key} y ${PLANETS[e.p2].key}. Este contacto muestra c\xF3mo dos partes importantes de tu carta se reconocen, se activan y empiezan a influirse mutuamente.`,o="En la experiencia diaria, este aspecto puede sentirse como facilidad, aprendizaje o tensi\xF3n creativa seg\xFAn el momento que est\xE1s viviendo. Lo importante es que se\xF1ala una din\xE1mica interna real que pide conciencia, escucha y una mejor integraci\xF3n de tus matices.",n=`Cuando comprendes este v\xEDnculo entre ${e.p1} y ${e.p2}, te resulta m\xE1s f\xE1cil transformar una reacci\xF3n autom\xE1tica en una fuerza \xFAtil para tu evoluci\xF3n personal. Aqu\xED hay una clave concreta de madurez, claridad interior y alineaci\xF3n contigo misma/o.`;return`<div class="natal-literal"><p>${a}</p><p>${o}</p><p>${n}</p></div>`}function ageFromDate(e){const t=new Date(e),a=new Date;let o=a.getFullYear()-t.getFullYear();return(a.getMonth()<t.getMonth()||a.getMonth()===t.getMonth()&&a.getDate()<t.getDate())&&o--,o}function renderPlanetTable(e,t){const a=t==="en"?"Planet":"Planeta",o=t==="en"?"Sign":"Signo",n=t==="en"?"Degree":"Grado",r=t==="en"?"Key":"Clave",s=Object.keys(PLANETS).map(l=>{const i=e[l],d=locPlanet(l,t),u=locSign(i.sign,t),m=t==="en"&&PLANET_KEYS_EN[l]||PLANETS[l].key;return`<tr><td>${PLANETS[l].sym} ${d}</td><td>${u}</td><td>${i.degInSign}</td><td>${m}</td></tr>`}).join("");return`<div class="planet-table-wrap"><table class="planet-table"><thead><tr><th>${a}</th><th>${o}</th><th>${n}</th><th>${r}</th></tr></thead><tbody>${s}</tbody></table></div>`}function aspectSymbol(e){return e==="Conjuncion"?{sym:"\u260C",cls:"aspect-conj"}:e==="Sextil"?{sym:"\u2736",cls:"aspect-soft"}:e==="Trigono"?{sym:"\u25B3",cls:"aspect-soft"}:e==="Cuadratura"?{sym:"\u25A1",cls:"aspect-hard"}:e==="Oposicion"?{sym:"\u260D",cls:"aspect-hard"}:e==="Quincuncio"?{sym:"\u26BB",cls:"aspect-hard"}:e==="Semisextil"?{sym:"\u26AC",cls:"aspect-soft"}:{sym:"\xB7",cls:"aspect-empty"}}function renderAspectPyramid(e,t){const a=["Sol","Luna","Mercurio","Venus","Marte","Jupiter","Saturno","Urano","Neptuno","Pluton"],o=new Map(a.map((r,s)=>[r,s])),n=Array.from({length:a.length},()=>Array.from({length:a.length},()=>null));return e.forEach(r=>{const s=o.get(r.p1),l=o.get(r.p2);s==null||l==null||(n[s][l]=r,n[l][s]=r)}),`<div class="aspect-pyramid-wrap"><table class="aspect-pyramid"><tbody>${a.map((r,s)=>{if(s===0)return`<tr><th title="${locPlanet(r,t)}">${PLANET_BADGES[r]||r.slice(0,3).toUpperCase()}</th></tr>`;const l=a.slice(0,s).map((i,d)=>{const u=n[s][d];if(!u)return'<td class="aspect-empty">&middot;</td>';const m=aspectSymbol(u.name),c=`${locPlanet(r,t)} ${aspectLabel(u.name,t).toLowerCase()} ${locPlanet(i,t)} (${u.orbValue})`;return`<td class="aspect-cell ${m.cls}" data-aspect-kind="${u.name}" title="${c}">${m.sym}</td>`}).join("");return`<tr><th title="${locPlanet(r,t)}">${PLANET_BADGES[r]||r.slice(0,3).toUpperCase()}</th>${l}</tr>`}).join("")}</tbody></table>${t==="en"?'<p class="hint" style="margin:8px 0 0;">Blue: Sextile/Trine  Red: Square/Opposition  White: Conjunction</p>':'<p class="hint" style="margin:8px 0 0;">Azul: Sextil/Tr\xEDgono  Rojo: Cuadratura/Oposici\xF3n  Blanco: Conjunci\xF3n</p>'}</div>`}function renderAstroWheel(e,t,a,o,n,r){const s=Math.max(window.innerWidth||0,document.documentElement&&document.documentElement.clientWidth||0),l=s>0&&s<=320,i=s>320&&s<=360,d=s>360&&s<=390,u=s>0&&s<=430,m=s>430&&s<=560,c=l?[38,52,62]:i?[40,56,67]:d?[43,60,72]:u?[46,64,76]:m?[50,72,90]:[54,78,98],y=l?30:i?32:d?33:u?34:m?38:42,x=l?497:i?498:d?499:u?500:m?502:503,S=l?220:i?224:d?227:230,A=l?462:i?465:d?467:470,w=l||i?10:5;function f(p,g){const h=Math.PI/180*(p-90);return{x:500+Math.cos(h)*g,y:500+Math.sin(h)*g}}function E(p,g,h){const b=(p-90)*Math.PI/180,$=(p+30-90)*Math.PI/180,k=(500+Math.cos(b)*h).toFixed(1),D=(500+Math.sin(b)*h).toFixed(1),M=(500+Math.cos($)*h).toFixed(1),W=(500+Math.sin($)*h).toFixed(1),z=(500+Math.cos($)*g).toFixed(1),_=(500+Math.sin($)*g).toFixed(1),C=(500+Math.cos(b)*g).toFixed(1),G=(500+Math.sin(b)*g).toFixed(1);return`M${k},${D} A${h},${h} 0 0,1 ${M},${W} L${z},${_} A${g},${g} 0 0,0 ${C},${G} Z`}const F=t.idx*30,P=["rgba(255,80,50,.10)","rgba(100,185,70,.10)","rgba(50,170,255,.10)","rgba(70,100,235,.10)"],v=[0,1,2,3,0,1,2,3,0,1,2,3],N=`<path d="${E(0,455,488).replace("M","M").replace(/A488/g,"A488").replace(/A455/g,"A455")}" fill="rgba(18,12,42,.35)" stroke="none"/>`,U=`<circle cx="500" cy="500" r="488" fill="none" stroke="none"/><path d="${Array.from({length:12},(p,g)=>E(g*30,455,488)).join(" ")}" fill="rgba(18,12,42,.30)" stroke="none"/>`,T=SIGNS.map((p,g)=>`<path d="${E(g*30,455,488)}" fill="${P[v[g]]}" stroke="none"/>`).join(""),H=Array.from({length:12},(p,g)=>{const h=f(g*30,455),b=f(g*30,488);return`<line x1="${h.x.toFixed(1)}" y1="${h.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="rgba(232,198,107,.5)" stroke-width="1.2"/>`}).join(""),L=Array.from({length:12},(p,g)=>{const h=F+g*30,b=g%3===0,$=f(h,207),k=f(h,452);return`<line x1="${$.x.toFixed(1)}" y1="${$.y.toFixed(1)}" x2="${k.x.toFixed(1)}" y2="${k.y.toFixed(1)}" stroke="${b?"rgba(200,185,255,.45)":"rgba(170,155,230,.22)"}" stroke-width="${b?1.6:.8}" stroke-dasharray="${b?"":" "}"/>`}).join(""),le=Array.from({length:12},(p,g)=>{const h=f(F+g*30+15,S);return`<text class="wheel-house-number" x="${h.x.toFixed(1)}" y="${h.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(220,210,165,.75)" font-size="26" font-family="Cinzel,serif" font-weight="500">${g+1}</text>`}).join(""),ce=SIGNS.map((p,g)=>{const h=f(g*30+15,A);return`<text class="wheel-sign-glyph" x="${h.x.toFixed(1)}" y="${h.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="${SIGN_COLORS[p]}" font-size="36" font-family="serif" opacity=".92">${SIGN_SYMBOLS[g]}</text>`}).join(""),de=Object.keys(PLANETS).map(p=>({planet:p,...e[p]})).sort((p,g)=>p.lon-g.lon),J=[380,336,294],ue=20,O=[];for(const p of de){let g=J.length-1;for(let h=0;h<J.length;h++)if(!O.filter(b=>b.layer===h).some(b=>{let $=Math.abs(p.lon-b.lon);return $>180&&($=360-$),$<ue})){g=h;break}p.layer=g,p.radius=J[g],O.push(p)}const B=[];function pe(p){for(let g=0;g<B.length;g++){const h=B[g];if(!(p.x2<h.x1||p.x1>h.x2||p.y2<h.y1||p.y1>h.y2))return!0}return!1}function ge(p,g){const h=[0,10,-10,18,-18,28,-28],b=[p.radius+c[0],p.radius+c[1],p.radius+c[2]],$=locPlanet(p.planet,o),k=Math.max(52,$.length*7.2+16),D=16;for(let z=0;z<b.length;z++)for(let _=0;_<h.length;_++){const C=f(p.lon+h[_],b[z]),G={x1:C.x-k/2,y1:C.y-D/2,x2:C.x+k/2,y2:C.y+D/2};if(!pe(G))return B.push(G),{x:C.x,y:C.y,text:$,ox:g.x,oy:g.y}}const M=f(p.lon,p.radius+104),W={x1:M.x-k/2,y1:M.y-D/2,x2:M.x+k/2,y2:M.y+D/2};return B.push(W),{x:M.x,y:M.y,text:$,ox:g.x,oy:g.y}}const me=O.map(p=>{const g=f(p.lon,p.radius),h=f(p.lon,p.radius-25),b=PLANET_COLORS[p.planet]||"#e8c66b",$=ge(p,g);return`<g class="wheel-planet" data-planet="${p.planet}" tabindex="0" role="button" aria-label="${locPlanet(p.planet,o)} ${o==="en"?"in":"en"} ${locSign(p.sign,o)} ${p.degInSign}\xB0"><line x1="${$.ox.toFixed(1)}" y1="${$.oy.toFixed(1)}" x2="${$.x.toFixed(1)}" y2="${$.y.toFixed(1)}" stroke="rgba(230,225,205,.35)" stroke-width="1"/><circle cx="${g.x.toFixed(1)}" cy="${g.y.toFixed(1)}" r="${y/2+5}" fill="rgba(12,10,29,.7)" stroke="${b}" stroke-width="1.2" opacity=".78"/><image href="${PLANET_IMAGES[p.planet]||"assets/images/soleil_18_11zon.webp"}" x="${(g.x-y/2).toFixed(1)}" y="${(g.y-y/2).toFixed(1)}" width="${y}" height="${y}" preserveAspectRatio="xMidYMid meet"/><text class="wheel-planet-name" x="${$.x.toFixed(1)}" y="${$.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="${b}" font-size="13" font-family="Cinzel,serif" stroke="rgba(12,10,29,.94)" stroke-width="3" paint-order="stroke fill">${$.text}</text><text class="wheel-planet-degree" x="${h.x.toFixed(1)}" y="${h.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(200,195,180,.76)" font-size="12" font-family="Cinzel,serif" stroke="rgba(12,10,29,.88)" stroke-width="2" paint-order="stroke fill">${p.degInSign}\xB0</text></g>`}).join(`
+`),Y={};O.forEach(p=>{Y[p.planet]=f(p.lon,p.radius)});const he={Trigono:"#6f9bff",Sextil:"#6f9bff",Cuadratura:"#ff6e6e",Oposicion:"#ff6e6e"},ye=(n||[]).map(p=>{const g=he[p.name];if(!g)return"";const h=Y[p.p1],b=Y[p.p2];return!h||!b?"":`<line class="wheel-aspect-link" data-aspect-kind="${p.name}" data-p1="${p.p1}" data-p2="${p.p2}" x1="${h.x.toFixed(1)}" y1="${h.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="${g}" stroke-width="1.35" opacity=".7"/>`}).join(""),fe=Array.from({length:Math.round(360/w)},(p,g)=>{const h=g*w,b=h%30===0,$=f(h,b?488:l?491:490),k=f(h,b?498:l?494:495);return`<line class="wheel-degree-tick ${b?"major":""}" x1="${$.x.toFixed(1)}" y1="${$.y.toFixed(1)}" x2="${k.x.toFixed(1)}" y2="${k.y.toFixed(1)}"/>`}).join(""),V=function(p){const g=(normalizeLon(p)%30).toFixed(1),h=Math.floor(normalizeLon(p)/30)%12;return`${g}\xB0 ${SIGN_SYMBOLS[h]}`},j=a&&a.ASC?a.ASC.lon:t.lon,R=a&&a.DSC?a.DSC.lon:_revDeg(j+180),I=a&&a.MC?a.MC.lon:_revDeg(j+90),q=a&&a.IC?a.IC.lon:_revDeg(I+180),K=f(j,488),X=f(j,207),Z=f(R,488),Q=f(R,207),ee=f(I,488),te=f(I,207),ne=f(q,488),ae=f(q,207),oe=f(j,x),ie=f(R,x),re=f(I,x),se=f(q,x);return`<div class="astro-wheel" data-chart-root><div class="astro-wheel-tooltip" id="astroWheelTooltip" role="status" aria-live="polite"></div><div class="astro-wheel-viewport"><svg viewBox="0 0 1000 1000" aria-hidden="true" class="wheel-svg">
+  <defs>
+    <radialGradient id="cGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(142,124,242,.32)"/>
+      <stop offset="55%" stop-color="rgba(16,11,42,.78)"/>
+      <stop offset="100%" stop-color="rgba(12,10,29,.96)"/>
+    </radialGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0d9a0"/>
+      <stop offset="48%" stop-color="#c4a8ef"/>
+      <stop offset="100%" stop-color="#7b6fe0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer ring stroke -->
+  <circle cx="500" cy="500" r="490" fill="rgba(255,255,255,.01)" stroke="url(#ringGrad)" stroke-width="9"/>
+  ${fe}
+
+  <!-- SIGN BAND background (r=455..488) -->
+  <circle cx="500" cy="500" r="488" fill="none" stroke="none"/>
+  <circle cx="500" cy="500" r="455" fill="none" stroke="none"/>
+  <!-- Dark fill for sign band -->
+  <circle cx="500" cy="500" r="488" fill="rgba(16,11,38,.4)" stroke="none"/>
+  <circle cx="500" cy="500" r="455" fill="rgba(12,8,30,1)" stroke="none"/>
+  <!-- Element tints on sign band -->
+  ${T}
+  <!-- Sign dividers (sign band only) -->
+  ${H}
+  <!-- Sign band inner boundary  clear separator -->
+  <circle cx="500" cy="500" r="455" fill="none" stroke="rgba(232,198,107,.55)" stroke-width="2.5"/>
+  <circle cx="500" cy="500" r="488" fill="none" stroke="rgba(232,198,107,.2)" stroke-width="1"/>
+
+  <!-- HOUSE AREA: planet orbit zone background -->
+  <circle cx="500" cy="500" r="407" fill="rgba(142,124,242,.04)" stroke="none"/>
+  <circle cx="500" cy="500" r="380" fill="none" stroke="rgba(120,215,255,.38)" stroke-width="1.2" stroke-dasharray="6 8"/>
+
+  <!-- Inner circle with glow -->
+  <circle cx="500" cy="500" r="207" fill="url(#cGlow)" stroke="rgba(162,148,230,.32)" stroke-width="1.5"/>
+  <!-- Center dot -->
+  <circle cx="500" cy="500" r="7" fill="rgba(232,198,107,.7)"/>
+  <circle cx="500" cy="500" r="3" fill="rgba(255,255,255,.6)"/>
+
+  <!-- House cusp lines (inner zone only, stop at sign band boundary) -->
+  ${L}
+  <!-- House numbers -->
+  ${le}
+  <!-- Zodiac sign symbols -->
+  ${ce}
+
+  <!-- Major angles axis -->
+  <line x1="${K.x.toFixed(1)}" y1="${K.y.toFixed(1)}" x2="${X.x.toFixed(1)}" y2="${X.y.toFixed(1)}" stroke="rgba(247,217,138,.72)" stroke-width="2"/>
+  <line x1="${Z.x.toFixed(1)}" y1="${Z.y.toFixed(1)}" x2="${Q.x.toFixed(1)}" y2="${Q.y.toFixed(1)}" stroke="rgba(157,230,255,.62)" stroke-width="2"/>
+  <line x1="${ee.x.toFixed(1)}" y1="${ee.y.toFixed(1)}" x2="${te.x.toFixed(1)}" y2="${te.y.toFixed(1)}" stroke="rgba(255,178,134,.7)" stroke-width="2"/>
+  <line x1="${ne.x.toFixed(1)}" y1="${ne.y.toFixed(1)}" x2="${ae.x.toFixed(1)}" y2="${ae.y.toFixed(1)}" stroke="rgba(170,255,191,.62)" stroke-width="2"/>
+  <text class="wheel-angle-label" x="${oe.x.toFixed(1)}" y="${oe.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(247,217,138,.96)" font-size="13" font-family="Cinzel,serif" letter-spacing=".05em">ASC ${V(j)}</text>
+  <text class="wheel-angle-label" x="${ie.x.toFixed(1)}" y="${ie.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(157,230,255,.94)" font-size="13" font-family="Cinzel,serif" letter-spacing=".05em">DSC ${V(R)}</text>
+  <text class="wheel-angle-label" x="${re.x.toFixed(1)}" y="${re.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(255,178,134,.94)" font-size="13" font-family="Cinzel,serif" letter-spacing=".05em">MC ${V(I)}</text>
+  <text class="wheel-angle-label" x="${se.x.toFixed(1)}" y="${se.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(170,255,191,.94)" font-size="13" font-family="Cinzel,serif" letter-spacing=".05em">IC ${V(q)}</text>
+
+  <!-- Aspect links -->
+  <g class="wheel-aspect-links" style="display:${r?"block":"none"}">${ye}</g>
+
+  <!-- Planets -->
+  <g class="wheel-planets">${me}</g>
+</svg></div></div>`}function bindWheelAspectToggle(e){if(!e)return;const t=e.querySelector("[data-wheel-aspects-toggle]"),a=e.querySelector(".wheel-aspect-links");!t||!a||t.addEventListener("change",function(){a.style.display=this.checked?"block":"none"})}function bindAspectFilters(e){if(!e)return;const t=e.querySelectorAll("[data-aspect-filter]");if(!t.length)return;const a=function(){const o=new Set(Array.prototype.map.call(t,function(n){return n.checked?n.getAttribute("data-aspect-filter"):null}).filter(Boolean));Array.prototype.forEach.call(e.querySelectorAll(".wheel-aspect-link[data-aspect-kind]"),function(n){const r=n.getAttribute("data-aspect-kind");n.style.display=o.has(r)?"block":"none"}),Array.prototype.forEach.call(e.querySelectorAll(".aspect-item[data-aspect-kind]"),function(n){const r=n.getAttribute("data-aspect-kind");n.classList.toggle("is-filtered",!o.has(r))}),Array.prototype.forEach.call(e.querySelectorAll(".aspect-cell[data-aspect-kind]"),function(n){const r=n.getAttribute("data-aspect-kind");n.classList.toggle("is-filtered",!o.has(r))})};Array.prototype.forEach.call(t,function(o){o.addEventListener("change",function(){const n=o.getAttribute("data-aspect-filter");Array.prototype.forEach.call(t,function(r){r!==o&&r.getAttribute("data-aspect-filter")===n&&(r.checked=o.checked)}),a()})}),a()}function bindWheelInteractions(e,t){if(!e)return;const a=e.querySelector("[data-chart-root]"),o=a?a.querySelector("#astroWheelTooltip"):null,n=a?a.querySelector(".wheel-svg"):null;if(!a||!n||!o||!t)return;const r=a.querySelectorAll(".wheel-planet[data-planet]"),s=a.querySelectorAll(".wheel-aspect-link[data-p1][data-p2]"),l=function(c,y){if(r.forEach(v=>{const N=v.getAttribute("data-planet")===c;v.classList.toggle("is-active",N),v.classList.toggle("is-dim",!!c&&!N)}),s.forEach(v=>{const N=v.getAttribute("data-p1"),U=v.getAttribute("data-p2"),T=!c||N===c||U===c;v.classList.toggle("is-related",!!c&&T),v.classList.toggle("is-dim",!!c&&!T)}),!c||!y||!t.planets[c]){o.classList.remove("is-visible");return}const x=t.planets[c],S=t.aspects.filter(v=>v.p1===c||v.p2===c).slice(0,4).map(v=>`${locPlanet(v.p1===c?v.p2:v.p1,t.lang)} ${aspectLabel(v.name,t.lang).toLowerCase()} (${v.orbValue}\xB0)`).join("<br>"),A=getPlanetDignity(c,x.sign,t.lang),w=x.retrograde?t.lang==="en"?"Retrograde":"Retrogrado":t.lang==="en"?"Direct":"Directo";o.innerHTML=`<strong>${PLANETS[c].sym} ${locPlanet(c,t.lang)}</strong><br>${locSign(x.sign,t.lang)} ${x.degInSign}\xB0  Casa ${t.houses[c]}<br>${t.lang==="en"?"Dignity":"Dignidad"}: ${A}<br>${t.lang==="en"?"Motion":"Movimiento"}: ${w} (${x.motionPerDay}\xB0/d)<br>${S||""}`;const f=a.getBoundingClientRect(),E=y.getBoundingClientRect(),F=E.left-f.left+E.width/2,P=E.top-f.top-8;o.style.left=`${F}px`,o.style.top=`${P}px`,o.classList.add("is-visible")};r.forEach(c=>{const y=c.getAttribute("data-planet");c.addEventListener("mouseenter",()=>l(y,c)),c.addEventListener("focus",()=>l(y,c)),c.addEventListener("mouseleave",()=>l(null,null)),c.addEventListener("blur",()=>l(null,null))});const i={scale:1,x:0,y:0,pointers:new Map,startDist:0,startScale:1},d=function(){n.style.transform=`translate(${i.x}px, ${i.y}px) scale(${i.scale})`},u=function(c,y){const x=c.x-y.x,S=c.y-y.y;return Math.hypot(x,S)};n.addEventListener("pointerdown",c=>{if(n.setPointerCapture(c.pointerId),i.pointers.set(c.pointerId,{x:c.clientX,y:c.clientY}),i.pointers.size===2){const y=Array.from(i.pointers.values());i.startDist=u(y[0],y[1]),i.startScale=i.scale}}),n.addEventListener("pointermove",c=>{if(!i.pointers.has(c.pointerId))return;const y=i.pointers.get(c.pointerId);if(i.pointers.set(c.pointerId,{x:c.clientX,y:c.clientY}),i.pointers.size===1&&i.scale>1)i.x+=c.clientX-y.x,i.y+=c.clientY-y.y,d();else if(i.pointers.size===2){const x=Array.from(i.pointers.values()),S=i.startDist>0?u(x[0],x[1])/i.startDist:1;i.scale=Math.max(1,Math.min(3,i.startScale*S)),d()}});const m=function(c){i.pointers.delete(c),i.pointers.size===0&&i.scale<=1.02&&(i.scale=1,i.x=0,i.y=0,d())};n.addEventListener("pointerup",c=>m(c.pointerId)),n.addEventListener("pointercancel",c=>m(c.pointerId)),a.querySelectorAll("[data-wheel-export]").forEach(c=>{c.addEventListener("click",()=>exportWheel(a,t,c.getAttribute("data-wheel-export")))})}function exportWheel(e,t,a){const o=e.querySelector("svg");if(!o)return;const n=new XMLSerializer().serializeToString(o),r=new Blob([n],{type:"image/svg+xml;charset=utf-8"}),s=URL.createObjectURL(r),l=`carta-natal-${(t.name||"adeline").toLowerCase().replace(/[^a-z0-9]+/g,"-")}`;if(a==="svg"){const d=document.createElement("a");d.href=s,d.download=`${l}.svg`,d.click(),URL.revokeObjectURL(s);return}const i=new Image;i.onload=function(){const d=document.createElement("canvas");d.width=4096,d.height=4096;const u=d.getContext("2d");u.fillStyle="#070513",u.fillRect(0,0,d.width,d.height),u.drawImage(i,0,0,d.width,d.height);const m=d.toDataURL("image/png");if(a==="png"){const c=document.createElement("a");c.href=m,c.download=`${l}-4k.png`,c.click()}else{const c=window.open("","_blank");c&&(c.document.write(`<html><body style="margin:0"><img src="${m}" style="width:100%;height:auto"/></body></html>`),c.document.close(),c.focus(),c.print())}URL.revokeObjectURL(s)},i.src=s}function planetTitleImage(e){return`<img src="${PLANET_IMAGES[e]||"assets/images/soleil_18_11zon.webp"}" alt="${e}" style="width:66px;height:66px;object-fit:contain;flex:0 0 auto;" />`}function renderPlanetEntries(e,t,a,o){return`<ul class="natal-list">${t.map(n=>{const r=e[n],s=o==="en"?"in":"en";return`<li class="planet-entry"><h4 class="planet-title">${planetTitleImage(n)}<span><strong>${PLANETS[n].sym} ${locPlanet(n,o)} ${s} ${locSign(r.sign,o)}</strong> (${r.degInSign})</span></h4>${textPlanetSign(n,r,a,o)}</li>`}).join("")}</ul>`}const JYOTISH_D10_DATA={title:"Profession - D10",houses:[{house:1,sign:10,planets:["Ma","Mo"]},{house:2,sign:11,planets:["Ju"]},{house:3,sign:12,planets:["Pl","Ne"]},{house:4,sign:1,planets:[]},{house:5,sign:2,planets:["Ve","Ra"]},{house:6,sign:3,planets:["Ur"]},{house:7,sign:4,planets:["Sa"]},{house:8,sign:5,planets:[]},{house:9,sign:6,planets:["Su"]},{house:10,sign:7,planets:["Me"]},{house:11,sign:8,planets:["Ke"]},{house:12,sign:9,planets:[]}]};function ensureJyotishNorthChartComponent(){if(typeof customElements=="undefined"||customElements.get("jyotish-north-chart"))return;class e extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}),this._data=null}set chartData(a){this._data=a,this.render()}get chartData(){return this._data}connectedCallback(){if(!this._data)try{const a=this.getAttribute("chart-data");this._data=a?JSON.parse(a):null}catch(a){this._data=null}this.render()}render(){const a=this._data||{title:"Profession - D10",houses:[]},o=new Map((a.houses||[]).map(i=>[Number(i.house),i])),n={x:50,y:50},r={1:{x:50,y:16},2:{x:26,y:18},3:{x:14,y:33},4:{x:22,y:50},5:{x:14,y:67},6:{x:26,y:82},7:{x:50,y:84},8:{x:74,y:82},9:{x:86,y:67},10:{x:78,y:50},11:{x:86,y:33},12:{x:74,y:18}},s={Ma:"#2f66d5",Mo:"#27a66d",Ju:"#7f4fd8",Pl:"#6e56cf",Ne:"#5ca0d8",Ve:"#a41f46",Ra:"#2d8f57",Ur:"#148ea3",Sa:"#585f6c",Su:"#d18b00",Me:"#2f8c3e",Ke:"#b05f1f"},l=Array.from({length:12},function(i,d){const u=d+1,m=o.get(u)||{house:u,sign:"",planets:[]},c=r[u]||{x:50,y:50},y=c.x+(n.x-c.x)*.35,x=c.y+(n.y-c.y)*.35,S=(Array.isArray(m.planets)?m.planets:[]).map(function(A,w){const f=w*4.3,E=s[A]||"#2a405f";return`<text x="${c.x.toFixed(2)}" y="${(c.y+2+f).toFixed(2)}" text-anchor="middle" class="planet" fill="${E}">${A}</text>`}).join("");return`<g class="house-node"><text x="${y.toFixed(2)}" y="${(x-1.2).toFixed(2)}" text-anchor="middle" class="sign">${m.sign}</text>${S}</g>`}).join("");this.shadowRoot.innerHTML=`
+            <style>
+              :host { display: block; width: 100%; max-width: 560px; margin: 0 auto; }
+              .jy-card { border: 1px solid rgba(232,198,107,.28); border-radius: 14px; background: rgba(12,10,29,.18); padding: 10px; }
+              .jy-title { margin: 0 0 8px; text-align: center; color: var(--gold, #e8c66b); font-family: "Cinzel", serif; font-size: .96rem; letter-spacing: .04em; }
+              svg { width: 100%; height: auto; display: block; }
+              .grid-line { stroke: rgba(235,225,191,.86); stroke-width: .55; vector-effect: non-scaling-stroke; }
+              .outer { stroke-dasharray: 2.5 1.5; }
+              .sign { font: 600 2.1px/1 "Segoe UI", Arial, sans-serif; fill: #d06d4e; }
+              .planet { font: 700 2.7px/1 "Segoe UI", Arial, sans-serif; paint-order: stroke fill; stroke: rgba(246,246,246,.9); stroke-width: .35; }
+            </style>
+            <div class="jy-card">
+              <h4 class="jy-title">${a.title||"Profession - D10"}</h4>
+              <svg viewBox="0 0 100 100" role="img" aria-label="${a.title||"Profession - D10"}">
+                <rect x="2" y="2" width="96" height="96" fill="transparent" class="grid-line outer"></rect>
+                <line x1="2" y1="2" x2="98" y2="98" class="grid-line"></line>
+                <line x1="98" y1="2" x2="2" y2="98" class="grid-line"></line>
+                <polygon points="50,2 98,50 50,98 2,50" fill="none" class="grid-line"></polygon>
+                ${l}
+              </svg>
+            </div>
+          `}}customElements.define("jyotish-north-chart",e)}function renderJyotishTab(e){return`
+        <div class="jyotish-wrap">
+          <p class="jyotish-note">${e==="en"?"Divisional chart in North Indian style (D10) for profession and karma in career.":"Carta divisional en estilo del norte de India (D10) para profesi\xF3n y karma en la carrera."}</p>
+          <jyotish-north-chart data-jyotish="d10"></jyotish-north-chart>
+        </div>
+      `}function bindJyotishCharts(e){if(!e)return;ensureJyotishNorthChartComponent();const t=e.querySelector('jyotish-north-chart[data-jyotish="d10"]');t&&(t.chartData=JYOTISH_D10_DATA)}function renderLiteralHouseDescription(e){return`<div class="natal-literal">${String(e||"").split(/\n\s*\n|\n/).map(t=>t.trim()).filter(Boolean).map(t=>`<p>${t}</p>`).join("")}</div>`}function renderHouseEntries(e,t){return`<ul class="natal-list">${["Sol","Luna","Mercurio","Venus","Marte","Jupiter","Saturno","Urano","Neptuno","Pluton"].map(a=>{const o=e[a],n=t==="es"&&literalHouseDescriptions?literalHouseDescriptions[literalHouseKey(a,o)]:null,r=n?renderLiteralHouseDescription(n):`<div class="natal-literal"><p>${textPlanetHouse(a,o,t)}</p></div>`;return`<li class="planet-entry"><h4 class="planet-title">${planetTitleImage(a)}<span><strong>${PLANETS[a].sym} ${locPlanet(a,t)} ${t==="en"?"in house":"en casa"} ${o}</strong></span></h4>${r}</li>`}).join("")}</ul>`}function renderReport(e,t,a,o,n){const r=resolveTimezoneOffset(a,o,t.timezone),s=planetPositions(a,o,r),l=calcAscendant(a,o,t.timezone,0,t.lat,t.lon),i=calcAngles(a,o,t.timezone,0,t.lat,t.lon),d=assignHouses(s,l.idx),u=computeAspects(s),m=n==="en"?'<p class="hint" style="margin-top:6px;font-size:.8rem;opacity:.7;">System: <strong>Placidus</strong>  Orb: <strong>5</strong>  Timezone calculated automatically from country/city and date.</p>':'<p class="hint" style="margin-top:6px;font-size:.8rem;opacity:.7;">Sistema: <strong>Placidus</strong>  Orbe: <strong>5</strong>  Zona horaria calculada autom\xE1ticamente desde pa\xEDs/ciudad y fecha.</p>',c=AgentX.createTracker(),y=renderPlanetEntries(s,["Sol","Luna","Mercurio","Venus","Marte"],c,n),x=renderPlanetEntries(s,["Jupiter","Saturno","Urano","Neptuno","Pluton"],c,n),S=renderHouseEntries(d,n),A=Object.keys(PLANETS).map(L=>`<li><strong>${PLANETS[L].sym} ${locPlanet(L,n)}</strong>: ${textPlanetHouse(L,d[L],n)}</li>`).join(""),w=u.length?`<ul class="natal-list">${u.slice(0,16).map(L=>`<li class="planet-entry aspect-item" data-aspect-kind="${L.name}"><h4 class="planet-title"><span><strong>${locPlanet(L.p1,n)} ${aspectLabel(L.name,n).toLowerCase()} ${locPlanet(L.p2,n)}</strong> (${L.orbValue})</span></h4>${textAspect(L,n)}</li>`).join("")}</ul>`:n==="en"?"<p>No major tight aspects were detected with the configured orb.</p>":"<p>No se detectaron aspectos mayores cerrados con el orbe configurado.</p>",f=n==="en"?`<div class="natal-summary"><p>Your chart shows a vivid balance between how you show up in the world and how you feel internally: the Ascendant in <strong>${locSign(l.sign,n)}</strong> shapes your way of initiating processes, while Sun in <strong>${locSign(s.Sol.sign,n)}</strong> and Moon in <strong>${locSign(s.Luna.sign,n)}</strong> reveal the bond between identity and emotional life.</p><p>This reading is designed to help you make more aligned decisions, with a warm, clear and practical perspective for your current stage.</p></div>`:`<div class="natal-summary"><p>Tu carta dibuja una combinaci\xF3n muy viva entre c\xF3mo te muestras al mundo y c\xF3mo sientes por dentro: el ascendente en <strong>${l.sign}</strong> marca tu manera de iniciar procesos, mientras Sol en <strong>${s.Sol.sign}</strong> y Luna en <strong>${s.Luna.sign}</strong> revelan la uni\xF3n entre tu identidad y tu mundo emocional.</p><p>La lectura est\xE1 enfocada en ayudarte a tomar decisiones m\xE1s alineadas contigo, con una mirada c\xE1lida, clara y pr\xE1ctica para tu momento actual.</p></div>`,E=textAscendant(l,s.Sol.sign,s.Luna.sign,n),F=renderAstroWheel(s,l,i,n,u,!0),P=renderPlanetTable(s,n),v=renderAspectPyramid(u,n),N=`
+        ${f}
+        <h3>${n==="en"?"Ascendant":"Ascendente"}</h3>
+        <div class="planet-entry">${E}</div>
+        ${y}
+        ${x}
+        <div style="margin:18px 0 10px;">
+          <details>
+            <summary class="btn btn-ghost" style="display:inline-flex;cursor:pointer;">${n==="en"?"Buy your full birth chart PDF for 30 USD":"Compra tu carta natal completa en PDF por 30 d\xF3lares"}</summary>
+            <div style="margin-top:12px;">
+              <h3>${n==="en"?"House-by-house interpretation":"Interpretaci\xF3n por casas"}</h3>
+              <ul>${A}</ul>
+              <h3>${n==="en"?"Planetary aspects":"Aspectos entre planetas"}</h3>
+              <div class="aspect-filter-bar" data-aspect-filter-wrap>
+                <label><input type="checkbox" data-aspect-filter="Trigono" checked /> ${n==="en"?"Trines":"Tr\xEDgonos"}</label>
+                <label><input type="checkbox" data-aspect-filter="Cuadratura" checked /> ${n==="en"?"Squares":"Cuadraturas"}</label>
+                <label><input type="checkbox" data-aspect-filter="Oposicion" checked /> ${n==="en"?"Oppositions":"Oposiciones"}</label>
+                <label><input type="checkbox" data-aspect-filter="Sextil" checked /> Sextiles</label>
+              </div>
+              ${w}
+            </div>
+          </details>
+        </div>
+      `,U=`
+        <h3 style="margin-top:0">${n==="en"?"Visual birth chart summary":"Resumen visual de la carta astral"}</h3>
+        <div class="astro-controls">
+          <label><input type="checkbox" data-wheel-aspects-toggle checked /> ${n==="en"?"Show red/blue links inside the wheel":"Mostrar enlaces rojos/azules dentro de la rueda"}</label>
+        </div>
+        <div class="astro-actions">
+          <button type="button" class="btn btn-ghost" data-wheel-export="svg">${n==="en"?"Export SVG":"Exportar SVG"}</button>
+          <button type="button" class="btn btn-ghost" data-wheel-export="png">${n==="en"?"Export PNG 4K":"Exportar PNG 4K"}</button>
+          <button type="button" class="btn btn-ghost" data-wheel-export="pdf">${n==="en"?"Export PDF":"Exportar PDF"}</button>
+        </div>
+        <div class="aspect-filter-bar" data-aspect-filter-wrap>
+          <label><input type="checkbox" data-aspect-filter="Trigono" checked /> ${n==="en"?"Trines":"Tr\xEDgonos"}</label>
+          <label><input type="checkbox" data-aspect-filter="Cuadratura" checked /> ${n==="en"?"Squares":"Cuadraturas"}</label>
+          <label><input type="checkbox" data-aspect-filter="Oposicion" checked /> ${n==="en"?"Oppositions":"Oposiciones"}</label>
+          <label><input type="checkbox" data-aspect-filter="Sextil" checked /> Sextiles</label>
+        </div>
+        <div class="astro-wrap">
+          ${F}
+          <div>
+            <p>${n==="en"?"This visual map shows the general distribution of your planets and Ascendant. The table below summarizes sign, degree and key meaning for each planet.":"Este esquema visual muestra la distribuci\xF3n general de tus planetas y el ascendente. La tabla de abajo resume signo, grado y clave principal de cada planeta."}</p>
+            <div class="astro-legend">
+              <span class="astro-pill"><b>SOL</b>${n==="en"?"Sun: identity":"Sol: identidad"}</span>
+              <span class="astro-pill"><b>LUNA</b>${n==="en"?"Moon: emotions":"Luna: emociones"}</span>
+              <span class="astro-pill"><b>ASC</b>${n==="en"?"Ascendant: style":"Ascendente: estilo"}</span>
+            </div>
+          </div>
+        </div>
+        <h3 style="margin-top:16px">${n==="en"?"Aspect pyramid":"Pir\xE1mide de aspectos"}</h3>
+        ${v}
+        ${P}
+      `;window.__lastWheelContext={name:e,lang:n,planets:s,houses:d,aspects:u};const T=renderJyotishTab(n),H=`
+        <h3 style="margin-top:0">${n==="en"?"Planets in houses":"planetas en casas"}</h3>
+        <p>${n==="en"?"This section explains how each planet expresses itself through the house where it is placed in your chart.":"Esta secci\xF3n describe c\xF3mo se expresa cada planeta seg\xFAn la casa en la que cae dentro de tu carta natal."}</p>
+        ${S}
+      `;return`
+        <h2 style="margin-bottom:10px">${n==="en"?"Birth chart report":"Informe de carta natal"}: ${e}</h2>
+        ${m}
+        <div class="report-tabs">
+          <button type="button" class="report-tab-btn is-active" data-tab="aspects" aria-selected="true">${n==="en"?"planets in signs":"planetas en signos"}</button>
+          <button type="button" class="report-tab-btn" data-tab="houses" aria-selected="false">${n==="en"?"planets in houses":"planetas en casas"}</button>
+          <button type="button" class="report-tab-btn" data-tab="chart" aria-selected="false">${n==="en"?"Chart":"Carta astral"}</button>
+          <button type="button" class="report-tab-btn" data-tab="jyotish" aria-selected="false">${n==="en"?"Jyotish D-charts":"cartas divisionales jyotish"}</button>
+        </div>
+        <div class="report-tab-panel is-active" data-tab-panel="aspects">${N}</div>
+        <div class="report-tab-panel" data-tab-panel="houses">${H}</div>
+        <div class="report-tab-panel" data-tab-panel="chart">${U}</div>
+        <div class="report-tab-panel" data-tab-panel="jyotish">${T}</div>
+      `}function isoToDisplayDate(e){var t=String(e||"").split("-");return t.length!==3?"":t[0]+"/"+t[1]+"/"+t[2]}function displayToIsoDate(e){var t=String(e||"").trim(),a=t.match(/^(\d{4})\/(\d{2})\/(\d{2})$/);if(!a)return"";var o=a[1],n=a[2],r=a[3],s=o+"-"+n+"-"+r,l=new Date(s+"T00:00:00");return Number.isNaN(l.getTime())||l.getFullYear()!==Number(o)||l.getMonth()+1!==Number(n)||l.getDate()!==Number(r)?"":s}(function(){var e=document.getElementById("natal-date-display"),t=document.getElementById("natal-date"),a=document.getElementById("natal-date-open");if(!(!e||!t||!a)){var o=function(){e.value=isoToDisplayDate(t.value)},n=function(){var r=displayToIsoDate(e.value);t.value=r};e.addEventListener("input",function(){var r=String(e.value||"").replace(/\D/g,"").slice(0,8),s="";r.length>0&&(s=r.slice(0,4)),r.length>4&&(s+="/"+r.slice(4,6)),r.length>6&&(s+="/"+r.slice(6,8)),e.value=s,n()}),e.addEventListener("blur",function(){n(),t.value&&o()}),t.addEventListener("change",o),t.addEventListener("input",o),a.addEventListener("click",function(){n(),typeof t.showPicker=="function"?t.showPicker():(t.focus(),t.click())}),o()}})(),document.getElementById("natal-run").addEventListener("click",async()=>{const e=getCurrentLang(),t=document.getElementById("natal-name").value.trim(),a=document.getElementById("natal-country").value.trim(),o=document.getElementById("natal-city").value.trim(),n=document.getElementById("natal-date"),r=document.getElementById("natal-date-display");n&&r&&!n.value&&(n.value=displayToIsoDate(r.value));const s=n?n.value:"",l=document.getElementById("natal-time").value,i=document.getElementById("natal-msg"),d=document.getElementById("natal-report");if(!t||!a||!o||!s){i.textContent=e==="en"?"Please complete name, country, city, and birth date.":"Completa nombre, pa\xEDs, ciudad y fecha de nacimiento.",d.classList.add("hidden");return}i.textContent=e==="en"?"Calculating timezone from country and city...":"Calculando zona horaria seg\xFAn pa\xEDs y ciudad...";try{let u="";const m=await resolveBirthPlace(a,o)||{timezone:"UTC",lat:0,lon:0,city:o,country:a,fallback:!0};if(m.fallback&&(u=e==="en"?"Could not determine birth timezone. The report was generated with UTC as fallback.":"No se pudo determinar la zona horaria exacta. El informe fue generado con UTC como respaldo."),e==="es"){const c=await ensureLiteralNatalDescriptions(),y=await ensureLiteralHouseDescriptions();if(c)i.textContent=u;else{const x="No se pudo cargar el archivo literal de descripciones natales. Se mostrar\xE1 la lectura completa con texto de respaldo.";i.textContent=u?`${u} ${x}`:x}if(!y){const x="No se pudo cargar el archivo literal de descripciones por casas. La pesta\xF1a de casas usar\xE1 texto de respaldo.";i.textContent=i.textContent?`${i.textContent} ${x}`:x}}else i.textContent=u;d.classList.add("hidden"),d.innerHTML=renderReport(t,m,s,l,e),bindReportTabs(d),bindWheelAspectToggle(d),bindAspectFilters(d),bindWheelInteractions(d,window.__lastWheelContext||null),bindJyotishCharts(d),d.classList.remove("hidden"),d.scrollIntoView({behavior:"smooth",block:"start"})}catch(u){console.error("No se pudo generar la carta natal completa.",u),i.textContent=e==="en"?"An error occurred while generating the chart. Please try again.":"Ocurri\xF3 un error al generar la carta natal. Int\xE9ntalo de nuevo.",d.classList.add("hidden")}});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

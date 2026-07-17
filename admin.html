@@ -1,0 +1,507 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://adelinemagica.com/admin" />
+  <link rel="alternate" hreflang="fr" href="https://adelinemagica.com/fr/" />
+  <link rel="alternate" hreflang="en" href="https://adelinemagica.com/en/" />
+  <link rel="alternate" hreflang="es" href="https://adelinemagica.com/admin" />
+  <link rel="alternate" hreflang="x-default" href="https://adelinemagica.com/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+<meta name="theme-color" content="#0c0a1d" />
+  <!-- URL del backend (FastAPI). Dejalo vacio si el backend sirve esta pagina.
+       En GitHub Pages u otro hosting estatico, pon aqui la URL publica del
+       backend, p. ej. content="https://tu-backend.onrender.com" -->
+  <meta name="adeline-api-base" content="" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23e8c66b'/%3E%3Ccircle cx='11' cy='13' r='10' fill='%230c0a1d'/%3E%3C/svg%3E" />
+  <title>Lectura de tarot y carta astral online | Adeline M&aacute;gica</title>
+<link rel="preload" as="style" href="/assets/fonts/google-fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="/assets/fonts/google-fonts.css" rel="stylesheet" /></noscript>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet" />
+  <link rel="preload" as="style" href="assets/styles.min.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="assets/styles.min.css" /></noscript>
+  <style>
+    .admin-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+    .admin-tab.active { border-color: rgba(232, 198, 107, .6); box-shadow: inset 0 0 0 1px rgba(232, 198, 107, .35); }
+    .admin-pane.hidden { display: none; }
+    .editor-toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(20, 16, 45, .72);
+    }
+    .editor-toolbar .btn { min-width: 42px; padding: 9px 12px; }
+    .toolbar-sep { width: 1px; align-self: stretch; background: rgba(232,198,107,.22); margin: 0 2px; }
+    .color-palette { display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+    .color-swatch {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      padding: 0;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+    }
+    .editor-select {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(30, 25, 62, .7);
+      color: var(--text);
+      padding: 8px 10px;
+      font: inherit;
+    }
+    .article-editor {
+      min-height: 320px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(13, 10, 34, .75);
+      padding: 14px;
+      line-height: 1.75;
+      font-size: 1.08rem;
+      outline: none;
+    }
+    .article-editor:focus { box-shadow: 0 0 0 2px rgba(232, 198, 107, .35); }
+    .article-editor p { margin: 0 0 10px; }
+    .article-editor h2, .article-editor h3 { margin: 14px 0 8px; color: var(--gold); }
+    .article-editor img { max-width: 100%; border-radius: 10px; margin: 10px 0; }
+    .editor-status {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .published-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .published-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(30, 25, 62, .66);
+      padding: 12px;
+    }
+    .published-item h3 { margin: 0 0 6px; font-size: 1.08rem; }
+    .published-item p { margin: 0 0 6px; }
+    .article-preview-box {
+      margin-top: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      background: rgba(13, 10, 34, .7);
+    }
+    .article-preview-content img { max-width: 100%; border-radius: 10px; margin: 10px 0; }
+    @media (max-width: 760px) {
+      .container { padding-left: 0 !important; padding-right: 0 !important; }
+      .admin-login,
+      .admin-shell { padding-left: 0; padding-right: 0; }
+      .panel { padding-left: 10px; padding-right: 10px; }
+      .table-wrap { margin-left: 0; margin-right: 0; }
+      .modal { width: calc(100vw - 12px); }
+      .published-list { grid-template-columns: 1fr; }
+      .editor-toolbar .btn,
+      .editor-select { width: 100%; }
+      .toolbar-sep { display: none; }
+      .editor-status { flex-direction: column; }
+    }
+  </style>
+
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lectura de tarot y carta astral online | Adeline M&aacute;gica" />
+  <meta property="og:description" content="Consultas de tarot terap&eacute;utico, oraciones y meditaciones guiadas por video." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lectura de tarot y carta astral online | Adeline M&aacute;gica" />
+  <meta name="twitter:description" content="Consultas de tarot terap&eacute;utico, oraciones y meditaciones guiadas por video." />
+  <meta name="keywords" content="tarot terapeutico, oraciones personalizadas, meditaciones guiadas, carta astral, espiritualidad, adeline" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Adeline Magica",
+  "url": "https://adelinemagica.com",
+  "sameAs": ["https://adelinemagica.com"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Adeline Magica",
+  "url": "https://adelinemagica.com",
+  "inLanguage": "es"
+}
+</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index#inicio">
+        <img src="assets/images/bandeau10_upscaled_1280_11zon-768w.webp" srcset="assets/images/bandeau10_upscaled_1280_11zon-480w.webp 480w, assets/images/bandeau10_upscaled_1280_11zon-768w.webp 768w, assets/images/bandeau10_upscaled_1280_11zon-1024w.webp 1024w, assets/images/bandeau10_upscaled_1280_11zon-1280w.webp 1280w" sizes="(max-width: 900px) 92vw, 1287px" width="2200" height="369" class="brand-banner-img" alt="Adeline" loading="eager" fetchpriority="high" decoding="async" />
+      </a>
+      <nav class="nav-links">
+        <a href="index">Ver sitio</a>
+        <a href="#" id="logoutLink" class="hidden">Cerrar sesion</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- LOGIN -->
+  <div class="admin-login" id="loginView">
+    <div class="panel">
+      <div class="field full">
+        <label for="tokenInput">Clave de administracion</label>
+        <input id="tokenInput" type="password" placeholder="ADELINE_ADMIN_TOKEN" autocomplete="current-password" />
+      </div>
+      <div id="loginAlert"></div>
+      <button class="btn btn-primary btn-block" id="loginBtn" style="margin-top:14px">Entrar</button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="admin-shell hidden" id="dashView">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:22px">
+      <div>
+        <h1 style="font-size:2rem">Panel de administracion</h1>
+        <p class="muted" id="statsLine"></p>
+      </div>
+      <button class="btn btn-ghost" id="refreshBtn">? Actualizar</button>
+    </div>
+    <div id="dashAlert"></div>
+
+    <div class="admin-tabs" role="tablist" aria-label="Secciones del panel">
+      <button type="button" class="btn btn-ghost admin-tab active" data-tab="reservas-lista">Reservas en lista</button>
+      <button type="button" class="btn btn-ghost admin-tab" data-tab="reservas-calendario">Reservas en calendario</button>
+      <button type="button" class="btn btn-ghost admin-tab" data-tab="articulos-revision">Revisar editorial publicada</button>
+      <button type="button" class="btn btn-ghost admin-tab" data-tab="articulos-nuevo">Escribir nuevo editorial</button>
+    </div>
+
+    <section class="admin-pane" data-pane="reservas-lista">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Ref.</th><th>Nombre</th><th>Nacimiento</th><th>Lugar</th>
+              <th>Plan</th><th>Estado</th><th>Creada</th>
+            </tr>
+          </thead>
+          <tbody id="bookingsBody">
+            <tr><td colspan="7" class="muted">Cargando</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="admin-pane hidden" data-pane="reservas-calendario">
+      <div class="panel" style="margin-top:8px;">
+        <h2 style="margin:0 0 10px;color:var(--gold);font-size:1.2rem;">Calendario completo de citas</h2>
+        <div id="adminCalendar"></div>
+      </div>
+    </section>
+
+    <section class="admin-pane hidden" data-pane="articulos-revision">
+      <div class="panel" style="margin-top:8px;">
+        <h2 style="margin:0 0 10px;color:var(--gold);font-size:1.2rem;">Editorial publicada</h2>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+          <button id="articlesDownloadBtn" class="btn btn-ghost" type="button">Descargar articulos (JSON)</button>
+          <button id="articleUploadBtn" class="btn btn-ghost" type="button">Televerser articulo (JSON)</button>
+          <input id="articleUploadInput" type="file" accept="application/json,.json" style="display:none" />
+        </div>
+        <p id="articleReviewResult" class="hint" style="margin:0 0 10px"></p>
+        <div id="publishedArticles" class="published-list"></div>
+        <div id="publishedEmpty" class="muted" style="margin-top:8px;display:none;">No hay publicaciones en editorial.</div>
+        <div id="articlePreviewBox" class="article-preview-box hidden">
+          <p class="muted" id="articlePreviewMeta" style="margin-bottom:6px"></p>
+          <h3 id="articlePreviewTitle" style="margin:0 0 6px;color:var(--gold)"></h3>
+          <p id="articlePreviewSubtitle" class="muted" style="margin:0 0 10px"></p>
+          <div id="articlePreviewContent" class="article-preview-content"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="admin-pane hidden" data-pane="articulos-nuevo">
+      <div class="panel" style="margin-top:8px;">
+        <h2 style="margin:0 0 10px;color:var(--gold);font-size:1.2rem;">Nuevo articulo</h2>
+        <div class="field full" style="margin-bottom:10px;">
+          <label for="articleTitle">Titulo</label>
+          <input id="articleTitle" type="text" maxlength="180" placeholder="Ej: El Loco y el nuevo camino" />
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+            <input id="draftModeToggle" type="checkbox" checked />
+            <span>Modo borrador (autosave cada 3 min)</span>
+          </label>
+          <button class="btn btn-ghost" id="saveDraftNowBtn" type="button">Guardar borrador ahora</button>
+        </div>
+
+        <div class="editor-toolbar">
+          <button class="btn btn-ghost" type="button" data-cmd="undo" title="Deshacer">↶</button>
+          <button class="btn btn-ghost" type="button" data-cmd="redo" title="Rehacer">↷</button>
+          <span class="toolbar-sep" aria-hidden="true"></span>
+          <button class="btn btn-ghost" type="button" data-cmd="formatBlock" data-value="P">P</button>
+          <button class="btn btn-ghost" type="button" data-cmd="formatBlock" data-value="H2">H2</button>
+          <button class="btn btn-ghost" type="button" data-cmd="formatBlock" data-value="H3">H3</button>
+          <button class="btn btn-ghost" type="button" data-cmd="formatBlock" data-value="BLOCKQUOTE">❝</button>
+          <span class="toolbar-sep" aria-hidden="true"></span>
+          <button class="btn btn-ghost" type="button" data-cmd="bold"><strong>B</strong></button>
+          <button class="btn btn-ghost" type="button" data-cmd="italic"><em>I</em></button>
+          <button class="btn btn-ghost" type="button" data-cmd="underline"><u>U</u></button>
+          <button class="btn btn-ghost" type="button" data-cmd="insertUnorderedList">© Lista</button>
+          <button class="btn btn-ghost" type="button" data-cmd="insertOrderedList">1. Lista</button>
+          <span class="toolbar-sep" aria-hidden="true"></span>
+          <button class="btn btn-ghost" type="button" data-cmd="justifyLeft" title="Alinear izquierda">⟸</button>
+          <button class="btn btn-ghost" type="button" data-cmd="justifyCenter" title="Centrar">≡</button>
+          <button class="btn btn-ghost" type="button" data-cmd="justifyRight" title="Alinear derecha">⟹</button>
+          <button class="btn btn-ghost" type="button" data-cmd="justifyFull" title="Justificar">☰</button>
+          <span class="toolbar-sep" aria-hidden="true"></span>
+          <button class="btn btn-ghost" type="button" id="editorLinkBtn">Link</button>
+          <button class="btn btn-ghost" type="button" id="editorImageBtn">Imagen</button>
+          <button class="btn btn-ghost" type="button" id="editorUploadImageBtn">Imagen PC</button>
+          <input id="editorUploadImageInput" type="file" accept="image/*" multiple style="display:none" />
+          <select id="editorFont" class="editor-select" aria-label="Fuente">
+            <option value="\'Cormorant Garamond\', serif">Cormorant Garamond</option>
+            <option value="\'Cinzel\', serif">Cinzel</option>
+            <option value="\'Playfair Display\', serif">Playfair Display</option>
+            <option value="\'Merriweather\', serif">Merriweather</option>
+            <option value="\'Lora\', serif">Lora</option>
+            <option value="Georgia, serif">Georgia</option>
+            <option value="\'Times New Roman\', serif">Times New Roman</option>
+            <option value="\'Trebuchet MS\', sans-serif">Trebuchet MS</option>
+            <option value="Verdana, sans-serif">Verdana</option>
+            <option value="Arial, sans-serif">Arial</option>
+            <option value="\'Courier New\', monospace">Courier New</option>
+          </select>
+          <select id="editorSize" class="editor-select" aria-label="Tamano de texto">
+            <option value="1">Muy pequeno</option>
+            <option value="2">Pequeno</option>
+            <option value="3">Tamano normal</option>
+            <option value="4">Grande</option>
+            <option value="5">Titulo</option>
+            <option value="6">Titulo grande</option>
+            <option value="7">Titulo enorme</option>
+          </select>
+          <div class="color-palette" id="editorColorPalette" aria-label="Panel de colores">
+            <button class="color-swatch" type="button" data-color="#f5d88f" style="background:#f5d88f" title="Dorado claro"></button>
+            <button class="color-swatch" type="button" data-color="#e8c66b" style="background:#e8c66b" title="Dorado"></button>
+            <button class="color-swatch" type="button" data-color="#ffd9e8" style="background:#ffd9e8" title="Rosa claro"></button>
+            <button class="color-swatch" type="button" data-color="#bfe7ff" style="background:#bfe7ff" title="Azul claro"></button>
+            <button class="color-swatch" type="button" data-color="#b8f3c7" style="background:#b8f3c7" title="Verde claro"></button>
+            <button class="color-swatch" type="button" data-color="#ffffff" style="background:#ffffff" title="Blanco"></button>
+            <button class="color-swatch" type="button" data-color="#ffae6a" style="background:#ffae6a" title="Naranja"></button>
+            <button class="color-swatch" type="button" data-color="#f58b8b" style="background:#f58b8b" title="Rojo suave"></button>
+          </div>
+          <input id="editorColor" class="editor-select" type="color" value="#e8c66b" aria-label="Color" />
+        </div>
+
+        <div id="articleEditor" class="article-editor" contenteditable="true" aria-label="Editor visual de articulo">
+          <h2>Escribe tu articulo</h2>
+          <p>Este editor es visual: lo que ves aqui es lo que se publicara en el articulo final.</p>
+        </div>
+        <div class="editor-status">
+          <span id="editorStats">0 palabras | 0 caracteres</span>
+          <span id="editorDraftState">Borrador local no guardado</span>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+          <button class="btn btn-ghost" id="articleSampleBtn" type="button">Revisar los borradores</button>
+          <button class="btn btn-ghost" id="articleMailBtn" type="button">Guardar en mail</button>
+          <button class="btn btn-primary" id="articlePublishBtn" type="button">Publicar articulo</button>
+        </div>
+        <p id="articlePublishResult" class="hint" style="margin-top:10px"></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- MODAL DETALLE -->
+  <div class="modal-overlay hidden" id="detailModal">
+    <div class="modal">
+      <div class="modal-head">
+        <h2 id="mName" style="color:var(--gold)"></h2>
+        <button class="icon-btn" id="closeModal" aria-label="Cerrar"></button>
+      </div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+  <script src="assets/i18n.min.js" defer></script>
+  <script src="assets/admin.min.js" defer></script>
+  <script>(function(){var B="adeline_admin_token",I={articles:[],currentSlug:""},p="",L=null,U=1500,A=42e4,T="adeline_article_draft_v1",D=18e4;function H(){var t=document.querySelector('meta[name="adeline-api-base"]'),e=t&&t.content?t.content.trim():"";return e?e.replace(/\/+$/,""):location.protocol==="file:"?"http://127.0.0.1:8000":/adelinemagica\.com$/i.test(location.hostname)?"https://adelinetarot2.onrender.com":""}function C(){var t=[],e=H();e&&t.push(e),location.protocol!=="file:"&&t.push(""),t.push("https://adelinetarot2.onrender.com");var n={};return t.map(function(r){return String(r||"").replace(/\/+$/,"")}).filter(function(r){return n[r]?!1:(n[r]=!0,!0)})}function M(){var t=document.getElementById("articleEditor"),e=(t&&t.innerHTML?t.innerHTML:"").trim();return{title:(document.getElementById("articleTitle").value||"").trim(),content:e}}function h(t,e){var n=document.getElementById("articlePublishResult");n&&(n.textContent=t,n.style.color=e?"#7ee0b0":"#ffb7b7")}function m(t,e){var n=document.getElementById("articleReviewResult");n&&(n.textContent=t,n.style.color=e?"#7ee0b0":"#ffb7b7")}function q(){document.getElementById("articleTitle").value="Articulo test: Tarot terapeutico - El Loco",document.getElementById("articleEditor").innerHTML=["<h2>El Loco: atreverse a empezar</h2>","<p>En tarot terapeutico, <strong>El Loco</strong> representa apertura y movimiento interior.</p>","<h3>Claves de interpretacion</h3>","<ul><li>Soltar patrones viejos.</li><li>Dar un paso concreto esta semana.</li><li>Confiar en tu intuicion.</li></ul>",'<p><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80" alt="Tarot" /></p>',"<p>Cuando eliges avanzar con conciencia, el camino tambien avanza contigo.</p>"].join(""),f(),g()}function N(){var t=document.getElementById("articleEditor");return t?String(t.textContent||"").replace(/\s+/g," ").trim():""}function f(){var t=document.getElementById("editorStats");if(t){var e=N(),n=e?e.split(" ").filter(Boolean).length:0,r=e.length;t.textContent=n+" palabras | "+r+" caracteres"}}function b(t){var e=document.getElementById("editorDraftState");e&&(e.textContent=t)}function g(){var t=document.getElementById("articleTitle"),e=document.getElementById("articleEditor"),n=document.getElementById("draftModeToggle");if(!(!t||!e)){var r={title:String(t.value||"").trim(),content:String(e.innerHTML||"").trim(),ts:Date.now(),draft_mode:!!(n&&n.checked),draft_slug:p||""};try{localStorage.setItem(T,JSON.stringify(r)),b("Borrador guardado automaticamente")}catch(o){b("No se pudo guardar el borrador local")}}}function J(){var t=document.getElementById("articleTitle"),e=document.getElementById("articleEditor");if(!(!t||!e)){var n="";try{n=localStorage.getItem(T)||""}catch(l){n=""}if(n)try{var r=JSON.parse(n);if(r&&(r.title||r.content)){t.value=String(r.title||""),e.innerHTML=String(r.content||e.innerHTML||""),p=String(r.draft_slug||"");var o=document.getElementById("draftModeToggle");o&&typeof r.draft_mode=="boolean"&&(o.checked=!!r.draft_mode),b("Borrador recuperado"),f()}}catch(l){}}}function j(){var t=document.getElementById("draftModeToggle");return!!(t&&t.checked)}function z(){var t=document.getElementById("articleEditor"),e=document.getElementById("articleTitle"),n=e?String(e.value||"").trim():"",r=t?String(t.innerHTML||"").trim():"";return!n&&!N()?null:{slug:p||void 0,title:n||"Borrador",content:r||"<p></p>"}}function k(t){if(!j())return Promise.resolve(null);var e=z();return e?S("/api/articles/admin/draft",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(e)},!0).then(function(n){return p=n&&n.slug?n.slug:p,b((t?"Borrador guardado":"Autosave borrador OK")+(p?" | "+p:"")),g(),n}).catch(function(n){return b("Autosave fallo: "+(n&&n.message?n.message:"error")),null}):Promise.resolve(null)}function E(t,e){var n=document.getElementById("articleEditor");n&&(n.focus(),document.execCommand(t,!1,e||null))}function x(){var t=document.getElementById("articleEditor");if(t){var e=window.getSelection();if(!(!e||!e.rangeCount)){var n=e.getRangeAt(0);t.contains(n.commonAncestorContainer)&&(L=n.cloneRange())}}}function F(){var t=document.getElementById("articleEditor");if(t&&(t.focus(),!!L)){var e=window.getSelection();e&&(e.removeAllRanges(),e.addRange(L))}}function G(t){return String(t||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}function V(t){return new Promise(function(e,n){var r=new FileReader;r.onload=function(){e(String(r.result||""))},r.onerror=function(){n(new Error("No se pudo leer la imagen."))},r.readAsDataURL(t)})}function X(t){return new Promise(function(e,n){var r=new Image;r.onload=function(){e(r)},r.onerror=function(){n(new Error("No se pudo procesar la imagen."))},r.src=t})}function $(t){return V(t).then(function(e){return X(e)}).then(function(e){var n=e.naturalWidth||e.width||0,r=e.naturalHeight||e.height||0;if(!n||!r)throw new Error("Imagen invalida.");var o=Math.min(1,U/Math.max(n,r)),l=Math.max(1,Math.round(n*o)),i=Math.max(1,Math.round(r*o)),c=document.createElement("canvas");c.width=l,c.height=i;var d=c.getContext("2d");if(!d)throw new Error("No se pudo preparar el editor de imagen.");d.drawImage(e,0,0,l,i);for(var a=[.86,.78,.7,.62],u="",s=0;s<a.length&&(u=c.toDataURL("image/webp",a[s]),!(u.length<=A));s+=1);if((!u||u.length>A)&&(u=c.toDataURL("image/jpeg",.72)),!u||u.length>A*1.25)throw new Error("La imagen es demasiado pesada. Usa una imagen mas pequena.");return u})}function W(t,e){F();var n=G(e||"Imagen");E("insertHTML",'<p><img src="'+t+'" alt="'+n+'" /></p>'),x()}function K(){var t=document.getElementById("articleEditor");t&&["keyup","mouseup","touchend","blur"].forEach(function(a){t.addEventListener(a,x)}),document.querySelectorAll("[data-cmd]").forEach(function(a){a.addEventListener("click",function(){E(a.getAttribute("data-cmd"),a.getAttribute("data-value")||null),f(),g()})});var e=document.getElementById("editorLinkBtn"),n=document.getElementById("editorImageBtn"),r=document.getElementById("editorUploadImageBtn"),o=document.getElementById("editorUploadImageInput"),l=document.getElementById("editorFont"),i=document.getElementById("editorSize"),c=document.getElementById("editorColor"),d=document.getElementById("editorColorPalette");e&&e.addEventListener("click",function(){var a=window.prompt("Pega la URL del enlace (https://...)");a&&(E("createLink",a.trim()),f(),g())}),n&&n.addEventListener("click",function(){var a=window.prompt("Pega la URL de la imagen (https://...)");a&&(E("insertImage",a.trim()),f(),g())}),r&&o&&(r.addEventListener("mousedown",function(a){x(),a.preventDefault()}),r.addEventListener("click",function(){o.click()}),o.addEventListener("change",function(){var a=Array.from(o.files||[]);if(a.length){h("Procesando imagen(es)...",!0);var u=Promise.resolve(),s=0;a.forEach(function(v){u=u.then(function(){if(!String(v.type||"").toLowerCase().startsWith("image/"))throw new Error("Solo se permiten archivos de imagen.");return $(v).then(function(y){W(y,v.name||"Imagen"),s+=1})})}),u.then(function(){h("Imagen insertada en el editor ("+s+").",!0),f(),g()}).catch(function(v){h(v&&v.message?v.message:"No se pudo insertar la imagen.",!1)}).finally(function(){o.value=""})}})),l&&l.addEventListener("change",function(){E("fontName",l.value),f(),g()}),i&&i.addEventListener("change",function(){E("fontSize",i.value),f(),g()}),c&&c.addEventListener("input",function(){E("foreColor",c.value),f(),g()}),d&&d.querySelectorAll("button[data-color]").forEach(function(a){a.addEventListener("click",function(){var u=a.getAttribute("data-color");u&&(E("foreColor",u),c&&(c.value=u),f(),g())})}),t&&["input","keyup","paste"].forEach(function(a){t.addEventListener(a,function(){f(),g()})})}function R(t){document.querySelectorAll(".admin-tab").forEach(function(e){e.classList.toggle("active",e.getAttribute("data-tab")===t)}),document.querySelectorAll(".admin-pane").forEach(function(e){e.classList.toggle("hidden",e.getAttribute("data-pane")!==t)}),t==="reservas-calendario"&&setTimeout(function(){window.dispatchEvent(new Event("resize"))},80),t==="articulos-revision"&&w()}function Q(){document.querySelectorAll(".admin-tab").forEach(function(t){t.addEventListener("click",function(){R(t.getAttribute("data-tab"))})})}function P(t,e){var n=C(),r=0,o=sessionStorage.getItem(B)||"";function l(){if(r>=n.length)return Promise.reject(new Error("No se pudo completar la solicitud."));var i=n[r++],c={Accept:"application/json"};return e&&o&&(c["X-Admin-Token"]=o),fetch(i+t,{headers:c}).then(function(d){if(!d.ok)throw new Error("HTTP "+d.status);return d.json()}).catch(function(){return l()})}return l()}function S(t,e,n){var r=C(),o=0,l=sessionStorage.getItem(B)||"";if(n&&!l)return Promise.reject(new Error("Debes iniciar sesion de admin."));e=e||{};var i=e.method||"GET",c=e.body;function d(){if(o>=r.length)return Promise.reject(new Error("No se pudo completar la solicitud."));var a=r[o++],u={Accept:"application/json"};return n&&(u["X-Admin-Token"]=l),e.headers&&Object.keys(e.headers).forEach(function(s){u[s]=e.headers[s]}),fetch(a+t,{method:i,headers:u,body:c}).then(function(s){return s.text().then(function(v){var y={};try{y=v?JSON.parse(v):{}}catch(ce){y={}}if(!s.ok){var ie=y&&y.detail?y.detail:"HTTP "+s.status;throw new Error(ie)}return y})}).catch(function(){return d()})}return d()}function Y(t){var e=document.createElement("div");return e.innerHTML=String(t||""),e.querySelectorAll("script,iframe,object,embed").forEach(function(n){n.remove()}),e.querySelectorAll("*").forEach(function(n){Array.from(n.attributes).forEach(function(r){var o=String(r.name||"").toLowerCase();o.indexOf("on")===0&&n.removeAttribute(r.name)})}),e.innerHTML}function O(t,e){var n=new Blob([JSON.stringify(e,null,2)],{type:"application/json;charset=utf-8"}),r=URL.createObjectURL(n),o=document.createElement("a");o.href=r,o.download=t,document.body.appendChild(o),o.click(),setTimeout(function(){URL.revokeObjectURL(r),o.remove()},0)}function Z(){S("/api/articles/admin/export",{method:"GET"},!0).then(function(t){var e={exported_at:new Date().toISOString(),source:"Adeline Admin",articles:Array.isArray(t)?t:[]};O("adeline-articulos-export.json",e),m("Exportacion completada.",!0)}).catch(function(t){m(t&&t.message?t.message:"No se pudo exportar.",!1)})}function ee(t){t&&P("/api/articles/"+encodeURIComponent(t),!1).then(function(e){var n=e&&e.slug?e.slug:"articulo";O("articulo-"+n+".json",e||{}),m("Articulo descargado: "+n,!0)}).catch(function(){m("No se pudo descargar el articulo.",!1)})}function te(t){t&&window.confirm("Vas a eliminar este articulo. Esta accion no se puede deshacer.")&&S("/api/articles/"+encodeURIComponent(t),{method:"DELETE"},!0).then(function(){m("Articulo eliminado: "+t,!0);var e=document.getElementById("articlePreviewBox");e&&I.currentSlug===t&&e.classList.add("hidden"),w()}).catch(function(e){m(e&&e.message?e.message:"No se pudo eliminar el articulo.",!1)})}function ne(t){var e;try{e=JSON.parse(t)}catch(i){m("JSON invalido.",!1);return}var n=[];if(Array.isArray(e)?n=e:e&&Array.isArray(e.articles)?n=e.articles:e&&typeof e=="object"&&(n=[e]),!n.length){m("No se encontraron articulos en el archivo.",!1);return}var r=n.filter(function(i){return i&&typeof i=="object"&&String(i.title||"").trim()&&String(i.content||"").trim()});if(!r.length){m("Los articulos deben incluir titulo y contenido.",!1);return}m("Importando "+r.length+" articulo(s)...",!0);var o=0,l=Promise.resolve();r.forEach(function(i){l=l.then(function(){var c={slug:i.slug||"",title:String(i.title||"").trim(),subtitle:String(i.subtitle||"").trim(),hero_image:String(i.hero_image||"").trim(),excerpt:String(i.excerpt||"").trim(),content:String(i.content||"").trim(),author_name:String(i.author_name||"Adeline").trim(),is_published:1};return c.slug||delete c.slug,c.subtitle||delete c.subtitle,c.hero_image||delete c.hero_image,c.excerpt||delete c.excerpt,S("/api/articles/admin/import",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(c)},!0).then(function(){o+=1})})}),l.then(function(){m("Importacion completada: "+o+" articulo(s).",!0),w()}).catch(function(i){m("Importacion parcial ("+o+"). "+(i&&i.message?i.message:"Error."),!1),w()})}function _(){var t=document.getElementById("publishedArticles"),e=document.getElementById("publishedEmpty");if(!(!t||!e)){if(!I.articles.length){t.innerHTML="",e.style.display="block";return}e.style.display="none",t.innerHTML=I.articles.map(function(n){return'<article class="published-item"><h3>'+(n.title||"")+'</h3><p class="muted">'+(n.subtitle||"")+'</p><p class="muted" style="font-size:.9rem">Slug: '+(n.slug||"")+'</p><div style="display:flex;gap:8px;flex-wrap:wrap;"><button class="btn btn-ghost" type="button" data-preview="'+(n.slug||"")+'">Vista previa</button><button class="btn btn-ghost" type="button" data-download="'+(n.slug||"")+'">Descargar</button><button class="btn btn-ghost" type="button" data-delete="'+(n.slug||"")+'">Eliminar</button><a class="btn btn-ghost" href="articulos?slug='+encodeURIComponent(n.slug||"")+'" target="_blank" rel="noopener">Abrir articulo</a></div></article>'}).join(""),t.querySelectorAll("button[data-preview]").forEach(function(n){n.addEventListener("click",function(){re(n.getAttribute("data-preview"))})}),t.querySelectorAll("button[data-download]").forEach(function(n){n.addEventListener("click",function(){ee(n.getAttribute("data-download"))})}),t.querySelectorAll("button[data-delete]").forEach(function(n){n.addEventListener("click",function(){te(n.getAttribute("data-delete"))})})}}function w(){P("/api/articles",!1).then(function(t){I.articles=Array.isArray(t)?t:[],_()}).catch(function(){I.articles=[],_()})}function re(t){t&&P("/api/articles/"+encodeURIComponent(t),!1).then(function(e){var n=document.getElementById("articlePreviewBox"),r=document.getElementById("articlePreviewMeta"),o=document.getElementById("articlePreviewTitle"),l=document.getElementById("articlePreviewSubtitle"),i=document.getElementById("articlePreviewContent");!n||!r||!o||!l||!i||(I.currentSlug=e.slug||"",r.textContent=(e.author_name||"Adeline")+(e.created_at?" \xA9 "+new Date(e.created_at).toLocaleDateString("es-ES"):""),o.textContent=e.title||"",l.textContent=e.subtitle||"",i.innerHTML=Y(e.content||""),n.classList.remove("hidden"))}).catch(function(){})}function oe(){var t=sessionStorage.getItem(B)||"";if(!t){h("Debes iniciar sesion de admin para publicar.",!1);return}var e=M();if(!e.title||!e.content||e.content.replace(/<[^>]+>/g,"").trim().length<80){h("Completa titulo y contenido visual (minimo 80 caracteres).",!1);return}var n=j(),r=document.getElementById("articlePublishBtn");r.disabled=!0,r.textContent="Publicando...",h("",!0);function o(){return k(!1).then(function(){if(!p)throw new Error("No se encontro borrador para publicar.");return S("/api/articles/admin/draft/"+encodeURIComponent(p)+"/publish",{method:"POST"},!0)})}var l=C(),i=0;function c(){if(i>=l.length)throw new Error("No se pudo publicar el articulo.");var d=l[i++];return fetch(d+"/api/articles",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json","X-Admin-Token":t},body:JSON.stringify(e)}).then(function(a){return a.json().catch(function(){return{}}).then(function(u){if(!a.ok){var s=u&&u.detail?u.detail:"HTTP "+a.status;throw new Error(s)}return u})}).catch(function(){return c()})}(n?o():c()).then(function(d){var a=d&&d.slug?d.slug:"";h("Articulo publicado con exito."+(a?" Ver: /articulos?slug="+a:""),!0);try{localStorage.removeItem(T)}catch(u){}p="",b("Borrador local limpiado tras publicacion"),w()}).catch(function(d){h(d&&d.message?d.message:"Error al publicar.",!1)}).finally(function(){r.disabled=!1,r.textContent="Publicar articulo"})}function ae(){var t=M();if(!t.title||!t.content){h("Completa titulo y contenido antes de enviar por correo.",!1);return}var e=document.getElementById("articleMailBtn");e&&(e.disabled=!0,e.textContent="Enviando..."),S("/api/articles/admin/email-copy",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({slug:p||void 0,title:t.title,content:t.content})},!0).then(function(){h("Articulo enviado por mail a contact@adelinemagica.com",!0)}).catch(function(n){h(n&&n.message?n.message:"No se pudo enviar por correo.",!1)}).finally(function(){e&&(e.disabled=!1,e.textContent="Guardar en mail")})}document.addEventListener("DOMContentLoaded",function(){Q(),K(),J(),f();var t=document.getElementById("articleSampleBtn"),e=document.getElementById("articleMailBtn"),n=document.getElementById("saveDraftNowBtn"),r=document.getElementById("draftModeToggle"),o=document.getElementById("articlePublishBtn"),l=document.getElementById("articlesDownloadBtn"),i=document.getElementById("articleUploadBtn"),c=document.getElementById("articleUploadInput");t&&t.addEventListener("click",q),e&&e.addEventListener("click",ae),n&&n.addEventListener("click",function(){k(!0)}),r&&r.addEventListener("change",function(){b(r.checked?"Modo borrador activo":"Modo publicacion directa"),g()}),o&&o.addEventListener("click",oe),l&&l.addEventListener("click",Z),i&&c&&(i.addEventListener("click",function(){c.click()}),c.addEventListener("change",function(){var d=c.files&&c.files[0];if(d){var a=new FileReader;a.onload=function(){ne(String(a.result||"")),c.value=""},a.onerror=function(){m("No se pudo leer el archivo.",!1),c.value=""},a.readAsText(d,"utf-8")}})),setInterval(function(){k(!1)},D),R("reservas-lista")})})();
+</script>
+  <script>
+    (function () {
+      "use strict";
+
+      var TOKEN_KEY = "adeline_admin_token";
+      var DRAFT_CACHE_KEY = "adeline_article_draft_v1";
+
+      function resolveApiBase() {
+        var meta = document.querySelector('meta[name="adeline-api-base"]');
+        var configured = meta && meta.content ? meta.content.trim() : "";
+        if (configured) { return configured.replace(/\/+$/, ""); }
+        if (location.protocol === "file:") { return "http://127.0.0.1:8000"; }
+        if (/adelinemagica\.com$/i.test(location.hostname)) { return "https://adelinetarot2.onrender.com"; }
+        return "";
+      }
+
+      function apiCandidates() {
+        var list = [];
+        var seen = {};
+        var base = resolveApiBase();
+        if (base) { list.push(base); }
+        if (location.protocol !== "file:") { list.push(""); }
+        list.push("https://adelinetarot2.onrender.com");
+        return list
+          .map(function (x) { return String(x || "").replace(/\/+$/, ""); })
+          .filter(function (x) {
+            if (seen[x]) { return false; }
+            seen[x] = true;
+            return true;
+          });
+      }
+
+      function requestJson(url) {
+        return fetch(url, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "X-Admin-Token": sessionStorage.getItem(TOKEN_KEY) || "",
+          },
+        }).then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (body) {
+            if (!res.ok) {
+              throw new Error((body && body.detail) || ("Error " + res.status));
+            }
+            return body;
+          });
+        });
+      }
+
+      function loadDraftToEditor(draft) {
+        var titleInput = document.getElementById("articleTitle");
+        var editor = document.getElementById("articleEditor");
+        var draftState = document.getElementById("editorDraftState");
+        var draftMode = document.getElementById("draftModeToggle");
+        var reviewResult = document.getElementById("articleReviewResult");
+
+        if (!titleInput || !editor) { return; }
+
+        titleInput.value = draft.title || "";
+        editor.innerHTML = draft.content || "<p></p>";
+        if (draftMode) { draftMode.checked = true; }
+
+        try {
+          localStorage.setItem(DRAFT_CACHE_KEY, JSON.stringify({
+            title: draft.title || "",
+            content: draft.content || "<p></p>",
+            ts: Date.now(),
+            draft_mode: true,
+            draft_slug: draft.slug || "",
+          }));
+        } catch (_ignored) {
+        }
+
+        if (draftState) {
+          draftState.textContent = "Borrador cargado: " + (draft.slug || "");
+          draftState.style.color = "#9fd6ff";
+        }
+        if (reviewResult) {
+          reviewResult.textContent = "Borrador listo para continuar: " + (draft.title || draft.slug || "");
+          reviewResult.style.color = "#7ee0b0";
+        }
+
+        titleInput.dispatchEvent(new Event("input", { bubbles: true }));
+        editor.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+
+      function openDraftChooser() {
+        var reviewResult = document.getElementById("articleReviewResult");
+        var bases = apiCandidates();
+        var index = 0;
+
+        function tryNextBase() {
+          if (index >= bases.length) {
+            if (reviewResult) {
+              reviewResult.textContent = "No se pudieron consultar los borradores guardados.";
+              reviewResult.style.color = "#ffb7b7";
+            }
+            return;
+          }
+
+          var base = bases[index++];
+          requestJson(base + "/api/articles/admin/drafts")
+            .then(function (drafts) {
+              var list = Array.isArray(drafts) ? drafts : [];
+              if (!list.length) {
+                if (reviewResult) {
+                  reviewResult.textContent = "No hay borradores guardados.";
+                  reviewResult.style.color = "#ffb7b7";
+                }
+                return;
+              }
+
+              var menu = list.map(function (d, i) {
+                return (i + 1) + ". " + (d.title || "Borrador") + " [" + (d.slug || "-") + "]";
+              }).join("\n");
+              var picked = window.prompt(
+                "Revisar borradores\n" +
+                "Elige el numero del borrador para continuar:\n\n" +
+                menu,
+                "1"
+              );
+              if (picked == null) { return; }
+
+              var pickNum = parseInt(String(picked).trim(), 10);
+              if (!pickNum || pickNum < 1 || pickNum > list.length) {
+                if (reviewResult) {
+                  reviewResult.textContent = "Seleccion invalida de borrador.";
+                  reviewResult.style.color = "#ffb7b7";
+                }
+                return;
+              }
+
+              var selected = list[pickNum - 1];
+              requestJson(base + "/api/articles/" + encodeURIComponent(selected.slug))
+                .then(loadDraftToEditor)
+                .catch(function (err) {
+                  if (reviewResult) {
+                    reviewResult.textContent = (err && err.message) ? err.message : "No se pudo abrir el borrador.";
+                    reviewResult.style.color = "#ffb7b7";
+                  }
+                });
+            })
+            .catch(tryNextBase);
+        }
+
+        if (reviewResult) {
+          reviewResult.textContent = "Consultando borradores guardados...";
+          reviewResult.style.color = "#9fd6ff";
+        }
+        tryNextBase();
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var draftReviewBtn = document.getElementById("articleSampleBtn");
+        if (!draftReviewBtn) { return; }
+
+        draftReviewBtn.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          openDraftChooser();
+        }, true);
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+

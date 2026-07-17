@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="refresh" content="0; url=./horoscopo.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Redireccionando...</title>
+<script>
+  window.location.replace('./horoscopo.html');
+</script>
+</head>
+<body>
+  <p>Redireccionando a <a href="./horoscopo.html">horoscopo.html</a>...</p>
+</body>
+</html>

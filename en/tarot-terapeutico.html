@@ -1,0 +1,655 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+    <meta name="description" content="Therapeutic tarot video session for emotional clarity and decision making." />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+  <meta name="adeline-api-base" content="" />
+    <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://adelinemagica.com/en/tarot-terapeutico" />
+  <link rel="alternate" hreflang="fr" href="https://adelinemagica.com/fr/tarot-terapeutico" />
+  <link rel="alternate" hreflang="en" href="https://adelinemagica.com/en/tarot-terapeutico" />
+  <link rel="alternate" hreflang="es" href="https://adelinemagica.com/tarot-terapeutico" />
+  <link rel="alternate" hreflang="x-default" href="https://adelinemagica.com/tarot-terapeutico" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lectura de tarot y carta astral online | Adeline M&aacute;gica" />
+  <meta property="og:description" content="Consultas de tarot terap&eacute;utico, oraciones y meditaciones guiadas por video." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lectura de tarot y carta astral online | Adeline M&aacute;gica" />
+  <meta name="twitter:description" content="Consultas de tarot terap&eacute;utico, oraciones y meditaciones guiadas por video." />
+  <meta name="keywords" content="tarot terapeutico, oraciones personalizadas, meditaciones guiadas, carta astral, espiritualidad, adeline" />
+
+
+
+
+
+<meta property="og:url" content="https://adelinemagica.com/en/tarot-terapeutico" />
+  <title>Online therapeutic tarot | Adeline Magica</title>
+<link rel="preload" as="style" href="/assets/fonts/google-fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="/assets/fonts/google-fonts.css" rel="stylesheet" /></noscript>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet" />
+  <link rel="preload" as="style" href="../assets/styles.min.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <link rel="preload" as="style" href="../assets/site-overrides.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="../assets/styles.min.css" /></noscript>
+  <noscript><link rel="stylesheet" href="../assets/site-overrides.css" /></noscript>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Online therapeutic tarot",
+  "description": "30-minute therapeutic tarot video session for emotional clarity and decision making.",
+  "url": "https://adelinemagica.com/en/tarot-terapeutico",
+  "provider": {
+    "@type": "Organization",
+    "name": "Adeline Magica"
+  },
+  "areaServed": "Worldwide",
+  "availableLanguage": ["en"],
+  "offers": {
+    "@type": "AggregateOffer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD",
+    "lowPrice": "30",
+    "highPrice": "90",
+    "offerCount": "3"
+  },
+  "inLanguage": "en"
+}
+</script>
+  <style>
+    .tarot-page { padding: 55px 0 60px; }
+    .tarot-wrap { max-width: 940px; margin: 0 auto; }
+    .tarot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .tarot-grid .full { grid-column: 1 / -1; }
+    .tarot-note { margin-top: 10px; color: var(--muted); font-size: .95rem; }
+    .slot-picker,
+    .slot-picker * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .panel h1 { font-family: "Cinzel", serif; }
+    .panel .section-sub { font-family: "Cormorant Garamond", serif; }
+    .slot-picker {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      color: #000;
+    }
+    .slot-title {
+      font-size: 1.08rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+      text-align: left;
+      letter-spacing: -0.02em;
+      text-transform: none;
+      font-weight: 700;
+    }
+    .slot-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      color: #8E8E93;
+      font-size: .84rem;
+    }
+    .slot-meta strong { color: #000; font-weight: 600; }
+    .ios-calendar-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 4px 0 12px;
+    }
+    .ios-nav-button,
+    .ios-title-button,
+    .ios-reset-button,
+    .ios-confirm-button {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      margin: 0;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      min-height: 44px;
+      touch-action: manipulation;
+    }
+    .ios-nav-button {
+      width: 44px;
+      min-width: 44px;
+      border-radius: 22px;
+      color: var(--gold);
+      font-size: 1.7rem;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ios-nav-button:active,
+    .ios-title-button:active,
+    .ios-reset-button:active,
+    .ios-confirm-button:active {
+      background: #E5E5EA;
+    }
+    .ios-title-button {
+      flex: 0 0 auto;
+      text-align: left;
+      color: var(--gold);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      display: inline-flex;
+      align-items: center;
+    }
+    .cal-instructions {
+      margin: 2px 0 12px;
+      color: #fff;
+      font-size: .96rem;
+      font-weight: 600;
+      min-height: 24px;
+      border-radius: 10px;
+      padding: 6px 10px;
+      background: linear-gradient(90deg, rgba(106,13,173,.35), rgba(138,43,226,.18));
+    }
+    .fc-legend { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+    .fc-legend-item {
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: .76rem;
+      letter-spacing: .04em;
+      border: 1px solid #D1D1D6;
+      color: #8E8E93;
+      background: #FFF;
+    }
+    .fc-legend-item.is-free { color: #1f7a3a; border-color: rgba(96,198,113,.28); background: rgba(96,198,113,.12); }
+    .fc-legend-item.is-taken { color: #8E8E93; border-color: #D1D1D6; background: #F2F2F7; }
+    .fc-legend-item.is-selected { color: #007AFF; border-color: rgba(0,122,255,.32); background: rgba(0,122,255,.1); }
+    .fc-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+      gap: 10px;
+      align-items: start;
+    }
+    .fc-cal,
+    .fc-times {
+      border: 1px solid rgba(232,198,107,.35);
+      border-radius: 18px;
+      padding: 6px;
+      background: transparent;
+      box-shadow: none;
+    }
+    #tarot-calendar { min-height: 0; }
+    .fc-times-title { color: var(--gold); font-size: .82rem; letter-spacing: -.01em; text-transform: none; margin-bottom: 8px; font-weight: 700; }
+    .fc-times-list { display: flex; flex-wrap: wrap; gap: 0; }
+    .fc-time-group-title { display: none; }
+    .fc-time-group,
+    .fc-time-group-grid { display: contents; }
+    .fc-time-group-grid .fc-time-btn {
+      margin: 0;
+      border-radius: 0;
+    }
+    .fc-time-group-grid .fc-time-btn:first-child {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+    .fc-time-group-grid .fc-time-btn:last-child {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    .fc-time-btn {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 6px 8px;
+      font-size: .78rem;
+      text-align: center;
+      transition: transform .16s ease, box-shadow .16s ease, filter .16s ease, background-color .16s ease, color .16s ease;
+    }
+    .fc-time-btn.is-free { background: #F2F2F7; border-color: #D1D1D6; color: #000; cursor: pointer; }
+    .fc-time-btn.is-free:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,0.08); filter: brightness(1.02); background: #E5E5EA; }
+    .fc-time-btn.is-selected { outline: none; box-shadow: none; background: #007AFF; color: #fff; border-color: #007AFF; }
+    .fc-time-btn.is-taken { background: #F2F2F7; border-color: #E5E5EA; color: #8E8E93; cursor: not-allowed; opacity: .72; }
+    .fc-time-empty { color: #8E8E93; font-size: .9rem; text-align: center; padding: 8px; }
+    .fc .fc-toolbar { display: none !important; }
+    .fc .fc-toolbar-title { display: none !important; }
+    .fc .fc-button { display: none !important; }
+    .fc .fc-scrollgrid {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(232,198,107,.35);
+      background: linear-gradient(145deg, rgba(84, 24, 122, 0.20), rgba(46, 8, 81, 0.14));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .fc .fc-scrollgrid table,
+    .fc .fc-scrollgrid-sync-table,
+    .fc .fc-col-header,
+    .fc .fc-daygrid-body { border-collapse: separate; border-spacing: 6px 8px; width: 100% !important; table-layout: fixed !important; background: transparent; }
+    .fc table,
+    .fc th,
+    .fc td { border: 0 !important; }
+    .fc .fc-view-harness,
+    .fc .fc-daygrid,
+    .fc .fc-daygrid-body,
+    .fc .fc-daygrid-body table,
+    .fc .fc-scrollgrid-section,
+    .fc .fc-scrollgrid-section table { background: transparent !important; }
+    .fc .fc-col-header-cell-cushion { color: #000; font-size: .74rem; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; padding: 8px 0 10px; }
+    .fc .fc-daygrid-day-number {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      color: #000;
+      border: 0;
+      font-weight: 500;
+      font-size: .88rem;
+      line-height: 1;
+      transition: background-color .14s ease, color .14s ease, box-shadow .14s ease, transform .14s ease;
+    }
+    .fc .fc-daygrid-day-frame {
+      min-height: 40px !important;
+      height: 40px !important;
+      padding: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    #tarot-calendar .fc-daygrid-day {
+      min-height: 40px !important;
+    }
+    #tarot-calendar .fc-col-header-cell {
+      width: calc(100% / 7) !important;
+    }
+    #tarot-calendar .fc-daygrid-day-top {
+      width: 100% !important;
+      height: 40px !important;
+      min-height: 40px !important;
+      padding: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    #tarot-calendar .fc-daygrid-day-events,
+    #tarot-calendar .fc-daygrid-day-bottom { display: none !important; }
+    #tarot-calendar .fc-scrollgrid-sync-table { height: auto !important; }
+    .fc .fc-daygrid-day.fc-slot-taken { background: transparent; }
+    .fc .fc-daygrid-day.fc-slot-free { background: transparent; cursor: pointer; }
+    .fc .fc-daygrid-day.fc-slot-free .fc-daygrid-day-number {
+      background: #dff3d9;
+      color: #1f7a3a;
+      box-shadow: inset 0 0 0 1px rgba(96,198,113,.18);
+    }
+    .fc .fc-daygrid-day,
+    .fc .fc-daygrid-day-frame,
+    .fc .fc-daygrid-day-top { background: transparent; }
+    .fc .fc-daygrid-day.fc-slot-free:hover .fc-daygrid-day-number {
+      background: #cfecc7;
+      box-shadow: none;
+      transform: scale(1.03);
+    }
+    .fc .fc-daygrid-day.fc-slot-out { opacity: .22; }
+    .fc .fc-daygrid-day.fc-slot-selected .fc-daygrid-day-number {
+      background: #007AFF;
+      box-shadow: none;
+      color: #fff;
+      border-color: #007AFF;
+    }
+    .fc .fc-day-today .fc-daygrid-day-number { color: #007AFF; box-shadow: none; background: transparent; }
+    .fc .fc-daygrid-day.fc-slot-selected,
+    .fc .fc-daygrid-day.fc-slot-selected .fc-daygrid-day-frame,
+    .fc .fc-daygrid-day.fc-slot-selected .fc-daygrid-day-top { background: transparent; }
+    .slot-selected { margin-top: 6px; font-size: .92rem; color: #000; text-align: center; min-height: 0; }
+    .slot-status { margin-top: 4px; text-align: center; color: #8E8E93; min-height: 0; font-size: .9rem; }
+    .slot-selected:empty,
+    .slot-status:empty {
+      display: none;
+    }
+    .slot-meta,
+    .fc-legend,
+    .ios-action-bar {
+      display: none;
+    }
+    .ios-action-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .ios-reset-button {
+      flex: 1;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: #D1D1D6;
+      color: #000;
+      font-size: .95rem;
+      font-weight: 600;
+    }
+    .ios-confirm-button {
+      width: 44px;
+      min-width: 44px;
+      border-radius: 999px;
+      background: #007AFF;
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 20px rgba(0,122,255,.22);
+    }
+    .pack-save-btn {
+      margin-top: 6px;
+      width: 100%;
+      background: #1f7a3a !important;
+      border-color: #1f7a3a !important;
+      color: #fff !important;
+      box-shadow: 0 8px 20px rgba(31,122,58,.28);
+      min-height: 38px !important;
+      padding: 8px 12px !important;
+      font-size: .86rem !important;
+    }
+    .pack-save-btn:hover {
+      background: #2c9250 !important;
+      border-color: #2c9250 !important;
+      color: #fff !important;
+    }
+    .times-dynamic { display: none; }
+    .tarot-saved-wrap {
+      margin-top: 12px;
+      border-top: 1px solid rgba(0,0,0,.25);
+      padding-top: 10px;
+      display: none;
+    }
+    .tarot-saved-title {
+      color: #d8ffd8;
+      font-size: .86rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      margin-bottom: 8px;
+    }
+    .tarot-saved-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .tarot-saved-list li {
+      border: 1px solid rgba(0,0,0,.35);
+      border-radius: 999px;
+      padding: 7px 12px;
+      color: #000;
+      font-size: .86rem;
+      background: rgba(255,255,255,.75);
+    }
+    .tarot-saved-list li.is-empty {
+      color: #444;
+      border-color: rgba(0,0,0,.25);
+      background: rgba(255,255,255,.65);
+      font-style: italic;
+    }
+    #tarot-calendar,
+    #tarot-calendar .fc-scrollgrid,
+    #tarot-calendar .fc-scrollgrid table,
+    #tarot-calendar .fc-scrollgrid-sync-table,
+    #tarot-calendar .fc-col-header,
+    #tarot-calendar .fc-daygrid-body,
+    #tarot-calendar .fc-view-harness,
+    #tarot-calendar .fc-daygrid,
+    #tarot-calendar .fc-daygrid-body table,
+    #tarot-calendar .fc-scrollgrid-section,
+    #tarot-calendar .fc-scrollgrid-section table,
+    #tarot-calendar .fc-daygrid-day,
+    #tarot-calendar .fc-daygrid-day-frame,
+    #tarot-calendar .fc-daygrid-day-top,
+    #tarot-calendar th,
+    #tarot-calendar td {
+      background: transparent !important;
+      backdrop-filter: none !important;
+    }
+    #tarot-calendar .fc-col-header-cell-cushion {
+      color: var(--gold) !important;
+      font-weight: 700;
+    }
+    #tarot-calendar .fc-daygrid-day.fc-slot-taken .fc-daygrid-day-number,
+    #tarot-calendar .fc-daygrid-day.fc-slot-out .fc-daygrid-day-number {
+      color: #000 !important;
+      background: rgba(255, 255, 255, .28) !important;
+      box-shadow: none !important;
+    }
+    #tarot-calendar .fc-daygrid-day.fc-slot-out {
+      opacity: .55;
+    }
+    #tarot-calendar .fc-daygrid-day,
+    #tarot-calendar .fc-daygrid-day-frame,
+    #tarot-calendar .fc-daygrid-day-top,
+    #tarot-calendar .fc-daygrid-day.fc-slot-selected,
+    #tarot-calendar .fc-daygrid-day.fc-slot-selected .fc-daygrid-day-frame,
+    #tarot-calendar .fc-daygrid-day.fc-slot-selected .fc-daygrid-day-top {
+      background: transparent !important;
+    }
+    @media (max-width: 760px) {
+      .container { padding-left: 0 !important; padding-right: 0 !important; }
+      .tarot-page { padding-top: 45px; }
+      .tarot-grid { grid-template-columns: 1fr; }
+      .fc-wrap { grid-template-columns: 1fr; }
+      .tarot-wrap { max-width: 100%; width: 100%; }
+      .slot-picker { padding-left: 8px; padding-right: 8px; width: 100%; }
+      .slot-title { font-size: 1rem; letter-spacing: -.02em; }
+      .slot-title { margin-bottom: 8px; }
+      .slot-meta { font-size: .78rem; line-height: 1.35; }
+      .slot-meta { margin-bottom: 8px; }
+      .fc-legend-item { font-size: .72rem; padding: 4px 8px; }
+      .fc-legend { margin-bottom: 4px; }
+      .ios-calendar-header { margin-bottom: 10px; }
+      .ios-nav-button { width: 44px; min-width: 44px; }
+      .ios-title-button { font-size: 1rem; }
+      .fc-cal,
+      .fc-times {
+        padding: 6px;
+        border-radius: 18px;
+        width: 100%;
+      }
+      .fc-wrap { gap: 8px; }
+      #tarot-calendar { min-height: 0; width: 100%; }
+      #tarot-calendar .fc-view-harness,
+      #tarot-calendar .fc-daygrid,
+      #tarot-calendar .fc-daygrid-body,
+      #tarot-calendar .fc-scrollgrid {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+      }
+      #tarot-calendar .fc-scrollgrid,
+      #tarot-calendar .fc-scrollgrid-sync-table,
+      #tarot-calendar .fc-col-header,
+      #tarot-calendar .fc-daygrid-body {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        border-spacing: 4px 6px;
+      }
+      #tarot-calendar .fc-daygrid-day,
+      #tarot-calendar .fc-col-header-cell {
+        width: calc(100% / 7) !important;
+        min-width: calc(100% / 7) !important;
+        max-width: calc(100% / 7) !important;
+        height: 44px !important;
+      }
+      #tarot-calendar .fc-daygrid-day-frame,
+      #tarot-calendar .fc-daygrid-day-top {
+        width: 100% !important;
+        height: 44px !important;
+        min-height: 44px !important;
+      }
+      #tarot-calendar .fc-daygrid-day-number {
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        font-size: .96rem;
+        font-weight: 500;
+      }
+      #tarot-calendar .fc-col-header-cell-cushion { padding: 4px 0 8px; font-size: .68rem; }
+      #tarot-calendar .fc-scrollgrid-sync-table { table-layout: fixed !important; }
+      #tarot-calendar .fc-daygrid-day-events,
+      #tarot-calendar .fc-daygrid-day-bottom { display: none !important; }
+      .fc-times-title { margin-bottom: 6px; font-size: .76rem; }
+      .fc-time-group { margin-bottom: 6px; }
+      .fc-time-btn { font-size: .84rem; padding: 7px 10px; }
+      .ios-action-bar { margin-top: 12px; }
+      .slot-selected { margin-top: 8px; font-size: .84rem; }
+      .slot-status { margin-top: 6px; font-size: .82rem; }
+    }
+  </style>
+</head>
+<body>
+  <script>typeof window.toggleMenu!="function"&&(window.toggleMenu=function(o){const e=document.getElementById("sideMenu"),n=document.getElementById("menuBackdrop");if(!e||!n)return;const t=!!o;e.classList.toggle("open",t),e.setAttribute("aria-hidden",t?"false":"true"),n.classList.toggle("hidden",!t)});
+</script>
+  <header class="site-header">
+    <div class="container nav">
+      <button type="button" class="menu-toggle" aria-label="Abrir menú" onclick="toggleMenu(true)">&#9776;</button>
+      <a class="brand" href="index#inicio">
+        <img src="../assets/images/bandeau10_upscaled_1280_11zon-768w.webp" srcset="../assets/images/bandeau10_upscaled_1280_11zon-480w.webp 480w, ../assets/images/bandeau10_upscaled_1280_11zon-768w.webp 768w, ../assets/images/bandeau10_upscaled_1280_11zon-1024w.webp 1024w, ../assets/images/bandeau10_upscaled_1280_11zon-1280w.webp 1280w" sizes="(max-width: 900px) 92vw, 1287px" width="2200" height="369" class="brand-banner-img" alt="Adeline" loading="eager" fetchpriority="high" decoding="async" />
+      </a>
+      <a href="index.html#paquete-adeline" class="btn btn-primary header-cta package-cta-btn">Adquiere Paquete <strong>MAGICA</strong></a>
+    </div>
+  </header>
+
+  <aside id="sideMenu" class="side-menu" aria-hidden="true" inert>
+    <div class="side-menu-head">
+      <span>Menu</span>
+            <div class="side-menu-lang-top" onclick="event.stopPropagation()" style="display:flex;align-items:center;gap:10px;margin-left:auto;margin-right:10px">
+        <a href="/en/" aria-label="English" style="color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.06em">EN</a>
+        <a href="/" aria-label="Español" style="color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.06em">ES</a>
+        <a href="/fr/" aria-label="Français" style="color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.06em">FR</a>
+      </div><button type="button" class="menu-close" aria-label="Cerrar menú" onclick="toggleMenu(false)">&times;</button>
+    </div>
+    <nav class="side-menu-links" onclick="toggleMenu(false)">
+      <a href="index#inicio">Home</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <a href="oraciones" class="hero-link-highlight">Request your prayer today</a>
+      <a href="meditaciones" class="hero-link-highlight">Voice-call meditations</a>
+      <a href="tarot-terapeutico" class="hero-link-highlight">Therapeutic tarot</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <span class="side-menu-note">Astrological world</span>
+      <a href="lectura-de-carta-natal">Natal chart reading</a>
+      <a href="sinastria">Synastry</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <a href="paquete-magica.html" class="hero-link-highlight side-menu-package">MAGICA package</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <a href="articulos" class="hero-link-highlight">Editorial</a>
+      <a href="contact" class="hero-link-highlight">Contact</a>
+</nav>
+  </aside>
+  <div id="menuBackdrop" class="menu-backdrop hidden" onclick="toggleMenu(false)"></div>
+
+  <main class="tarot-page">
+    <section>
+      <div class="container tarot-wrap">
+        <div class="panel">
+          <h1 style="margin-bottom:8px">Therapeutic tarot</h1>
+          <p class="section-sub">Book your video session and choose the duration that fits you best.</p>
+          <div class="tarot-grid">
+            <div class="pred-field"><label for="tarot-name">Name or alias</label><input id="tarot-name" type="text" maxlength="80" placeholder="Name or alias" /></div>
+            <div class="pred-field"><label for="tarot-motive">Main reason for your consultation (optional)</label><input id="tarot-motive" type="text" maxlength="220" placeholder="Love, decisions, clarity, work..." /></div>
+            <div class="pred-field"><label for="tarot-email">Email</label><input id="tarot-email" type="email" maxlength="254" placeholder="email@example.com" /></div>
+            <div class="pred-field"><label for="tarot-whatsapp">Whatsapp</label><input id="tarot-whatsapp" type="text" maxlength="40" placeholder="+51 ..." /></div>
+            <div class="pred-field full">
+              <label for="tarot-duration">Choose your session duration</label>
+              <select id="tarot-duration">
+                <option value="30">30 min - 30 USD</option>
+                <option value="45">45 min - 45 USD</option>
+                <option value="90">90 min - 90 USD</option>
+              </select>
+            </div>
+            <input id="tarot-date" type="hidden" />
+            <input id="tarot-hour" type="hidden" />
+            <div class="pred-field full">
+              <div class="slot-picker" aria-label="Seleccion de fecha y hora">
+                <div class="slot-title">Book your session in the calendar</div>
+                <div id="tarot-instructions" class="cal-instructions">Select your session date</div>
+                <div class="ios-calendar-header">
+                  <button type="button" id="tarot-prev" class="ios-nav-button" aria-label="Previous month">&#x2039;</button>
+                  <button type="button" id="tarot-month" class="ios-title-button" aria-label="Month selector">September 1994</button>
+                  <button type="button" id="tarot-next" class="ios-nav-button" aria-label="Next month">&#x203A;</button>
+                </div>
+                <div class="fc-legend">
+                  <span class="fc-legend-item is-free">Available</span>
+                  <span class="fc-legend-item is-taken">Unavailable</span>
+                  <span class="fc-legend-item is-selected">Selected</span>
+                </div>
+                <div class="fc-wrap">
+                  <div class="fc-cal">
+                    <div id="tarot-calendar"></div>
+                  </div>
+                  <div class="fc-times">
+                    <div id="tarot-times-dynamic" class="times-dynamic">
+                      <div class="fc-times-title">Available times</div>
+                      <div class="fc-times-list" id="tarot-times"></div>
+                      <button id="tarot-save" type="button" class="btn btn-primary pack-save-btn">Save</button>
+                    </div>
+                    <div id="tarot-saved-wrap" class="tarot-saved-wrap">
+                      <div class="tarot-saved-title">Validated sessions</div>
+                      <ul id="tarot-saved-list" class="tarot-saved-list"></ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="slot-meta"><span>Availability in <strong>Peru local time</strong></span><span>Format: <strong>live online</strong></span></div>
+                <div id="tarot-selected" class="slot-selected"></div>
+                <div id="tarot-status" class="slot-status"></div>
+              </div>
+            </div>
+          </div>
+          <div class="tarot-note">After payment, you will receive your tarot session link by email.</div>
+          <div style="margin-top:18px; display:flex; gap:12px; align-items:center; justify-content:space-between; max-width:620px; flex-wrap:wrap;">
+            <button id="tarot-pay" type="button" class="btn btn-primary">PAY FOR MY THERAPEUTIC TAROT</button>
+            <div id="tarot-total" class="hint" style="margin:0; font-weight:700; color:var(--gold);">Total to pay: 30 USD</div>
+          </div>
+          <p id="tarot-msg" class="hint" style="margin-top:12px"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="muted">High-value real-time spiritual support - appointments by schedule</p>
+      <div class="social-share" aria-label="Compartir esta página">
+        <span class="share-label">Compartir:</span>
+        <a class="share-pill" href="https://wa.me/?text=Lectura%20de%20tarot%20y%20carta%20astral%20online%20con%20Adeline%20M%C3%A1gica%20https%3A%2F%2Fadelinemagica.com%2F%23inicio" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="share-pill" href="https://instagram.com/adelinemagica" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="social-links" aria-label="Redes sociales">
+        <a href="https://facebook.com/adelinemagica" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://youtube.com/@adelinemagica" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://tiktok.com/@adelinemagica" target="_blank" rel="noopener">TikTok</a>
+      </div>
+      <p class="legal">Las lecturas tienen fines de orientación y entretenimiento. © 2026 Adeline.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/i18n.min.js" defer></script>
+  <script src="../assets/site.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+  <script src="../assets/fullcalendar-slot-picker.js"></script>
+  <script>const yearEl=document.getElementById("year");yearEl&&(yearEl.textContent=new Date().getFullYear());function resolveApiBase(){const t=document.querySelector('meta[name="adeline-api-base"]'),e=t&&t.content?t.content.trim():"";return e?e.replace(/\/+$/,""):location.protocol==="file:"?"http://127.0.0.1:8000":/adelinemagica\.com$/i.test(location.hostname)?"https://adelinetarot2.onrender.com":""}function candidateApiBases(){const t=[],e=resolveApiBase();return e&&t.push(e),location.protocol!=="file:"&&t.push(""),t.push("https://adelinetarot2.onrender.com"),Array.from(new Set(t.map(i=>String(i||"").replace(/\/+$/,""))))}function directStripeBase(t){const e={30:"https://buy.stripe.com/fZueVc69V7y7dJm3hvbjW05",45:"https://buy.stripe.com/28EeVceGrdWv0WA7xLbjW06",90:"https://buy.stripe.com/fZu28qeGraKj8p2bO1bjW08"};return e[t]||e[30]}function rewriteDirectPaymentUrl(t,e){const i=new URL(t,location.href),n=new URL(directStripeBase(e));return i.searchParams.forEach((a,c)=>n.searchParams.set(c,a)),n.toString()}async function createDirectIntake(t){let e="Service de paiement indisponible.";for(const i of candidateApiBases())try{const n=await fetch(`${i}/api/stripe/direct-intake`,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(t)}),a=await n.json();if(n.ok&&a&&a.payment_url)return rewriteDirectPaymentUrl(a.payment_url,Number(t.tarot_duration||30));e=a&&a.detail?a.detail:`HTTP ${n.status}`}catch(n){e=n&&n.message?n.message:String(n||e)}throw new Error(e)}async function loadAvailability(t,e){function i(l){const o=[],r=new Date;for(let u=0;u<l;u+=1){const s=new Date(r.getFullYear(),r.getMonth(),r.getDate()+u),p=`${s.getFullYear()}-${String(s.getMonth()+1).padStart(2,"0")}-${String(s.getDate()).padStart(2,"0")}`,m=`${String(s.getDate()).padStart(2,"0")}/${String(s.getMonth()+1).padStart(2,"0")}/${s.getFullYear()}`;o.push({date:p,label:m,slots:[{time:"07:00",available:!0},{time:"11:00",available:!0},{time:"15:20",available:!0}]})}return{timezone:"America/Lima",days:o}}const n=candidateApiBases();let a="No se pudo leer la agenda en vivo.";for(const l of n)try{const o=await fetch(`${l}/api/bookings/direct-availability?service=${encodeURIComponent(t)}&days=${e}`,{headers:{Accept:"application/json"}});if(!o.ok){a=`HTTP ${o.status}`;continue}const r=await o.json();if(r&&Array.isArray(r.days)&&r.days.length)return r;a="Agenda vacia."}catch(o){const r=o&&o.message?o.message:String(o||a);a=/failed to fetch|networkerror|load failed/i.test(r)?"Connexion API indisponible. Agenda locale temporaire affich\xA9e.":r}const c=i(Math.min(Math.max(Number(e||30),1),45)),d=document.getElementById("tarot-status");return d&&(d.textContent=a),c}const tarotDateInput=document.getElementById("tarot-date"),tarotHourInput=document.getElementById("tarot-hour"),tarotStatusEl=document.getElementById("tarot-status"),tarotInstructionsEl=document.getElementById("tarot-instructions"),tarotSavedWrapEl=document.getElementById("tarot-saved-wrap"),tarotSavedListEl=document.getElementById("tarot-saved-list"),tarotDurationEl=document.getElementById("tarot-duration"),tarotTotalEl=document.getElementById("tarot-total");let tarotSelectedDate="",tarotSelectedHour="";const tarotSavedSessions=[];function isoToLabel(t){const e=String(t||"").match(/^(\d{4})-(\d{2})-(\d{2})$/);return e?`${e[3]}/${e[2]}/${e[1]}`:t}function setInstruction(t){tarotInstructionsEl&&(tarotInstructionsEl.textContent=t)}function updateTarotTotal(){if(!tarotTotalEl)return;const t=Number(tarotDurationEl&&tarotDurationEl.value||"30");tarotTotalEl.textContent=`Total to pay: ${t} USD`}function renderTarotSessions(){if(!(!tarotSavedListEl||!tarotSavedWrapEl)){if(tarotSavedListEl.innerHTML="",!tarotSavedSessions.length){const t=document.createElement("li");t.className="is-empty",t.textContent="No saved date yet",tarotSavedListEl.appendChild(t),tarotSavedWrapEl.style.display="block";return}tarotSavedSessions.forEach(t=>{const e=document.createElement("li");e.textContent=`Tarot session: ${isoToLabel(t.date)} \xB7 ${t.time}`,tarotSavedListEl.appendChild(e)}),tarotSavedWrapEl.style.display="block"}}function loadScript(t){return new Promise(function(e,i){const n=document.createElement("script");n.src=t,n.onload=e,n.onerror=i,document.head.appendChild(n)})}async function ensureCalendarDependencies(){if(!window.FullCalendar||!window.FullCalendar.Calendar)try{await loadScript("https://unpkg.com/fullcalendar@6.1.15/index.global.min.js")}catch(t){return tarotStatusEl&&(tarotStatusEl.textContent="Calendrier indisponible: FullCalendar non charg\xA9."),!1}if(!window.FullCalendarSlotPicker)try{await loadScript("../assets/fullcalendar-slot-picker.js")}catch(t){return tarotStatusEl&&(tarotStatusEl.textContent="Calendrier indisponible: picker non charg\xA9."),!1}return!!(window.FullCalendar&&window.FullCalendar.Calendar&&window.FullCalendarSlotPicker)}async function initTarotCalendar(){if(!await ensureCalendarDependencies()){tarotStatusEl&&(tarotStatusEl.textContent="Calendrier indisponible: recharge la page.");return}window.tarotPicker=new window.FullCalendarSlotPicker({calendarEl:document.getElementById("tarot-calendar"),timesEl:document.getElementById("tarot-times"),selectedEl:document.getElementById("tarot-selected"),statusEl:tarotStatusEl,titleEl:document.getElementById("tarot-month"),prevEl:document.getElementById("tarot-prev"),nextEl:document.getElementById("tarot-next"),loadAvailability:function(){return loadAvailability("tarot-terapeutico",45)},autoRefreshMs:1200*1e3,emptyText:"",onChange:function(e){tarotSelectedDate=e.date||"",tarotSelectedHour=e.time||"",setInstruction(tarotSelectedDate?"Select your session time":"Select your session date")}}),await window.tarotPicker.load(),setInstruction("Select your session date"),renderTarotSessions()}initTarotCalendar(),updateTarotTotal(),tarotDurationEl&&tarotDurationEl.addEventListener("change",updateTarotTotal),document.getElementById("tarot-save").addEventListener("click",()=>{const t=document.getElementById("tarot-msg");if(!tarotSelectedDate||!tarotSelectedHour){t&&(t.textContent="Select an available date and time before saving.");return}tarotDateInput.value=tarotSelectedDate,tarotHourInput.value=tarotSelectedHour,tarotSavedSessions.length=0,tarotSavedSessions.push({date:tarotDateInput.value,time:tarotHourInput.value}),renderTarotSessions(),tarotStatusEl&&(tarotStatusEl.textContent=""),setInstruction("Session validated"),t&&(t.textContent="Date and time saved."),window.tarotPicker&&window.tarotPicker.clearSelection&&window.tarotPicker.clearSelection(),tarotSelectedDate="",tarotSelectedHour=""}),document.getElementById("tarot-pay").addEventListener("click",async()=>{const t=document.getElementById("tarot-name").value.trim(),e=document.getElementById("tarot-email").value.trim(),i=document.getElementById("tarot-whatsapp").value.trim(),n=document.getElementById("tarot-motive").value.trim(),a=Number(tarotDurationEl&&tarotDurationEl.value||"30"),c=document.getElementById("tarot-date").value.trim(),d=document.getElementById("tarot-hour").value.trim(),l=document.getElementById("tarot-msg");if(!t||!e){l.textContent="Fill in name and email to continue.";return}if(!c||!d){l.textContent="Select an available date and time.";return}l.textContent="Redirection vers paiement s\xA9curis\xA9...";try{const o=t.split(/\s+/),r=o[0]||t,u=o.slice(1).join(" ")||r,s=tarotSavedSessions.length?tarotSavedSessions.map((m,f)=>`Sesi\xF3n ${f+1}: ${m.date} ${m.time}`).join(" | "):"N/A",p=await createDirectIntake({service:"tarot-terapeutico",first_name:r,last_name:u,email:e,appointment_date:c,appointment_time:d,tarot_duration:a,notes:[`Validated sessions: ${s}`,`Motivo de consulta: ${n||"No especificado"}`,`Whatsapp: ${i||"No especificado"}`].join(" | "),website:""});window.location.href=p}catch(o){console.error("Stripe payment link error (tarot-terapeutico):",o),l.textContent="Erreur de configuration du paiement Stripe. Verifie le lien de paiement."}});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

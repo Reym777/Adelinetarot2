@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0a1d" />
+  <!-- URL del backend (FastAPI). Dejalo vacio si el backend sirve esta pagina.
+       En GitHub Pages u otro hosting estatico, pon aqui la URL publica del
+       backend, p. ej. content="https://tu-backend.onrender.com" -->
+  <meta name="adeline-api-base" content="" />
+    <meta name="description" content="Lectura de tarot terapéutico, carta astral, oraciones y meditaciones guiadas online con Adeline Mágica." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://adelinemagica.com/" />
+  <link rel="alternate" hreflang="fr" href="https://adelinemagica.com/fr/" />
+  <link rel="alternate" hreflang="en" href="https://adelinemagica.com/en/" />
+  <link rel="alternate" hreflang="es" href="https://adelinemagica.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://adelinemagica.com/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23e8c66b'/%3E%3Ccircle cx='11' cy='13' r='10' fill='%230c0a1d'/%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+  <title>Lectura de tarot y carta astral online | Adeline M&aacute;gica</title>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lectura de tarot y carta astral online | Adeline M&aacute;gica" />
+  <meta property="og:description" content="Lectura de tarot terapéutico, carta astral, oraciones y meditaciones guiadas online con Adeline Mágica." />
+  <meta property="og:image" content="https://adelinemagica.com/assets/images/bandeau10_upscaled_1280_11zon.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lectura de tarot y carta astral online | Adeline M&aacute;gica" />
+  <meta name="twitter:description" content="Lectura de tarot terapéutico, carta astral, oraciones y meditaciones guiadas online con Adeline Mágica." />
+  <meta name="twitter:image" content="https://adelinemagica.com/assets/images/bandeau10_upscaled_1280_11zon.webp" />
+  <meta name="keywords" content="tarot terapeutico, oraciones personalizadas, meditaciones guiadas, carta astral, espiritualidad, adeline" />
+<meta property="og:site_name" content="Adeline Magica" />
+<meta property="og:url" content="https://adelinemagica.com/" />
+  <style id="critical-css">
+    :root{--night:#0c0a1d;--border:rgba(232,198,107,.22);--gold:#e8c66b;--muted:#e8c66b;--maxw:100%}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+    body{margin:0;min-height:100vh;min-height:100dvh;background:var(--night);color:var(--muted);font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto}
+    .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px}
+    .site-header{position:sticky;top:0;z-index:50;background:rgba(10,8,24,.6);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    .site-header .container{max-width:100%;padding-left:0;padding-right:0}
+    .nav{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;aspect-ratio:1024/167;min-height:64px;position:relative;--banner-edge-pad:clamp(8px,1.8vw,24px)}
+    .menu-toggle{border:1px solid var(--border);background:rgba(12,10,29,.6);color:var(--gold);width:42px;height:42px;border-radius:10px;font-size:1.25rem;margin-left:12px}
+    .brand{position:absolute;inset:0 var(--banner-edge-pad);pointer-events:none}
+    .brand-banner-img{width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-family:"Cinzel",Georgia,serif;letter-spacing:.06em;padding:14px 30px;border-radius:999px;border:1px solid transparent;text-transform:uppercase;min-height:48px}
+    .btn-primary{background:linear-gradient(135deg,var(--gold),#c9a64a);color:#2a200a}
+    .header-cta{display:inline-flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:92px!important;height:calc(100% - 12px);max-height:52px;padding:6px 9px!important;font-size:.64rem!important;letter-spacing:.04em!important;line-height:1.08;white-space:normal;text-align:center;align-self:center;justify-self:end;position:relative;z-index:2;margin-right:var(--banner-edge-pad)}
+    .header-cta .cta-top,.header-cta strong{display:block;width:100%;text-align:center;margin:0 auto;line-height:1}
+    .header-cta strong{font-weight:800;font-size:1.08em}
+    .hero{position:relative;text-align:center;padding:46px 0 70px;min-height:430px}
+    .hero .eyebrow{font-family:"Cinzel",Georgia,serif;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);font-size:.82rem;margin-bottom:20px}
+    .hero h1{font-family:"Cinzel",Georgia,serif;font-weight:600;letter-spacing:.03em;line-height:1.2;font-size:clamp(2.6rem,6vw,4.4rem);margin:0 0 18px}
+    .hero h1 .subline{display:block;margin-top:8px;font-size:.46em;letter-spacing:.1em;color:rgba(232,198,107,.86)}
+    .hero p.lead{max-width:680px;margin:0 auto 34px;font-size:1.3rem;color:var(--muted)}
+    @media (max-width:560px){body{font-size:18px}.container{padding:0 16px}html{scroll-padding-top:70px}.nav{min-height:66px;--banner-edge-pad:8px}.hero{padding:26px 0 40px;min-height:340px}.hero .eyebrow{font-size:.72rem;letter-spacing:.22em}.hero p.lead{font-size:1.12rem}}
+  </style>
+  <link rel="preload" as="style" href="/assets/fonts/google-fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="/assets/fonts/google-fonts.css" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="assets/styles.min.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="assets/site-overrides.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="assets/styles.min.css" /></noscript>
+  <noscript><link rel="stylesheet" href="assets/site-overrides.css" /></noscript>
+  <link rel="preload" as="image" href="assets/images/bandeau10_upscaled_1280_11zon-768w.webp" imagesrcset="assets/images/bandeau10_upscaled_1280_11zon-480w.webp 480w, assets/images/bandeau10_upscaled_1280_11zon-768w.webp 768w, assets/images/bandeau10_upscaled_1280_11zon-1024w.webp 1024w, assets/images/bandeau10_upscaled_1280_11zon-1280w.webp 1280w" imagesizes="(max-width: 900px) 92vw, 700px" fetchpriority="high" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Adeline Magica",
+      "url": "https://adelinemagica.com",
+      "email": "garaizaoregel@gmail.com",
+      "sameAs": ["https://adelinemagica.com"],
+      "description": "Servicios espirituales: tarot terapéutico, oraciones personalizadas y meditaciones guiadas."
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Adeline Magica",
+      "url": "https://adelinemagica.com",
+      "inLanguage": "es"
+    }
+  </script>
+
+  <style>
+    .package-cta-btn {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      box-shadow: 0 0 0 0 rgba(232, 198, 107, 0.45), 0 10px 28px rgba(232, 198, 107, 0.35);
+      animation: packageShockwave 2.4s ease-out infinite;
+    }
+    .package-cta-btn::before {
+      content: "";
+      position: absolute;
+      inset: -20% auto -20% -55%;
+      width: 42%;
+      transform: skewX(-20deg);
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,247,217,0.85), rgba(255,255,255,0));
+      animation: packageLightSweep 1.8s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .package-cta-btn > span,
+    .package-cta-btn > strong,
+    .package-cta-btn > em,
+    .package-cta-btn > b {
+      position: relative;
+      z-index: 2;
+    }
+    @keyframes packageLightSweep {
+      0% { left: -55%; opacity: 0; }
+      10% { opacity: 1; }
+      55% { left: 118%; opacity: 0.9; }
+      100% { left: 118%; opacity: 0; }
+    }
+    @keyframes packageShockwave {
+      0% {
+        box-shadow: 0 0 0 0 rgba(232, 198, 107, 0.45), 0 10px 28px rgba(232, 198, 107, 0.35);
+      }
+      70% {
+        box-shadow: 0 0 0 18px rgba(232, 198, 107, 0), 0 14px 34px rgba(232, 198, 107, 0.44);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(232, 198, 107, 0), 0 10px 28px rgba(232, 198, 107, 0.35);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .package-cta-btn {
+        animation: none;
+      }
+      .package-cta-btn::before {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-decor" aria-hidden="true">
+    <span class="bug butterfly" style="top:6%;--size:36px;animation-duration:18s;animation-delay:0s"></span>
+    <span class="bug butterfly" style="top:26%;--size:28px;animation-duration:24s;animation-delay:5s"></span>
+    <span class="bug butterfly" style="top:46%;--size:40px;animation-duration:20s;animation-delay:10s"></span>
+    <span class="bug butterfly" style="top:66%;--size:30px;animation-duration:27s;animation-delay:3s"></span>
+    <span class="bug butterfly" style="top:86%;--size:34px;animation-duration:19s;animation-delay:14s"></span>
+    <span class="bug leaf" style="top:18%;font-size:1.5rem;animation-duration:21s;animation-delay:2s">&#x1F343;</span>
+    <span class="bug leaf" style="top:40%;font-size:1.2rem;animation-duration:27s;animation-delay:8s">&#x1F343;</span>
+    <span class="bug leaf" style="top:62%;font-size:1.8rem;animation-duration:17s;animation-delay:12s">&#x1F343;</span>
+    <span class="bug leaf" style="top:80%;font-size:1.3rem;animation-duration:24s;animation-delay:5s">&#x1F343;</span>
+    <span class="bug leaf" style="top:6%;font-size:1.5rem;animation-duration:22s;animation-delay:16s">&#x1F343;</span>
+  </div>
+  <div class="falling-cards" aria-hidden="true"></div>
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container nav">
+      <button type="button" class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+      <a class="brand" href="#inicio">
+        <img src="assets/images/bandeau10_upscaled_1280_11zon-768w.webp" srcset="assets/images/bandeau10_upscaled_1280_11zon-480w.webp 480w, assets/images/bandeau10_upscaled_1280_11zon-768w.webp 768w, assets/images/bandeau10_upscaled_1280_11zon-1024w.webp 1024w, assets/images/bandeau10_upscaled_1280_11zon-1280w.webp 1280w" sizes="(max-width: 900px) 92vw, 700px" width="2200" height="369" class="brand-banner-img" alt="Adeline" loading="eager" fetchpriority="high" decoding="async" />
+      </a>
+      <a href="#paquete-adeline" class="btn btn-primary header-cta package-cta-btn"><span class="cta-top">Adquiere PAQUETE</span><strong>MAGICA</strong></a>
+    </div>
+  </header>
+
+  <aside id="sideMenu" class="side-menu" aria-hidden="true" inert>
+    <div class="side-menu-head">
+      <span>Menú</span>
+            <div class="side-menu-lang-top" onclick="event.stopPropagation()" style="display:flex;align-items:center;gap:10px;margin-left:auto;margin-right:10px">
+        <a href="/en/" aria-label="English" style="color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.06em">EN</a>
+        <a href="/" aria-label="Español" style="color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.06em">ES</a>
+        <a href="/fr/" aria-label="Français" style="color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.06em">FR</a>
+      </div><button type="button" class="menu-close" aria-label="Cerrar menú">&times;</button>
+    </div>
+    <nav class="side-menu-links">
+      <a href="#inicio">Inicio</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <a href="oraciones" class="hero-link-highlight">Solicita tu oración hoy mismo</a>
+      <a href="meditaciones" class="hero-link-highlight">Meditaciones vía llamada de voz</a>
+      <a href="tarot-terapeutico" class="hero-link-highlight">Tarot terapéutico</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <span class="side-menu-note">Mundo astrológico</span>
+      <a href="lectura-de-carta-natal">Lectura de carta natal</a>
+      <a href="horoscopo.html">Horoscopo diaria</a>
+      <a href="sinastria">Sinastría</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <a href="paquete-magica.html" class="hero-link-highlight side-menu-package">Paquete MÁGICA</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <a href="articulos" class="hero-link-highlight">Editorial</a>
+      <a href="contact" class="hero-link-highlight">Contacto</a>
+</nav>
+  </aside>
+  <div id="menuBackdrop" class="menu-backdrop hidden"></div>
+
+  <main id="inicio">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="container">
+        <svg class="constellation metatron" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <!-- Outer Hexagon -->
+          <polygon points="60,20 94.64,40 94.64,80 60,100 25.36,80 25.36,40" stroke="#e8c66b" stroke-opacity="0.35" stroke-width="0.8"/>
+          <!-- Inner Hexagon -->
+          <polygon points="60,40 77.32,50 77.32,70 60,80 42.68,70 42.68,50" stroke="#e8c66b" stroke-opacity="0.35" stroke-width="0.8"/>
+          <!-- Merkaba Up/Down -->
+          <polygon points="60,20 94.64,80 25.36,80" stroke="#b9aef0" stroke-opacity="0.4" stroke-width="0.7"/>
+          <polygon points="94.64,40 60,100 25.36,40" stroke="#b9aef0" stroke-opacity="0.4" stroke-width="0.7"/>
+          <!-- Radii -->
+          <path d="M60 20 L60 100 M94.64 40 L25.36 80 M94.64 80 L25.36 40" stroke="#e8c66b" stroke-opacity="0.3" stroke-width="0.6"/>
+          <!-- Connections from outer to inner opposite -->
+          <path d="M60 20 L77.32 70 L25.36 40 L60 80 L94.64 40 L42.68 70 Z" stroke="#e8c66b" stroke-opacity="0.2" stroke-width="0.6"/>
+          <!-- 13 Circles -->
+          <!-- Center -->
+          <circle cx="60" cy="60" r="4" fill="#fff7df"/>
+          <circle cx="60" cy="60" r="8" stroke="#e8c66b" stroke-width="0.5"/>
+          <g class="hex-violet">
+            <!-- Inner -->
+            <circle cx="60" cy="40" r="3" fill="#b9aef0"/>
+            <circle cx="77.32" cy="50" r="3" fill="#b9aef0"/>
+            <circle cx="77.32" cy="70" r="3" fill="#b9aef0"/>
+            <circle cx="60" cy="80" r="3" fill="#b9aef0"/>
+            <circle cx="42.68" cy="70" r="3" fill="#b9aef0"/>
+            <circle cx="42.68" cy="50" r="3" fill="#b9aef0"/>
+          </g>
+          <g class="hex-yellow">
+            <!-- Outer -->
+            <circle cx="60" cy="20" r="4.5" fill="#e8c66b"/>
+            <circle cx="94.64" cy="40" r="4.5" fill="#e8c66b"/>
+            <circle cx="94.64" cy="80" r="4.5" fill="#e8c66b"/>
+            <circle cx="60" cy="100" r="4.5" fill="#e8c66b"/>
+            <circle cx="25.36" cy="80" r="4.5" fill="#e8c66b"/>
+            <circle cx="25.36" cy="40" r="4.5" fill="#e8c66b"/>
+          </g>
+        </svg>
+        <p class="eyebrow">Oraciones · Tarot terapéutico · Meditaciones</p>
+        <h1>Elevo tu oración <span style="white-space:nowrap">al creador</span><span class="subline">y el cielo responde</span></h1>
+        <p class="lead">
+          <strong>ADELINE</strong> es un puente lleno de fe y amor para conectar tu petición a los oídos del creador,
+          ¡Permíteme sumar!
+        </p>
+        <div class="hero-cta hero-cta-home">
+          <div class="hero-cta-row hero-cta-row-primary">
+            <a href="oraciones" class="btn btn-ghost hero-link-highlight">Solicitar oración / rezo</a>
+            <a href="meditaciones" class="btn btn-ghost hero-link-highlight">Meditaciones vía llamada de voz</a>
+            <a href="tarot-terapeutico" class="btn btn-ghost hero-link-highlight">Tarot terapéutico</a>
+          </div>
+          <div class="hero-cta-row hero-cta-row-secondary">
+            <a href="lectura-de-carta-natal" class="btn btn-ghost hero-link-highlight">Lectura de carta natal</a>
+            <a href="sinastria" class="btn btn-ghost hero-link-highlight">Sinastría</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- ===================== PAQUETE MÁGICA ===================== -->
+  <section id="paquete-adeline">
+    <div class="container">
+      <div class="panel">
+        <h2 class="section-title">PAQUETE MAGICA</h2>
+        <p class="section-sub">3 meditaciones de 33 min + 1 lectura de tarot terapéutico de 30 min + PDF con recomendaciones para apertura de caminos y autosanación por 144 USD.</p>
+        <div class="grid-3">
+          <div class="card"><img class="icon package-icon" src="assets/images/meditacion-PAQUETE_13_11zon-260w.webp" srcset="assets/images/meditacion-PAQUETE_13_11zon-180w.webp 180w, assets/images/meditacion-PAQUETE_13_11zon-260w.webp 260w, assets/images/meditacion-PAQUETE_13_11zon-320w.webp 320w, assets/images/meditacion-PAQUETE_13_11zon-520w.webp 520w" sizes="(max-width: 768px) 42vw, 180px" width="70" height="70" alt="3 meditaciones" loading="lazy" decoding="async" fetchpriority="low" /><h3>3 meditaciones</h3><p>Sesiones de 33 minutos por llamada de voz con foco en sanación interior.</p></div>
+          <div class="card"><img class="icon package-icon" src="assets/images/carte-PAQUETE_6_11zon-260w.webp" srcset="assets/images/carte-PAQUETE_6_11zon-180w.webp 180w, assets/images/carte-PAQUETE_6_11zon-260w.webp 260w, assets/images/carte-PAQUETE_6_11zon-320w.webp 320w, assets/images/carte-PAQUETE_6_11zon-520w.webp 520w" sizes="(max-width: 768px) 42vw, 180px" width="70" height="70" alt="Tarot terapéutico" loading="lazy" decoding="async" fetchpriority="low" /><h3>Tarot terapéutico</h3><p>Una lectura de 30 minutos por llamada de voz que abrirá paso a tu claridad mental y equilibrio emocional.</p></div>
+          <div class="card"><img class="icon package-icon" src="assets/images/livre-PAQUETE_10_11zon-260w.webp" srcset="assets/images/livre-PAQUETE_10_11zon-180w.webp 180w, assets/images/livre-PAQUETE_10_11zon-260w.webp 260w, assets/images/livre-PAQUETE_10_11zon-320w.webp 320w, assets/images/livre-PAQUETE_10_11zon-520w.webp 520w" sizes="(max-width: 768px) 42vw, 180px" width="70" height="70" alt="PDF de apoyo" loading="lazy" decoding="async" fetchpriority="low" /><h3>PDF de apoyo</h3><p>Con un modelo de 7 páginas para digerir en tu tiempo libre. Permite que desarrolles autosanación, apertura de caminos y enfoque.</p></div>
+        </div>
+        <p style="margin-top:18px;text-align:center;"><a href="paquete-magica.html" class="btn btn-primary package-cta-btn">Adquiere hoy</a></p>
+      </div>
+    </div>
+  </section>
+
+  <script>const SIGNS_ES=["Aries","Tauro","G\xE9minis","C\xE1ncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"],SIGN_SYMBOLS=["\u2648","\u2649","\u264A","\u264B","\u264C","\u264D","\u264E","\u264F","\u2650","\u2651","\u2652","\u2653"],PLANETS_DEF={Sol:{sym:"\u2609",speed:.9856,base:280.46},Luna:{sym:"\u263D",speed:13.1764,base:218.32},Mercurio:{sym:"\u263F",speed:4.0923,base:252.25},Venus:{sym:"\u2640",speed:1.6021,base:181.98},Marte:{sym:"\u2642",speed:.524,base:355.43},J\u00FApiter:{sym:"\\u2643",speed:.0831,base:34.35},Saturno:{sym:"\u2644",speed:.0334,base:50.08},Urano:{sym:"\u2645",speed:.0117,base:314},Neptuno:{sym:"\u2646",speed:.006,base:304.88},Plut\u00F3n:{sym:"\\u2647",speed:.004,base:238.93}},_AX_EARTH={L0:100.4664825,dL:36000.7698,a:1,e0:.01671,de:-4e-5,om:102.9373},_AX_PLANETS={Mercurio:{L0:252.2507519,dL:149472.6742,a:.3871,e0:.20563,de:2e-5,om:77.4561},Venus:{L0:181.9798085,dL:58517.8153,a:.72333,e0:.00677,de:-5e-5,om:131.5637},Marte:{L0:355.433275,dL:19140.2993,a:1.52366,e0:.09341,de:9e-5,om:336.0602},Jupiter:{L0:34.3514816,dL:3034.9057,a:5.20336,e0:.04839,de:-13e-5,om:14.332},Saturno:{L0:50.0774443,dL:1221.5515,a:9.53707,e0:.05415,de:-5e-4,om:93.0572},Urano:{L0:314.0550187,dL:428.4748,a:19.1913,e0:.04717,de:-5e-5,om:173.0052},Neptuno:{L0:304.3486683,dL:218.46,a:30.069,e0:.00859,de:5e-6,om:48.1235},Pluton:{L0:238.9290293,dL:145.1786,a:39.4817,e0:.24883,de:5e-5,om:224.069}},_AX_MOON_TERMS=[[0,0,1,0,6288774],[2,0,-1,0,1274027],[2,0,0,0,658314],[0,0,2,0,213618],[0,1,0,0,-185116],[0,0,0,2,-114332],[2,0,-2,0,58793],[2,-1,-1,0,57066],[2,0,1,0,53322],[2,-1,0,0,45758],[0,1,-1,0,-40923],[1,0,0,0,-34720],[0,1,1,0,-30383],[2,0,0,-2,15327],[0,0,1,2,-12528],[0,0,1,-2,10980],[4,0,-1,0,10675],[0,0,3,0,10034],[4,0,-2,0,8548],[2,1,-1,0,-7888],[2,1,0,0,-6766],[1,0,-1,0,-5163],[1,1,0,0,4987],[2,-1,1,0,4036],[2,0,2,0,3994],[4,0,0,0,3861],[2,0,-3,0,3665],[0,1,-2,0,-2689],[2,0,-1,2,-2602],[2,-1,-2,0,2390],[1,0,1,0,-2348],[2,-2,0,0,2236],[0,1,2,0,-2120],[0,2,0,0,-2069],[2,-2,-1,0,2048],[2,0,1,-2,-1773],[2,0,0,2,-1595],[4,-1,-1,0,1215],[0,0,2,2,-1110],[3,0,-1,0,-892],[2,1,1,0,-810],[4,-1,-2,0,759],[0,2,-1,0,-713],[2,2,-1,0,-700],[2,1,-2,0,691],[2,-1,0,-2,596],[4,0,1,0,549],[0,0,4,0,537],[4,-1,0,0,520],[1,0,-2,0,-487],[2,1,0,-2,-399],[0,0,2,-2,-381],[1,1,1,0,351],[3,0,-2,0,-340],[4,0,-3,0,330],[2,-1,2,0,327],[0,2,1,0,-323],[1,1,-1,0,299],[2,0,3,0,294]],_axToR=e=>e*Math.PI/180;function _axRev(e){return(e%360+360)%360}function _axJD(e,a,n){const t=String(e).split("-").map(Number);if(t.length!==3||t.some(p=>!Number.isFinite(p)))return NaN;const o=(a||"12:00").split(":"),i=Number(o[0]||12)+Number(o[1]||0)/60-(n||0);let r=t[0],s=t[1];const d=t[2]+i/24;s<=2&&(r--,s+=12);const u=Math.floor(r/100),c=2-u+Math.floor(u/4);return Math.floor(365.25*(r+4716))+Math.floor(30.6001*(s+1))+d+c-1524.5}function _axHelioXY(e,a){const n=_axRev(e.L0+e.dL*a),t=e.e0+e.de*a,o=e.om,i=_axRev(n-o),r=_axToR(i),s=(2*t-.25*t*t*t)*Math.sin(r)+1.25*t*t*Math.sin(2*r)+13/12*t*t*t*Math.sin(3*r),d=_axRev(i+s*180/Math.PI+o),u=e.a*(1-t*t)/(1+t*Math.cos(_axToR(_axRev(i+s*180/Math.PI))));return{x:u*Math.cos(_axToR(d)),y:u*Math.sin(_axToR(d))}}function _axMoonLon(e){const a=_axRev(218.3164477+481267.88123421*e-.0015786*e*e+e*e*e/538841-e*e*e*e/65194e3),n=_axRev(297.8501921+445267.1114034*e-.0018819*e*e+e*e*e/545868-e*e*e*e/113065e3),t=_axRev(357.5291092+35999.0502909*e-1536e-7*e*e+e*e*e/2449e4),o=_axRev(134.9633964+477198.8675055*e+.0087414*e*e+e*e*e/69699-e*e*e*e/14712e3),i=_axRev(93.272095+483202.0175233*e-.0036539*e*e-e*e*e/3526e3+e*e*e*e/86331e4),r=1-.002516*e-74e-7*e*e,s=_axRev(119.75+131.849*e),d=_axRev(53.09+479264.29*e);let u=0;for(let c=0;c<_AX_MOON_TERMS.length;c++){const p=_AX_MOON_TERMS[c];let g=p[4];const m=Math.abs(p[1]);m===1?g*=r:m===2&&(g*=r*r),u+=g*Math.sin(_axToR(p[0]*n+p[1]*t+p[2]*o+p[3]*i))}return u+=3958*Math.sin(_axToR(s))+1962*Math.sin(_axToR(a-i))+318*Math.sin(_axToR(d)),_axRev(a+u/1e6)}function _axLongitudes(e,a,n){const t=_axJD(e,a,n||0);if(isNaN(t))return{};const o=(t-2451545)/36525,i=_axRev(280.46646+36000.76983*o),r=_axToR(_axRev(357.52911+35999.05029*o)),s=(1.914602-.004817*o)*Math.sin(r)+(.019993-101e-6*o)*Math.sin(2*r)+289e-6*Math.sin(3*r),d=_axToR(_axRev(125.04452-1934.136261*o)),u=_axRev(i+s-.00569-.00478*Math.sin(d)),c=_axMoonLon(o),p=_axHelioXY(_AX_EARTH,o),g={Sol:u,Luna:c};for(const[m,l]of Object.entries(_AX_PLANETS)){const x=_axHelioXY(l,o);g[m]=_axRev(Math.atan2(x.y-p.y,x.x-p.x)*180/Math.PI)}return g}function _axAscLon(e,a,n,t,o){const i=_axJD(e,a,n||0);if(isNaN(i))return NaN;const r=(i-2451545)/36525,s=_axRev(280.46061837+360.98564736629*(i-2451545)+387933e-9*r*r),d=o!=null?o:0,u=_axRev(s+d),c=23.4397-.013*r,p=_axToR(u),g=_axToR(c),m=_axToR(t!=null?t:45);return _axRev(Math.atan2(Math.cos(p),-(Math.sin(g)*Math.tan(m)+Math.cos(g)*Math.sin(p)))*180/Math.PI)}const _AX_KEYMAP={Sol:"Sol",Luna:"Luna",Mercurio:"Mercurio",Venus:"Venus",Marte:"Marte",Jupiter:"J\xFApiter",Saturno:"Saturno",Urano:"Urano",Neptuno:"Neptuno",Pluton:"Plut\xF3n"};function predCalcAstro(e,a){const n=_axLongitudes(e,a,0),t={};for(const[o,i]of Object.entries(n)){const r=_AX_KEYMAP[o]||o,s=PLANETS_DEF[r]||{},d=Math.floor(_axRev(i)/30)%12;t[r]={sign:SIGNS_ES[d],symbol:s.sym,sigSym:SIGN_SYMBOLS[d],lon:i}}return t}function predGetAsc(e,a){const n=_axAscLon(e,a||"12:00",0);return isNaN(n)?SIGNS_ES[0]:SIGNS_ES[Math.floor(n/30)%12]}function predAge(e){const a=new Date(e),n=new Date;let t=n.getFullYear()-a.getFullYear();return(n.getMonth()<a.getMonth()||n.getMonth()===a.getMonth()&&n.getDate()<a.getDate())&&t--,t}function switchPredTab(e){document.querySelectorAll(".pred-tab").forEach((a,n)=>{a.classList.toggle("active",n===0&&e==="court"||n===1&&e==="long"),a.setAttribute("aria-selected",a.classList.contains("active"))}),document.getElementById("pred-panel-court").classList.toggle("active",e==="court"),document.getElementById("pred-panel-long").classList.toggle("active",e==="long")}function openServiceTab(e,a){if(document.querySelectorAll(".service-tab").forEach(n=>{n.classList.toggle("active",n.dataset.tab===e)}),document.querySelectorAll(".orbit-card").forEach(n=>{n.classList.toggle("active",n.dataset.service===e)}),a){const n=document.getElementById("services-hub");n&&n.scrollIntoView({behavior:"smooth",block:"start"})}}function isValidEmail(e){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(e||"").trim())}function resolveAdelineContactEndpoint(){var e,a;const n=(((e=document.querySelector('meta[name="adeline-api-contact"]'))==null?void 0:e.content)||"").trim();if(n)return n;const t=(((a=document.querySelector('meta[name="adeline-api-base"]'))==null?void 0:a.content)||"").trim().replace(/\/+$/,"");return t?t+"/api/contact":""}const ADELINE_CONTACT_ENDPOINT=resolveAdelineContactEndpoint();async function sendIndexLeadEmail(e){if(!ADELINE_CONTACT_ENDPOINT)return{ok:!1,error:"API de contacto no configurada"};try{const a=await fetch(ADELINE_CONTACT_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({source:e.source||"adeline-index",subject:e.subject||"Nuevo mensaje",fullname:e.fullname||"",email:e.email||"",message:e.message||"",website:"",form_ts:Date.now()-5e3})}),n=await a.json().catch(()=>({}));return{ok:!!(a.ok&&n.ok),status:a.status,data:n,error:n&&n.error?String(n.error):""}}catch(a){return{ok:!1,error:String(a&&a.message?a.message:a)}}}function svcSetResult(e,a){const n=document.getElementById(e);n&&(n.innerHTML=a,n.classList.remove("hidden"))}function runSvcNatal(){const e=document.getElementById("svc-natal-name").value.trim(),a=document.getElementById("svc-natal-date").value,n=document.getElementById("svc-natal-time").value,t=document.getElementById("svc-natal-email").value.trim();if(!e||!a||!isValidEmail(t)){svcSetResult("svc-natal-out",'<div class="alert alert-error">Completa nombre, fecha y email v\xE1lido.</div>');return}const o=predCalcAstro(a,n),i=predGetAsc(a,n);svcSetResult("svc-natal-out",`<div class="pred-card"><h3>Resultado expr\xE9s</h3><p><strong>${e}</strong> \xB7 Sol en <span class="highlight">${o.Sol.sign}</span>, Luna en <span class="highlight">${o.Luna.sign}</span>, Ascendente <span class="highlight">${i}</span>.</p><p>Tu solicitud est\xE1 lista para la lectura completa.</p></div>`),sendIndexLeadEmail({source:"servicio-natal",subject:"Solicitud index \xB7 Carta natal",fullname:e,email:t,message:`Servicio: Carta natal
+Fecha nacimiento: ${a}
+Hora: ${n||"No indicada"}
+Resumen: Sol ${o.Sol.sign}, Luna ${o.Luna.sign}, Asc ${i}`})}function runSvcLive(){const e=document.getElementById("svc-live-name").value.trim(),a=document.getElementById("svc-live-date").value,n=document.getElementById("svc-live-target").value.trim(),t=document.getElementById("svc-live-target-date").value,o=document.getElementById("svc-live-email").value.trim();if(!e||!a||!n||!t||!isValidEmail(o)){svcSetResult("svc-live-out",'<div class="alert alert-error">Completa los dos perfiles y un email v\xE1lido.</div>');return}const i=predCalcAstro(a,"").Sol.sign,r=predCalcAstro(t,"").Sol.sign,s=SIGNS_ES.indexOf(i),d=SIGNS_ES.indexOf(r),u=Math.min(Math.abs(s-d),12-Math.abs(s-d)),c=Math.max(52,100-u*9);svcSetResult("svc-live-out",`<div class="pred-card"><h3>Compatibilidad r\xE1pida</h3><p>${e} (${i}) \xB7 ${n} (${r})</p><p>Puntaje estimado: <span class="highlight">${c}%</span>. La sesi\xF3n en vivo permitir\xE1 afinar con preguntas espec\xEDficas.</p></div>`),sendIndexLeadEmail({source:"servicio-sinastria",subject:"Solicitud index \xB7 Sinastr\xEDa en vivo",fullname:e,email:o,message:`Servicio: Sinastr\xEDa
+Perfil A: ${e} (${a})
+Perfil B: ${n} (${t})
+Compatibilidad estimada: ${c}%`})}function runSvcYear(){const e=document.getElementById("svc-year-name").value.trim(),a=document.getElementById("svc-year-date").value,n=document.getElementById("svc-year-focus").value,t=document.getElementById("svc-year-email").value.trim();if(!e||!a||!isValidEmail(t)){svcSetResult("svc-year-out",'<div class="alert alert-error">Completa nombre, fecha y email v\xE1lido.</div>');return}const o=predCalcAstro(a,"").Sol.sign,i={general:"equilibrio",amor:"coraz\xF3n",trabajo:"estructura",dinero:"abundancia"}[n]||"equilibrio";svcSetResult("svc-year-out",`<div class="pred-card"><h3>Proyecci\xF3n 1 a\xF1o</h3><p>${e} \xB7 Sol ${o} \xB7 Enfoque ${n}</p><p>${["Q1 lanzamiento","Q2 expansi\xF3n","Q3 ajuste","Q4 consolidaci\xF3n"].map((r,s)=>`${r}: energ\xEDa ${i} ${s+1}`).join("<br>")}</p></div>`),sendIndexLeadEmail({source:"servicio-proyeccion-1y",subject:"Solicitud index \xB7 Proyecci\xF3n 1 a\xF1o",fullname:e,email:t,message:`Servicio: Proyecci\xF3n 1 a\xF1o
+Fecha nacimiento: ${a}
+Enfoque: ${n}
+Sol: ${o}`})}function runSvcLong(){const e=document.getElementById("svc-long-name").value.trim(),a=document.getElementById("svc-long-date").value,n=document.getElementById("svc-long-time").value,t=document.getElementById("svc-long-email").value.trim();if(!e||!a||!isValidEmail(t)){svcSetResult("svc-long-out",'<div class="alert alert-error">Completa nombre, fecha y email v\xE1lido.</div>');return}const o=predCalcAstro(a,n).Sol.sign,i=predAge(a),r=(i<30?29:58)-i,s=r>0?`Retorno de Saturno en ~${r} a\xF1os.`:"Ciclo de Saturno en integraci\xF3n.";svcSetResult("svc-long-out",`<div class="pred-card"><h3>Visi\xF3n 5 a\xF1os</h3><p>${e} \xB7 Sol ${o} \xB7 ${s}</p><p>Ventanas fuertes: a\xF1o 1.5, 3 y 4.5 con decisiones estructurantes.</p></div>`),sendIndexLeadEmail({source:"servicio-vision-5y",subject:"Solicitud index \xB7 Visi\xF3n 5 a\xF1os",fullname:e,email:t,message:`Servicio: Visi\xF3n 5 a\xF1os
+Fecha nacimiento: ${a}
+Hora: ${n||"No indicada"}
+Sol: ${o}
+${s}`})}function runSvcOration(){const e=document.getElementById("svc-ora-name").value.trim(),a=document.getElementById("svc-ora-honor").value.trim(),n=document.getElementById("svc-ora-date").value,t=document.getElementById("svc-ora-email").value.trim(),o=document.getElementById("svc-ora-intent").value.trim();if(!e||!a||!o||!n||!isValidEmail(t)){svcSetResult("svc-ora-out",'<div class="alert alert-error">Completa todos los campos con email v\xE1lido.</div>');return}const i=predCalcAstro(n,"").Sol.sign,r=["Lunes","Martes","Mi\xE9rcoles","Jueves","Viernes","S\xE1bado","Domingo"][SIGNS_ES.indexOf(i)%7];svcSetResult("svc-ora-out",`<div class="pred-card"><h3>Oraci\xF3n recomendada</h3><p>Para ${a}, intenci\xF3n: <span class="highlight">${o}</span>.</p><p>Firma energ\xE9tica ${i}. D\xEDa sugerido: <strong>${r}</strong>.</p></div>`),sendIndexLeadEmail({source:"servicio-oracion",subject:"Solicitud index \xB7 Oraci\xF3n",fullname:e,email:t,message:`Servicio: Oraci\xF3n
+En honor de: ${a}
+Intenci\xF3n: ${o}
+Fecha de referencia: ${n}
+Firma energ\xE9tica: ${i}
+D\xEDa sugerido: ${r}`})}const WELLNESS_ZODIAC=[{name:"Capricornio",element:"tierra",dates:["01-01","01-19"]},{name:"Acuario",element:"aire",dates:["01-20","02-18"]},{name:"Piscis",element:"agua",dates:["02-19","03-20"]},{name:"Aries",element:"fuego",dates:["03-21","04-19"]},{name:"Tauro",element:"tierra",dates:["04-20","05-20"]},{name:"Geminis",element:"aire",dates:["05-21","06-20"]},{name:"Cancer",element:"agua",dates:["06-21","07-22"]},{name:"Leo",element:"fuego",dates:["07-23","08-22"]},{name:"Virgo",element:"tierra",dates:["08-23","09-22"]},{name:"Libra",element:"aire",dates:["09-23","10-22"]},{name:"Escorpio",element:"agua",dates:["10-23","11-21"]},{name:"Sagitario",element:"fuego",dates:["11-22","12-21"]},{name:"Capricornio",element:"tierra",dates:["12-22","12-31"]}],WELLNESS_CITIES=[{name:"Kioto, Japon",tags:["espiritualidad","tranquilidad","cultura"],description:"Templos y jardines que estabilizan la mente y favorecen el crecimiento interior.",bestFor:["agua","tierra"],lon:135.7},{name:"Santorini, Grecia",tags:["romance","mar","inspiracion"],description:"Un paisaje luminoso que activa creatividad, alegria y apertura afectiva.",bestFor:["fuego","aire"],lon:25.4},{name:"Machu Picchu, Peru",tags:["aventura","energia","montana"],description:"Territorio de altura con gran fuerza para resetear decisiones vitales.",bestFor:["tierra","fuego"],lon:-72.5},{name:"Reikiavik, Islandia",tags:["auroras","naturaleza","introspeccion"],description:"Paisajes extremos que amplifican intuicion y claridad emocional.",bestFor:["agua","aire"],lon:-21.9},{name:"Marrakech, Marruecos",tags:["color","cultura","pasion"],description:"Ciudad intensa para recuperar motivacion y energia de accion.",bestFor:["fuego","tierra"],lon:-7.9},{name:"Queenstown, Nueva Zelanda",tags:["libertad","naturaleza","aventura"],description:"Ideal para reinicio personal con movimiento, aire puro y foco.",bestFor:["aire","agua"],lon:168.7},{name:"Toscana, Italia",tags:["armonia","arte","bienestar"],description:"Ritmo equilibrado entre belleza, placer simple y estabilidad.",bestFor:["tierra","agua"],lon:11.2},{name:"Bali, Indonesia",tags:["bienestar","espiritualidad","comunidad"],description:"Escenario potente para sanar habitos y elevar el estado emocional.",bestFor:["agua","fuego"],lon:115.2},{name:"Patagonia, Argentina/Chile",tags:["grandeza","silencio","naturaleza"],description:"Horizontes amplios que limpian saturacion mental y devuelven direccion.",bestFor:["aire","tierra"],lon:-73},{name:"Lisboa, Portugal",tags:["luz","alegria","mar"],description:"Ciudad suave y vital para combinar expansion social y descanso.",bestFor:["fuego","aire"],lon:-9.1}];function wellParseOffset(e){const a=String(e||"").trim();if(!a)return 0;const n=a.toUpperCase().replace("GMT","UTC").match(/^UTC\s*([+-])\s*(\d{1,2})(?::?(\d{2}))?$/);if(n){const t=n[1]==="+"?1:-1,o=Number(n[2]),i=Number(n[3]||0);return t*(o+i/60)}try{const t=new Date,o=((new Intl.DateTimeFormat("en-US",{timeZone:a,timeZoneName:"shortOffset",hour:"2-digit",minute:"2-digit"}).formatToParts(t).find(s=>s.type==="timeZoneName")||{}).value||"GMT+0").match(/GMT([+-]\d{1,2})(?::?(\d{2}))?/i);if(!o)return 0;const i=Number(o[1]),r=Number(o[2]||"0");return i+(i>=0?r/60:-r/60)}catch(t){return 0}}function wellGetZodiac(e){const a=e.getMonth()+1,n=e.getDate(),t=String(a).padStart(2,"0")+"-"+String(n).padStart(2,"0");return WELLNESS_ZODIAC.find(o=>t>=o.dates[0]&&t<=o.dates[1])||WELLNESS_ZODIAC[0]}function wellGetRising(e,a,n){const t=e.getFullYear()+"-"+String(e.getMonth()+1).padStart(2,"0")+"-"+String(e.getDate()).padStart(2,"0"),o=_axAscLon(t,a||"12:00",n||0,null,(n||0)*15);return isNaN(o)?SIGNS_ES[0]:SIGNS_ES[Math.floor(o/30)%12]}function wellGetMoon(e){const a=e.getFullYear()+"-"+String(e.getMonth()+1).padStart(2,"0")+"-"+String(e.getDate()).padStart(2,"0"),n=_axLongitudes(a,"12:00",0).Luna;return n==null?SIGNS_ES[0]:SIGNS_ES[Math.floor(_axRev(n)/30)%12]}function wellLifePath(e){let a=String(e||"").replace(/[^0-9]/g,"").split("").map(Number).reduce((n,t)=>n+t,0);for(;a>9;)a=String(a).split("").map(Number).reduce((n,t)=>n+t,0);return a}function wellCityScore(e,a,n,t){let o=54;a.bestFor.includes(e.element)&&(o+=24);const i=a.lon/15,r=Math.abs(n-i);o+=Math.max(0,13-Math.round(r));const s=(e.name.length*7+a.name.length*3+String(t||"").length)%9;return o+=s,Math.max(60,Math.min(98,o))}function runSvcWellness(){const e=document.getElementById("svc-well-date").value,a=document.getElementById("svc-well-time").value,n=document.getElementById("svc-well-tz").value.trim(),t=document.getElementById("svc-well-place").value.trim(),o=document.getElementById("svc-well-out");if(!e||!a||!n||!t){svcSetResult("svc-well-out",'<div class="alert alert-error">Completa fecha, hora, zona horaria y lugar de nacimiento.</div>');return}const i=new Date(e+"T12:00:00"),r=wellGetZodiac(i),s=wellParseOffset(n),d=wellGetRising(i,a,s),u=wellGetMoon(i),c=wellLifePath(e),p=WELLNESS_CITIES.map(m=>({...m,score:wellCityScore(r,m,s,t)})).sort((m,l)=>l.score-m.score).slice(0,10);let g=`
+      <div class="pred-card" style="margin-bottom:14px">
+        <h3>Tu perfil astral de bienestar</h3>
+        <p>Signo solar: <strong>${r.name}</strong> (${r.element}) \xB7 Ascendente: <strong>${d}</strong> \xB7 Luna: <strong>${u}</strong> \xB7 Camino de vida: <strong>${c}</strong>.</p>
+        <p>Base de calculo: ${e} ${a}, ${n}, ${t}.</p>
+      </div>
+    `;p.forEach((m,l)=>{const x=l+1,v=m.tags.map(h=>`<span class="natal-chip" style="margin-right:6px">${h}</span>`).join("");g+=`
+        <div class="pred-card" style="margin-bottom:10px;border-left:4px solid rgba(232,198,107,.7)">
+          <h3>#${x} ${m.name} \xB7 <span class="highlight">${m.score}%</span></h3>
+          <div style="margin:8px 0 10px;height:10px;background:rgba(255,255,255,.1);border-radius:999px;overflow:hidden">
+            <div style="width:${m.score}%;height:100%;background:linear-gradient(90deg,#d9b96d,#8e7cf2)"></div>
+          </div>
+          <div style="margin-bottom:8px">${v}</div>
+          <p>${m.description}</p>
+          <p style="margin-top:8px"><strong>Por que te favorece:</strong> resonancia con elemento ${r.element}, compatibilidad de ritmo horario y afinidad energetica con tu mapa natal.</p>
+        </div>
+      `}),o.innerHTML=g,o.classList.remove("hidden"),o.scrollIntoView({behavior:"smooth",block:"start"})}const TAROT_ARCANA=[{n:"El Loco",k:"new_start"},{n:"El Mago",k:"will"},{n:"La Suma Sacerdotisa",k:"intuition"},{n:"La Emperatriz",k:"abundance"},{n:"El Emperador",k:"structure"},{n:"El Hierofante",k:"wisdom"},{n:"Los Amantes",k:"choice"},{n:"El Carro",k:"victory"},{n:"La Fuerza",k:"courage"},{n:"El Ermita\xF1o",k:"reflection"},{n:"La Rueda",k:"cycle"},{n:"La Justicia",k:"balance"},{n:"El Colgado",k:"pause"},{n:"La Muerte",k:"transform"},{n:"La Templanza",k:"harmony"},{n:"El Diablo",k:"shadow"},{n:"La Torre",k:"disruption"},{n:"La Estrella",k:"hope"},{n:"La Luna",k:"illusion"},{n:"El Sol",k:"clarity"},{n:"El Juicio",k:"renewal"},{n:"El Mundo",k:"completion"}],TAROT_INTERP={general:{pasado:{new_start:"Un per\xEDodo de transici\xF3n marc\xF3 tu punto de partida. Dejaste atr\xE1s viejas certezas.",will:"Tu voluntad y tus habilidades fueron el motor de los \xFAltimos eventos.",intuition:"La quietud interior te llev\xF3 a decisiones sabias y momentos de claridad.",abundance:"La energ\xEDa femenina y creativa fluy\xF3 con generosidad en tu vida reciente.",structure:"Una figura de autoridad o una estructura s\xF3lida defini\xF3 el contexto pasado.",wisdom:"El conocimiento acumulado y la tradici\xF3n influyeron en tus \xFAltimas elecciones.",choice:"Una elecci\xF3n significativa, especialmente en el coraz\xF3n, marc\xF3 el per\xEDodo.",victory:"Superaste obst\xE1culos con determinaci\xF3n; el movimiento fue tu aliado.",courage:"Domesticaste tus miedos con paciencia. La fuerza interior brill\xF3.",reflection:"Un per\xEDodo de retiro y b\xFAsqueda interior caracteriz\xF3 tu pasado reciente.",cycle:"La rueda gir\xF3; lo que se fue puede volver, y lo que lleg\xF3 puede marcharse.",balance:"La justicia y el equilibrio marcaron las decisiones pasadas.",pause:"Una pausa forzada o voluntaria te permiti\xF3 ver desde otro \xE1ngulo.",transform:"Una transformaci\xF3n profunda, aunque dif\xEDcil, fue necesaria.",harmony:"Encontraste un punto medio entre extremos; la paciencia fue clave.",shadow:"Ataduras o excesos marcaron este per\xEDodo; la toma de conciencia comenz\xF3.",disruption:"Un cambio repentino sacudi\xF3 las estructuras establecidas.",hope:"La esperanza y la fe iluminaron incluso los momentos m\xE1s oscuros.",illusion:"Las ilusiones y los miedos velaron la realidad; era tiempo de clarificar.",clarity:"La luz y la alegr\xEDa marcaron ese per\xEDodo; la energ\xEDa estaba al m\xE1ximo.",renewal:"Un despertar, una segunda oportunidad se present\xF3 en tu camino.",completion:"Cerraste un ciclo importante; algo lleg\xF3 a su plena madurez."},presente:{new_start:"Ahora comienzas algo nuevo. Atr\xE9vete a dar el primer paso sin miedo al fracaso.",will:"Tienes todos los recursos para crear tu realidad. Act\xFAa con intenci\xF3n.",intuition:"Escucha tu voz interior; ella conoce la respuesta que buscas.",abundance:"Un per\xEDodo de abundancia y creatividad se abre ante ti. Nutre tus proyectos.",structure:"Es momento de establecer l\xEDmites claros y construir sobre bases s\xF3lidas.",wisdom:"Busca consejo en la sabidur\xEDa establecida o en una figura de gu\xEDa espiritual.",choice:"Est\xE1s en una encrucijada. Elige con el coraz\xF3n, no solo con la mente.",victory:"La acci\xF3n decidida te lleva al \xE9xito. Mant\xE9n el rumbo.",courage:"La fuerza que necesitas est\xE1 dentro de ti. Enfrenta tus miedos con gentileza.",reflection:"Es tiempo de retirarte y escuchar en silencio. La respuesta emerge desde adentro.",cycle:"Est\xE1s en pleno giro de la rueda. Lo que siembras ahora determinar\xE1 el ma\xF1ana.",balance:"Eval\xFAa la situaci\xF3n con equidad. La justicia estar\xE1 de tu lado si act\xFAas con integridad.",pause:"Detente antes de decidir. Esta pausa es un regalo disfrazado.",transform:"Una transformaci\xF3n profunda est\xE1 en marcha. Suelta lo que ya no te sirve.",harmony:"Busca el punto medio. La moderaci\xF3n y la paciencia son tus aliadas.",shadow:"Examina tus sombras sin juzgarlas. La liberaci\xF3n comienza con la honestidad.",disruption:"Un cambio inesperado se acerca. Lo que cae era fr\xE1gil; lo que surge ser\xE1 m\xE1s aut\xE9ntico.",hope:"La estrella brilla para ti. Conf\xEDa en el universo y en tu camino.",illusion:"Cuestiona lo que crees ver. Hay m\xE1s verdad bajo la superficie.",clarity:"El sol ilumina tu camino. Este es un momento de alegr\xEDa y logro.",renewal:"Es hora de responder al llamado de tu alma. Un nuevo cap\xEDtulo comienza.",completion:"Llegas al final de un ciclo con sabidur\xEDa. El mundo reconoce tu logro."},futuro:{new_start:"En las pr\xF3ximas semanas, una puerta nueva se abrir\xE1. S\xE9 flexible y abierto.",will:"Tu habilidad de manifestar se amplificar\xE1. Enfoca tu intenci\xF3n con precisi\xF3n.",intuition:"Un mensaje profundo llegar\xE1 a trav\xE9s de sue\xF1os o sincronicidades.",abundance:"La prosperidad y la fertilidad creativa florecer\xE1n pronto en tu vida.",structure:"Una figura de poder o una estructura institucional jugar\xE1 un papel clave.",wisdom:"Una ense\xF1anza importante llegar\xE1 a ti, posiblemente a trav\xE9s de otra persona.",choice:"Deber\xE1s elegir. No hay respuesta incorrecta, solo diferentes caminos.",victory:"El \xE9xito est\xE1 al alcance. Mant\xE9n el movimiento y no te detengas.",courage:"Tu fortaleza interior ser\xE1 probada y celebrada en las pr\xF3ximas semanas.",reflection:"Un per\xEDodo de soledad creativa te traer\xE1 respuestas valiosas.",cycle:"La fortuna girar\xE1 a tu favor. Un nuevo ciclo de oportunidades se inicia.",balance:"Una situaci\xF3n llegar\xE1 a su resoluci\xF3n justa en el corto plazo.",pause:"Una espera necesaria preceder\xE1 a un gran avance.",transform:"Una metamorfosis se completa. Lo que muere da paso a algo m\xE1s poderoso.",harmony:"Un equilibrio se restablece. La serenidad regresa a tu vida.",shadow:"Es momento de soltar cadenas invisibles. La liberaci\xF3n est\xE1 cercana.",disruption:"Un cambio brusco se avecina; aunque inc\xF3modo, libera energ\xEDa estancada.",hope:"La curaci\xF3n y la restauraci\xF3n llegan. Conf\xEDa en el proceso.",illusion:"Pronto ver\xE1s con claridad lo que antes estaba velado.",clarity:"Un per\xEDodo de \xE9xito y alegr\xEDa aut\xE9ntica se aproxima. Mereces este brillo.",renewal:"Una oportunidad de renacer llega. Responde a ella con valent\xEDa.",completion:"Un logro significativo corona tu esfuerzo en las pr\xF3ximas semanas."}}};function tarotDraw(e){let a=e;const n=()=>(a=a*1664525+1013904223&4294967295,Math.abs(a)/2147483648),t=[];for(;t.length<3;){const o=Math.floor(n()*22);t.includes(o)||t.push(o)}return t.map(o=>TAROT_ARCANA[o])}function dateSeed(e,a){let n=5381;const t=(e+a).replace(/[^a-zA-Z0-9]/g,"");for(let o=0;o<t.length;o++)n=(n<<5)+n+t.charCodeAt(o);return Math.abs(n)}const TOPIC_KEYS={general:"general",amor:"general",trabajo:"general",salud:"general",familia:"general"},TOPIC_LABELS={general:"la situaci\xF3n general",amor:"el amor",trabajo:"el trabajo",salud:"la salud",familia:"la familia"},POSITIONS=["Pasado","Presente","Futuro pr\xF3ximo"],POS_KEYS=["pasado","presente","futuro"];let shortPredictionLockedHtml="",longPredictionHtml="";function runShortTermPred(){const e=document.getElementById("pred-name-court").value.trim(),a=document.getElementById("pred-date-court").value,n=document.getElementById("pred-question").value,t=document.getElementById("pred-court-result");if(!e||!a){t.style.display="block",t.innerHTML='<div class="alert alert-error">Por favor, ingresa tu nombre y fecha de nacimiento.</div>';return}t.style.display="block",t.innerHTML='<div class="pred-loader"><div class="pred-loader-ring"></div><p>Las cartas se est\xE1n revelando para ti...</p></div>',setTimeout(()=>{const o=predCalcAstro(a,""),i=predGetAsc(a,""),r=dateSeed(a,e),s=tarotDraw(r),d=TAROT_INTERP.general,u=TOPIC_LABELS[n]||"la situaci\xF3n";let c="";c+='<div class="pred-astro-bar">',["Sol","Luna","Venus"].forEach(l=>{const x=o[l];c+=`<div class="pred-astro-item"><span class="planet-sym">${PLANETS_DEF[l].sym}</span><span class="planet-sign">${x.sign}</span><span style="font-size:.78rem;color:var(--muted)">${l}</span></div>`}),c+=`<div class="pred-astro-item"><span class="planet-sym">?</span><span class="planet-sign">${i}</span><span style="font-size:.78rem;color:var(--muted)">Asc.</span></div>`,c+="</div>",c+=`<div class="pred-card" style="border-left:3px solid var(--gold);border-radius:0 18px 18px 0;margin-bottom:18px"><h3>Tirada de tres cartas \xB7 ${u}</h3><p>Una tirada personalizada para <span class="highlight">${e}</span>, guiada por tu Sol en <span class="highlight">${o.Sol.sign}</span> y tu Luna en <span class="highlight">${o.Luna.sign}</span>.</p></div>`,s.forEach((l,x)=>{const v=POS_KEYS[x],h=d[v]&&d[v][l.k]||"";c+=`<div class="pred-card pred-card-border-left">
+          <h3>${POSITIONS[x]} &mdash; <span class="highlight">${l.n}</span></h3>
+          <p>${h}</p>
+        </div>`});const p=`<div class="pred-card" style="background:rgba(232,198,107,.05);border-color:rgba(232,198,107,.4)">
+        <h3>S\xEDntesis de las pr\xF3ximas semanas</h3>
+        <p>Las cartas revelan un ciclo de <strong class="highlight">${s[1].n}</strong> en el presente, que requiere la lecci\xF3n de <strong class="highlight">${s[0].n}</strong> del pasado para llegar a <strong class="highlight">${s[2].n}</strong>. Tu energ\xEDa astral \xB7 Sol en ${o.Sol.sign}, Luna en ${o.Luna.sign} \xB7 invita a escuchar tu intuici\xF3n y actuar con autenticidad en el terreno de ${u}.</p>
+      </div>`,g=`<div class="pred-book-prompt">
+        <p>\xBFQuieres profundizar en esta lectura con una interpretaci\xF3n personal en vivo?</p>
+        <a href="#reservar" class="btn btn-primary">Reservar mi consulta</a>
+      </div>`,m=!sessionStorage.getItem("adelinemagica_short_unlock");shortPredictionLockedHtml=p+g,m?(c+=`<div class="pred-locked-bloc">
+          <div class="pred-locked-fade">${shortPredictionLockedHtml}</div>
+          <div class="pred-locked-overlay">
+            <strong>Contenido bloqueado</strong>
+            <p>Has llegado al l\xEDmite gratuito de 3 p\xE1rrafos. Ingresa tu email para desbloquear el resto.</p>
+          </div>
+        </div>`,document.getElementById("pred-court-gate").classList.remove("hidden")):(c+=shortPredictionLockedHtml,document.getElementById("pred-court-gate").classList.add("hidden")),t.innerHTML=c,t.scrollIntoView({behavior:"smooth",block:"start"})},1400)}function unlockShortPrediction(){const e=document.getElementById("pred-unlock-email"),a=document.getElementById("pred-gate-msg"),n=((e==null?void 0:e.value)||"").trim();if(!isValidEmail(n)){a.textContent="Ingresa un email v\xE1lido para desbloquear.";return}localStorage.setItem("adelinemagica_lead_email",n),sessionStorage.setItem("adelinemagica_short_unlock","1"),a.textContent="Gracias. Contenido desbloqueado.";const t=document.getElementById("pred-court-result");if(t&&shortPredictionLockedHtml){const o=t.querySelector(".pred-locked-bloc");o&&(o.outerHTML=shortPredictionLockedHtml)}document.getElementById("pred-court-gate").classList.add("hidden")}function unlockLongPrediction(){const e=document.getElementById("pred-long-email"),a=document.getElementById("pred-long-msg"),n=((e==null?void 0:e.value)||"").trim();if(!isValidEmail(n)){a.textContent="Ingresa un email v\xE1lido para desbloquear.";return}localStorage.setItem("adelinemagica_lead_long_email",n),sessionStorage.setItem("adelinemagica_long_unlock","1"),a.textContent="Acceso desbloqueado. Ya puedes ver la predicci\xF3n de 5 a\xF1os.";const t=document.getElementById("pred-long-gate");if(t&&t.classList.add("hidden"),longPredictionHtml){const o=document.getElementById("pred-long-result");o.style.display="block",o.innerHTML=longPredictionHtml}}function buildWhatsAppUrl(e){return`https://wa.me/527227117122?text=${encodeURIComponent(e)}`}function getConfirmationPath(){return location.protocol==="file:"?"confirmation.html":"confirmation"}async function sendOrationRequest(){const e=document.getElementById("oration-type").value,a=document.getElementById("oration-honor").value.trim(),n=document.getElementById("oration-intent").value.trim(),t=document.getElementById("oration-name").value.trim(),o=document.getElementById("oration-email").value.trim(),i=parseInt(document.getElementById("oration-amount").value||"0",10),r=document.getElementById("oration-msg");if(!a||!n||!t||!isValidEmail(o)||!Number.isFinite(i)||i<1){r.textContent="Completa los campos, email v\xE1lido y aporte m\xEDnimo de 1 USD.";return}const s=await sendIndexLeadEmail({source:"solicitud-oracion",subject:"Solicitud index \xB7 Oraci\xF3n personalizada",fullname:t,email:o,message:`Tipo: ${e}
+En honor de: ${a}
+Intenci\xF3n: ${n}
+Aporte: ${i} USD`});if(s.ok){r.textContent="Solicitud enviada. Redirigiendo...",window.setTimeout(()=>{window.location.href=`${getConfirmationPath()}?kind=contact&status=success&source=oracion`},500);return}r.textContent="No se pudo enviar por correo. "+(s.error||"Verifica la configuraci\xF3n del endpoint.")}async function sendContactRequest(){const e=document.getElementById("contact-name").value.trim(),a=document.getElementById("contact-email").value.trim(),n=document.getElementById("contact-reason").value.trim(),t=document.getElementById("contact-msg");if(!e||!n||!isValidEmail(a)){t.textContent="Completa nombre, email v\xE1lido y motivo.";return}localStorage.setItem("adelinemagica_contact_lead",JSON.stringify({name:e,email:a,reason:n,at:new Date().toISOString()}));const o=await sendIndexLeadEmail({source:"solicitud-contacto",subject:"Solicitud index \xB7 Contacto",fullname:e,email:a,message:`Solicitud de contacto
+Motivo: ${n}`});if(o.ok){t.textContent="Solicitud enviada. Redirigiendo...",window.setTimeout(()=>{window.location.href=`${getConfirmationPath()}?kind=contact&status=success`},500);return}t.textContent="No se pudo enviar por correo. "+(o.error||"Verifica la configuraci\xF3n del endpoint.")}const SIGN_TRAITS_ES={Aries:{el:"fuego",traits:"impulsivo, valiente, pionero",challenge:"la paciencia y la diplomacia"},Tauro:{el:"tierra",traits:"estable, sensual, perseverante",challenge:"la adaptaci\xF3n al cambio"},G\u00E9minis:{el:"aire",traits:"curioso, adaptable, comunicativo",challenge:"la concentraci\xF3n y la profundidad"},C\u00E1ncer:{el:"agua",traits:"intuitivo, protector, emocional",challenge:"soltar y confiar"},Leo:{el:"fuego",traits:"carism\xE1tico, creativo, leal",challenge:"la humildad y la escucha"},Virgo:{el:"tierra",traits:"anal\xEDtico, servicial, perfeccionista",challenge:"aceptar la imperfecci\xF3n"},Libra:{el:"aire",traits:"diplom\xE1tico, esteta, justo",challenge:"la decisi\xF3n y la asertividad"},Escorpio:{el:"agua",traits:"intenso, estratega, transformador",challenge:"el perd\xF3n y la ligereza"},Sagitario:{el:"fuego",traits:"aventurero, fil\xF3sofo, optimista",challenge:"el compromiso y el rigor"},Capricornio:{el:"tierra",traits:"ambicioso, disciplinado, pragm\xE1tico",challenge:"la espontaneidad y soltar"},Acuario:{el:"aire",traits:"original, humanista, independiente",challenge:"la intimidad emocional"},Piscis:{el:"agua",traits:"compasivo, imaginativo, espiritual",challenge:"los l\xEDmites y la estructura"}};function getTraits(e){return SIGN_TRAITS_ES[e]||{el:"",traits:e,challenge:"el equilibrio"}}function predLongWork(e,a,n){const t=getTraits(e);return`<p>Con tu <span class="highlight">Sol en ${e}</span>, eres naturalmente <strong>${t.traits}</strong>. En los pr\xF3ximos 5 a\xF1os, el tr\xE1nsito de J\xFApiter en <span class="highlight">${a.sign}</span> abrir\xE1 oportunidades de expansi\xF3n profesional y reconocimiento. Periodos de aceleraci\xF3n se esperan cuando J\xFApiter active tu signo solar. Saturno en <span class="highlight">${n.sign}</span> exigir\xE1 disciplina y reestructuraci\xF3n; los proyectos s\xF3lidos resistir\xE1n y crecer\xE1n.</p>
+    <p>Tus principales <span class="highlight">ventanas de oportunidad</span> se situar\xE1n a finales del primer a\xF1o y a mediados del tercer a\xF1o. Tu mayor desaf\xEDo: <strong>${t.challenge}</strong>. Quien lo supere cosechar\xE1 recompensas duraderas en lo profesional y financiero.</p>`}function predLongLove(e,a,n){const t=getTraits(e);return`<p>Venus en <span class="highlight">${a.sign}</span> define c\xF3mo amas y lo que atraes hacia ti. En los pr\xF3ximos a\xF1os, las relaciones se profundizar\xE1n y cobrar\xE1n un car\xE1cter m\xE1s consciente. La Luna en <span class="highlight">${n.sign}</span> revela tus necesidades emocionales m\xE1s profundas \xB7 cuando sean honradas, las conexiones florecer\xE1n de forma aut\xE9ntica.</p>
+    <p>Hacia el <span class="date-badge">2do-3er a\xF1o</span>, un per\xEDodo de claridad emocional permite elegir o renovar v\xEDnculos con mayor autenticidad. Si est\xE1s en pareja, la consolidaci\xF3n o la redefinici\xF3n de los pilares de la relaci\xF3n ser\xE1 el eje central. Si est\xE1s solo/a, el ciclo indica que la vulnerabilidad consciente abrir\xE1 puertas a un amor m\xE1s profundo que lo conocido.</p>`}function predLongFamily(e,a){return`<p>Saturno en <span class="highlight">${a.sign}</span> trae responsabilidades familiares a primer plano. Este ciclo invita a sanar v\xEDnculos ancestrales y a construir sobre bases m\xE1s honestas. Las relaciones con figuras parentales o con la propia familia n\xFAcleo entrar\xE1n en un proceso de revisi\xF3n y, en muchos casos, de reconciliaci\xF3n profunda.</p>
+    <p>El hogar \xB7 como concepto y como espacio f\xEDsico \xB7 puede experimentar cambios significativos: mudanzas, ampliaciones o reestructuraciones. El <span class="date-badge">3er-4to a\xF1o</span> marca el momento de consolidaci\xF3n. Tu Sol en <span class="highlight">${e}</span> aporta calidez e identidad al n\xFAcleo familiar.</p>`}function predLongWellbeing(e,a,n){const t=getTraits(e);return`<p>Marte en <span class="highlight">${a.sign}</span> define tu vitalidad y tu manera de gestionarla. Los ciclos de alta energ\xEDa alternar\xE1n con per\xEDodos que requieren descanso activo. Saturno exige estructura y rutina: quienes establezcan h\xE1bitos s\xF3lidos de cuidado personal ver\xE1n su capital de salud crecer con los a\xF1os.</p>
+    <p>Presta especial atenci\xF3n en el <span class="date-badge">2do a\xF1o</span> a la gesti\xF3n del estr\xE9s \xB7 es el punto de mayor presi\xF3n del ciclo. El sistema nervioso, bajo la influencia de tu elemento <strong>${t.el}</strong>, agradecer\xE1 pr\xE1cticas regulares de movimiento, silencio y contacto con la naturaleza.</p>`}function predLongFriends(e,a){return`<p>Mercurio en <span class="highlight">${a.sign}</span> colorea tu manera de comunicarte y de crear v\xEDnculos. En los pr\xF3ximos 5 a\xF1os, tu c\xEDrculo social experimentar\xE1 una renovaci\xF3n natural: algunas relaciones se profundizar\xE1n y otras se disolver\xE1n para dar paso a conexiones m\xE1s afines a la versi\xF3n que est\xE1s construyendo de ti mismo/a.</p>
+    <p>El liderazgo sutil, el intercambio de ideas y los proyectos colaborativos ser\xE1n focos de expansi\xF3n social. En el <span class="date-badge">4to a\xF1o</span>, una comunidad o red nueva podr\xEDa abrirte puertas inesperadas.</p>`}function predLongPremium10y(e,a,n){const t=n<30?29:58,o=t-n,i=getTraits(e);let r=`<p>A horizonte decenal, te aproximas a tu <span class="highlight">retorno de Saturno</span> (hacia los ${t} a\xF1os) \xB7 uno de los momentos m\xE1s transformadores de la vida adulta. Este tr\xE1nsito marca el cierre de un ciclo de 29 a\xF1os y el inicio de una nueva estructura de vida m\xE1s aut\xE9ntica.</p>`;return o>0&&o<8?r+=`<p>En <strong>${o} a\xF1os</strong>, este portal se abrir\xE1 para ti. Las decisiones que tomes entre hoy y entonces determinar\xE1n si lo vives como crisis o como consagraci\xF3n. Tu desaf\xEDo esencial \xB7 <strong>${i.challenge}</strong> \xB7 encontrar\xE1 aqu\xED su prueba definitiva y, si se supera, su mayor recompensa.</p>`:r+=`<p>Acabas de pasar (o est\xE1s viviendo) esta transici\xF3n fundamental. Las estructuras que consolidas ahora en trabajo, amor y prop\xF3sito ser\xE1n los pilares de la segunda gran etapa de tu vida. La madurez de tu Sol en <span class="highlight">${e}</span> florece plenamente.</p>`,r+="<p><strong>Consejos para los pr\xF3ximos 10 a\xF1os:</strong> Invierte en tu formaci\xF3n continua, construye un patrimonio (material o intelectual) paso a paso, y prioriza las relaciones que te invitan a crecer. La coherencia entre tus valores y tus acciones ser\xE1 la clave de tu satisfacci\xF3n profunda.</p>",r}function runLongTermPred(){const e=document.getElementById("pred-name-long").value.trim(),a=document.getElementById("pred-date-long").value,n=document.getElementById("pred-time-long").value,t=document.getElementById("pred-long-result");if(!e||!a){t.style.display="block",t.innerHTML='<div class="alert alert-error">Por favor, ingresa tu nombre y fecha de nacimiento.</div>';return}t.style.display="block",t.innerHTML='<div class="pred-loader"><div class="pred-loader-ring"></div><p>Calculando tu tema natal completo...</p></div>',setTimeout(()=>{const o=predCalcAstro(a,n),i=predGetAsc(a,n),r=predAge(a),s=o.Sol.sign,d=o.Luna.sign,u=o.Venus,c=o.Marte,p=o.J\u00FApiter,g=o.Saturno,m=o.Mercurio;let l="";l+='<div class="pred-astro-bar">',Object.entries(PLANETS_DEF).forEach(([h,E])=>{l+=`<div class="pred-astro-item"><span class="planet-sym">${E.sym}</span><span class="planet-sign">${o[h].sign}</span><span style="font-size:.75rem;color:var(--muted)">${h}</span></div>`}),l+=`<div class="pred-astro-item"><span class="planet-sym">?</span><span class="planet-sign">${i}</span><span style="font-size:.75rem;color:var(--muted)">Asc.</span></div>`,l+="</div>";const x=getTraits(s);l+=`<div class="pred-card" style="border-left:3px solid var(--gold);border-radius:0 18px 18px 0;margin-bottom:18px">
+        <h3>Predicci\xF3n para ${e} \xB7 Sol en ${s}</h3>
+        <p>Eres esencialmente <strong class="highlight">${x.traits}</strong>. Tu mayor reto transformador: <strong class="highlight">${x.challenge}</strong>. Esta lectura cubre los pr\xF3ximos <strong>5 a\xF1os</strong> en todas las esferas de tu vida.</p>
+      </div>`,l+=`<div class="pred-card pred-card-border-left"><h3>Carrera &amp; Finanzas</h3>${predLongWork(s,p,g)}</div>`,l+=`<div class="pred-card pred-card-border-left"><h3>&#x1F49E; Amor &amp; Relaciones</h3>${predLongLove(s,u,o.Luna)}</div>`,l+=`<div class="pred-card pred-card-border-left"><h3>Familia &amp; Hogar</h3>${predLongFamily(s,g)}</div>`,l+=`<div class="pred-card pred-card-border-left"><h3>Bienestar &amp; Salud</h3>${predLongWellbeing(s,c,g)}</div>`,l+=`<div class="pred-card pred-card-border-left"><h3>Amigos &amp; Vida social</h3>${predLongFriends(s,m)}</div>`;const v=`<div class="pred-card"><h3>Visi\xF3n a 10 a\xF1os &amp; Plan personal</h3>${predLongPremium10y(s,g,r)}</div>`;if(l+=`<div class="pred-premium-wrap">
+        <div class="pred-premium-blur">${v}</div>
+        <div class="pred-premium-gate">
+          <div class="gate-price">Consulta en vivo</div>
+          <p>Para una interpretaci\xF3n personal y profunda de tu visi\xF3n a largo plazo, reserva tu sesi\xF3n privada con Adeline.</p>
+          <a href="#reservar" class="btn btn-primary">Reservar mi consulta</a>
+        </div>
+      </div>`,l+=`<div class="pred-book-prompt" style="margin-top:32px">
+        <p>\xBFLista para explorar tu camino con Adeline en vivo? La carta astral y el tarot se revelan en toda su riqueza en la videollamada privada.</p>
+        <a href="#reservar" class="btn btn-primary">Reservar mi sesi\xF3n</a>
+      </div>`,longPredictionHtml=l,!sessionStorage.getItem("adelinemagica_long_unlock")){document.getElementById("pred-long-gate").classList.remove("hidden"),t.style.display="none",document.getElementById("pred-long-gate").scrollIntoView({behavior:"smooth",block:"start"});return}document.getElementById("pred-long-gate").classList.add("hidden"),t.innerHTML=l,t.scrollIntoView({behavior:"smooth",block:"start"})},1800)}
+</script>
+
+  <!-- ===================== FIN SECCIN PREDICCIÓN ===================== -->
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="muted">Acompañamiento espiritual de alto valor y en tiempo real - Consultas con agenda previa</p>
+      <div class="social-share" aria-label="Compartir esta página">
+        <span class="share-label">Compartir:</span>
+        <a class="share-pill" href="https://wa.me/?text=Lectura%20de%20tarot%20y%20carta%20astral%20online%20con%20Adeline%20M%C3%A1gica%20https%3A%2F%2Fadelinemagica.com%2F%23inicio" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="share-pill" href="https://instagram.com/adelinemagica" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="social-links" aria-label="Redes sociales">
+        <a href="https://facebook.com/adelinemagica" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://youtube.com/@adelinemagica" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://tiktok.com/@adelinemagica" target="_blank" rel="noopener">TikTok</a>
+      </div>
+      <p class="legal">Las lecturas tienen fines de orientación y entretenimiento. · 2026 Adeline.</p>
+    </div>
+  </footer>
+
+  <script src="assets/i18n.min.js" defer></script>
+  <script src="assets/site.min.js" defer></script>
+  <script>const yearEl=document.getElementById("year");yearEl&&(yearEl.textContent=new Date().getFullYear()),(function(){function a(o){var t=document.getElementById("sideMenu"),n=document.getElementById("menuBackdrop");if(!(!t||!n)){var e=!!o;t.classList.toggle("open",e),t.setAttribute("aria-hidden",e?"false":"true"),t.inert=!e,t.style.visibility=e?"visible":"hidden",t.style.pointerEvents=e?"auto":"none",n.classList.toggle("hidden",!e),n.style.display=e?"block":"none",n.style.pointerEvents=e?"auto":"none"}}typeof window.toggleMenu!="function"&&(window.toggleMenu=a),document.addEventListener("DOMContentLoaded",function(){var o=document.querySelector(".menu-toggle"),t=document.querySelector(".menu-close"),n=document.getElementById("menuBackdrop");o&&!o.dataset.fallbackBound&&(o.dataset.fallbackBound="1",o.addEventListener("click",function(e){e.preventDefault(),(window.toggleMenu||a)(!0)})),t&&!t.dataset.fallbackBound&&(t.dataset.fallbackBound="1",t.addEventListener("click",function(e){e.preventDefault(),(window.toggleMenu||a)(!1)})),n&&!n.dataset.fallbackBound&&(n.dataset.fallbackBound="1",n.addEventListener("click",function(e){e.preventDefault(),(window.toggleMenu||a)(!1)}))})})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

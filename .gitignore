@@ -1,0 +1,15 @@
+# Python cache
+backend/**/__pycache__/
+backend/**/*.pyc
+
+# Local secrets
+backend/.env
+backend/.env.*
+
+# Frontend toolchain
+node_modules/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/

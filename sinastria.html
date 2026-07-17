@@ -1,0 +1,473 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+    <meta name="description" content="Consultas de tarot terap&eacute;utico, oraciones y meditaciones guiadas por video." />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://adelinemagica.com/sinastria" />
+  <link rel="alternate" hreflang="fr" href="https://adelinemagica.com/fr/sinastria" />
+  <link rel="alternate" hreflang="en" href="https://adelinemagica.com/en/sinastria" />
+  <link rel="alternate" hreflang="es" href="https://adelinemagica.com/sinastria" />
+  <link rel="alternate" hreflang="x-default" href="https://adelinemagica.com/sinastria" />
+  <title>Lectura de tarot y carta astral online | Adeline M&aacute;gica</title>
+  <meta property="og:url" content="https://adelinemagica.com/sinastria" />
+<link rel="preload" as="style" href="/assets/fonts/google-fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="/assets/fonts/google-fonts.css" rel="stylesheet" /></noscript>
+  <link rel="preload" as="style" href="assets/styles.min.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <link rel="preload" as="style" href="assets/site-overrides.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="assets/styles.min.css" /></noscript>
+  <noscript><link rel="stylesheet" href="assets/site-overrides.css" /></noscript>
+  <style>
+    .syn-page { padding: 55px 0 60px; }
+    .syn-wrap { max-width: 980px; margin: 0 auto; }
+    .syn-form { margin-bottom: 20px; }
+    .syn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .syn-grid .full { grid-column: 1 / -1; }
+    .syn-col {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+      min-width: 0;
+    }
+    .syn-person {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(255,255,255,.02);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 14px;
+      min-width: 0;
+    }
+    .syn-person .pred-field,
+    .syn-person input,
+    .syn-person select,
+    .syn-person textarea {
+      min-width: 0;
+      max-width: 100%;
+    }
+    .syn-person-title {
+      grid-column: 1 / -1;
+      margin: 0;
+      color: var(--gold);
+      font-family: "Cinzel", serif;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: .9rem;
+    }
+    .syn-date-field {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .syn-date-field input[type="text"] {
+      flex: 1;
+    }
+    .syn-date-open {
+      min-width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(232,198,107,.08);
+      color: var(--gold);
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .syn-date-native {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+      left: 0;
+      top: 0;
+    }
+    .syn-report { line-height: 1.8; color: var(--muted); }
+    .syn-report h3 { color: var(--gold); margin: 16px 0 8px; }
+    .syn-report h4 { color: var(--gold); margin: 12px 0 6px; font-size: 1.1rem; }
+    .report-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 14px; }
+    .report-tab-btn { border: 1px solid var(--border); background: rgba(255,255,255,.03); color: var(--gold); border-radius: 999px; padding: 10px 14px; font-family: "Cinzel", serif; font-size: .82rem; letter-spacing: .05em; cursor: pointer; }
+    .report-tab-btn.is-active { background: var(--gold); color: #0c0a1d; border-color: var(--gold); }
+    .report-tab-panel { display: none; }
+    .report-tab-panel.is-active { display: block; }
+    .aspect-card { padding: 14px; border: 1px solid var(--border); border-radius: 16px; background: rgba(255,255,255,.03); margin-bottom: 14px; }
+    .aspect-title { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; font-family: "Cinzel", serif; font-size: 1.05rem; color: var(--gold); }
+    .aspect-title strong { font-size: 1.08rem; }
+    .compat-slider-wrap { margin: 14px 0 18px; padding: 14px; border: 1px solid var(--border); border-radius: 16px; background: rgba(255,255,255,.03); }
+    .compat-slider-wrap label { display: block; margin-bottom: 8px; color: var(--gold); font-family: "Cinzel", serif; }
+    .compat-meter { position: relative; height: 12px; border-radius: 999px; background: linear-gradient(90deg, #d84a4a 0%, #e4c34f 50%, #4fbf65 100%); border: 1px solid rgba(255,255,255,.18); margin-top: 8px; }
+    .compat-pointer { position: absolute; top: 50%; width: 14px; height: 14px; border-radius: 50%; background: #f2f2f2; border: 2px solid #1f1f1f; transform: translate(-50%, -50%); box-shadow: 0 0 0 1px rgba(255,255,255,.28); }
+    .compat-scale { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: .92rem; }
+    .compat-scale strong { color: var(--gold); font-family: "Cinzel", serif; font-size: 1rem; }
+    .compat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 12px 0 16px; }
+    .compat-box { padding: 14px; border: 1px solid var(--border); border-radius: 18px; background: rgba(255,255,255,.03); }
+    .compat-box strong { color: var(--gold); }
+    .compat-score { display: block; margin-top: 4px; color: var(--gold); font-family: "Cinzel", serif; font-size: 1.45rem; }
+    .compat-points { color: #9de6ff; font-family: "Cinzel", serif; font-size: 1.05rem; }
+    .compat-bar { margin-top: 10px; height: 10px; border-radius: 999px; background: rgba(255,255,255,.08); overflow: hidden; }
+    .compat-bar > span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #d9b96d, #8e7cf2); }
+    .planet-table { width: 100%; border-collapse: collapse; margin-top: 12px; overflow: hidden; }
+    .planet-table th, .planet-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+    .planet-table th { color: var(--gold); font-family: "Cinzel", serif; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+    .planet-table tr:last-child td { border-bottom: 0; }
+    .astro-wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 16px; align-items: center; margin-top: 14px; }
+    .astro-wheel { position: relative; width: 100%; max-width: 560px; margin: 0 auto; aspect-ratio: 1; }
+    .astro-wheel svg { width: 100%; height: 100%; display: block; }
+    .astro-legend { display: flex; flex-wrap: wrap; gap: 8px; }
+    .astro-pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,.03); color: var(--text); font-size: .86rem; }
+    .astro-pill b { color: var(--gold); font-family: "Cinzel", serif; font-size: .76rem; }
+    @media (max-width: 760px) {
+      .container { padding-left: 0 !important; padding-right: 0 !important; }
+      .syn-grid { grid-template-columns: 1fr; }
+      .syn-person { grid-template-columns: 1fr; }
+      .compat-grid { grid-template-columns: 1fr; }
+      .astro-wrap { grid-template-columns: 1fr; }
+      .syn-page { padding-top: 45px; }
+      .syn-wrap { max-width: 100%; }
+      .site-header .nav {
+        height: clamp(64px, 17vw, 88px);
+        min-height: clamp(64px, 17vw, 88px);
+      }
+      .syn-form { margin-bottom: 12px; }
+      .syn-form h1 { font-size: 1.7rem; line-height: 1.05; }
+      .syn-form .muted { font-size: .96rem; line-height: 1.45; }
+      .astro-wheel { max-width: 100%; width: 100%; }
+      .syn-report h3 { margin: 20px 0 8px; }
+      .syn-report h4 { margin: 10px 0 5px; }
+      .syn-report { font-size: .98rem; line-height: 1.72; }
+      .syn-report p { margin-bottom: 12px; }
+      .astro-wrap { margin-top: 10px; gap: 12px; }
+      .planet-table-wrap { margin-left: 0; margin-right: 0; }
+      .planet-table { min-width: 0; width: 100%; table-layout: fixed; font-size: .74rem; }
+      .planet-table th, .planet-table td { padding: 8px 6px; font-size: .78rem; word-break: break-word; }
+      .aspect-card { padding: 10px; margin-bottom: 10px; }
+      .aspect-title { font-size: .95rem; }
+      .planet-title { font-size: 1rem; }
+      .planet-title strong { font-size: .98rem; }
+      .planet-icon { width: 28px; height: 28px; }
+      .compat-slider-wrap { padding: 10px; margin: 10px 0 12px; }
+      .compat-box { padding: 10px; }
+      .astro-legend { gap: 6px; }
+      .astro-pill { padding: 6px 8px; font-size: .82rem; }
+    }
+  </style>
+
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lectura de tarot y carta astral online | Adeline M&aacute;gica" />
+  <meta property="og:description" content="Consultas de tarot terap&eacute;utico, oraciones y meditaciones guiadas por video." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lectura de tarot y carta astral online | Adeline M&aacute;gica" />
+  <meta name="twitter:description" content="Consultas de tarot terap&eacute;utico, oraciones y meditaciones guiadas por video." />
+  <meta name="keywords" content="tarot terapeutico, oraciones personalizadas, meditaciones guiadas, carta astral, espiritualidad, adeline" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Sinastria de pareja",
+  "description": "Analisis de compatibilidad astrologica entre dos personas para entender dinamicas emocionales y potencial de relacion.",
+  "url": "https://adelinemagica.com/sinastria",
+  "provider": {
+    "@type": "Organization",
+    "name": "Adeline Magica"
+  },
+  "areaServed": "Worldwide",
+  "availableLanguage": ["es"],
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD",
+    "price": "0"
+  },
+  "inLanguage": "es"
+}
+</script>
+</head>
+<body>
+  <script>typeof window.toggleMenu!="function"&&(window.toggleMenu=function(o){const e=document.getElementById("sideMenu"),n=document.getElementById("menuBackdrop");if(!e||!n)return;const t=!!o;e.classList.toggle("open",t),e.setAttribute("aria-hidden",t?"false":"true"),n.classList.toggle("hidden",!t)});
+</script>
+  <header class="site-header">
+    <div class="container nav">
+      <button type="button" class="menu-toggle" aria-label="Abrir menú" onclick="toggleMenu(true)">&#9776;</button>
+      <a class="brand" href="index#inicio">
+        <img src="assets/images/bandeau10_upscaled_1280_11zon-768w.webp" srcset="assets/images/bandeau10_upscaled_1280_11zon-480w.webp 480w, assets/images/bandeau10_upscaled_1280_11zon-768w.webp 768w, assets/images/bandeau10_upscaled_1280_11zon-1024w.webp 1024w, assets/images/bandeau10_upscaled_1280_11zon-1280w.webp 1280w" sizes="(max-width: 900px) 92vw, 1287px" width="2200" height="369" class="brand-banner-img" alt="Adeline" loading="eager" fetchpriority="high" decoding="async" />
+      </a>
+      <a href="index#paquete-adeline" class="btn btn-primary header-cta package-cta-btn"><span class="cta-top">Adquiere paquete</span><strong>MAGICA</strong></a>
+    </div>
+  </header>
+
+  <aside id="sideMenu" class="side-menu" aria-hidden="true" inert>
+    <div class="side-menu-head">
+      <span>Menú</span>
+            <div class="side-menu-lang-top" onclick="event.stopPropagation()" style="display:flex;align-items:center;gap:10px;margin-left:auto;margin-right:10px">
+        <a href="/en/" aria-label="English" style="color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.06em">EN</a>
+        <a href="/" aria-label="Español" style="color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.06em">ES</a>
+        <a href="/fr/" aria-label="Français" style="color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.06em">FR</a>
+      </div><button type="button" class="menu-close" aria-label="Cerrar menú" onclick="toggleMenu(false)">&times;</button>
+    </div>
+    <nav class="side-menu-links" onclick="toggleMenu(false)">
+      <a href="index#inicio">Inicio</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <a href="oraciones" class="hero-link-highlight">Solicita tu oración hoy mismo</a>
+      <a href="meditaciones" class="hero-link-highlight">Meditaciones vía llamada de voz</a>
+      <a href="tarot-terapeutico" class="hero-link-highlight">Tarot terapéutico</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <span class="side-menu-note">Mundo astrológico</span>
+      <a href="lectura-de-carta-natal">Lectura de carta natal</a>
+      <a href="horoscopo.html">Horoscopo diaria</a>
+      <a href="sinastria">Sinastría</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <a href="paquete-magica.html" class="hero-link-highlight side-menu-package">Paquete MÁGICA</a>
+      <span class="side-menu-gap" aria-hidden="true"></span>
+      <a href="articulos" class="hero-link-highlight">Editorial</a>
+      <a href="contact" class="hero-link-highlight">Contacto</a>
+</nav>
+  </aside>
+  <div id="menuBackdrop" class="menu-backdrop hidden" onclick="toggleMenu(false)"></div>
+
+  <main class="syn-page">
+    <section>
+      <div class="container syn-wrap">
+        <div class="panel syn-form">
+          <h1 style="margin-bottom:8px">Sinastria</h1>
+          <p class="muted" style="margin-bottom:16px">Introduce los datos de dos personas para analizar su compatibilidad con aspectos, signos y planetas cruzados.</p>
+          <div class="syn-grid">
+            <div class="syn-col">
+            <div class="syn-person">
+              <h2 class="syn-person-title">Datos de Persona A</h2>
+              <div class="pred-field"><label for="syn-a-name">Nombre</label><input id="syn-a-name" type="text" maxlength="80" placeholder="Nombre o apodo" /></div>
+              <div class="pred-field">
+                <label for="syn-a-date-display">Fecha de nacimiento</label>
+                <div class="syn-date-field">
+                  <input id="syn-a-date-display" type="text" inputmode="numeric" placeholder="AAAA/MM/JJ" maxlength="10" autocomplete="bday" />
+                  <button id="syn-a-date-open" type="button" class="syn-date-open" aria-label="Abrir calendario persona A">&#128197;</button>
+                  <input id="syn-a-date" class="syn-date-native" type="date" />
+                </div>
+              </div>
+              <div class="pred-field"><label for="syn-a-country">Pais de nacimiento</label><input id="syn-a-country" type="text" list="syn-country-list" maxlength="80" placeholder="Ej: Francia" autocomplete="country-name" /></div>
+              <div class="pred-field"><label for="syn-a-city">Ciudad o provincia de nacimiento</label><input id="syn-a-city" type="text" maxlength="80" placeholder="Ej: Paris o Île-de-France" /></div>
+              <div class="pred-field"><label for="syn-a-time">Hora de nacimiento (Opcional)*</label><input id="syn-a-time" type="time" /><p class="hint" style="margin-top:6px">* entre mas precisa la hora de nacimiento , mas preciso sera tu resultado</p></div>
+            </div>
+            </div>
+            <div class="syn-col">
+            <div class="syn-person">
+              <h2 class="syn-person-title">Datos de Persona B</h2>
+              <div class="pred-field"><label for="syn-b-name">Nombre</label><input id="syn-b-name" type="text" maxlength="80" placeholder="Nombre o apodo" /></div>
+              <div class="pred-field">
+                <label for="syn-b-date-display">Fecha de nacimiento</label>
+                <div class="syn-date-field">
+                  <input id="syn-b-date-display" type="text" inputmode="numeric" placeholder="AAAA/MM/JJ" maxlength="10" autocomplete="bday" />
+                  <button id="syn-b-date-open" type="button" class="syn-date-open" aria-label="Abrir calendario persona B">&#128197;</button>
+                  <input id="syn-b-date" class="syn-date-native" type="date" />
+                </div>
+              </div>
+              <div class="pred-field"><label for="syn-b-country">Pais de nacimiento</label><input id="syn-b-country" type="text" list="syn-country-list" maxlength="80" placeholder="Ej: Mexico" autocomplete="country-name" /></div>
+              <div class="pred-field"><label for="syn-b-city">Ciudad o provincia de nacimiento</label><input id="syn-b-city" type="text" maxlength="80" placeholder="Ej: Ciudad de Mexico o CDMX" /></div>
+              <div class="pred-field"><label for="syn-b-time">Hora de nacimiento (Opcional)*</label><input id="syn-b-time" type="time" /><p class="hint" style="margin-top:6px">* entre mas precisa la hora de nacimiento , mas preciso sera tu resultado</p></div>
+            </div>
+            </div>
+            <datalist id="syn-country-list">
+              <option value="Afganistán"></option>
+              <option value="Alemania"></option>
+              <option value="Arabia Saudita"></option>
+              <option value="Argelia"></option>
+              <option value="Argentina"></option>
+              <option value="Australia"></option>
+              <option value="Austria"></option>
+              <option value="Bélgica"></option>
+              <option value="Bolivia"></option>
+              <option value="Brasil"></option>
+              <option value="Bulgaria"></option>
+              <option value="Canadá"></option>
+              <option value="Chile"></option>
+              <option value="China"></option>
+              <option value="Colombia"></option>
+              <option value="Corea del Sur"></option>
+              <option value="Costa Rica"></option>
+              <option value="Croacia"></option>
+              <option value="Cuba"></option>
+              <option value="Dinamarca"></option>
+              <option value="Ecuador"></option>
+              <option value="Egipto"></option>
+              <option value="El Salvador"></option>
+              <option value="Emiratos Árabes Unidos"></option>
+              <option value="España"></option>
+              <option value="Estados Unidos"></option>
+              <option value="Estonia"></option>
+              <option value="Filipinas"></option>
+              <option value="Finlandia"></option>
+              <option value="Francia"></option>
+              <option value="Grecia"></option>
+              <option value="Guatemala"></option>
+              <option value="Honduras"></option>
+              <option value="Hungría"></option>
+              <option value="India"></option>
+              <option value="Indonesia"></option>
+              <option value="Irlanda"></option>
+              <option value="Islandia"></option>
+              <option value="Israel"></option>
+              <option value="Italia"></option>
+              <option value="Japón"></option>
+              <option value="Luxemburgo"></option>
+              <option value="Marruecos"></option>
+              <option value="México"></option>
+              <option value="Nicaragua"></option>
+              <option value="Noruega"></option>
+              <option value="Nueva Zelanda"></option>
+              <option value="Países Bajos"></option>
+              <option value="Panamá"></option>
+              <option value="Paraguay"></option>
+              <option value="Perú"></option>
+              <option value="Polonia"></option>
+              <option value="Portugal"></option>
+              <option value="Reino Unido"></option>
+              <option value="República Checa"></option>
+              <option value="República Dominicana"></option>
+              <option value="Rumanía"></option>
+              <option value="Rusia"></option>
+              <option value="Suecia"></option>
+              <option value="Suiza"></option>
+              <option value="Tailandia"></option>
+              <option value="Turquéa"></option>
+              <option value="Ucrania"></option>
+              <option value="Uruguay"></option>
+              <option value="Venezuela"></option>
+              <option value="Vietnam"></option>
+            </datalist>
+            <div class="pred-field full"><button id="syn-run" class="btn btn-primary">Generar sinastria completa</button></div>
+          </div>
+          <p id="syn-msg" class="hint" style="margin-top:10px"></p>
+        </div>
+
+        <div id="syn-report" class="panel syn-report hidden"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="muted">Acompañamiento espiritual de alto valor y en tiempo real - Consultas con agenda previa</p>
+      <div class="social-share" aria-label="Compartir esta página">
+        <span class="share-label">Compartir:</span>
+        <a class="share-pill" href="https://wa.me/?text=Lectura%20de%20tarot%20y%20carta%20astral%20online%20con%20Adeline%20M%C3%A1gica%20https%3A%2F%2Fadelinemagica.com%2F%23inicio" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="share-pill" href="https://instagram.com/adelinemagica" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="social-links" aria-label="Redes sociales">
+        <a href="https://facebook.com/adelinemagica" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://youtube.com/@adelinemagica" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://tiktok.com/@adelinemagica" target="_blank" rel="noopener">TikTok</a>
+      </div>
+      <p class="legal">Las lecturas tienen fines de orientación y entretenimiento. © 2026 Adeline.</p>
+      <p style="margin-top:6px;text-align:center;opacity:.38;font-size:.72rem;letter-spacing:.06em;">
+        <a href="admin" style="color:inherit;text-decoration:none;">admin</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/i18n.min.js" defer></script>
+  <script src="assets/site.min.js" defer></script>
+  <script>const SIGNS=["Aries","Tauro","Geminis","Cancer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"],SIGN_SYMBOLS=["\u2648","\u2649","\u264A","\u264B","\u264C","\u264D","\u264E","\u264F","\u2650","\u2651","\u2652","\u2653"],PLANETS={Sol:{sym:"\u2609",speed:.9856,base:280.46,key:"identidad, vitalidad y proposito"},Luna:{sym:"\u263D",speed:13.1764,base:218.32,key:"emociones, necesidades y refugio"},Mercurio:{sym:"\u263F",speed:4.0923,base:252.25,key:"mente, lenguaje y aprendizaje"},Venus:{sym:"\u2640",speed:1.6021,base:181.98,key:"amor, gustos y valores"},Marte:{sym:"\u2642",speed:.524,base:355.43,key:"accion, deseo y coraje"},Jupiter:{sym:"\u2643",speed:.0831,base:34.35,key:"expansion, fe y crecimiento"},Saturno:{sym:"\u2644",speed:.0334,base:50.08,key:"disciplina, limites y estructura"},Urano:{sym:"\u2645",speed:.0117,base:314.05,key:"innovacion, cambio y libertad"},Neptuno:{sym:"\u2646",speed:.006,base:304.35,key:"intuicion, idealismo y sensibilidad"},Pluton:{sym:"\u2647",speed:.004,base:238.93,key:"poder interno, crisis y renacimiento"}},PLANET_IMAGES={Sol:"assets/images/soleil_18_11zon.webp",Luna:"assets/images/lune_11_11zon.webp",Mercurio:"assets/images/mercure_14_11zon.webp",Venus:"assets/images/venus.webp",Marte:"assets/images/mars_12_11zon.webp",Jupiter:"assets/images/jupiter_9_11zon.webp",Saturno:"assets/images/saturne.webp",Urano:"assets/images/uranus.webp",Neptuno:"assets/images/neptune.webp",Pluton:"assets/images/pluton_16_11zon.webp"};function planetIcon(e){return`<img src="${PLANET_IMAGES[e]||"assets/images/soleil_18_11zon.webp"}" alt="${e}" style="width:66px;height:66px;object-fit:contain;flex:0 0 auto;" />`}const PLANET_COLORS={Sol:"#f6cf75",Luna:"#c7d5ff",Mercurio:"#95e5cb",Venus:"#f3a7c6",Marte:"#ff8a7f",Jupiter:"#8fd5ff",Saturno:"#cfb8ff",Urano:"#9df0e6",Neptuno:"#9bb6ff",Pluton:"#ffa8dc"},SIGN_COLORS={Aries:"#ff8576",Tauro:"#7fd6b9",Geminis:"#f4ce73",Cancer:"#8ac2ff",Leo:"#ffb374",Virgo:"#90d1b9",Libra:"#e8a6d7",Escorpio:"#b18cff",Sagitario:"#ff9b6d",Capricornio:"#86bb9d",Acuario:"#8de0ff",Piscis:"#9fb6ff"},ASPECTS=[{name:"Conjuncion",angle:0,orb:5,tone:"fusiona energias y concentra foco"},{name:"Sextil",angle:60,orb:5,tone:"abre oportunidades fluidas y colaborativas"},{name:"Cuadratura",angle:90,orb:5,tone:"genera tension creativa para evolucionar"},{name:"Trigono",angle:120,orb:5,tone:"facilita talentos naturales y armonia"},{name:"Oposicion",angle:180,orb:5,tone:"pide balance entre polos complementarios"}],PLANET_LABELS_EN={Sol:"Sun",Luna:"Moon",Mercurio:"Mercury",Venus:"Venus",Marte:"Mars",Jupiter:"Jupiter",Saturno:"Saturn",Urano:"Uranus",Neptuno:"Neptune",Pluton:"Pluto"},SIGN_LABELS_EN={Aries:"Aries",Tauro:"Taurus",Geminis:"Gemini",Cancer:"Cancer",Leo:"Leo",Virgo:"Virgo",Libra:"Libra",Escorpio:"Scorpio",Sagitario:"Sagittarius",Capricornio:"Capricorn",Acuario:"Aquarius",Piscis:"Pisces"},ASPECT_LABELS_EN={Conjuncion:"conjunction",Sextil:"sextile",Cuadratura:"square",Trigono:"trine",Oposicion:"opposition"};function getCurrentLang(){return String(localStorage.getItem("adelinemagica_lang")||"es").toLowerCase()==="en"?"en":"es"}function locPlanet(e,t){return t==="en"&&PLANET_LABELS_EN[e]||e}function locSign(e,t){return t==="en"&&SIGN_LABELS_EN[e]||e}function locAspect(e,t){return t==="en"&&ASPECT_LABELS_EN[e]||String(e||"").toLowerCase()}function setReportTab(e,t){e&&(Array.prototype.forEach.call(e.querySelectorAll(".report-tab-btn"),function(o){var n=o.dataset.tab===t;o.classList.toggle("is-active",n),o.setAttribute("aria-selected",n?"true":"false")}),Array.prototype.forEach.call(e.querySelectorAll(".report-tab-panel"),function(o){o.classList.toggle("is-active",o.dataset.tabPanel===t)}))}function bindReportTabs(e){if(e){var t=e.querySelectorAll(".report-tab-btn");t.length&&(Array.prototype.forEach.call(t,function(o){o.addEventListener("click",function(){setReportTab(e,o.dataset.tab)})}),setReportTab(e,t[0].dataset.tab||"aspects"))}}function isoToDisplayDate(e){var t=String(e||"").split("-");return t.length!==3?"":t[0]+"/"+t[1]+"/"+t[2]}function displayToIsoDate(e){var t=String(e||"").trim(),o=t.match(/^(\d{4})\/(\d{2})\/(\d{2})$/);if(!o)return"";var n=o[1],c=o[2],s=o[3],i=n+"-"+c+"-"+s,r=new Date(i+"T00:00:00");return Number.isNaN(r.getTime())||r.getFullYear()!==Number(n)||r.getMonth()+1!==Number(c)||r.getDate()!==Number(s)?"":i}function initSynDateInput(e){var t=document.getElementById(e+"-date-display"),o=document.getElementById(e+"-date"),n=document.getElementById(e+"-date-open");if(!(!t||!o||!n)){var c=function(){t.value=isoToDisplayDate(o.value)},s=function(){o.value=displayToIsoDate(t.value)};t.addEventListener("input",function(){var i=String(t.value||"").replace(/\D/g,"").slice(0,8),r="";i.length>0&&(r=i.slice(0,4)),i.length>4&&(r+="/"+i.slice(4,6)),i.length>6&&(r+="/"+i.slice(6,8)),t.value=r,s()}),t.addEventListener("blur",function(){s(),o.value&&c()}),o.addEventListener("change",c),o.addEventListener("input",c),n.addEventListener("click",function(){s(),typeof o.showPicker=="function"?o.showPicker():(o.focus(),o.click())}),c()}}const RELATION_WEIGHTS={Sol:{Venus:1.25,Luna:1.2,Marte:1.05,Mercurio:1,Jupiter:1.08,Saturno:.95},Luna:{Luna:1.3,Venus:1.18,Marte:1.08,Mercurio:1,Jupiter:1.06,Saturno:1},Mercurio:{Mercurio:1.25,Sol:1.05,Luna:1,Venus:.96,Marte:1.02,Saturno:1.08},Venus:{Venus:1.25,Marte:1.3,Luna:1.16,Sol:1.12,Jupiter:1.08,Saturno:.92},Marte:{Marte:1.25,Venus:1.28,Luna:1.08,Sol:1.08,Jupiter:.98,Saturno:.9},Jupiter:{Jupiter:1.12,Sol:1.05,Luna:1.05,Venus:1.04,Saturno:1.02,Mercurio:.96},Saturno:{Saturno:1.15,Sol:.94,Luna:.95,Venus:.92,Marte:.9,Mercurio:1.05},Urano:{Urano:1.05,Marte:.95,Venus:.92,Mercurio:1,Sol:.96,Luna:.94},Neptuno:{Neptuno:1.04,Luna:1,Venus:.98,Sol:.96,Marte:.92,Mercurio:.96},Pluton:{Pluton:1.08,Venus:1,Marte:1.12,Sol:.98,Luna:.98,Mercurio:.95},ASC:{Sol:1.15,Luna:1.2,Venus:1.12,Marte:1.05,Jupiter:1,Saturno:.92,ASC:1,MC:.95},MC:{Sol:1.1,Jupiter:1.15,Saturno:1.05,Luna:1,Venus:1,Marte:.95,MC:1},DSC:{Sol:1.1,Luna:1.15,Venus:1.2,Marte:1.05,Jupiter:1,Saturno:.9,DSC:1},IC:{Luna:1.15,Saturno:.95,Sol:1,Venus:1,Jupiter:1,IC:1}};function hashText(e){let t=0;const o=String(e||"").toLowerCase();for(let n=0;n<o.length;n++)t=(t*31+o.charCodeAt(n))%1e5;return t}function julianFromDate(e,t){return computeJD(e,t,0)}function computeJD(e,t,o){const n=e.split("-").map(Number);if(n.length!==3||n.some(p=>!Number.isFinite(p)))return NaN;const c=(t||"12:00").split(":"),s=Number(c[0]||12)+Number(c[1]||0)/60-(o||0);let i=n[0],r=n[1];const a=n[2]+s/24;r<=2&&(i--,r+=12);const u=Math.floor(i/100),m=2-u+Math.floor(u/4);return Math.floor(365.25*(i+4716))+Math.floor(30.6001*(r+1))+a+m-1524.5}const _toR=e=>e*Math.PI/180;function _revDeg(e){return(e%360+360)%360}const _EL_EARTH={L0:100.4664825,dL:36000.7698,a:1,e0:.01671,de:-4e-5,om:102.9373},_EL_PLANETS={Mercurio:{L0:252.2507519,dL:149472.6742,a:.3871,e0:.20563,de:2e-5,om:77.4561},Venus:{L0:181.9798085,dL:58517.8153,a:.72333,e0:.00677,de:-5e-5,om:131.5637},Marte:{L0:355.433275,dL:19140.2993,a:1.52366,e0:.09341,de:9e-5,om:336.0602},Jupiter:{L0:34.3514816,dL:3034.9057,a:5.20336,e0:.04839,de:-13e-5,om:14.332},Saturno:{L0:50.0774443,dL:1221.5515,a:9.53707,e0:.05415,de:-5e-4,om:93.0572},Urano:{L0:314.0550187,dL:428.4748,a:19.1913,e0:.04717,de:-5e-5,om:173.0052},Neptuno:{L0:304.3486683,dL:218.46,a:30.069,e0:.00859,de:5e-6,om:48.1235},Pluton:{L0:238.9290293,dL:145.1786,a:39.4817,e0:.24883,de:5e-5,om:224.069}};function _helioXY(e,t){const o=_revDeg(e.L0+e.dL*t),n=e.e0+e.de*t,c=e.om,s=_revDeg(o-c),i=_toR(s),r=(2*n-.25*n*n*n)*Math.sin(i)+1.25*n*n*Math.sin(2*i)+13/12*n*n*n*Math.sin(3*i),a=_revDeg(s+r*180/Math.PI+c),u=e.a*(1-n*n)/(1+n*Math.cos(_toR(_revDeg(s+r*180/Math.PI))));return{x:u*Math.cos(_toR(a)),y:u*Math.sin(_toR(a))}}const _MOON_LON_TERMS=[[0,0,1,0,6288774],[2,0,-1,0,1274027],[2,0,0,0,658314],[0,0,2,0,213618],[0,1,0,0,-185116],[0,0,0,2,-114332],[2,0,-2,0,58793],[2,-1,-1,0,57066],[2,0,1,0,53322],[2,-1,0,0,45758],[0,1,-1,0,-40923],[1,0,0,0,-34720],[0,1,1,0,-30383],[2,0,0,-2,15327],[0,0,1,2,-12528],[0,0,1,-2,10980],[4,0,-1,0,10675],[0,0,3,0,10034],[4,0,-2,0,8548],[2,1,-1,0,-7888],[2,1,0,0,-6766],[1,0,-1,0,-5163],[1,1,0,0,4987],[2,-1,1,0,4036],[2,0,2,0,3994],[4,0,0,0,3861],[2,0,-3,0,3665],[0,1,-2,0,-2689],[2,0,-1,2,-2602],[2,-1,-2,0,2390],[1,0,1,0,-2348],[2,-2,0,0,2236],[0,1,2,0,-2120],[0,2,0,0,-2069],[2,-2,-1,0,2048],[2,0,1,-2,-1773],[2,0,0,2,-1595],[4,-1,-1,0,1215],[0,0,2,2,-1110],[3,0,-1,0,-892],[2,1,1,0,-810],[4,-1,-2,0,759],[0,2,-1,0,-713],[2,2,-1,0,-700],[2,1,-2,0,691],[2,-1,0,-2,596],[4,0,1,0,549],[0,0,4,0,537],[4,-1,0,0,520],[1,0,-2,0,-487],[2,1,0,-2,-399],[0,0,2,-2,-381],[1,1,1,0,351],[3,0,-2,0,-340],[4,0,-3,0,330],[2,-1,2,0,327],[0,2,1,0,-323],[1,1,-1,0,299],[2,0,3,0,294]];function _moonLongitude(e){const t=_revDeg(218.3164477+481267.88123421*e-.0015786*e*e+e*e*e/538841-e*e*e*e/65194e3),o=_revDeg(297.8501921+445267.1114034*e-.0018819*e*e+e*e*e/545868-e*e*e*e/113065e3),n=_revDeg(357.5291092+35999.0502909*e-1536e-7*e*e+e*e*e/2449e4),c=_revDeg(134.9633964+477198.8675055*e+.0087414*e*e+e*e*e/69699-e*e*e*e/14712e3),s=_revDeg(93.272095+483202.0175233*e-.0036539*e*e-e*e*e/3526e3+e*e*e*e/86331e4),i=1-.002516*e-74e-7*e*e,r=_revDeg(119.75+131.849*e),a=_revDeg(53.09+479264.29*e);let u=0;for(let m=0;m<_MOON_LON_TERMS.length;m++){const p=_MOON_LON_TERMS[m];let $=p[4];const x=Math.abs(p[1]);x===1?$*=i:x===2&&($*=i*i),u+=$*Math.sin(_toR(p[0]*o+p[1]*n+p[2]*c+p[3]*s))}return u+=3958*Math.sin(_toR(r))+1962*Math.sin(_toR(t-s))+318*Math.sin(_toR(a)),_revDeg(t+u/1e6)}function planetPositions(e,t,o){const n=computeJD(e,t,o||0);if(isNaN(n))return{};const c=(n-2451545)/36525,s=_revDeg(280.46646+36000.76983*c),i=_toR(_revDeg(357.52911+35999.05029*c)),r=(1.914602-.004817*c)*Math.sin(i)+(.019993-101e-6*c)*Math.sin(2*i)+289e-6*Math.sin(3*i),a=_toR(_revDeg(125.04452-1934.136261*c)),u=_revDeg(s+r-.00569-.00478*Math.sin(a)),m=_moonLongitude(c),p=_helioXY(_EL_EARTH,c),$={Sol:u,Luna:m};for(const[g,b]of Object.entries(_EL_PLANETS)){const f=_helioXY(b,c);$[g]=_revDeg(Math.atan2(f.y-p.y,f.x-p.x)*180/Math.PI)}const x={};for(const[g,b]of Object.entries($)){const f=Math.floor(b/30)%12;x[g]={lon:b,signIdx:f,sign:SIGNS[f],signSym:SIGN_SYMBOLS[f],degInSign:(b%30).toFixed(1)}}return x}function splitDateParts(e){const t=String(e||"").split("-").map(o=>Number(o));return t.length!==3||t.some(o=>!Number.isFinite(o))?null:{year:t[0],month:t[1],day:t[2]}}function parseUtcOffsetToken(e){const t=String(e||"").trim().toUpperCase().replace("GMT","UTC").match(/^UTC\s*([+-])\s*(\d{1,2})(?::?(\d{2}))?$/);if(!t)return null;const o=t[1]==="+"?1:-1,n=Number(t[2]),c=Number(t[3]||0);return n>14||c>59?null:o*(n+c/60)}function offsetFromIana(e,t,o){try{const n=new Date(`${e}T${t||"12:00"}:00Z`),c=new Intl.DateTimeFormat("en-US",{timeZone:o,hour12:!1,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"}).formatToParts(n),s=Object.fromEntries(c.map(i=>[i.type,i.value]));return(Date.UTC(Number(s.year),Number(s.month)-1,Number(s.day),Number(s.hour),Number(s.minute))-n.getTime())/36e5}catch(n){return null}}function resolveTimezoneOffset(e,t,o){const n=String(o||"").trim();if(!n)return 0;const c=parseUtcOffsetToken(n);if(c!==null)return c;const s=offsetFromIana(e,t,n);return s!==null?s:0}function isDaylightSavingTime(e,t,o){const n=String(o||"").trim();if(!n||parseUtcOffsetToken(n)!==null)return!1;const c=Number(String(e||"").slice(0,4));if(!Number.isFinite(c))return!1;const s=offsetFromIana(`${c}-01-15`,"12:00",n),i=offsetFromIana(`${c}-07-15`,"12:00",n),r=offsetFromIana(e,t||"12:00",n);if(s===null||i===null||r===null||Math.abs(s-i)<.001)return!1;const a=Math.max(s,i);return Math.abs(r-a)<.001}const birthPlaceCache=new Map;function normalizeLocationToken(e){return String(e||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim()}async function resolveBirthPlace(e,t){const o=String(e||"").trim(),n=String(t||"").trim();if(!o||!n)return null;const c=`${normalizeLocationToken(o)}|${normalizeLocationToken(n)}`;if(birthPlaceCache.has(c))return birthPlaceCache.get(c);const s=`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(n)}&count=10&language=es&format=json`,i=await fetch(s);if(!i.ok)return null;const r=await i.json(),a=Array.isArray(r&&r.results)?r.results:[];if(!a.length)return null;const u=normalizeLocationToken(o),m=a.find($=>normalizeLocationToken($.country||"").includes(u))||a[0];if(!m||!m.timezone)return null;const p={timezone:m.timezone,lat:Number(m.latitude),lon:Number(m.longitude),city:m.name||n,country:m.country||o};return birthPlaceCache.set(c,p),p}function calcAscendant(e,t,o,n,c,s){const i=resolveTimezoneOffset(e,t,o),r=computeJD(e,t,i);if(isNaN(r))return{idx:0,sign:SIGNS[0],signSym:SIGN_SYMBOLS[0],offset:0};const a=(r-2451545)/36525,u=_revDeg(280.46061837+360.98564736629*(r-2451545)+387933e-9*a*a),m=s!=null?s:i*15,p=_revDeg(u+m),$=23.4397-.013*a,x=_toR(p),g=_toR($),b=_toR(c!=null?c:45),f=_revDeg(Math.atan2(Math.cos(x),-(Math.sin(g)*Math.tan(b)+Math.cos(g)*Math.sin(x)))*180/Math.PI),S=Math.floor(f/30)%12;return{idx:S,sign:SIGNS[S],signSym:SIGN_SYMBOLS[S],offset:Number(i.toFixed(2))}}function calcAngles(e,t,o,n,c,s){const i=resolveTimezoneOffset(e,t,o),r=computeJD(e,t,i);if(isNaN(r))return null;const a=(r-2451545)/36525,u=_revDeg(280.46061837+360.98564736629*(r-2451545)+387933e-9*a*a),m=s!=null?s:i*15,p=_revDeg(u+m),$=23.4397-.013*a,x=_toR(p),g=_toR($),b=_toR(c!=null?c:45),f=_revDeg(Math.atan2(Math.sin(x),Math.cos(g)*Math.cos(x))*180/Math.PI),S=_revDeg(Math.atan2(Math.cos(x),-(Math.sin(g)*Math.tan(b)+Math.cos(g)*Math.sin(x)))*180/Math.PI);function M(L){const w=Math.floor(L/30)%12;return{lon:L,signIdx:w,sign:SIGNS[w],signSym:SIGN_SYMBOLS[w],degInSign:(L%30).toFixed(1)}}return{ASC:M(S),DSC:M(_revDeg(S+180)),MC:M(f),IC:M(_revDeg(f+180))}}function nearestAspect(e){for(const t of ASPECTS){const o=Math.min(Math.abs(e-t.angle),Math.abs(360-e-t.angle));if(o<=t.orb)return{...t,orbValue:o.toFixed(1)}}return null}function aspectScore(e){return e==="Trigono"?4:e==="Sextil"?3:e==="Conjuncion"?2:e==="Oposicion"?-3:e==="Cuadratura"?-4:0}function normalizeScore(e){return Math.max(0,Math.min(100,Math.round(e)))}function compatibilityTone(e){return e>=75?"muy alta":e>=60?"alta":e>=45?"media":e>=30?"variable":"retadora"}function loveBand(e,t){return t==="en"?e<-50?"Incompatible":e<-10?"Low compatibility":e<=10?"Conditional compatibility":e<=50?"Mostly compatible":"Highly compatible":e<-50?"Incompatibles":e<-10?"Poco compatibles":e<=10?"Compatibilidad bajo ciertos aspectos":e<=50?"Mayoritariamente compatibles":"Muy compatibles"}function pairWeight(e,t){const o=RELATION_WEIGHTS[e]||{},n=RELATION_WEIGHTS[t]||{};return((o[t]||1)+(n[e]||1))/2}function clampScore(e){return Math.max(5,Math.min(95,Math.round(e)))}function categoryWeight(e,t){const o=[e,t].sort().join("-"),n=new Set(["Luna-Luna","Luna-Venus","Luna-Sol","Venus-Venus","Sol-Venus"]),c=new Set(["Venus-Marte","Marte-Marte","Luna-Marte","Venus-Pluton"]),s=new Set(["Mercurio-Mercurio","Mercurio-Saturno","Sol-Mercurio","Saturno-Saturno"]),i=new Set(["Jupiter-Jupiter","Sol-Jupiter","Luna-Jupiter","Saturno-Venus","Saturno-Luna"]);return{affection:n.has(o)?1.45:1,sexuality:c.has(o)?1.5:1,collaboration:s.has(o)?1.45:1,mutual:i.has(o)?1.35:1}}function buildCompatibility(e,t,o,n){const c=o?{...e,...o}:e,s=n?{...t,...n}:t,i=[];let r=0,a=0,u=0,m=0,p=0,$=0,x=0,g=0,b=0,f=0;for(const[k,E]of Object.entries(c))for(const[N,P]of Object.entries(s)){let d=Math.abs(E.lon-P.lon);d>180&&(d=360-d);const l=nearestAspect(d);if(!l)continue;const h=aspectScore(l.name),y=pairWeight(k,N),v=Math.max(.1,1-Number(l.orbValue)/l.orb),A=h*v*y,I=(Math.abs(h)+1.2)*v*y,F=categoryWeight(k,N);r+=A,a+=I,u+=A*F.affection,m+=A*F.sexuality,p+=A*F.collaboration,$+=A*F.mutual,x+=I*F.affection,g+=I*F.sexuality,b+=I*F.collaboration,f+=I*F.mutual,i.push({p1:k,p2:N,aspect:l.name,orb:l.orbValue,tone:l.tone,points:Number(A.toFixed(2))})}const S=a?r/a:0,M=x?u/x:0,L=g?m/g:0,w=b?p/b:0,C=f?$/f:0;return{totalPoints:Number(r.toFixed(2)),score:clampScore(50+42*S),affection:clampScore(50+40*M),sexuality:clampScore(50+40*L),collaboration:clampScore(50+40*w),mutual:clampScore(50+40*C),pairs:i}}function aspectNarrative(e){const t=e.points>=0?"Este aspecto favorece la cooperaci\xF3n y facilita acuerdos concretos.":"Este aspecto puede activar choques de ritmo y pide comunicaci\xF3n consciente para sostener el v\xEDnculo.",o=Math.abs(e.points)>=3?"Se siente con intensidad alta en la din\xE1mica diaria.":"Su efecto es moderado, pero constante a lo largo del tiempo.";return`${t} ${o}`}function relationSummary(e,t){const o=e.filter(r=>r.aspect==="Oposicion").length,n=e.filter(r=>r.aspect==="Cuadratura").length,c=e.filter(r=>r.aspect==="Trigono").length,s=e.filter(r=>r.aspect==="Sextil").length,i=e.filter(r=>r.aspect==="Conjuncion").length;return t==="en"?`Detected aspects: ${i} conjunctions, ${c} trines, ${s} sextiles, ${n} squares, and ${o} oppositions. No single aspect can fully create or break a relationship: the overall balance between support and tension defines the result.`:`Se detectan ${i} conjunciones, ${c} tr\xEDgonos, ${s} sextiles, ${n} cuadraturas y ${o} oposiciones. No hay un aspecto \xFAnico que cree o destruya la relaci\xF3n: el balance entre apoyos y tensiones define el resultado global.`}const AgentX=(()=>{function e(i){return String(i||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim()}function t(i){const r=e(i).split(" ").filter(Boolean);if(r.length<4)return r.length?[r.join(" ")]:[];const a=[];for(let u=0;u<=r.length-4;u++)a.push(r.slice(u,u+4).join(" "));return a}function o(){return{lines:new Set,parts:new Set}}function n(i,r){const a=e(i);let u=r.lines.has(a)?12:0;for(const m of t(i))r.parts.has(m)&&(u+=1);return u}function c(i,r){const a=e(i);a&&r.lines.add(a);for(const u of t(i))r.parts.add(u)}function s(i,r){let a=String(i[0]||""),u=Number.POSITIVE_INFINITY;for(const m of i){const p=String(m||"").trim();if(!p)continue;const $=n(p,r);if($<u&&(a=p,u=$,$===0))break}return c(a,r),a}return{createTracker:o,pick:s}})();function fmtPts(e){const t=Number(e||0);return`${t>=0?"+":""}${t.toFixed(2)}`}function buildAspectDescription(e,t,o){if(o==="en"){const g=Number(e.points||0),b=t||AgentX.createTracker(),f=g>=0?"emotional closeness":"emotional distance",S=g>=0?"social harmony":"daily friction",M=g>=0?"affective trust":"emotional sensitivity",L=g>=0?"can strengthen":"can put pressure on",w=AgentX.pick([`The ${locAspect(e.aspect,"en")} between A's ${locPlanet(e.p1,"en")} and B's ${locPlanet(e.p2,"en")} creates a climate of ${f} visible in how both people respond to each other.`,`When A's ${locPlanet(e.p1,"en")} touches B's ${locPlanet(e.p2,"en")} through a ${locAspect(e.aspect,"en")}, the relationship takes on a tone of ${f} that impacts first impressions and trust.`],b),C=AgentX.pick([`In love, this contact activates ${M} and shows how the couple sustains tenderness, desire, and presence when emotions intensify.`,`In intimacy, this pattern moves ${M} and reveals whether affection flows naturally or needs more patience.`],b),k=AgentX.pick([`Socially, this combination supports or challenges ${S}, especially when they must show up as a team.`,`In everyday life, this aspect colors ${S} and shapes how both people support each other with friends, family, plans, and responsibilities.`],b),E=AgentX.pick([`Over time, this energy ${L} the relationship if both people can name their needs without turning them into blame.`,`As the bond matures, this pattern ${L} long-term continuity depending on how honestly differences and desires are integrated.`],b),N=AgentX.pick([`Overall, this aspect leaves a concrete mark on love and social compatibility: <strong>${fmtPts(g)} pts</strong>.`,`In global terms, this contact pushes the relationship toward either more flow or shared learning: <strong>${fmtPts(g)} pts</strong>.`],b);return`<p>${w} ${C}</p><p>${k} ${E}</p><p>${N}</p>`}const n=Number(e.points||0),c=t||AgentX.createTracker(),s=n>=0?"cercana":"distancia emocional",i=n>=0?"complicidad social":"desajuste cotidiano",r=n>=0?"confianza afectiva":"sensibilidad herida",a=n>=0?"puede fortalecer":"puede tensionar",u=AgentX.pick([`El ${e.aspect.toLowerCase()} entre ${e.p1} de A y ${e.p2} de B crea una atm\xE1sfera de ${s} que se nota desde la forma en que ambos se miran y reaccionan.`,`Cuando ${e.p1} de A toca a ${e.p2} de B mediante un ${e.aspect.toLowerCase()}, la relaci\xF3n adquiere un clima de ${s} que influye en la primera impresi\xF3n y en la confianza.`],c),m=AgentX.pick([`En el amor, este contacto despierta ${r} y muestra c\xF3mo la pareja sostiene ternura, deseo y presencia cuando aparecen emociones intensas.`,`En la intimidad, este cruce mueve la ${r} y revela si el cari\xF1o puede expresarse con naturalidad o necesita m\xE1s paciencia.`],c),p=AgentX.pick([`En la vida social, la combinaci\xF3n favorece o desaf\xEDa la ${i}, especialmente cuando deben presentarse al mundo como equipo.`,`En lo cotidiano, este aspecto colorea la ${i} y define c\xF3mo se apoyan frente a amigos, familia, planes y responsabilidades.`],c),$=AgentX.pick([`Con el tiempo, esta energ\xEDa ${a} la relaci\xF3n si ambos aprenden a nombrar sus necesidades sin convertirlas en reproches.`,`A medida que el v\xEDnculo madura, este patr\xF3n ${a} la continuidad amorosa seg\xFAn la honestidad con la que integren diferencias y deseos.`],c),x=AgentX.pick([`En conjunto, este aspecto deja una huella concreta en la compatibilidad amorosa y social de ambos: <strong>${fmtPts(n)} pts</strong>.`,`Como balance global, este contacto inclina la relaci\xF3n hacia mayor fluidez o mayor aprendizaje compartido: <strong>${fmtPts(n)} pts</strong>.`],c);return`<p>${u} ${m}</p><p>${p} ${$}</p><p>${x}</p>`}function uniqueAspectContacts(e,t=12){const o=new Set,n=[],c=[...e].sort((s,i)=>Math.abs(i.points)-Math.abs(s.points));for(const s of c){const i=`${s.p1}|${s.p2}|${s.aspect}`;if(!o.has(i)&&(o.add(i),n.push(s),n.length>=t))break}return n}function renderPlanetTable(e,t){const o=t==="en"?"Planet":"Planeta",n=t==="en"?"Sign":"Signo",c=t==="en"?"Degree":"Grado",s=t==="en"?"Key":"Clave",i=Object.keys(PLANETS).map(r=>{const a=e[r];return`<tr><td>${PLANETS[r].sym} ${locPlanet(r,t)}</td><td>${locSign(a.sign,t)}</td><td>${a.degInSign}</td><td>${PLANETS[r].key}</td></tr>`}).join("");return`<table class="planet-table"><thead><tr><th>${o}</th><th>${n}</th><th>${c}</th><th>${s}</th></tr></thead><tbody>${i}</tbody></table>`}function renderAstroWheel(e,t,o){function n(d,l){const h=Math.PI/180*(d-90);return{x:500+Math.cos(h)*l,y:500+Math.sin(h)*l}}function c(d,l,h){const y=(d-90)*Math.PI/180,v=(d+30-90)*Math.PI/180,A=(500+Math.cos(y)*h).toFixed(1),I=(500+Math.sin(y)*h).toFixed(1),F=(500+Math.cos(v)*h).toFixed(1),T=(500+Math.sin(v)*h).toFixed(1),z=(500+Math.cos(v)*l).toFixed(1),B=(500+Math.sin(v)*l).toFixed(1),j=(500+Math.cos(y)*l).toFixed(1),V=(500+Math.sin(y)*l).toFixed(1);return`M${A},${I} A${h},${h} 0 0,1 ${F},${T} L${z},${B} A${l},${l} 0 0,0 ${j},${V} Z`}const s=t.idx*30,i=["rgba(255,80,50,.10)","rgba(100,185,70,.10)","rgba(50,170,255,.10)","rgba(70,100,235,.10)"],r=[0,1,2,3,0,1,2,3,0,1,2,3],a=SIGNS.map((d,l)=>`<path d="${c(l*30,455,488)}" fill="${i[r[l]]}" stroke="none"/>`).join(""),u=Array.from({length:12},(d,l)=>{const h=n(l*30,455),y=n(l*30,488);return`<line x1="${h.x.toFixed(1)}" y1="${h.y.toFixed(1)}" x2="${y.x.toFixed(1)}" y2="${y.y.toFixed(1)}" stroke="rgba(232,198,107,.5)" stroke-width="1.2"/>`}).join(""),m=Array.from({length:12},(d,l)=>{const h=s+l*30,y=l%3===0,v=n(h,207),A=n(h,452);return`<line x1="${v.x.toFixed(1)}" y1="${v.y.toFixed(1)}" x2="${A.x.toFixed(1)}" y2="${A.y.toFixed(1)}" stroke="${y?"rgba(235,231,255,.32)":"rgba(200,190,255,.14)"}" stroke-width="${y?1.4:.7}"/>`}).join(""),p=Array.from({length:12},(d,l)=>{const h=n(s+l*30+15,230);return`<text x="${h.x.toFixed(1)}" y="${h.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(220,210,165,.75)" font-size="26" font-family="Cinzel,serif" font-weight="500">${l+1}</text>`}).join(""),$=SIGNS.map((d,l)=>{const h=n(l*30+15,471);return`<text x="${h.x.toFixed(1)}" y="${h.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="${SIGN_COLORS[d]}" font-size="36" font-family="serif" opacity=".88">${SIGN_SYMBOLS[l]}</text>`}).join(""),x=Object.keys(PLANETS).map(d=>({planet:d,...e[d]})).sort((d,l)=>d.lon-l.lon),g=[380,336,294],b=20,f=[];for(const d of x){let l=g.length-1;for(let h=0;h<g.length;h++)if(!f.filter(y=>y.layer===h).some(y=>{let v=Math.abs(d.lon-y.lon);return v>180&&(v=360-v),v<b})){l=h;break}d.layer=l,d.radius=g[l],f.push(d)}const S=42,M=f.map(d=>{const l=n(d.lon,d.radius),h=n(d.lon,d.radius+28),y=n(d.lon,d.radius-25),v=PLANET_COLORS[d.planet]||"#e8c66b";return`<circle cx="${l.x.toFixed(1)}" cy="${l.y.toFixed(1)}" r="${S/2+5}" fill="rgba(12,10,29,.7)" stroke="${v}" stroke-width="1.2" opacity=".78"/><image href="${PLANET_IMAGES[d.planet]||"assets/images/soleil_18_11zon.webp"}" x="${(l.x-S/2).toFixed(1)}" y="${(l.y-S/2).toFixed(1)}" width="${S}" height="${S}" preserveAspectRatio="xMidYMid meet"/><text x="${h.x.toFixed(1)}" y="${h.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="${v}" font-size="13" font-family="Cinzel,serif" stroke="rgba(12,10,29,.92)" stroke-width="2.5" paint-order="stroke fill">${locPlanet(d.planet,o)}</text><text x="${y.x.toFixed(1)}" y="${y.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(200,195,180,.72)" font-size="12" font-family="Cinzel,serif" stroke="rgba(12,10,29,.88)" stroke-width="2" paint-order="stroke fill">${d.degInSign}\xB0</text>`}).join(`
+`),L=n(s,488),w=n(s,207),C=(s+180)%360,k=n(C,488),E=n(C,207),N=n(s,500),P=n(C,500);return`<div class="astro-wheel"><svg viewBox="0 0 1000 1000" aria-hidden="true" class="wheel-svg">
+  <defs>
+    <radialGradient id="cGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(142,124,242,.32)"/>
+      <stop offset="55%" stop-color="rgba(16,11,42,.78)"/>
+      <stop offset="100%" stop-color="rgba(12,10,29,.96)"/>
+    </radialGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0d9a0"/>
+      <stop offset="48%" stop-color="#c4a8ef"/>
+      <stop offset="100%" stop-color="#7b6fe0"/>
+    </linearGradient>
+  </defs>
+  <circle cx="500" cy="500" r="490" fill="rgba(255,255,255,.01)" stroke="url(#ringGrad)" stroke-width="9"/>
+  <!-- SIGN BAND dark background -->
+  <circle cx="500" cy="500" r="488" fill="rgba(16,11,38,.4)" stroke="none"/>
+  <circle cx="500" cy="500" r="455" fill="rgba(12,8,30,1)" stroke="none"/>
+  ${a}${u}
+  <!-- Sign band boundary (clear separator) -->
+  <circle cx="500" cy="500" r="455" fill="none" stroke="rgba(232,198,107,.55)" stroke-width="2.5"/>
+  <circle cx="500" cy="500" r="488" fill="none" stroke="rgba(232,198,107,.2)" stroke-width="1"/>
+  <!-- Planet orbit zone -->
+  <circle cx="500" cy="500" r="407" fill="rgba(142,124,242,.04)" stroke="none"/>
+  <circle cx="500" cy="500" r="380" fill="none" stroke="rgba(120,215,255,.38)" stroke-width="1.2" stroke-dasharray="6 8"/>
+  <!-- Inner circle -->
+  <circle cx="500" cy="500" r="207" fill="url(#cGlow)" stroke="rgba(162,148,230,.32)" stroke-width="1.5"/>
+  <circle cx="500" cy="500" r="7" fill="rgba(232,198,107,.7)"/>
+  <circle cx="500" cy="500" r="3" fill="rgba(255,255,255,.6)"/>
+  ${m}${p}${$}
+  <line x1="${L.x.toFixed(1)}" y1="${L.y.toFixed(1)}" x2="${w.x.toFixed(1)}" y2="${w.y.toFixed(1)}" stroke="rgba(247,217,138,.52)" stroke-width="1.2" stroke-dasharray="5 5"/>
+  <text x="${N.x.toFixed(1)}" y="${N.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(247,217,138,.9)" font-size="13" font-family="Cinzel,serif" letter-spacing=".07em">ASC</text>
+  <line x1="${k.x.toFixed(1)}" y1="${k.y.toFixed(1)}" x2="${E.x.toFixed(1)}" y2="${E.y.toFixed(1)}" stroke="rgba(157,230,255,.44)" stroke-width="1.2" stroke-dasharray="5 5"/>
+  <text x="${P.x.toFixed(1)}" y="${P.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(157,230,255,.84)" font-size="13" font-family="Cinzel,serif" letter-spacing=".07em">DSC</text>
+  ${M}
+</svg></div>`}function renderReport(e,t,o,n,c,s,i,r,a){const u=resolveTimezoneOffset(o,n,t.timezone),m=resolveTimezoneOffset(i,r,s.timezone),p=isDaylightSavingTime(o,n,t.timezone),$=isDaylightSavingTime(i,r,s.timezone),x=planetPositions(o,n,u),g=calcAscendant(o,n,t.timezone,0,t.lat,t.lon),b=calcAngles(o,n,t.timezone,0,t.lat,t.lon),f=planetPositions(i,r,m),S=calcAscendant(i,r,s.timezone,0,s.lat,s.lon),M=calcAngles(i,r,s.timezone,0,s.lat,s.lon),L=buildCompatibility(x,f,b,M),w=a==="en"?'<p class="hint" style="margin-top:6px;font-size:.8rem;opacity:.7;">System: <strong>Placidus</strong> - Orb: <strong>5&deg;</strong> - Time handling is calculated automatically from country, city, and birth date.</p>':'<p class="hint" style="margin-top:6px;font-size:.8rem;opacity:.7;">Sistema: <strong>Placidus</strong> - Orbe: <strong>5&deg;</strong> - La hora estacional se calcula automaticamente segun pais, ciudad y fecha de nacimiento.</p>',C=Math.max(-100,Math.min(100,Math.round((L.score-50)*2))),k=loveBand(C,a),E=(C+100)/200*100,N=AgentX.createTracker(),P=uniqueAspectContacts(L.pairs,12).map(y=>`<div class="aspect-card"><h5 class="aspect-title">${planetIcon(y.p1)}<strong>${a==="en"?`${locPlanet(y.p1,a)} of A ${locAspect(y.aspect,a)} ${locPlanet(y.p2,a)} of B (${y.orb})`:`${y.p1} de A ${y.aspect.toLowerCase()} ${y.p2} de B (${y.orb})`}</strong>${planetIcon(y.p2)}</h5>${buildAspectDescription(y,N,a)}</div>`).join(""),d=[`<span class="natal-chip">${a==="en"?"Person A":"Persona A"}: ${e}</span>`,`<span class="natal-chip">A ${a==="en"?"Country/City":"Pais/Ciudad"}: ${t.country}, ${t.city}</span>`,`<span class="natal-chip">A ${a==="en"?"Seasonal time":"Hora estacional"}: ${p?a==="en"?"summer":"verano":a==="en"?"winter":"invierno"} (${a==="en"?"auto by birth date":"auto por fecha de nacimiento"})</span>`,`<span class="natal-chip">${a==="en"?"Person B":"Persona B"}: ${c}</span>`,`<span class="natal-chip">B ${a==="en"?"Country/City":"Pais/Ciudad"}: ${s.country}, ${s.city}</span>`,`<span class="natal-chip">B ${a==="en"?"Seasonal time":"Hora estacional"}: ${$?a==="en"?"summer":"verano":a==="en"?"winter":"invierno"} (${a==="en"?"auto by birth date":"auto por fecha de nacimiento"})</span>`,`<span class="natal-chip">ASC A: ${g.signSym} ${locSign(g.sign,a)}</span>`,`<span class="natal-chip">MC A: ${b?b.MC.signSym+" "+locSign(b.MC.sign,a)+" "+b.MC.degInSign+"\xB0":"N/D"}</span>`,`<span class="natal-chip">ASC B: ${S.signSym} ${locSign(S.sign,a)}</span>`,`<span class="natal-chip">MC B: ${M?M.MC.signSym+" "+locSign(M.MC.sign,a)+" "+M.MC.degInSign+"\xB0":"N/D"}</span>`].join(""),l=`
+        <h3 style="margin-top:0">${a==="en"?"Compatibility overview":"Resumen de compatibilidad"}</h3>
+        <div>${d}</div>
+        <p>${relationSummary(L.pairs,a)}</p>
+        <div class="compat-slider-wrap">
+          <label for="syn-love-range">${a==="en"?"Love compatibility level":"Nivel de compatibilidad amorosa"}</label>
+          <div id="syn-love-range" class="compat-meter" role="img" aria-label="${a==="en"?`Level ${C} on a -100 to +100 scale`:`Nivel ${C} en escala de -100 a +100`}">
+            <span class="compat-pointer" style="left:${E}%;"></span>
+          </div>
+          <div class="compat-scale"><span>-100</span><strong>${C}</strong><span>+100</span></div>
+          <p class="hint" style="margin-top:6px;">${a==="en"?"Current level":"Nivel actual"}: <strong>${k}</strong></p>
+        </div>
+        ${P||(a==="en"?"<p>No tight aspects were detected with the current orb.</p>":"<p>No se detectan aspectos cerrados con el orbe actual.</p>")}
+      `,h=`
+        <h3 style="margin-top:0">${a==="en"?"Visual chart of person A":"Carta visual de la persona A"}</h3>
+        <div class="astro-wrap">
+          ${renderAstroWheel(x,g,a)}
+          <div>
+            <p>${a==="en"?"The wheel shows person A overall distribution. The table below summarizes planets and signs for a quick reading.":"La rueda muestra la distribuci\xF3n general de la persona A. La tabla posterior resume sus planetas y signos para una lectura r\xE1pida."}</p>
+            <div class="astro-legend">
+              <span class="astro-pill"><b>SOL</b>${a==="en"?"Sun":"Sol"}</span>
+              <span class="astro-pill"><b>LUNA</b>${a==="en"?"Moon":"Luna"}</span>
+              <span class="astro-pill"><b>ASC</b>${a==="en"?"Ascendant":"Ascendente"}</span>
+            </div>
+          </div>
+        </div>
+        ${renderPlanetTable(x,a)}
+        <h3>${a==="en"?"Visual chart of person B":"Carta visual de la persona B"}</h3>
+        <div class="astro-wrap">
+          ${renderAstroWheel(f,S,a)}
+          <div>
+            <p>${a==="en"?"The wheel shows person B overall distribution. The table below summarizes planets and signs for a quick reading.":"La rueda muestra la distribuci\xF3n general de la persona B. La tabla posterior resume sus planetas y signos para una lectura r\xE1pida."}</p>
+            <div class="astro-legend">
+              <span class="astro-pill"><b>SOL</b>${a==="en"?"Sun":"Sol"}</span>
+              <span class="astro-pill"><b>LUNA</b>${a==="en"?"Moon":"Luna"}</span>
+              <span class="astro-pill"><b>ASC</b>${a==="en"?"Ascendant":"Ascendente"}</span>
+            </div>
+          </div>
+        </div>
+        ${renderPlanetTable(f,a)}
+      `;return`
+        <h2 style="margin-bottom:10px">${a==="en"?"Synastry report":"Informe de sinastria"}</h2>
+        ${w}
+        <div class="report-tabs">
+          <button type="button" class="report-tab-btn is-active" data-tab="aspects" aria-selected="true">${a==="en"?"Aspects":"Aspectos"}</button>
+          <button type="button" class="report-tab-btn" data-tab="chart" aria-selected="false">${a==="en"?"Chart":"Carta astral"}</button>
+        </div>
+        <div class="report-tab-panel is-active" data-tab-panel="aspects">${l}</div>
+        <div class="report-tab-panel" data-tab-panel="chart">${h}</div>
+      `}initSynDateInput("syn-a"),initSynDateInput("syn-b"),document.getElementById("syn-run").addEventListener("click",async()=>{const e=getCurrentLang(),t=document.getElementById("syn-a-name").value.trim(),o=document.getElementById("syn-a-country").value.trim(),n=document.getElementById("syn-a-city").value.trim(),c=document.getElementById("syn-a-date"),s=document.getElementById("syn-a-date-display");c&&s&&!c.value&&(c.value=displayToIsoDate(s.value));const i=c?c.value:"",r=document.getElementById("syn-a-time").value,a=document.getElementById("syn-b-name").value.trim(),u=document.getElementById("syn-b-country").value.trim(),m=document.getElementById("syn-b-city").value.trim(),p=document.getElementById("syn-b-date"),$=document.getElementById("syn-b-date-display");p&&$&&!p.value&&(p.value=displayToIsoDate($.value));const x=p?p.value:"",g=document.getElementById("syn-b-time").value,b=document.getElementById("syn-msg"),f=document.getElementById("syn-report");if(!t||!o||!n||!i||!a||!u||!m||!x){b.textContent=e==="en"?"Please complete name, country, city, and birth date for both people.":"Completa nombre, pais, ciudad y fecha de nacimiento de ambas personas.",f.classList.add("hidden");return}b.textContent=e==="en"?"Calculating timezones from country and city...":"Calculando hora estacional segun pais y ciudad...";const S=await resolveBirthPlace(o,n),M=await resolveBirthPlace(u,m);if(!S||!M){b.textContent=e==="en"?"Could not determine timezone automatically. Please verify country and city for both people.":"No se pudo determinar la hora estacional automatica. Verifica pais y ciudad de ambas personas.",f.classList.add("hidden");return}b.textContent="",f.classList.add("hidden"),f.innerHTML=renderReport(t,S,i,r,a,M,x,g,e),bindReportTabs(f),f.classList.remove("hidden"),f.scrollIntoView({behavior:"smooth",block:"start"})});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
