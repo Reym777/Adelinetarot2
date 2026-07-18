@@ -465,7 +465,7 @@ a:hover { color: #f3dd9a; }
 }
 .brand {
   position: absolute;
-  inset: 0 var(--banner-edge-pad);
+  inset: 0;
   z-index: 0;
   pointer-events: none;
 }
@@ -537,9 +537,9 @@ a:hover { color: #f3dd9a; }
 .package-cta-btn::before {
   content: "";
   position: absolute;
-  inset: -20% auto -20% -55%;
+  inset: -20% auto -20% 0;
   width: 42%;
-  transform: skewX(-20deg);
+  transform: translateX(-130%) skewX(-20deg);
   background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,247,217,0.85), rgba(255,255,255,0));
   animation: packageLightSweep 1.8s ease-in-out infinite;
   pointer-events: none;
@@ -554,10 +554,10 @@ a:hover { color: #f3dd9a; }
 }
 
 @keyframes packageLightSweep {
-  0% { left: -55%; opacity: 0; }
+  0% { transform: translateX(-130%) skewX(-20deg); opacity: 0; }
   10% { opacity: 1; }
-  55% { left: 118%; opacity: 0.9; }
-  100% { left: 118%; opacity: 0; }
+  55% { transform: translateX(280%) skewX(-20deg); opacity: 0.9; }
+  100% { transform: translateX(280%) skewX(-20deg); opacity: 0; }
 }
 
 @keyframes packageShockwave {

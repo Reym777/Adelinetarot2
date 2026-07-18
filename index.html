@@ -69,20 +69,23 @@
     .site-header .container{max-width:100%;padding-left:0;padding-right:0}
     .nav{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;aspect-ratio:1024/167;min-height:64px;position:relative;--banner-edge-pad:clamp(8px,1.8vw,24px)}
     .menu-toggle{border:1px solid var(--border);background:rgba(12,10,29,.6);color:var(--gold);width:42px;height:42px;border-radius:10px;font-size:1.25rem;margin-left:12px}
-    .brand{position:absolute;inset:0 var(--banner-edge-pad);pointer-events:none}
+    .brand{position:absolute;inset:0;pointer-events:none}
     .brand-banner-img{width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block}
     .btn{display:inline-flex;align-items:center;justify-content:center;font-family:"Cinzel",Georgia,serif;letter-spacing:.06em;padding:14px 30px;border-radius:999px;border:1px solid transparent;text-transform:uppercase;min-height:48px}
     .btn-primary{background:linear-gradient(135deg,var(--gold),#c9a64a);color:#2a200a}
     .header-cta{display:inline-flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:92px!important;height:calc(100% - 12px);max-height:52px;padding:6px 9px!important;font-size:.64rem!important;letter-spacing:.04em!important;line-height:1.08;white-space:normal;text-align:center;align-self:center;justify-self:end;position:relative;z-index:2;margin-right:var(--banner-edge-pad)}
     .header-cta .cta-top,.header-cta strong{display:block;width:100%;text-align:center;margin:0 auto;line-height:1}
     .header-cta strong{font-weight:800;font-size:1.08em}
-    .hero{position:relative;text-align:center;padding:46px 0 70px;min-height:430px}
+    .hero{position:relative;text-align:center;padding:24px 0 70px;min-height:430px}
     .hero .eyebrow{font-family:"Cinzel",Georgia,serif;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);font-size:.82rem;margin-bottom:20px}
     .hero h1{font-family:"Cinzel",Georgia,serif;font-weight:600;letter-spacing:.03em;line-height:1.2;font-size:clamp(2.6rem,6vw,4.4rem);margin:0 0 18px}
     .hero h1 .subline{display:block;margin-top:8px;font-size:.46em;letter-spacing:.1em;color:rgba(232,198,107,.86)}
     .hero p.lead{max-width:680px;margin:0 auto 34px;font-size:1.3rem;color:var(--muted)}
-    @media (max-width:560px){body{font-size:18px}.container{padding:0 16px}html{scroll-padding-top:70px}.nav{min-height:66px;--banner-edge-pad:8px}.hero{padding:26px 0 40px;min-height:340px}.hero .eyebrow{font-size:.72rem;letter-spacing:.22em}.hero p.lead{font-size:1.12rem}}
+    .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}.hero-cta-home{display:flex;flex-direction:column;align-items:center;gap:16px}.hero-cta-home .hero-cta-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+    @media (max-width:560px){body{font-size:18px}.container{padding:0 16px}html{scroll-padding-top:70px}.nav{min-height:66px;--banner-edge-pad:8px}.hero{padding:18px 0 40px;min-height:340px}.hero .eyebrow{font-size:.72rem;letter-spacing:.22em}.hero p.lead{font-size:1.12rem}.hero-cta{gap:12px}.hero-cta .btn{width:100%}.hero-cta-home .hero-cta-row{width:100%}}
   </style>
+  <link rel="preload" as="font" href="/assets/fonts/font-02.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href="/assets/fonts/font-06.woff2" type="font/woff2" crossorigin />
   <link rel="preload" as="style" href="/assets/fonts/google-fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link href="/assets/fonts/google-fonts.css" rel="stylesheet" /></noscript>
   <link rel="stylesheet" href="assets/styles.min.css" media="print" onload="this.media='all'" />
@@ -122,9 +125,9 @@
     .package-cta-btn::before {
       content: "";
       position: absolute;
-      inset: -20% auto -20% -55%;
+      inset: -20% auto -20% 0;
       width: 42%;
-      transform: skewX(-20deg);
+      transform: translateX(-130%) skewX(-20deg);
       background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,247,217,0.85), rgba(255,255,255,0));
       animation: packageLightSweep 1.8s ease-in-out infinite;
       pointer-events: none;
@@ -138,10 +141,10 @@
       z-index: 2;
     }
     @keyframes packageLightSweep {
-      0% { left: -55%; opacity: 0; }
+      0% { transform: translateX(-130%) skewX(-20deg); opacity: 0; }
       10% { opacity: 1; }
-      55% { left: 118%; opacity: 0.9; }
-      100% { left: 118%; opacity: 0; }
+      55% { transform: translateX(280%) skewX(-20deg); opacity: 0.9; }
+      100% { transform: translateX(280%) skewX(-20deg); opacity: 0; }
     }
     @keyframes packageShockwave {
       0% {
