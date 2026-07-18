@@ -31,6 +31,7 @@ from .article_backup import push_articles_snapshot, restore_articles_from_backup
 from .config import settings
 from .database import init_db
 from .routers import admin as admin_router
+from .routers import analytics as analytics_router
 from .routers import articles as articles_router
 from .routers import bookings as bookings_router
 from .routers import contact as contact_router
@@ -150,6 +151,7 @@ def public_config() -> dict:
         "stripe_enabled": settings.stripe_enabled,
         "stripe_publishable_key": settings.stripe_publishable_key,
         "mail_enabled": settings.mail_enabled,
+        "ga_measurement_protocol_enabled": settings.ga_measurement_protocol_enabled,
     }
 
 
@@ -188,6 +190,7 @@ def removed_urls() -> Response:
 
 app.include_router(bookings_router.router)
 app.include_router(admin_router.router)
+app.include_router(analytics_router.router)
 app.include_router(articles_router.router)
 app.include_router(payments_router.router)
 app.include_router(contact_router.router)

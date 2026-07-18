@@ -5,6 +5,7 @@ backend/**/*.pyc
 # Local secrets
 backend/.env
 backend/.env.*
+!backend/.env.example
 
 # Frontend toolchain
 node_modules/

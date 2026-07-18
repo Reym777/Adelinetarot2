@@ -115,6 +115,12 @@ class Settings(BaseSettings):
     # from RENDER_EXTERNAL_HOSTNAME or the incoming request.
     public_base_url: str = ""
 
+    # Google Analytics Measurement Protocol. Keep the API secret on the backend
+    # only; browsers should call /api/analytics/collect instead of Google MP.
+    ga_measurement_id: str = "G-D4FYXHDVSL"
+    ga_api_secret: str = ""
+    ga_measurement_protocol_debug: bool = False
+
     # Email (SMTP) â€” the private video link is delivered ONLY by email, and only
     # after Adelinemagica validates the payment. Credentials come from the
     # environment exclusively (never hardcoded). Leave smtp_host empty to disable
@@ -293,6 +299,11 @@ class Settings(BaseSettings):
     def stripe_enabled(self) -> bool:
         """True when Stripe hosted Checkout (card + Apple/Google Pay) is usable."""
         return bool(self.stripe_secret_key)
+
+    @property
+    def ga_measurement_protocol_enabled(self) -> bool:
+        """True when Google Analytics Measurement Protocol can be used."""
+        return bool(self.ga_measurement_id.strip() and self.ga_api_secret.strip())
 
 
 @lru_cache

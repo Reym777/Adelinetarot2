@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import re
 from datetime import date, datetime, time, timezone
-from typing import Annotated, List, Literal, Optional
+from typing import Annotated, Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
 
@@ -296,6 +296,62 @@ class ContactRequest(StrictModel):
 
 
 class ContactResponse(BaseModel):
+    ok: bool
+    message: str
+
+
+# --------------------------------------------------------------------------- #
+# Google Analytics Measurement Protocol
+# --------------------------------------------------------------------------- #
+class AnalyticsEvent(StrictModel):
+    name: Annotated[str, Field(min_length=1, max_length=40)]
+    params: Dict[str, Any] = Field(default_factory=dict)
+
+    @field_validator("name")
+    @classmethod
+    def _valid_event_name(cls, v: str) -> str:
+        v = _clean(v)
+        if not re.match(r"^[A-Za-z][A-Za-z0-9_]{0,39}$", v):
+            raise ValueError("nombre de evento no válido")
+        return v
+
+    @field_validator("params")
+    @classmethod
+    def _valid_params(cls, v: Dict[str, Any]) -> Dict[str, Any]:
+        if len(v) > 25:
+            raise ValueError("demasiados parámetros")
+        clean: Dict[str, Any] = {}
+        for key, value in v.items():
+            clean_key = _clean(str(key))
+            if not re.match(r"^[A-Za-z][A-Za-z0-9_]{0,39}$", clean_key):
+                raise ValueError("parámetro no válido")
+            if isinstance(value, str):
+                clean[clean_key] = _clean(value)[:500]
+            elif isinstance(value, (int, float, bool)) or value is None:
+                clean[clean_key] = value
+            else:
+                raise ValueError("valor de parámetro no válido")
+        return clean
+
+
+class AnalyticsCollectRequest(StrictModel):
+    client_id: Annotated[str, Field(min_length=4, max_length=128)]
+    user_id: Optional[Annotated[str, Field(max_length=128)]] = None
+    events: Annotated[List[AnalyticsEvent], Field(min_length=1, max_length=25)]
+    website: Annotated[str, Field(max_length=200)] = ""
+
+    @field_validator("client_id", "user_id")
+    @classmethod
+    def _valid_analytics_id(cls, v: Optional[str]) -> Optional[str]:
+        if v is None:
+            return None
+        cleaned = _clean(v)
+        if not re.match(r"^[A-Za-z0-9_.:-]{4,128}$", cleaned):
+            raise ValueError("identificador no válido")
+        return cleaned
+
+
+class AnalyticsCollectResponse(BaseModel):
     ok: bool
     message: str
 
