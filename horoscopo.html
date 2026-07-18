@@ -9,7 +9,25 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-D4FYXHDVSL');
+    (function(){
+      try {
+        var storageKey = 'adeline_ga_user_id';
+        var userId = localStorage.getItem(storageKey);
+        if (!userId) {
+          var randomValues = new Uint32Array(2);
+          if (window.crypto && window.crypto.getRandomValues) {
+            window.crypto.getRandomValues(randomValues);
+            userId = 'adeline_' + randomValues[0].toString(36) + randomValues[1].toString(36);
+          } else {
+            userId = 'adeline_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+          }
+          localStorage.setItem(storageKey, userId);
+        }
+        gtag('config', 'G-D4FYXHDVSL', { 'user_id': userId });
+      } catch (e) {
+        gtag('config', 'G-D4FYXHDVSL');
+      }
+    })();
   </script>
   <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
