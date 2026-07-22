@@ -13,11 +13,16 @@
 #
 #  Notas:
 #   - El plan free "duerme" tras inactividad: la 1a visita puede tardar ~50s.
-#   - SQLite vive en disco efimero del plan free: las reservas se pierden al
-#     redeploy/reinicio. Para conservarlas usa un Render Disk o Postgres.
+#   - La produccion usa Postgres persistente via ADELINE_DATABASE_URL.
 #   - PayPal: pega tu client-id en ADELINE_PAYPAL_CLIENT_ID para activar los
 #     botones in-page; si lo dejas vacio se usa el enlace PayPal.Me.
 # ============================================================================
+databases:
+  - name: adelinemagica-db
+    databaseName: adelinemagica
+    user: adelinemagica
+    plan: basic-256mb
+
 services:
   - type: web
     name: adelinemagica
@@ -33,6 +38,10 @@ services:
         value: 3.11.9
       - key: ADELINE_DEBUG
         value: "false"
+      - key: ADELINE_DATABASE_URL
+        fromDatabase:
+          name: adelinemagica-db
+          property: connectionString
       - key: ADELINE_CORS_ORIGINS
         value: "https://adelinemagica.com,https://www.adelinemagica.com,https://adelinetarot2.onrender.com"
       # Token de administracion estable (Render genera un valor seguro y lo fija).

@@ -13,14 +13,16 @@ from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 from .config import settings
 
+_database_url = settings.sqlalchemy_database_url
+
 _connect_args = (
     {"check_same_thread": False}
-    if settings.database_url.startswith("sqlite")
+    if _database_url.startswith("sqlite")
     else {}
 )
 
 engine = create_engine(
-    settings.database_url,
+    _database_url,
     connect_args=_connect_args,
     pool_pre_ping=True,
     future=True,
@@ -57,7 +59,7 @@ def _ensure_sqlite_columns() -> None:
     earlier version is missing the newer payment-workflow columns. Add any that
     are absent (no-op when already present, or when not using SQLite).
     """
-    if not settings.database_url.startswith("sqlite"):
+    if not _database_url.startswith("sqlite"):
         return
 
     from sqlalchemy import inspect, text

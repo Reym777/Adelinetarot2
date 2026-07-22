@@ -41,6 +41,15 @@ class Settings(BaseSettings):
 
     database_url: str = "sqlite:///./adelinetarot.db"
 
+    @property
+    def sqlalchemy_database_url(self) -> str:
+        url = self.database_url.strip()
+        if url.startswith("postgres://"):
+            return "postgresql+psycopg://" + url[len("postgres://"):]
+        if url.startswith("postgresql://"):
+            return "postgresql+psycopg://" + url[len("postgresql://"):]
+        return url
+
     # NoDecode lets these be provided as a comma-separated string in the
     # environment; the validator below splits them (otherwise pydantic-settings
     # would try to JSON-decode the value first and fail on plain CSV).
