@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updated_at": "2026-07-23T20:32:03.008869+00:00",
-  "reason": "draft:borrador",
+  "updated_at": "2026-07-23T20:32:05.264328+00:00",
+  "reason": "publish-draft:borrador",
   "articles": [
     {
       "slug": "borrador-2",
@@ -23,9 +23,9 @@
       "excerpt": "Escribe tu articulo Este editor es visual: lo que ves aqui es lo que se publicara en el articulo final.",
       "content": "<h2>Escribe tu articulo</h2>\n          <p>Este editor es visual: lo que ves aqui es lo que se publicara en el articulo final.</p>",
       "author_name": "Adeline",
-      "is_published": 0,
+      "is_published": 1,
       "created_at": "2026-07-23T20:32:02.363612",
-      "updated_at": "2026-07-23T20:32:02.363612"
+      "updated_at": "2026-07-23T20:32:04.754692"
     }
   ]
 }
