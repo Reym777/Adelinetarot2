@@ -25,7 +25,7 @@ def _clean_backup_path() -> str:
 
 def _is_legacy_single_file_mode() -> bool:
     path = _clean_backup_path()
-    return bool(path and path.lower().endswith(".json"))
+    return bool(path and (path.lower().endswith(".json") or path.lower() == "main/articulos"))
 
 
 def _legacy_backup_file_path() -> str:
