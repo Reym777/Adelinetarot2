@@ -27,7 +27,7 @@ except ImportError:  # pragma: no cover - optional dependency in local dev
     BrotliMiddleware = None
 
 from . import __version__
-from .article_backup import push_articles_snapshot, restore_articles_from_backup
+from .article_backup import restore_articles_from_backup
 from .config import settings
 from .database import init_db
 from .routers import admin as admin_router
@@ -64,8 +64,6 @@ async def lifespan(app: FastAPI):
                 report.get("restored", 0),
                 report.get("updated", 0),
             )
-            if int(report.get("remote", 0)) == 0:
-                push_articles_snapshot(db, reason="bootstrap")
         finally:
             db.close()
     # Surface the admin token once so Adelinemagica can sign in (generated if
