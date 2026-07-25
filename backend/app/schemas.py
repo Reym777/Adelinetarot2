@@ -401,6 +401,11 @@ class ArticleDetail(ArticleSummary):
     content: str
 
 
+class ArticleTranslation(ArticleDetail):
+    language: str
+    translation_note: str
+
+
 class ArticleImport(ArticleCreate):
     slug: Optional[Annotated[str, Field(max_length=220)]] = None
     author_name: Optional[Annotated[str, Field(max_length=120)]] = None

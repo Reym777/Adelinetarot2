@@ -43,9 +43,13 @@
   <meta property="og:title" content="Editorial | Adeline Magica" />
   <meta property="og:description" content="Articulos compartibles inspirados en tarot terapeutico y guia espiritual." />
   <meta property="og:url" content="https://adelinemagica.com/articulos" />
+  <meta property="og:image" content="https://adelinemagica.com/assets/images/apple-touch-icon.png" />
+  <meta property="og:image:alt" content="Logo Adeline Magica" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Editorial | Adeline Magica" />
   <meta name="twitter:description" content="Articulos compartibles inspirados en tarot terapeutico y guia espiritual." />
+  <meta name="twitter:image" content="https://adelinemagica.com/assets/images/apple-touch-icon.png" />
+  <meta name="twitter:image:alt" content="Logo Adeline Magica" />
 <link rel="preload" as="style" href="/assets/fonts/google-fonts.css" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link href="/assets/fonts/google-fonts.css" rel="stylesheet" /></noscript>
   <link rel="preload" as="style" href="assets/styles.min.css" onload="this.onload=null;this.rel='stylesheet'" />
@@ -104,6 +108,12 @@
     .article-content p { margin: 0 0 11px; }
     .article-content ul { margin: 0 0 12px 24px; }
     .article-content img { width: 100%; border-radius: 10px; margin: 12px 0; border: 1px solid var(--border); }
+    .reader-tools { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+    .reader-lang { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .reader-lang .btn { min-width: 0; padding: 8px 14px; }
+    .reader-lang .btn.is-active { border-color: rgba(232, 198, 107, .6); color: var(--gold); box-shadow: 0 0 0 1px rgba(232, 198, 107, .25) inset; }
+    .reader-lang-note { color: var(--muted); font-size: .92rem; }
+    .reader-lang-note.hidden { display: none; }
     .reader-share { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
     .reader-share .btn { min-width: 180px; }
     .empty-msg { text-align: center; padding: 20px 8px; color: var(--muted); }
@@ -112,6 +122,7 @@
       .container { padding-left: 0 !important; padding-right: 0 !important; }
       .articles-wrap { max-width: 100%; }
       .articles-page { padding-top: 38px; }
+      .reader-tools { align-items: stretch; }
       .reader-share .btn { width: 100%; }
     }
   </style>
@@ -174,6 +185,13 @@
         <div id="articleReader" class="article-reader hidden">
           <div class="panel">
             <p class="muted" id="readerMeta" style="margin-bottom:6px"></p>
+            <div class="reader-tools">
+              <div class="reader-lang" aria-label="Idioma del articulo">
+                <button id="readerLangEs" type="button" class="btn btn-ghost is-active">ES</button>
+                <button id="readerLangEn" type="button" class="btn btn-ghost">EN</button>
+                <span id="readerLangNote" class="reader-lang-note hidden">Traducido por IA</span>
+              </div>
+            </div>
             <h2 id="readerTitle" style="margin:0 0 4px"></h2>
             <p id="readerSubtitle" class="section-sub" style="margin:0 0 12px"></p>
             <img id="readerImage" class="article-reader-image hidden" alt="Imagen del articulo" />
@@ -219,6 +237,460 @@ Formula preguntas orientadas a decisiones y h\xE1bitos. El tarot terap\xE9utico 
 
 Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas energ\xEDa antes que urgencias.`,author_name:"Adeline",created_at:new Date().toISOString()}];function c(e){return String(e==null?"":e).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}function p(){var e=document.querySelector('meta[name="adeline-api-base"]'),t=e&&e.content?e.content.trim():"";return t?t.replace(/\/+$/,""):location.protocol==="file:"?"http://127.0.0.1:8000":/adelinemagica\.com$/i.test(location.hostname)?"https://adelinetarot2.onrender.com":""}function g(){var e=[],t=p();t&&e.push(t),location.protocol!=="file:"&&e.push(""),e.push("https://adelinetarot2.onrender.com");var n={};return e.map(function(r){return String(r||"").replace(/\/+$/,"")}).filter(function(r){return n[r]?!1:(n[r]=!0,!0)})}function s(e){var t=new Date(e);return isNaN(t.getTime())?"":t.toLocaleDateString("es-ES",{day:"2-digit",month:"long",year:"numeric"})}function h(){var e=new URLSearchParams(location.search);return(e.get("slug")||"").trim()}function f(e){var t=new URL(location.href);e?t.searchParams.set("slug",e):t.searchParams.delete("slug"),history.replaceState({},"",t.toString())}function v(e){var t=c(e||"");t=t.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g,'<img src="$2" alt="$1" loading="lazy" decoding="async" />'),t=t.replace(/^###\s+(.+)$/gm,"<h3>$1</h3>"),t=t.replace(/^##\s+(.+)$/gm,"<h2>$1</h2>"),t=t.replace(/^#\s+(.+)$/gm,"<h2>$1</h2>"),t=t.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>"),t=t.replace(/_(.+?)_/g,"<em>$1</em>");var n=t.split(/\n+/),r=[],a=!1;return n.forEach(function(o){var l=o.trim();if(l){if(/^<h2>|^<h3>|^<img/.test(l)){a&&(r.push("</ul>"),a=!1),r.push(l);return}if(/^-\s+/.test(l)){a||(r.push("<ul>"),a=!0),r.push("<li>"+l.replace(/^-\s+/,"")+"</li>");return}a&&(r.push("</ul>"),a=!1),r.push("<p>"+l+"</p>")}}),a&&r.push("</ul>"),r.join("")}function E(e){var t=document.createElement("div");return t.innerHTML=String(e||""),t.querySelectorAll("script,iframe,object,embed").forEach(function(n){n.remove()}),t.querySelectorAll("*").forEach(function(n){Array.from(n.attributes).forEach(function(r){var a=String(r.name||"").toLowerCase();a.indexOf("on")===0&&n.removeAttribute(r.name)})}),t.innerHTML}function x(e){var t=String(e||"");return/<\s*[a-z][\s\S]*>/i.test(t)?E(t):v(t)}function u(){var e=document.getElementById("articlesGrid"),t=document.getElementById("emptyState");if(!i.list.length){e.innerHTML="",t.classList.remove("hidden");return}t.classList.add("hidden"),e.innerHTML=i.list.map(function(n){var r=n.hero_image?'<img class="article-cover" src="'+c(n.hero_image)+'" alt="'+c(n.title)+'" loading="lazy" decoding="async" />':"";return'<a class="article-card" href="articulos?slug='+encodeURIComponent(n.slug)+'">'+r+'<div class="article-body"><p class="article-meta">'+c(s(n.created_at))+" \xB7 "+c(n.author_name||"Adeline")+'</p><h3 class="article-title">'+c(n.title)+'</h3><p class="article-sub">'+c(n.subtitle||"")+'</p><p class="article-excerpt">'+c(n.excerpt||"")+"</p></div></a>"}).join("")}function y(e){var t=document.getElementById("articleReader"),n=document.getElementById("readerTitle"),r=document.getElementById("readerSubtitle"),a=document.getElementById("readerMeta"),o=document.getElementById("readerImage"),l=document.getElementById("readerContent");n.textContent=e.title||"",r.textContent=e.subtitle||"",a.textContent=[s(e.created_at),e.author_name||"Adeline"].filter(Boolean).join(" \xB7 "),l.innerHTML=x(e.content||""),e.hero_image?(o.src=e.hero_image,o.classList.remove("hidden")):(o.removeAttribute("src"),o.classList.add("hidden")),i.current=e,t.classList.remove("hidden"),t.scrollIntoView({behavior:"smooth",block:"start"})}function d(e){var t=g(),n=0;function r(){if(n>=t.length)return Promise.reject(new Error("No se pudo cargar el contenido de articulos."));var a=t[n++];return fetch(a+e,{headers:{Accept:"application/json"}}).then(function(o){if(!o.ok)throw new Error("HTTP "+o.status);return o.json()}).catch(function(){return r()})}return r()}function b(){return d("/api/articles").then(function(e){i.list=Array.isArray(e)?e:[],u();var t=h();t&&S(t)})}function S(e){e&&d("/api/articles/"+encodeURIComponent(e)).then(function(t){y(t)}).catch(function(){f("")})}function L(){document.getElementById("shareBtn").addEventListener("click",function(){if(i.current){var e=new URL(location.href);e.searchParams.set("slug",i.current.slug);var t={title:i.current.title,text:i.current.excerpt||i.current.subtitle||"",url:e.toString()};if(navigator.share){navigator.share(t).catch(function(){});return}navigator.clipboard.writeText(t.url).then(function(){alert("Enlace copiado.")})}}),document.getElementById("copyBtn").addEventListener("click",function(){if(i.current){var e=new URL(location.href);e.searchParams.set("slug",i.current.slug),navigator.clipboard.writeText(e.toString()).then(function(){alert("Enlace del articulo copiado.")})}})}document.addEventListener("DOMContentLoaded",function(){L(),b().catch(function(){i.list=m.slice(),u();var e=document.getElementById("emptyState");e.classList.remove("hidden"),e.textContent="Mostrando edici\xF3n local temporal mientras se restablece el servicio de art\xEDculos."})})})();
 </script>
+  <script>
+    (function () {
+      var state = {
+        list: [],
+        current: null,
+        currentBase: null,
+        currentLang: "es",
+        translations: {}
+      };
+      var defaultDescription = "Articulos compartibles inspirados en tarot terapeutico y guia espiritual.";
+      var fallbackArticles = Array.isArray(window.__adelineArticleFallbacks)
+        ? window.__adelineArticleFallbacks.slice()
+        : [];
+      var labels = {
+        es: {
+          share: "Compartir este articulo",
+          copy: "Copiar enlace",
+          copyShareSuccess: "Enlace copiado.",
+          copyLinkSuccess: "Enlace del articulo copiado.",
+          translationError: "No se pudo cargar la traduccion en ingles.",
+          note: ""
+        },
+        en: {
+          share: "Share this article",
+          copy: "Copy link",
+          copyShareSuccess: "Link copied.",
+          copyLinkSuccess: "Article link copied.",
+          translationError: "Could not load the English translation.",
+          note: "Traducido por IA"
+        }
+      };
+
+      function escapeHtml(value) {
+        return String(value == null ? "" : value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function getApiBase() {
+        var meta = document.querySelector('meta[name="adeline-api-base"]');
+        var value = meta && meta.content ? meta.content.trim() : "";
+        if (value) {
+          return value.replace(/\/+$/, "");
+        }
+        if (location.protocol === "file:") {
+          return "http://127.0.0.1:8000";
+        }
+        if (/adelinemagica\.com$/i.test(location.hostname)) {
+          return "https://adelinetarot2.onrender.com";
+        }
+        return "";
+      }
+
+      function getApiOrigins() {
+        var origins = [];
+        var apiBase = getApiBase();
+        var seen = {};
+        if (apiBase) {
+          origins.push(apiBase);
+        }
+        if (location.protocol !== "file:") {
+          origins.push("");
+        }
+        origins.push("https://adelinetarot2.onrender.com");
+        return origins
+          .map(function (origin) {
+            return String(origin || "").replace(/\/+$/, "");
+          })
+          .filter(function (origin) {
+            if (seen[origin]) {
+              return false;
+            }
+            seen[origin] = true;
+            return true;
+          });
+      }
+
+      function formatDate(value, lang) {
+        var date = new Date(value);
+        if (isNaN(date.getTime())) {
+          return "";
+        }
+        return date.toLocaleDateString(lang === "en" ? "en-US" : "es-ES", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric"
+        });
+      }
+
+      function getSlugParam() {
+        var params = new URLSearchParams(location.search);
+        return (params.get("slug") || "").trim();
+      }
+
+      function getLangParam() {
+        var params = new URLSearchParams(location.search);
+        return (params.get("lang") || "es").trim().toLowerCase() === "en" ? "en" : "es";
+      }
+
+      function updateQuery(slug, lang) {
+        var url = new URL(location.href);
+        if (slug) {
+          url.searchParams.set("slug", slug);
+        } else {
+          url.searchParams.delete("slug");
+        }
+        if (lang === "en") {
+          url.searchParams.set("lang", "en");
+        } else {
+          url.searchParams.delete("lang");
+        }
+        history.replaceState({}, "", url.toString());
+      }
+
+      function buildArticleUrl(slug, lang) {
+        var url = new URL(location.href);
+        if (slug) {
+          url.searchParams.set("slug", slug);
+        } else {
+          url.searchParams.delete("slug");
+        }
+        if (lang === "en") {
+          url.searchParams.set("lang", "en");
+        } else {
+          url.searchParams.delete("lang");
+        }
+        return url;
+      }
+
+      function markdownToHtml(value) {
+        var html = escapeHtml(value || "");
+        html = html.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" decoding="async" />');
+        html = html.replace(/^###\s+(.+)$/gm, "<h3>$1</h3>");
+        html = html.replace(/^##\s+(.+)$/gm, "<h2>$1</h2>");
+        html = html.replace(/^#\s+(.+)$/gm, "<h2>$1</h2>");
+        html = html.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+        html = html.replace(/_(.+?)_/g, "<em>$1</em>");
+
+        var lines = html.split(/\n+/);
+        var parts = [];
+        var inList = false;
+        lines.forEach(function (line) {
+          var trimmed = line.trim();
+          if (!trimmed) {
+            return;
+          }
+          if (/^<h2>|^<h3>|^<img/.test(trimmed)) {
+            if (inList) {
+              parts.push("</ul>");
+              inList = false;
+            }
+            parts.push(trimmed);
+            return;
+          }
+          if (/^-\s+/.test(trimmed)) {
+            if (!inList) {
+              parts.push("<ul>");
+              inList = true;
+            }
+            parts.push("<li>" + trimmed.replace(/^-\s+/, "") + "</li>");
+            return;
+          }
+          if (inList) {
+            parts.push("</ul>");
+            inList = false;
+          }
+          parts.push("<p>" + trimmed + "</p>");
+        });
+        if (inList) {
+          parts.push("</ul>");
+        }
+        return parts.join("");
+      }
+
+      function sanitizeHtml(value) {
+        var container = document.createElement("div");
+        container.innerHTML = String(value || "");
+        container.querySelectorAll("script,iframe,object,embed").forEach(function (node) {
+          node.remove();
+        });
+        container.querySelectorAll("*").forEach(function (node) {
+          Array.from(node.attributes).forEach(function (attribute) {
+            var name = String(attribute.name || "").toLowerCase();
+            if (name.indexOf("on") === 0) {
+              node.removeAttribute(attribute.name);
+            }
+          });
+        });
+        return container.innerHTML;
+      }
+
+      function renderContent(value) {
+        var text = String(value || "");
+        return /<\s*[a-z][\s\S]*>/i.test(text) ? sanitizeHtml(text) : markdownToHtml(text);
+      }
+
+      function setHeadContent(selector, value) {
+        var node = document.querySelector(selector);
+        if (node && value) {
+          node.setAttribute("content", value);
+        }
+      }
+
+      function setCanonical(url) {
+        var node = document.querySelector('link[rel="canonical"]');
+        if (node) {
+          node.setAttribute("href", url);
+        }
+      }
+
+      function updateHead(article) {
+        var title = article && article.title ? article.title + " | Adeline Magica" : "Editorial | Adeline Magica";
+        var description = article && (article.excerpt || article.subtitle)
+          ? article.excerpt || article.subtitle
+          : defaultDescription;
+        var url = article && article.slug
+          ? buildArticleUrl(article.slug, state.currentLang).toString()
+          : "https://adelinemagica.com/articulos";
+        document.title = title;
+        setCanonical(url);
+        setHeadContent('meta[property="og:title"]', title);
+        setHeadContent('meta[property="og:description"]', description);
+        setHeadContent('meta[property="og:url"]', url);
+        setHeadContent('meta[name="twitter:title"]', title);
+        setHeadContent('meta[name="twitter:description"]', description);
+      }
+
+      function fetchJson(path) {
+        var origins = getApiOrigins();
+        var index = 0;
+
+        function attempt() {
+          if (index >= origins.length) {
+            return Promise.reject(new Error("No se pudo cargar el contenido de articulos."));
+          }
+          var origin = origins[index++];
+          return fetch(origin + path, { headers: { Accept: "application/json" } })
+            .then(function (response) {
+              if (!response.ok) {
+                throw new Error("HTTP " + response.status);
+              }
+              return response.json();
+            })
+            .catch(function () {
+              return attempt();
+            });
+        }
+
+        return attempt();
+      }
+
+      function renderCards() {
+        var grid = document.getElementById("articlesGrid");
+        var emptyState = document.getElementById("emptyState");
+        if (!state.list.length) {
+          grid.innerHTML = "";
+          emptyState.classList.remove("hidden");
+          return;
+        }
+        emptyState.classList.add("hidden");
+        grid.innerHTML = state.list.map(function (article) {
+          var image = article.hero_image
+            ? '<img class="article-cover" src="' + escapeHtml(article.hero_image) + '" alt="' + escapeHtml(article.title) + '" loading="lazy" decoding="async" />'
+            : "";
+          var url = buildArticleUrl(article.slug, state.currentLang);
+          return '<a class="article-card" href="' + url.pathname + url.search + '">' +
+            image +
+            '<div class="article-body">' +
+            '<p class="article-meta">' + escapeHtml(formatDate(article.created_at, "es")) + ' · ' + escapeHtml(article.author_name || "Adeline") + '</p>' +
+            '<h3 class="article-title">' + escapeHtml(article.title) + '</h3>' +
+            '<p class="article-sub">' + escapeHtml(article.subtitle || "") + '</p>' +
+            '<p class="article-excerpt">' + escapeHtml(article.excerpt || "") + '</p>' +
+            '</div></a>';
+        }).join("");
+      }
+
+      function updateLanguageControls() {
+        var esButton = document.getElementById("readerLangEs");
+        var enButton = document.getElementById("readerLangEn");
+        var note = document.getElementById("readerLangNote");
+        var currentLabels = labels[state.currentLang];
+        esButton.classList.toggle("is-active", state.currentLang === "es");
+        enButton.classList.toggle("is-active", state.currentLang === "en");
+        note.textContent = currentLabels.note;
+        note.classList.toggle("hidden", !currentLabels.note);
+      }
+
+      function renderArticle(article, options) {
+        var settings = options || {};
+        var baseArticle = state.currentBase || article;
+        document.getElementById("readerTitle").textContent = article.title || "";
+        document.getElementById("readerSubtitle").textContent = article.subtitle || "";
+        document.getElementById("readerMeta").textContent = [formatDate(baseArticle.created_at, state.currentLang), article.author_name || "Adeline"].filter(Boolean).join(" · ");
+        document.getElementById("readerContent").innerHTML = renderContent(article.content || "");
+
+        var image = document.getElementById("readerImage");
+        if (article.hero_image) {
+          image.src = article.hero_image;
+          image.classList.remove("hidden");
+        } else {
+          image.removeAttribute("src");
+          image.classList.add("hidden");
+        }
+
+        state.current = article;
+        document.getElementById("articleReader").classList.remove("hidden");
+        document.getElementById("shareBtn").textContent = labels[state.currentLang].share;
+        document.getElementById("copyBtn").textContent = labels[state.currentLang].copy;
+        updateLanguageControls();
+        updateQuery(baseArticle.slug, state.currentLang);
+        updateHead(article);
+        if (settings.scroll !== false) {
+          document.getElementById("articleReader").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      function fetchArticles() {
+        return fetchJson("/api/articles").then(function (articles) {
+          state.list = Array.isArray(articles) ? articles : [];
+          renderCards();
+          var slug = getSlugParam();
+          if (slug) {
+            return openArticle(slug, { scroll: false });
+          }
+          updateHead(null);
+          return null;
+        });
+      }
+
+      function fetchArticle(slug) {
+        return fetchJson("/api/articles/" + encodeURIComponent(slug));
+      }
+
+      function fetchEnglishTranslation(slug) {
+        return fetchJson("/api/articles/" + encodeURIComponent(slug) + "/translation?lang=en");
+      }
+
+      function showEnglishArticle(baseArticle, options) {
+        var cacheKey = baseArticle.slug + ":en";
+        if (state.translations[cacheKey]) {
+          renderArticle(state.translations[cacheKey], options);
+          return Promise.resolve(state.translations[cacheKey]);
+        }
+        return fetchEnglishTranslation(baseArticle.slug)
+          .then(function (translated) {
+            state.translations[cacheKey] = translated;
+            renderArticle(translated, options);
+            return translated;
+          })
+          .catch(function () {
+            state.currentLang = "es";
+            renderArticle(baseArticle, options);
+            alert(labels.es.translationError);
+            return baseArticle;
+          });
+      }
+
+      function openArticle(slug, options) {
+        if (!slug) {
+          return Promise.resolve(null);
+        }
+        return fetchArticle(slug)
+          .then(function (article) {
+            state.currentBase = article;
+            if (state.currentLang === "en") {
+              return showEnglishArticle(article, options);
+            }
+            renderArticle(article, options);
+            return article;
+          })
+          .catch(function () {
+            updateQuery("", "es");
+            updateHead(null);
+            return null;
+          });
+      }
+
+      function replaceButton(id) {
+        var original = document.getElementById(id);
+        var clone = original.cloneNode(true);
+        original.parentNode.replaceChild(clone, original);
+        return clone;
+      }
+
+      function bindButtons() {
+        var shareButton = replaceButton("shareBtn");
+        var copyButton = replaceButton("copyBtn");
+        var esButton = replaceButton("readerLangEs");
+        var enButton = replaceButton("readerLangEn");
+
+        shareButton.addEventListener("click", function () {
+          if (!state.current || !state.currentBase) {
+            return;
+          }
+          var url = buildArticleUrl(state.currentBase.slug, state.currentLang).toString();
+          var payload = {
+            title: state.current.title,
+            text: state.current.excerpt || state.current.subtitle || "",
+            url: url
+          };
+          if (navigator.share) {
+            navigator.share(payload).catch(function () {});
+            return;
+          }
+          navigator.clipboard.writeText(payload.url).then(function () {
+            alert(labels[state.currentLang].copyShareSuccess);
+          });
+        });
+
+        copyButton.addEventListener("click", function () {
+          if (!state.currentBase) {
+            return;
+          }
+          var url = buildArticleUrl(state.currentBase.slug, state.currentLang).toString();
+          navigator.clipboard.writeText(url).then(function () {
+            alert(labels[state.currentLang].copyLinkSuccess);
+          });
+        });
+
+        esButton.addEventListener("click", function () {
+          if (!state.currentBase) {
+            return;
+          }
+          state.currentLang = "es";
+          renderCards();
+          renderArticle(state.currentBase, { scroll: false });
+        });
+
+        enButton.addEventListener("click", function () {
+          if (!state.currentBase) {
+            return;
+          }
+          state.currentLang = "en";
+          renderCards();
+          showEnglishArticle(state.currentBase, { scroll: false });
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        state.currentLang = getLangParam();
+        bindButtons();
+        fetchArticles().catch(function () {
+          state.list = fallbackArticles.slice();
+          renderCards();
+          document.getElementById("emptyState").classList.remove("hidden");
+          document.getElementById("emptyState").textContent = "Mostrando edicion local temporal mientras se restablece el servicio de articulos.";
+          updateHead(null);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
 
