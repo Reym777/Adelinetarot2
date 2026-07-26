@@ -772,7 +772,7 @@
           .then(function (rows) {
             var list = Array.isArray(rows) ? rows : [];
             renderPublishedArticles(list);
-            setReviewResult(list.length ? "Publications chargees." : "Aucune publication en ligne.", !!list.length);
+            setReviewResult(list.length ? "Publicaciones cargadas." : "No hay publicaciones en linea.", !!list.length);
           })
           .catch(function (error) {
             setReviewResult((error && error.message) || "No se pudieron cargar las publicaciones.", false);
@@ -794,11 +794,11 @@
         };
 
         if (payload.title.length < 3) {
-          setResult("Le titre doit contenir au moins 3 caracteres.", false);
+          setResult("El titulo debe tener al menos 3 caracteres.", false);
           return;
         }
         if (payload.content.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().length < 80) {
-          setResult("Le contenu doit contenir au moins 80 caracteres.", false);
+          setResult("El contenido debe tener al menos 80 caracteres.", false);
           return;
         }
 
