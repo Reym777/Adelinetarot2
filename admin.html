@@ -114,8 +114,19 @@
       background: rgba(30, 25, 62, .66);
       padding: 12px;
     }
+    .published-item-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
     .published-item h3 { margin: 0 0 6px; font-size: 1.08rem; }
     .published-item p { margin: 0 0 6px; }
+    .article-edit-state {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
     .article-preview-box {
       margin-top: 14px;
       border: 1px solid var(--border);
@@ -340,7 +351,10 @@
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
           <button class="btn btn-ghost" id="articleMailBtn" type="button">Guardar en mail</button>
           <button class="btn btn-primary" id="articlePublishBtn" type="button">Publicar articulo</button>
+          <button class="btn btn-primary hidden" id="articleUpdateBtn" type="button">Actualizar publicacion</button>
+          <button class="btn btn-ghost hidden" id="articleEditCancelBtn" type="button">Salir de la edicion</button>
         </div>
+        <p id="articleEditState" class="article-edit-state hidden"></p>
         <p id="articlePublishResult" class="hint" style="margin-top:10px"></p>
       </div>
     </section>
@@ -532,6 +546,361 @@
           event.stopImmediatePropagation();
           openDraftChooser();
         }, true);
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      "use strict";
+
+      var TOKEN_KEY = "adeline_admin_token";
+      var editState = {
+        slug: "",
+        article: null,
+      };
+
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      function esc(value) {
+        return String(value == null ? "" : value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function resolveApiBase() {
+        var meta = document.querySelector('meta[name="adeline-api-base"]');
+        var configured = meta && meta.content ? meta.content.trim() : "";
+        if (configured) { return configured.replace(/\/+$/, ""); }
+        if (location.protocol === "file:") { return "http://127.0.0.1:8000"; }
+        if (/adelinemagica\.com$/i.test(location.hostname)) { return "https://adelinetarot2.onrender.com"; }
+        return "";
+      }
+
+      function apiCandidates() {
+        var list = [];
+        var seen = {};
+        var base = resolveApiBase();
+        if (base) { list.push(base); }
+        if (location.protocol !== "file:") { list.push(""); }
+        list.push("https://adelinetarot2.onrender.com");
+        return list
+          .map(function (value) { return String(value || "").replace(/\/+$/, ""); })
+          .filter(function (value) {
+            if (seen[value]) { return false; }
+            seen[value] = true;
+            return true;
+          });
+      }
+
+      function requestJson(path, options) {
+        var candidates = apiCandidates();
+        var index = 0;
+        var requestOptions = options || {};
+
+        function tryNext(lastError) {
+          if (index >= candidates.length) {
+            return Promise.reject(lastError || new Error("Servicio editorial no disponible."));
+          }
+
+          var base = candidates[index++];
+          var headers = Object.assign(
+            { Accept: "application/json" },
+            requestOptions.headers || {}
+          );
+          var adminToken = sessionStorage.getItem(TOKEN_KEY) || "";
+          if (adminToken) {
+            headers["X-Admin-Token"] = adminToken;
+          }
+
+          return fetch(base + path, {
+            method: requestOptions.method || "GET",
+            headers: headers,
+            body: requestOptions.body,
+          }).then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (body) {
+              if (!res.ok) {
+                throw new Error((body && body.detail) || ("Error " + res.status));
+              }
+              return body;
+            });
+          }).catch(function (error) {
+            return tryNext(error);
+          });
+        }
+
+        return tryNext();
+      }
+
+      function fmtDate(iso) {
+        if (!iso) { return "-"; }
+        var date = new Date(iso);
+        if (isNaN(date.getTime())) { return esc(iso); }
+        return date.toLocaleString("es-ES", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      }
+
+      function setResult(message, ok) {
+        var node = $("articlePublishResult");
+        if (!node) { return; }
+        node.textContent = message || "";
+        node.style.color = ok ? "#7ee0b0" : "#ffb7b7";
+      }
+
+      function setReviewResult(message, ok) {
+        var node = $("articleReviewResult");
+        if (!node) { return; }
+        node.textContent = message || "";
+        node.style.color = ok ? "#7ee0b0" : "#ffb7b7";
+      }
+
+      function showEditState(message) {
+        var node = $("articleEditState");
+        if (!node) { return; }
+        if (message) {
+          node.textContent = message;
+          node.classList.remove("hidden");
+        } else {
+          node.textContent = "";
+          node.classList.add("hidden");
+        }
+      }
+
+      function syncEditButtons() {
+        var isEditing = !!editState.slug;
+        var updateBtn = $("articleUpdateBtn");
+        var cancelBtn = $("articleEditCancelBtn");
+        var publishBtn = $("articlePublishBtn");
+        if (updateBtn) { updateBtn.classList.toggle("hidden", !isEditing); }
+        if (cancelBtn) { cancelBtn.classList.toggle("hidden", !isEditing); }
+        if (publishBtn) {
+          publishBtn.disabled = isEditing;
+          publishBtn.textContent = isEditing ? "Edicion en curso" : "Publicar articulo";
+        }
+      }
+
+      function switchToTab(name) {
+        var tab = document.querySelector('.admin-tab[data-tab="' + name + '"]');
+        if (tab) { tab.click(); }
+      }
+
+      function renderPreview(article) {
+        var box = $("articlePreviewBox");
+        var meta = $("articlePreviewMeta");
+        var title = $("articlePreviewTitle");
+        var subtitle = $("articlePreviewSubtitle");
+        var content = $("articlePreviewContent");
+        if (!box || !meta || !title || !subtitle || !content) { return; }
+        meta.textContent = "Slug: " + (article.slug || "-") + " · " + fmtDate(article.created_at);
+        title.textContent = article.title || "";
+        subtitle.textContent = article.subtitle || article.excerpt || "";
+        content.innerHTML = article.content || "";
+        box.classList.remove("hidden");
+      }
+
+      function fillEditor(article) {
+        var title = $("articleTitle");
+        var editor = $("articleEditor");
+        if (!title || !editor) { return; }
+        title.value = article.title || "";
+        editor.innerHTML = article.content || "<p></p>";
+        title.dispatchEvent(new Event("input", { bubbles: true }));
+        editor.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+
+      function enterEditMode(article) {
+        editState.slug = article.slug || "";
+        editState.article = article;
+        fillEditor(article);
+        showEditState("Edicion de la publicacion: " + (article.title || article.slug || ""));
+        syncEditButtons();
+        setResult("Publicacion cargada en el editor.", true);
+        switchToTab("articulos-nuevo");
+      }
+
+      function leaveEditMode() {
+        editState.slug = "";
+        editState.article = null;
+        showEditState("");
+        syncEditButtons();
+      }
+
+      function loadArticle(slug) {
+        return requestJson("/api/articles/" + encodeURIComponent(slug));
+      }
+
+      function renderPublishedArticles(rows) {
+        var list = $("publishedArticles");
+        var empty = $("publishedEmpty");
+        if (!list || !empty) { return; }
+
+        if (!rows.length) {
+          list.innerHTML = "";
+          empty.style.display = "block";
+          return;
+        }
+
+        empty.style.display = "none";
+        list.innerHTML = rows.map(function (row) {
+          return [
+            '<article class="published-item">',
+            '<h3>' + esc(row.title || "") + '</h3>',
+            '<p class="muted">' + fmtDate(row.created_at) + '</p>',
+            '<p>' + esc(row.excerpt || row.subtitle || "") + '</p>',
+            '<div class="published-item-actions">',
+            '<button type="button" class="btn btn-ghost" data-action="preview" data-slug="' + esc(row.slug || "") + '">Vista previa</button>',
+            '<button type="button" class="btn btn-primary" data-action="edit" data-slug="' + esc(row.slug || "") + '">Editar</button>',
+            '</div>',
+            '</article>'
+          ].join("");
+        }).join("");
+      }
+
+      function loadPublishedArticles() {
+        renderPublishedArticles([]);
+        setReviewResult("Cargando publicaciones...", true);
+        return requestJson("/api/articles")
+          .then(function (rows) {
+            var list = Array.isArray(rows) ? rows : [];
+            renderPublishedArticles(list);
+            setReviewResult(list.length ? "Publications chargees." : "Aucune publication en ligne.", !!list.length);
+          })
+          .catch(function (error) {
+            setReviewResult((error && error.message) || "No se pudieron cargar las publicaciones.", false);
+          });
+      }
+
+      function updateCurrentArticle() {
+        var title = $("articleTitle");
+        var editor = $("articleEditor");
+        var updateBtn = $("articleUpdateBtn");
+        if (!title || !editor || !editState.slug || !editState.article) { return; }
+
+        var payload = {
+          title: (title.value || "").trim(),
+          subtitle: editState.article.subtitle || null,
+          hero_image: editState.article.hero_image || null,
+          excerpt: null,
+          content: (editor.innerHTML || "").trim(),
+        };
+
+        if (payload.title.length < 3) {
+          setResult("Le titre doit contenir au moins 3 caracteres.", false);
+          return;
+        }
+        if (payload.content.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().length < 80) {
+          setResult("Le contenu doit contenir au moins 80 caracteres.", false);
+          return;
+        }
+
+        if (updateBtn) {
+          updateBtn.disabled = true;
+          updateBtn.textContent = "Actualizando...";
+        }
+
+        requestJson("/api/articles/" + encodeURIComponent(editState.slug) + "/update", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }).then(function (article) {
+          editState.article = article;
+          fillEditor(article);
+          renderPreview(article);
+          setResult("Publicacion actualizada.", true);
+          setReviewResult("La publicacion se actualizo correctamente.", true);
+          loadPublishedArticles();
+          switchToTab("articulos-revision");
+        }).catch(function (error) {
+          setResult((error && error.message) || "No se pudo actualizar la publicacion.", false);
+        }).finally(function () {
+          if (updateBtn) {
+            updateBtn.disabled = false;
+            updateBtn.textContent = "Actualizar publicacion";
+          }
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var publishedContainer = $("publishedArticles");
+        var reviewTab = document.querySelector('.admin-tab[data-tab="articulos-revision"]');
+        var cancelBtn = $("articleEditCancelBtn");
+        var updateBtn = $("articleUpdateBtn");
+        var dashView = $("dashView");
+
+        syncEditButtons();
+
+        if (reviewTab) {
+          reviewTab.addEventListener("click", function () {
+            loadPublishedArticles();
+          });
+        }
+
+        if (publishedContainer) {
+          publishedContainer.addEventListener("click", function (event) {
+            var button = event.target.closest("button[data-action][data-slug]");
+            if (!button) { return; }
+            var slug = button.getAttribute("data-slug") || "";
+            var action = button.getAttribute("data-action") || "";
+            if (!slug) { return; }
+
+            if (action === "preview") {
+              loadArticle(slug)
+                .then(function (article) {
+                  renderPreview(article);
+                  setReviewResult("Vista previa cargada.", true);
+                })
+                .catch(function (error) {
+                  setReviewResult((error && error.message) || "No se pudo abrir la vista previa.", false);
+                });
+              return;
+            }
+
+            if (action === "edit") {
+              loadArticle(slug)
+                .then(enterEditMode)
+                .catch(function (error) {
+                  setReviewResult((error && error.message) || "No se pudo cargar la publicacion.", false);
+                });
+            }
+          });
+        }
+
+        if (cancelBtn) {
+          cancelBtn.addEventListener("click", function () {
+            leaveEditMode();
+            setResult("Modo edicion cerrado.", true);
+          });
+        }
+
+        if (updateBtn) {
+          updateBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            updateCurrentArticle();
+          }, true);
+        }
+
+        if (dashView) {
+          var observer = new MutationObserver(function () {
+            if (!dashView.classList.contains("hidden")) {
+              loadPublishedArticles();
+            }
+          });
+          observer.observe(dashView, { attributes: true, attributeFilter: ["class"] });
+
+          if (!dashView.classList.contains("hidden") && (sessionStorage.getItem(TOKEN_KEY) || "")) {
+            loadPublishedArticles();
+          }
+        }
       });
     })();
   </script>

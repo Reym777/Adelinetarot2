@@ -552,3 +552,40 @@ def create_article(
         created_at=row.created_at,
         content=row.content,
     )
+
+
+@router.post("/{slug}/update", response_model=ArticleDetail, dependencies=[Depends(require_admin)])
+def update_article(
+    slug: str,
+    payload: ArticleCreate,
+    _: None = Depends(write_rate_limit),
+    db: Session = Depends(get_db),
+) -> ArticleDetail:
+    row = db.query(Article).filter(Article.slug == slug).first()
+    if row is None:
+        raise HTTPException(status_code=404, detail="Articulo no encontrado")
+
+    excerpt: Optional[str] = payload.excerpt
+    if excerpt is None:
+        excerpt = _strip_markdown(payload.content)[:220] or row.excerpt
+
+    row.title = payload.title
+    row.subtitle = payload.subtitle if payload.subtitle is not None else row.subtitle
+    row.hero_image = payload.hero_image if payload.hero_image is not None else row.hero_image
+    row.excerpt = excerpt
+    row.content = payload.content
+    row.updated_at = datetime.now(timezone.utc)
+
+    db.commit()
+    db.refresh(row)
+    push_articles_snapshot(db, reason=f"update:{row.slug}")
+    return ArticleDetail(
+        slug=row.slug,
+        title=row.title,
+        subtitle=row.subtitle,
+        excerpt=row.excerpt,
+        hero_image=row.hero_image,
+        author_name=row.author_name,
+        created_at=row.created_at,
+        content=row.content,
+    )
