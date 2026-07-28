@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-07-28T15:16:45.930312+00:00",
+  "updated_at": "2026-07-28T15:19:46.499750+00:00",
   "reason": "draft:borrador",
   "articles": [
     {
@@ -37,7 +37,7 @@
       "author_name": "Adeline",
       "is_published": 0,
       "created_at": "2026-07-25T13:33:15.245949",
-      "updated_at": "2026-07-28T15:16:45.355754"
+      "updated_at": "2026-07-28T15:19:45.522105"
     },
     {
       "slug": "borrador-3",
