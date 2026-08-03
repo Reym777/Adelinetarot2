@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-03T15:42:45.349680+00:00",
+  "updated_at": "2026-08-03T15:45:12.275206+00:00",
   "reason": "draft:el-amor-que-todo-lo-ensambla",
   "articles": [
     {
@@ -56,12 +56,12 @@
       "title": "FLUYE CON LA VIDA",
       "subtitle": null,
       "hero_image": null,
-      "excerpt": "En este texto leeremos:&nbsp; Sobre la resistencia,&nbsp;",
-      "content": "<h2>En este texto leeremos:&nbsp;</h2><div>Sobre la resistencia,&nbsp;</div>",
+      "excerpt": "En este texto leeremos:&nbsp; Sobre la resistencia, la incertidumbre, la coherencia y el salto de FE",
+      "content": "<h2>En este texto leeremos:&nbsp;</h2><div>Sobre la resistencia, la incertidumbre, la coherencia y el salto de FE</div><div><br></div><div><br></div>",
       "author_name": "Adeline",
       "is_published": 0,
       "created_at": "2026-07-28T15:41:05.337659",
-      "updated_at": "2026-08-03T15:42:44.664002"
+      "updated_at": "2026-08-03T15:45:11.705987"
     }
   ]
 }
