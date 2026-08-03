@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updated_at": "2026-08-03T19:53:30.075872+00:00",
-  "reason": "draft:borrador-3",
+  "updated_at": "2026-08-03T22:44:10.095567+00:00",
+  "reason": "draft:fluye-con-la-vida-manifiesta-con-el-flujo",
   "articles": [
     {
       "slug": "borrador-2",
@@ -73,7 +73,7 @@
       "author_name": "Adeline",
       "is_published": 0,
       "created_at": "2026-08-03T17:03:31.745397",
-      "updated_at": "2026-08-03T17:07:19.589656"
+      "updated_at": "2026-08-03T22:44:09.509615"
     }
   ]
 }
