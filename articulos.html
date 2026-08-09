@@ -117,6 +117,18 @@
     .reader-share { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
     .reader-share .btn { min-width: 180px; }
     .empty-msg { text-align: center; padding: 20px 8px; color: var(--muted); }
+    .fp-wrap { margin-top: 14px; }
+    .fp-preview-content { position: relative; overflow: hidden; max-height: 18em; }
+    .fp-preview-content::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6em; background: linear-gradient(to bottom, transparent, rgba(30,25,62,.97)); pointer-events: none; }
+    .fp-actions { margin-top: 20px; text-align: center; }
+    .fp-nav { display: flex; justify-content: space-between; align-items: stretch; margin-top: 20px; gap: 10px; }
+    .fp-nav-btn { flex: 1; max-width: 46%; background: rgba(30,25,62,.5); border: 1px solid var(--border); color: var(--text); border-radius: 12px; padding: 12px 14px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: border-color .2s, background .2s; }
+    .fp-nav-btn:hover { border-color: rgba(232,198,107,.5); background: rgba(232,198,107,.06); }
+    .fp-nav-btn.hidden { visibility: hidden; pointer-events: none; }
+    .fp-nav-next { flex-direction: row-reverse; text-align: right; }
+    .fp-arrow { font-size: 1.6rem; line-height: 1; flex: 0 0 auto; color: var(--gold); }
+    .fp-nav-label { font-size: .74rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+    .fp-nav-title { font-size: .88rem; line-height: 1.3; font-family: 'Cinzel', serif; }
     @media (max-width: 820px) {
       .articles-grid { grid-template-columns: 1fr; }
       .container { padding-left: 0 !important; padding-right: 0 !important; }
@@ -124,6 +136,7 @@
       .articles-page { padding-top: 38px; }
       .reader-tools { align-items: stretch; }
       .reader-share .btn { width: 100%; }
+      .fp-nav-title { font-size: .8rem; }
     }
   </style>
 </head>
@@ -184,7 +197,33 @@
             </div>
             <p class="section-sub" style="margin:0;text-align:center">Cronicas espirituales (por si ya te cansaste de scrollear infinito)</p>
           </div>
-          <div id="articlesGrid" class="articles-grid"></div>
+          <div id="featuredPreview" class="fp-wrap hidden">
+            <p class="article-meta" id="fpMeta"></p>
+            <h2 id="fpTitle" style="margin:0 0 6px;font-family:'Cinzel',serif;font-size:1.5rem"></h2>
+            <p id="fpSubtitle" class="section-sub" style="margin:0 0 14px"></p>
+            <div id="fpContent" class="article-content fp-preview-content"></div>
+            <div class="fp-actions">
+              <button id="fpContinue" type="button" class="btn btn-primary" style="min-width:220px">Continuar este articulo ›</button>
+            </div>
+            <div class="fp-nav">
+              <button id="fpPrev" type="button" class="fp-nav-btn fp-nav-prev hidden" aria-label="Articulo anterior">
+                <span class="fp-arrow">←</span>
+                <div>
+                  <div class="fp-nav-label">más reciente</div>
+                  <div id="fpPrevTitle" class="fp-nav-title"></div>
+                </div>
+              </button>
+              <div style="flex:1"></div>
+              <button id="fpNext" type="button" class="fp-nav-btn fp-nav-next hidden" aria-label="Siguiente articulo">
+                <div>
+                  <div class="fp-nav-label">siguiente</div>
+                  <div id="fpNextTitle" class="fp-nav-title"></div>
+                </div>
+                <span class="fp-arrow">→</span>
+              </button>
+            </div>
+          </div>
+          <div id="articlesGrid" class="articles-grid" style="display:none"></div>
           <div id="emptyState" class="empty-msg hidden">No hay articulos publicados por ahora.</div>
         </div>
 
@@ -250,7 +289,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         current: null,
         currentBase: null,
         currentLang: "es",
-        translations: {}
+        translations: {},
+        featuredIndex: 0
       };
       var defaultDescription = "Articulos compartibles inspirados en tarot terapeutico y guia espiritual.";
       var fallbackArticles = Array.isArray(window.__adelineArticleFallbacks)
@@ -562,10 +602,50 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         }
       }
 
+      function renderFeatured() {
+        var wrap = document.getElementById("featuredPreview");
+        if (!wrap) { return; }
+        if (!state.list.length) { wrap.classList.add("hidden"); return; }
+        if (state.featuredIndex < 0 || state.featuredIndex >= state.list.length) { state.featuredIndex = 0; }
+        var article = state.list[state.featuredIndex];
+        document.getElementById("fpMeta").textContent = [
+          formatDate(article.created_at, state.currentLang),
+          article.author_name || "Adeline"
+        ].filter(Boolean).join(" · ");
+        document.getElementById("fpTitle").textContent = article.title || "";
+        document.getElementById("fpSubtitle").textContent = article.subtitle || "";
+        var tmp = document.createElement("div");
+        tmp.innerHTML = renderContent(article.content || "");
+        var blocks = Array.from(tmp.children).slice(0, 10);
+        var preview = document.createElement("div");
+        blocks.forEach(function (el) { preview.appendChild(el.cloneNode(true)); });
+        var fpContent = document.getElementById("fpContent");
+        fpContent.innerHTML = "";
+        fpContent.appendChild(preview);
+        var prevBtn = document.getElementById("fpPrev");
+        var nextBtn = document.getElementById("fpNext");
+        var prevArticle = state.list[state.featuredIndex - 1];
+        var nextArticle = state.list[state.featuredIndex + 1];
+        if (prevArticle) {
+          document.getElementById("fpPrevTitle").textContent = prevArticle.title || "";
+          prevBtn.classList.remove("hidden");
+        } else {
+          prevBtn.classList.add("hidden");
+        }
+        if (nextArticle) {
+          document.getElementById("fpNextTitle").textContent = nextArticle.title || "";
+          nextBtn.classList.remove("hidden");
+        } else {
+          nextBtn.classList.add("hidden");
+        }
+        wrap.classList.remove("hidden");
+      }
+
       function fetchArticles() {
         return fetchJson("/api/articles").then(function (articles) {
           state.list = Array.isArray(articles) ? articles : [];
           renderCards();
+          renderFeatured();
           var slug = getSlugParam();
           if (slug) {
             return openArticle(slug, { scroll: false });
@@ -682,6 +762,27 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           renderCards();
           showEnglishArticle(state.currentBase, { scroll: false });
         });
+
+        var fpContinue = document.getElementById("fpContinue");
+        var fpPrev = document.getElementById("fpPrev");
+        var fpNext = document.getElementById("fpNext");
+        if (fpContinue) {
+          fpContinue.addEventListener("click", function () {
+            var article = state.list[state.featuredIndex];
+            if (!article) { return; }
+            openArticle(article.slug);
+          });
+        }
+        if (fpPrev) {
+          fpPrev.addEventListener("click", function () {
+            if (state.featuredIndex > 0) { state.featuredIndex--; renderFeatured(); }
+          });
+        }
+        if (fpNext) {
+          fpNext.addEventListener("click", function () {
+            if (state.featuredIndex < state.list.length - 1) { state.featuredIndex++; renderFeatured(); }
+          });
+        }
       }
 
       document.addEventListener("DOMContentLoaded", function () {
@@ -690,6 +791,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         fetchArticles().catch(function () {
           state.list = fallbackArticles.slice();
           renderCards();
+          renderFeatured();
           document.getElementById("emptyState").classList.remove("hidden");
           document.getElementById("emptyState").textContent = "Mostrando edicion local temporal mientras se restablece el servicio de articulos.";
           updateHead(null);
