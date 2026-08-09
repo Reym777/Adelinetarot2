@@ -610,9 +610,18 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         ].filter(Boolean).join(" · ");
         document.getElementById("fpTitle").textContent = article.title || "";
         document.getElementById("fpSubtitle").textContent = article.subtitle || "";
-        document.getElementById("fpContent").innerHTML = renderContent(article.content || "");
         wrap.classList.remove("hidden");
         renderCarousel();
+        // content may be absent in list payload; fetch full article if needed
+        if (article.content) {
+          document.getElementById("fpContent").innerHTML = renderContent(article.content);
+        } else {
+          document.getElementById("fpContent").innerHTML = "";
+          fetchArticle(article.slug).then(function (full) {
+            state.list[state.featuredIndex] = Object.assign({}, article, full);
+            document.getElementById("fpContent").innerHTML = renderContent(full.content || "");
+          }).catch(function () {});
+        }
       }
 
       function renderCarousel() {
