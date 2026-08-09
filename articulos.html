@@ -175,8 +175,14 @@
       <div class="container articles-wrap">
         <div class="panel">
           <div class="articles-head">
-            <h1 style="margin:0 0 8px">Editorial</h1>
-            <p class="section-sub" style="margin:0">Cronicas espirituales, tarot terapeutico y guia astrologica.</p>
+            <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px">
+              <div class="lang-switch" aria-label="Idioma">
+                <button type="button" data-lang="es" onclick="localStorage.setItem('adelinemagica_lang','es');location.reload()">ES</button>
+                <button type="button" data-lang="en" onclick="localStorage.setItem('adelinemagica_lang','en');location.reload()">EN</button>
+              </div>
+              <h1 style="margin:0">Editorial</h1>
+            </div>
+            <p class="section-sub" style="margin:0;text-align:center">Cronicas espirituales, por si ya te cansaste de scrollear infinito</p>
           </div>
           <div id="articlesGrid" class="articles-grid"></div>
           <div id="emptyState" class="empty-msg hidden">No hay articulos publicados por ahora.</div>

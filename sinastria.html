@@ -278,7 +278,7 @@
                 </div>
               </div>
               <div class="pred-field"><label for="syn-a-country">Pais de nacimiento</label><input id="syn-a-country" type="text" list="syn-country-list" maxlength="80" placeholder="Ej: Francia" autocomplete="country-name" /></div>
-              <div class="pred-field"><label for="syn-a-city">Ciudad o provincia de nacimiento</label><input id="syn-a-city" type="text" maxlength="80" placeholder="Ej: Paris o Île-de-France" /></div>
+              <div class="pred-field"><label for="syn-a-city">Ciudad o provincia de nacimiento</label><input id="syn-a-city" type="text" list="syn-a-city-list" maxlength="80" placeholder="Ej: Paris o Île-de-France" /></div>
               <div class="pred-field"><label for="syn-a-time">Hora de nacimiento (Opcional)*</label><input id="syn-a-time" type="time" /><p class="hint" style="margin-top:6px">* entre mas precisa la hora de nacimiento , mas preciso sera tu resultado</p></div>
             </div>
             </div>
@@ -295,7 +295,7 @@
                 </div>
               </div>
               <div class="pred-field"><label for="syn-b-country">Pais de nacimiento</label><input id="syn-b-country" type="text" list="syn-country-list" maxlength="80" placeholder="Ej: Mexico" autocomplete="country-name" /></div>
-              <div class="pred-field"><label for="syn-b-city">Ciudad o provincia de nacimiento</label><input id="syn-b-city" type="text" maxlength="80" placeholder="Ej: Ciudad de Mexico o CDMX" /></div>
+              <div class="pred-field"><label for="syn-b-city">Ciudad o provincia de nacimiento</label><input id="syn-b-city" type="text" list="syn-b-city-list" maxlength="80" placeholder="Ej: Ciudad de Mexico o CDMX" /></div>
               <div class="pred-field"><label for="syn-b-time">Hora de nacimiento (Opcional)*</label><input id="syn-b-time" type="time" /><p class="hint" style="margin-top:6px">* entre mas precisa la hora de nacimiento , mas preciso sera tu resultado</p></div>
             </div>
             </div>
@@ -367,6 +367,96 @@
               <option value="Venezuela"></option>
               <option value="Vietnam"></option>
             </datalist>
+            <datalist id="syn-a-city-list"></datalist>
+            <datalist id="syn-b-city-list"></datalist>
+            <script>
+            (() => {
+              const citiesByCountry = {
+                "Afganistán": ["Kabul","Kandahar","Herat","Mazar-e Sharif","Jalalabad","Kunduz","Ghazni","Bamiyán"],
+                "Alemania": ["Berlín","Hamburgo","Múnich","Colonia","Fráncfort","Stuttgart","Düsseldorf","Dortmund","Essen","Leipzig"],
+                "Arabia Saudita": ["Riad","Yeda","La Meca","Medina","Dammam","Taif","Tabuk","Buraydah","Jubail"],
+                "Argelia": ["Argel","Orán","Constantina","Annaba","Blida","Batna","Sétif","Tlemcen"],
+                "Argentina": ["Buenos Aires","Córdoba","Rosario","Mendoza","La Plata","San Miguel de Tucumán","Mar del Plata","Salta","Santa Fe","San Juan"],
+                "Australia": ["Sídney","Melbourne","Brisbane","Perth","Adelaida","Gold Coast","Canberra","Newcastle","Hobart","Darwin"],
+                "Austria": ["Viena","Graz","Linz","Salzburgo","Innsbruck","Klagenfurt","Villach","Wels"],
+                "Bélgica": ["Bruselas","Amberes","Gante","Brujas","Lieja","Lovaina","Namur","Mons","Charleroi"],
+                "Bolivia": ["La Paz","Santa Cruz de la Sierra","Cochabamba","Sucre","Oruro","Potosí","Tarija","Trinidad","El Alto"],
+                "Brasil": ["São Paulo","Río de Janeiro","Brasilia","Salvador","Fortaleza","Belo Horizonte","Manaos","Curitiba","Recife","Porto Alegre","Belém","Goiânia"],
+                "Bulgaria": ["Sofía","Plovdiv","Varna","Burgas","Ruse","Stara Zagora","Pleven","Veliko Tarnovo"],
+                "Canadá": ["Toronto","Montreal","Vancouver","Calgary","Edmonton","Ottawa","Quebec","Winnipeg","Hamilton","Halifax","Victoria"],
+                "Chile": ["Santiago","Valparaíso","Concepción","La Serena","Antofagasta","Temuco","Iquique","Puerto Montt","Rancagua","Talca"],
+                "China": ["Pekín","Shanghái","Cantón","Shenzhen","Chengdu","Chongqing","Tianjin","Wuhan","Xi'an","Hangzhou","Nankín"],
+                "Colombia": ["Bogotá","Medellín","Cali","Barranquilla","Cartagena","Bucaramanga","Pereira","Santa Marta","Manizales","Cúcuta"],
+                "Corea del Sur": ["Seúl","Busan","Incheon","Daegu","Daejeon","Gwangju","Ulsan","Suwon","Jeju"],
+                "Costa Rica": ["San José","Alajuela","Cartago","Heredia","Liberia","Puntarenas","Limón","Quepos"],
+                "Croacia": ["Zagreb","Split","Rijeka","Osijek","Zadar","Pula","Dubrovnik","Varazdin"],
+                "Cuba": ["La Habana","Santiago de Cuba","Camagüey","Holguín","Santa Clara","Cienfuegos","Matanzas","Pinar del Río"],
+                "Dinamarca": ["Copenhague","Aarhus","Odense","Aalborg","Esbjerg","Randers","Kolding","Horsens"],
+                "Ecuador": ["Quito","Guayaquil","Cuenca","Santo Domingo","Machala","Manta","Portoviejo","Loja","Ambato","Riobamba"],
+                "Egipto": ["El Cairo","Alejandría","Guiza","Luxor","Asuán","Puerto Saíd","Suez","Mansura","Tanta"],
+                "El Salvador": ["San Salvador","Santa Ana","San Miguel","Soyapango","Santa Tecla","Mejicanos","Ahuachapán","Sonsonate"],
+                "Emiratos Árabes Unidos": ["Dubái","Abu Dabi","Sharjah","Ajmán","Al Ain","Ras al Jaima","Fuyaira","Umm al Quwain"],
+                "España": ["Madrid","Barcelona","Valencia","Sevilla","Zaragoza","Málaga","Murcia","Palma","Bilbao","Alicante","Granada","Córdoba"],
+                "Estados Unidos": ["Nueva York","Los Ángeles","Chicago","Houston","Phoenix","Filadelfia","San Antonio","San Diego","Dallas","San José","Miami","Washington","Boston","San Francisco","Seattle"],
+                "Estonia": ["Tallin","Tartu","Narva","Pärnu","Kohtla-Järve","Viljandi","Rakvere","Võru"],
+                "Filipinas": ["Manila","Quezon City","Caloocan","Dávao","Cebú","Zamboanga","Taguig","Pasig","Baguio"],
+                "Finlandia": ["Helsinki","Espoo","Tampere","Vantaa","Oulu","Turku","Jyväskylä","Lahti","Kuopio"],
+                "Francia": ["París","Marsella","Lyon","Toulouse","Niza","Nantes","Estrasburgo","Montpellier","Burdeos","Lille","Rennes","Reims"],
+                "Grecia": ["Atenas","Salónica","Patras","Heraclión","Larisa","Volos","Ioánina","Rodas","La Canea"],
+                "Guatemala": ["Ciudad de Guatemala","Quetzaltenango","Escuintla","Mixco","Villa Nueva","Antigua Guatemala","Cobán","Huehuetenango"],
+                "Honduras": ["Tegucigalpa","San Pedro Sula","La Ceiba","Choloma","El Progreso","Comayagua","Choluteca","Puerto Cortés"],
+                "Hungría": ["Budapest","Debrecen","Szeged","Miskolc","Pécs","Győr","Nyíregyháza","Kecskemét"],
+                "India": ["Nueva Delhi","Mumbai","Bangalore","Hyderabad","Chennai","Calcuta","Ahmedabad","Pune","Jaipur","Surat","Lucknow","Varanasi"],
+                "Indonesia": ["Yakarta","Surabaya","Bandung","Medan","Semarang","Makassar","Palembang","Denpasar","Yogyakarta"],
+                "Irlanda": ["Dublín","Cork","Galway","Limerick","Waterford","Drogheda","Kilkenny","Sligo"],
+                "Islandia": ["Reikiavik","Kópavogur","Hafnarfjörður","Akureyri","Reykjanesbær","Selfoss","Akranes","Ísafjörður"],
+                "Israel": ["Jerusalén","Tel Aviv","Haifa","Rishon LeZion","Petaj Tikva","Ashdod","Beerseba","Netanya","Eilat"],
+                "Italia": ["Roma","Milán","Nápoles","Turín","Palermo","Génova","Bolonia","Florencia","Bari","Catania","Venecia","Verona"],
+                "Japón": ["Tokio","Yokohama","Osaka","Nagoya","Sapporo","Fukuoka","Kioto","Kobe","Hiroshima","Sendai","Naha"],
+                "Luxemburgo": ["Ciudad de Luxemburgo","Esch-sur-Alzette","Differdange","Dudelange","Ettelbruck","Diekirch","Wiltz","Remich"],
+                "Marruecos": ["Casablanca","Rabat","Fez","Marrakech","Tánger","Agadir","Meknes","Oujda","Tetuán"],
+                "México": ["Ciudad de México","Guadalajara","Monterrey","Puebla","Tijuana","León","Mérida","Querétaro","Cancún","Toluca","Chihuahua","Oaxaca"],
+                "Nicaragua": ["Managua","León","Masaya","Granada","Matagalpa","Chinandega","Estelí","Bluefields"],
+                "Noruega": ["Oslo","Bergen","Trondheim","Stavanger","Drammen","Kristiansand","Tromsø","Ålesund"],
+                "Nueva Zelanda": ["Auckland","Wellington","Christchurch","Hamilton","Tauranga","Dunedin","Queenstown","Rotorua"],
+                "Países Bajos": ["Ámsterdam","Róterdam","La Haya","Utrecht","Eindhoven","Groninga","Maastricht","Leiden","Delft"],
+                "Panamá": ["Ciudad de Panamá","San Miguelito","Colón","David","La Chorrera","Santiago","Chitré","Penonomé"],
+                "Paraguay": ["Asunción","Ciudad del Este","San Lorenzo","Luque","Capiatá","Encarnación","Caaguazú","Pedro Juan Caballero"],
+                "Perú": ["Lima","Arequipa","Trujillo","Chiclayo","Piura","Cusco","Iquitos","Huancayo","Tacna","Puno"],
+                "Polonia": ["Varsovia","Cracovia","Lodz","Wroclaw","Poznan","Gdansk","Szczecin","Lublin","Katowice"],
+                "Portugal": ["Lisboa","Oporto","Braga","Coímbra","Faro","Aveiro","Funchal","Setúbal","Évora"],
+                "Reino Unido": ["Londres","Birmingham","Mánchester","Liverpool","Leeds","Glasgow","Edimburgo","Bristol","Cardiff","Belfast","Newcastle"],
+                "República Checa": ["Praga","Brno","Ostrava","Pilsen","Liberec","Olomouc","České Budějovice","Hradec Králové"],
+                "República Dominicana": ["Santo Domingo","Santiago de los Caballeros","La Romana","San Pedro de Macorís","San Francisco de Macorís","Puerto Plata","Punta Cana","Higüey"],
+                "Rumanía": ["Bucarest","Cluj-Napoca","Timișoara","Iași","Constanza","Craiova","Brașov","Sibiu","Oradea"],
+                "Rusia": ["Moscú","San Petersburgo","Novosibirsk","Ekaterimburgo","Kazán","Nizhni Nóvgorod","Samara","Rostov del Don","Sochi"],
+                "Suecia": ["Estocolmo","Gotemburgo","Malmö","Upsala","Västerås","Örebro","Linköping","Helsingborg","Umeå"],
+                "Suiza": ["Zúrich","Ginebra","Basilea","Berna","Lausana","Lucerna","Lugano","San Galo","Winterthur"],
+                "Tailandia": ["Bangkok","Chiang Mai","Phuket","Pattaya","Nakhon Ratchasima","Hat Yai","Udon Thani","Khon Kaen"],
+                "Turquía": ["Estambul","Ankara","Esmirna","Bursa","Antalya","Konya","Adana","Gaziantep","Kayseri"],
+                "Ucrania": ["Kiev","Járkov","Odesa","Dnipro","Leópolis","Zaporiyia","Vínnytsia","Poltava","Chernivtsí"],
+                "Uruguay": ["Montevideo","Salto","Paysandú","Las Piedras","Rivera","Maldonado","Punta del Este","Colonia del Sacramento"],
+                "Venezuela": ["Caracas","Maracaibo","Valencia","Barquisimeto","Maracay","Ciudad Guayana","Mérida","San Cristóbal","Puerto La Cruz"],
+                "Vietnam": ["Hanói","Ciudad Ho Chi Minh","Da Nang","Haiphong","Can Tho","Hue","Nha Trang","Dalat"]
+              };
+              const normalize = v => String(v||'').trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+              const aliases = Object.keys(citiesByCountry).reduce((a,c)=>{a[normalize(c)]=c;return a;},{turquea:'Turquía'});
+              function wireCity(countryId, listId) {
+                const inp = document.getElementById(countryId);
+                const lst = document.getElementById(listId);
+                if (!inp || !lst) return;
+                const update = () => {
+                  const c = aliases[normalize(inp.value)];
+                  lst.replaceChildren(...(c ? citiesByCountry[c] : []).map(city => Object.assign(document.createElement('option'), {value: city})));
+                };
+                inp.addEventListener('input', update);
+                inp.addEventListener('change', update);
+                update();
+              }
+              wireCity('syn-a-country', 'syn-a-city-list');
+              wireCity('syn-b-country', 'syn-b-city-list');
+            })();
+            </script>
             <div class="pred-field full"><button id="syn-run" class="btn btn-primary">Generar sinastria completa</button></div>
           </div>
           <p id="syn-msg" class="hint" style="margin-top:10px"></p>
