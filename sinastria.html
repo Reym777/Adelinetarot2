@@ -301,22 +301,29 @@
             </div>
             <datalist id="syn-country-list">
               <option value="Afganistán"></option>
+              <option value="Albania"></option>
               <option value="Alemania"></option>
               <option value="Arabia Saudita"></option>
               <option value="Argelia"></option>
               <option value="Argentina"></option>
+              <option value="Armenia"></option>
               <option value="Australia"></option>
               <option value="Austria"></option>
+              <option value="Azerbaiyán"></option>
+              <option value="Bangladesh"></option>
               <option value="Bélgica"></option>
               <option value="Bolivia"></option>
+              <option value="Bosnia y Herzegovina"></option>
               <option value="Brasil"></option>
               <option value="Bulgaria"></option>
+              <option value="Camerún"></option>
               <option value="Canadá"></option>
               <option value="Chile"></option>
               <option value="China"></option>
               <option value="Colombia"></option>
               <option value="Corea del Sur"></option>
               <option value="Costa Rica"></option>
+              <option value="Côte d'Ivoire"></option>
               <option value="Croacia"></option>
               <option value="Cuba"></option>
               <option value="Dinamarca"></option>
@@ -324,14 +331,20 @@
               <option value="Egipto"></option>
               <option value="El Salvador"></option>
               <option value="Emiratos Árabes Unidos"></option>
+              <option value="Eslovaquia"></option>
+              <option value="Eslovenia"></option>
               <option value="España"></option>
               <option value="Estados Unidos"></option>
               <option value="Estonia"></option>
+              <option value="Etiopía"></option>
               <option value="Filipinas"></option>
               <option value="Finlandia"></option>
               <option value="Francia"></option>
+              <option value="Georgia"></option>
+              <option value="Ghana"></option>
               <option value="Grecia"></option>
               <option value="Guatemala"></option>
+              <option value="Haití"></option>
               <option value="Honduras"></option>
               <option value="Hungría"></option>
               <option value="India"></option>
@@ -341,29 +354,48 @@
               <option value="Israel"></option>
               <option value="Italia"></option>
               <option value="Japón"></option>
+              <option value="Kazajistán"></option>
+              <option value="Kenya"></option>
+              <option value="Kuwait"></option>
+              <option value="Letonia"></option>
+              <option value="Libia"></option>
+              <option value="Lituania"></option>
               <option value="Luxemburgo"></option>
               <option value="Marruecos"></option>
               <option value="México"></option>
+              <option value="Mongolia"></option>
+              <option value="Myanmar"></option>
+              <option value="Nepal"></option>
               <option value="Nicaragua"></option>
+              <option value="Nigeria"></option>
               <option value="Noruega"></option>
               <option value="Nueva Zelanda"></option>
+              <option value="Omán"></option>
               <option value="Países Bajos"></option>
+              <option value="Pakistán"></option>
               <option value="Panamá"></option>
               <option value="Paraguay"></option>
               <option value="Perú"></option>
               <option value="Polonia"></option>
               <option value="Portugal"></option>
+              <option value="Qatar"></option>
               <option value="Reino Unido"></option>
               <option value="República Checa"></option>
               <option value="República Dominicana"></option>
               <option value="Rumanía"></option>
               <option value="Rusia"></option>
+              <option value="Senegal"></option>
+              <option value="Serbia"></option>
+              <option value="Sri Lanka"></option>
               <option value="Suecia"></option>
               <option value="Suiza"></option>
               <option value="Tailandia"></option>
-              <option value="Turquéa"></option>
+              <option value="Tanzania"></option>
+              <option value="Túnez"></option>
+              <option value="Turquía"></option>
               <option value="Ucrania"></option>
               <option value="Uruguay"></option>
+              <option value="Uzbekistán"></option>
               <option value="Venezuela"></option>
               <option value="Vietnam"></option>
             </datalist>
@@ -372,75 +404,107 @@
             <script>
             (() => {
               const citiesByCountry = {
-                "Afganistán": ["Kabul","Kandahar","Herat","Mazar-e Sharif","Jalalabad","Kunduz","Ghazni","Bamiyán"],
-                "Alemania": ["Berlín","Hamburgo","Múnich","Colonia","Fráncfort","Stuttgart","Düsseldorf","Dortmund","Essen","Leipzig"],
-                "Arabia Saudita": ["Riad","Yeda","La Meca","Medina","Dammam","Taif","Tabuk","Buraydah","Jubail"],
-                "Argelia": ["Argel","Orán","Constantina","Annaba","Blida","Batna","Sétif","Tlemcen"],
-                "Argentina": ["Buenos Aires","Córdoba","Rosario","Mendoza","La Plata","San Miguel de Tucumán","Mar del Plata","Salta","Santa Fe","San Juan"],
-                "Australia": ["Sídney","Melbourne","Brisbane","Perth","Adelaida","Gold Coast","Canberra","Newcastle","Hobart","Darwin"],
-                "Austria": ["Viena","Graz","Linz","Salzburgo","Innsbruck","Klagenfurt","Villach","Wels"],
-                "Bélgica": ["Bruselas","Amberes","Gante","Brujas","Lieja","Lovaina","Namur","Mons","Charleroi"],
-                "Bolivia": ["La Paz","Santa Cruz de la Sierra","Cochabamba","Sucre","Oruro","Potosí","Tarija","Trinidad","El Alto"],
-                "Brasil": ["São Paulo","Río de Janeiro","Brasilia","Salvador","Fortaleza","Belo Horizonte","Manaos","Curitiba","Recife","Porto Alegre","Belém","Goiânia"],
-                "Bulgaria": ["Sofía","Plovdiv","Varna","Burgas","Ruse","Stara Zagora","Pleven","Veliko Tarnovo"],
-                "Canadá": ["Toronto","Montreal","Vancouver","Calgary","Edmonton","Ottawa","Quebec","Winnipeg","Hamilton","Halifax","Victoria"],
-                "Chile": ["Santiago","Valparaíso","Concepción","La Serena","Antofagasta","Temuco","Iquique","Puerto Montt","Rancagua","Talca"],
-                "China": ["Pekín","Shanghái","Cantón","Shenzhen","Chengdu","Chongqing","Tianjin","Wuhan","Xi'an","Hangzhou","Nankín"],
-                "Colombia": ["Bogotá","Medellín","Cali","Barranquilla","Cartagena","Bucaramanga","Pereira","Santa Marta","Manizales","Cúcuta"],
-                "Corea del Sur": ["Seúl","Busan","Incheon","Daegu","Daejeon","Gwangju","Ulsan","Suwon","Jeju"],
-                "Costa Rica": ["San José","Alajuela","Cartago","Heredia","Liberia","Puntarenas","Limón","Quepos"],
-                "Croacia": ["Zagreb","Split","Rijeka","Osijek","Zadar","Pula","Dubrovnik","Varazdin"],
-                "Cuba": ["La Habana","Santiago de Cuba","Camagüey","Holguín","Santa Clara","Cienfuegos","Matanzas","Pinar del Río"],
-                "Dinamarca": ["Copenhague","Aarhus","Odense","Aalborg","Esbjerg","Randers","Kolding","Horsens"],
-                "Ecuador": ["Quito","Guayaquil","Cuenca","Santo Domingo","Machala","Manta","Portoviejo","Loja","Ambato","Riobamba"],
-                "Egipto": ["El Cairo","Alejandría","Guiza","Luxor","Asuán","Puerto Saíd","Suez","Mansura","Tanta"],
-                "El Salvador": ["San Salvador","Santa Ana","San Miguel","Soyapango","Santa Tecla","Mejicanos","Ahuachapán","Sonsonate"],
-                "Emiratos Árabes Unidos": ["Dubái","Abu Dabi","Sharjah","Ajmán","Al Ain","Ras al Jaima","Fuyaira","Umm al Quwain"],
-                "España": ["Madrid","Barcelona","Valencia","Sevilla","Zaragoza","Málaga","Murcia","Palma","Bilbao","Alicante","Granada","Córdoba"],
-                "Estados Unidos": ["Nueva York","Los Ángeles","Chicago","Houston","Phoenix","Filadelfia","San Antonio","San Diego","Dallas","San José","Miami","Washington","Boston","San Francisco","Seattle"],
-                "Estonia": ["Tallin","Tartu","Narva","Pärnu","Kohtla-Järve","Viljandi","Rakvere","Võru"],
-                "Filipinas": ["Manila","Quezon City","Caloocan","Dávao","Cebú","Zamboanga","Taguig","Pasig","Baguio"],
-                "Finlandia": ["Helsinki","Espoo","Tampere","Vantaa","Oulu","Turku","Jyväskylä","Lahti","Kuopio"],
-                "Francia": ["París","Marsella","Lyon","Toulouse","Niza","Nantes","Estrasburgo","Montpellier","Burdeos","Lille","Rennes","Reims"],
-                "Grecia": ["Atenas","Salónica","Patras","Heraclión","Larisa","Volos","Ioánina","Rodas","La Canea"],
-                "Guatemala": ["Ciudad de Guatemala","Quetzaltenango","Escuintla","Mixco","Villa Nueva","Antigua Guatemala","Cobán","Huehuetenango"],
-                "Honduras": ["Tegucigalpa","San Pedro Sula","La Ceiba","Choloma","El Progreso","Comayagua","Choluteca","Puerto Cortés"],
-                "Hungría": ["Budapest","Debrecen","Szeged","Miskolc","Pécs","Győr","Nyíregyháza","Kecskemét"],
-                "India": ["Nueva Delhi","Mumbai","Bangalore","Hyderabad","Chennai","Calcuta","Ahmedabad","Pune","Jaipur","Surat","Lucknow","Varanasi"],
-                "Indonesia": ["Yakarta","Surabaya","Bandung","Medan","Semarang","Makassar","Palembang","Denpasar","Yogyakarta"],
-                "Irlanda": ["Dublín","Cork","Galway","Limerick","Waterford","Drogheda","Kilkenny","Sligo"],
-                "Islandia": ["Reikiavik","Kópavogur","Hafnarfjörður","Akureyri","Reykjanesbær","Selfoss","Akranes","Ísafjörður"],
-                "Israel": ["Jerusalén","Tel Aviv","Haifa","Rishon LeZion","Petaj Tikva","Ashdod","Beerseba","Netanya","Eilat"],
-                "Italia": ["Roma","Milán","Nápoles","Turín","Palermo","Génova","Bolonia","Florencia","Bari","Catania","Venecia","Verona"],
-                "Japón": ["Tokio","Yokohama","Osaka","Nagoya","Sapporo","Fukuoka","Kioto","Kobe","Hiroshima","Sendai","Naha"],
-                "Luxemburgo": ["Ciudad de Luxemburgo","Esch-sur-Alzette","Differdange","Dudelange","Ettelbruck","Diekirch","Wiltz","Remich"],
-                "Marruecos": ["Casablanca","Rabat","Fez","Marrakech","Tánger","Agadir","Meknes","Oujda","Tetuán"],
-                "México": ["Ciudad de México","Guadalajara","Monterrey","Puebla","Tijuana","León","Mérida","Querétaro","Cancún","Toluca","Chihuahua","Oaxaca"],
-                "Nicaragua": ["Managua","León","Masaya","Granada","Matagalpa","Chinandega","Estelí","Bluefields"],
-                "Noruega": ["Oslo","Bergen","Trondheim","Stavanger","Drammen","Kristiansand","Tromsø","Ålesund"],
-                "Nueva Zelanda": ["Auckland","Wellington","Christchurch","Hamilton","Tauranga","Dunedin","Queenstown","Rotorua"],
-                "Países Bajos": ["Ámsterdam","Róterdam","La Haya","Utrecht","Eindhoven","Groninga","Maastricht","Leiden","Delft"],
-                "Panamá": ["Ciudad de Panamá","San Miguelito","Colón","David","La Chorrera","Santiago","Chitré","Penonomé"],
-                "Paraguay": ["Asunción","Ciudad del Este","San Lorenzo","Luque","Capiatá","Encarnación","Caaguazú","Pedro Juan Caballero"],
-                "Perú": ["Lima","Arequipa","Trujillo","Chiclayo","Piura","Cusco","Iquitos","Huancayo","Tacna","Puno"],
-                "Polonia": ["Varsovia","Cracovia","Lodz","Wroclaw","Poznan","Gdansk","Szczecin","Lublin","Katowice"],
-                "Portugal": ["Lisboa","Oporto","Braga","Coímbra","Faro","Aveiro","Funchal","Setúbal","Évora"],
-                "Reino Unido": ["Londres","Birmingham","Mánchester","Liverpool","Leeds","Glasgow","Edimburgo","Bristol","Cardiff","Belfast","Newcastle"],
-                "República Checa": ["Praga","Brno","Ostrava","Pilsen","Liberec","Olomouc","České Budějovice","Hradec Králové"],
-                "República Dominicana": ["Santo Domingo","Santiago de los Caballeros","La Romana","San Pedro de Macorís","San Francisco de Macorís","Puerto Plata","Punta Cana","Higüey"],
-                "Rumanía": ["Bucarest","Cluj-Napoca","Timișoara","Iași","Constanza","Craiova","Brașov","Sibiu","Oradea"],
-                "Rusia": ["Moscú","San Petersburgo","Novosibirsk","Ekaterimburgo","Kazán","Nizhni Nóvgorod","Samara","Rostov del Don","Sochi"],
-                "Suecia": ["Estocolmo","Gotemburgo","Malmö","Upsala","Västerås","Örebro","Linköping","Helsingborg","Umeå"],
-                "Suiza": ["Zúrich","Ginebra","Basilea","Berna","Lausana","Lucerna","Lugano","San Galo","Winterthur"],
-                "Tailandia": ["Bangkok","Chiang Mai","Phuket","Pattaya","Nakhon Ratchasima","Hat Yai","Udon Thani","Khon Kaen"],
-                "Turquía": ["Estambul","Ankara","Esmirna","Bursa","Antalya","Konya","Adana","Gaziantep","Kayseri"],
-                "Ucrania": ["Kiev","Járkov","Odesa","Dnipro","Leópolis","Zaporiyia","Vínnytsia","Poltava","Chernivtsí"],
-                "Uruguay": ["Montevideo","Salto","Paysandú","Las Piedras","Rivera","Maldonado","Punta del Este","Colonia del Sacramento"],
-                "Venezuela": ["Caracas","Maracaibo","Valencia","Barquisimeto","Maracay","Ciudad Guayana","Mérida","San Cristóbal","Puerto La Cruz"],
-                "Vietnam": ["Hanói","Ciudad Ho Chi Minh","Da Nang","Haiphong","Can Tho","Hue","Nha Trang","Dalat"]
+                "Afganistán": ["Kabul", "Kandahar", "Herat", "Mazar-e Sharif", "Jalalabad", "Kunduz", "Ghazni", "Bamiyán"],
+                "Albania": ["Tirana", "Durrës", "Vlorë", "Elbasan", "Shkodër", "Fier", "Korçë", "Berat"],
+                "Alemania": ["Berlín", "Hamburgo", "Múnich", "Colonia", "Fráncfort", "Stuttgart", "Düsseldorf", "Dortmund", "Essen", "Leipzig", "Dresde", "Hannover", "Bremen", "Nuremberg", "Duisburgo"],
+                "Arabia Saudita": ["Riad", "Yeda", "La Meca", "Medina", "Dammam", "Taif", "Tabuk", "Buraydah", "Jubail"],
+                "Argelia": ["Argel", "Orán", "Constantina", "Annaba", "Blida", "Batna", "Sétif", "Tlemcen", "Béjaïa"],
+                "Argentina": ["Buenos Aires", "Córdoba", "Rosario", "Mendoza", "La Plata", "San Miguel de Tucumán", "Mar del Plata", "Salta", "Santa Fe", "San Juan", "Neuquén", "Resistencia", "Corrientes", "Posadas"],
+                "Armenia": ["Erevan", "Gyumri", "Vanadzor", "Abovyan", "Vagharshapat", "Hrazdan"],
+                "Australia": ["Sídney", "Melbourne", "Brisbane", "Perth", "Adelaida", "Gold Coast", "Canberra", "Newcastle", "Hobart", "Darwin", "Cairns", "Townsville"],
+                "Austria": ["Viena", "Graz", "Linz", "Salzburgo", "Innsbruck", "Klagenfurt", "Villach", "Wels", "Sankt Pölten"],
+                "Azerbaiyán": ["Bakú", "Ganja", "Sumgait", "Mingachevir", "Shirvan", "Lankaran", "Nakhchivan"],
+                "Bangladesh": ["Dhaka", "Chittagong", "Khulna", "Rajshahi", "Sylhet", "Comilla", "Mymensingh", "Rangpur", "Barisal"],
+                "Bélgica": ["Bruselas", "Amberes", "Gante", "Brujas", "Lieja", "Lovaina", "Namur", "Mons", "Charleroi"],
+                "Bolivia": ["La Paz", "Santa Cruz de la Sierra", "Cochabamba", "Sucre", "Oruro", "Potosí", "Tarija", "Trinidad", "El Alto"],
+                "Bosnia y Herzegovina": ["Sarajevo", "Banja Luka", "Mostar", "Tuzla", "Zenica", "Bijeljina", "Brčko"],
+                "Brasil": ["São Paulo", "Río de Janeiro", "Brasilia", "Salvador", "Fortaleza", "Belo Horizonte", "Manaos", "Curitiba", "Recife", "Porto Alegre", "Belém", "Goiânia", "Campinas", "São Luís", "Natal"],
+                "Bulgaria": ["Sofía", "Plovdiv", "Varna", "Burgas", "Ruse", "Stara Zagora", "Pleven", "Veliko Tarnovo"],
+                "Camerún": ["Yaundé", "Duala", "Bamenda", "Bafoussam", "Ngaoundéré", "Maroua", "Garoua"],
+                "Canadá": ["Toronto", "Montreal", "Vancouver", "Calgary", "Edmonton", "Ottawa", "Quebec", "Winnipeg", "Hamilton", "Halifax", "Victoria", "Saskatoon", "Regina", "Kelowna"],
+                "Chile": ["Santiago", "Valparaíso", "Concepción", "La Serena", "Antofagasta", "Temuco", "Iquique", "Puerto Montt", "Rancagua", "Talca", "Arica", "Calama"],
+                "China": ["Pekín", "Shanghái", "Cantón", "Shenzhen", "Chengdu", "Chongqing", "Tianjin", "Wuhan", "Xi'an", "Hangzhou", "Nankín", "Dongguan", "Shenyang", "Qingdao"],
+                "Colombia": ["Bogotá", "Medellín", "Cali", "Barranquilla", "Cartagena", "Bucaramanga", "Pereira", "Santa Marta", "Manizales", "Cúcuta", "Ibagué", "Pasto", "Neiva", "Villavicencio"],
+                "Corea del Sur": ["Seúl", "Busan", "Incheon", "Daegu", "Daejeon", "Gwangju", "Ulsan", "Suwon", "Jeju", "Changwon"],
+                "Costa Rica": ["San José", "Alajuela", "Cartago", "Heredia", "Liberia", "Puntarenas", "Limón", "Quepos"],
+                "Côte d'Ivoire": ["Abiyán", "Bouaké", "Daloa", "Korhogo", "San-Pédro", "Man", "Yamoussoukro"],
+                "Croacia": ["Zagreb", "Split", "Rijeka", "Osijek", "Zadar", "Pula", "Dubrovnik", "Varazdin"],
+                "Cuba": ["La Habana", "Santiago de Cuba", "Camagüey", "Holguín", "Santa Clara", "Cienfuegos", "Matanzas", "Pinar del Río"],
+                "Dinamarca": ["Copenhague", "Aarhus", "Odense", "Aalborg", "Esbjerg", "Randers", "Kolding", "Horsens"],
+                "Ecuador": ["Quito", "Guayaquil", "Cuenca", "Santo Domingo", "Machala", "Manta", "Portoviejo", "Loja", "Ambato", "Riobamba"],
+                "Egipto": ["El Cairo", "Alejandría", "Guiza", "Luxor", "Asuán", "Puerto Saíd", "Suez", "Mansura", "Tanta", "Assiut"],
+                "El Salvador": ["San Salvador", "Santa Ana", "San Miguel", "Soyapango", "Santa Tecla", "Mejicanos", "Ahuachapán", "Sonsonate"],
+                "Emiratos Árabes Unidos": ["Dubái", "Abu Dabi", "Sharjah", "Ajmán", "Al Ain", "Ras al Jaima", "Fuyaira", "Umm al Quwain"],
+                "Eslovaquia": ["Bratislava", "Košice", "Prešov", "Žilina", "Banská Bystrica", "Nitra", "Trnava", "Trenčín"],
+                "Eslovenia": ["Liubliana", "Maribor", "Celje", "Kranj", "Velenje", "Koper", "Novo Mesto"],
+                "España": ["Madrid", "Barcelona", "Valencia", "Sevilla", "Zaragoza", "Málaga", "Murcia", "Palma", "Bilbao", "Alicante", "Granada", "Córdoba", "Valladolid", "Vigo", "San Sebastián", "Pamplona", "Santander", "Salamanca", "Burgos", "Las Palmas"],
+                "Estados Unidos": ["Nueva York", "Los Ángeles", "Chicago", "Houston", "Phoenix", "Filadelfia", "San Antonio", "San Diego", "Dallas", "San José", "Miami", "Washington", "Boston", "San Francisco", "Seattle", "Denver", "Nashville", "Portland", "Las Vegas", "Atlanta"],
+                "Estonia": ["Tallin", "Tartu", "Narva", "Pärnu", "Kohtla-Järve", "Viljandi", "Rakvere", "Võru"],
+                "Etiopía": ["Adís Abeba", "Dire Dawa", "Gondar", "Mekele", "Hawassa", "Bahir Dar", "Adama", "Jimma"],
+                "Filipinas": ["Manila", "Quezon City", "Caloocan", "Dávao", "Cebú", "Zamboanga", "Taguig", "Pasig", "Baguio", "Makati"],
+                "Finlandia": ["Helsinki", "Espoo", "Tampere", "Vantaa", "Oulu", "Turku", "Jyväskylä", "Lahti", "Kuopio"],
+                "Francia": ["París", "Marsella", "Lyon", "Toulouse", "Niza", "Nantes", "Estrasburgo", "Montpellier", "Burdeos", "Lille", "Rennes", "Reims", "Dijon", "Grenoble", "Angers", "Clermont-Ferrand", "Metz", "Nancy", "Caen", "Tours"],
+                "Georgia": ["Tiflis", "Batumi", "Kutaisi", "Rustavi", "Zugdidi", "Gori", "Poti"],
+                "Ghana": ["Acra", "Kumasi", "Tamale", "Sekondi-Takoradi", "Cape Coast", "Sunyani", "Ho"],
+                "Grecia": ["Atenas", "Salónica", "Patras", "Heraclión", "Larisa", "Volos", "Ioánina", "Rodas", "La Canea"],
+                "Guatemala": ["Ciudad de Guatemala", "Quetzaltenango", "Escuintla", "Mixco", "Villa Nueva", "Antigua Guatemala", "Cobán", "Huehuetenango"],
+                "Haití": ["Puerto Príncipe", "Cap-Haïtien", "Gonaïves", "Les Cayes", "Jacmel", "Saint-Marc"],
+                "Honduras": ["Tegucigalpa", "San Pedro Sula", "La Ceiba", "Choloma", "El Progreso", "Comayagua", "Choluteca", "Puerto Cortés"],
+                "Hungría": ["Budapest", "Debrecen", "Szeged", "Miskolc", "Pécs", "Győr", "Nyíregyháza", "Kecskemét"],
+                "India": ["Nueva Delhi", "Mumbai", "Bangalore", "Hyderabad", "Chennai", "Calcuta", "Ahmedabad", "Pune", "Jaipur", "Surat", "Lucknow", "Varanasi", "Nagpur", "Kochi", "Kanpur", "Indore", "Bhopal", "Visakhapatnam"],
+                "Indonesia": ["Yakarta", "Surabaya", "Bandung", "Medan", "Semarang", "Makassar", "Palembang", "Denpasar", "Yogyakarta", "Pekanbaru"],
+                "Irlanda": ["Dublín", "Cork", "Galway", "Limerick", "Waterford", "Drogheda", "Kilkenny", "Sligo"],
+                "Islandia": ["Reikiavik", "Kópavogur", "Hafnarfjörður", "Akureyri", "Reykjanesbaer", "Selfoss", "Akranes", "Ísfjörður"],
+                "Israel": ["Jerusalén", "Tel Aviv", "Haifa", "Rishon LeZion", "Petaj Tikva", "Ashdod", "Beerseba", "Netanya", "Eilat"],
+                "Italia": ["Roma", "Milán", "Nápoles", "Turín", "Palermo", "Génova", "Bolonia", "Florencia", "Bari", "Catania", "Venecia", "Verona", "Mesina", "Padua", "Trieste"],
+                "Japón": ["Tokio", "Yokohama", "Osaka", "Nagoya", "Sapporo", "Fukuoka", "Kioto", "Kobe", "Hiroshima", "Sendai", "Naha", "Chiba", "Saitama", "Kawasaki"],
+                "Kazajistán": ["Almaty", "Nur-Sultán", "Shimkent", "Aktobe", "Karagandá", "Taraz", "Oskemen", "Semey"],
+                "Kenya": ["Nairobi", "Mombasa", "Kisumu", "Nakuru", "Eldoret", "Thika", "Malindi", "Garissa"],
+                "Kuwait": ["Ciudad de Kuwait", "Hawalli", "Farwaniya", "Ahmadi", "Jahra", "Salmiya"],
+                "Letonia": ["Riga", "Daugavpils", "Liepaja", "Jelgava", "Jurmala", "Ventspils", "Rēzekne"],
+                "Libia": ["Trípoli", "Bengasi", "Misrata", "Tobruk", "Zliten", "Sabha", "Al Bayda"],
+                "Lituania": ["Vilna", "Kaunas", "Klaipeda", "Šiauliai", "Panevėžys", "Alytus", "Marijampolė"],
+                "Luxemburgo": ["Ciudad de Luxemburgo", "Esch-sur-Alzette", "Differdange", "Dudelange", "Ettelbruck", "Diekirch", "Wiltz", "Remich"],
+                "Marruecos": ["Casablanca", "Rabat", "Fez", "Marrakech", "Tánger", "Agadir", "Meknes", "Oujda", "Tetuán", "Salé", "Kenitra"],
+                "México": ["Ciudad de México", "Guadalajara", "Monterrey", "Puebla", "Tijuana", "León", "Mérida", "Querétaro", "Cancún", "Toluca", "Chihuahua", "Oaxaca", "San Luis Potosí", "Aguascalientes", "Morelia", "Culiacán", "Hermosillo", "Saltillo", "Torreón", "Ciudad Juárez", "Villahermosa"],
+                "Mongolia": ["Ulán Bator", "Erdenet", "Darkhan", "Choibalsan", "Mörön"],
+                "Myanmar": ["Rangún", "Naipyidó", "Mandalay", "Mawlamyine", "Bago", "Pathein", "Taunggyi"],
+                "Nepal": ["Katmandú", "Pokhara", "Lalitpur", "Biratnagar", "Birgunj", "Butwal", "Dharan"],
+                "Nicaragua": ["Managua", "León", "Masaya", "Granada", "Matagalpa", "Chinandega", "Estelí", "Bluefields"],
+                "Nigeria": ["Lagos", "Abuja", "Kano", "Ibadan", "Port Harcourt", "Benin City", "Kaduna", "Enugu", "Aba", "Onitsha", "Sokoto", "Maiduguri"],
+                "Noruega": ["Oslo", "Bergen", "Trondheim", "Stavanger", "Drammen", "Kristiansand", "Tromsø", "Ålesund"],
+                "Nueva Zelanda": ["Auckland", "Wellington", "Christchurch", "Hamilton", "Tauranga", "Dunedin", "Queenstown", "Rotorua"],
+                "Omán": ["Mascate", "Salalah", "Sohar", "Sur", "Nizwa", "Ibra", "Rustaq"],
+                "Países Bajos": ["Ámsterdam", "Róterdam", "La Haya", "Utrecht", "Eindhoven", "Groninga", "Maastricht", "Leiden", "Delft", "Tilburgo"],
+                "Pakistán": ["Karachi", "Lahore", "Islamabad", "Faisalabad", "Rawalpindi", "Multan", "Peshawar", "Quetta", "Sialkot", "Gujranwala"],
+                "Panamá": ["Ciudad de Panamá", "San Miguelito", "Colón", "David", "La Chorrera", "Santiago", "Chitré", "Penonomé"],
+                "Paraguay": ["Asunción", "Ciudad del Este", "San Lorenzo", "Luque", "Capiatá", "Encarnación", "Caaguazú", "Pedro Juan Caballero"],
+                "Perú": ["Lima", "Arequipa", "Trujillo", "Chiclayo", "Piura", "Cusco", "Iquitos", "Huancayo", "Tacna", "Puno", "Ica", "Chimbote"],
+                "Polonia": ["Varsovia", "Cracovia", "Lodz", "Wroclaw", "Poznan", "Gdansk", "Szczecin", "Lublin", "Katowice", "Bialystok", "Gdynia", "Bydgoszcz"],
+                "Portugal": ["Lisboa", "Oporto", "Braga", "Coímbra", "Faro", "Aveiro", "Funchal", "Setúbal", "Évora", "Guimarães"],
+                "Qatar": ["Doha", "Al Rayyan", "Al Wakrah", "Umm Salal", "Al Khor", "Mesaieed"],
+                "Reino Unido": ["Londres", "Birmingham", "Mánchester", "Liverpool", "Leeds", "Glasgow", "Edimburgo", "Bristol", "Cardiff", "Belfast", "Newcastle", "Sheffield", "Nottingham", "Leicester", "Coventry", "Bradford"],
+                "República Checa": ["Praga", "Brno", "Ostrava", "Pilsen", "Liberec", "Olomouc", "České Budějovice", "Hradec Králové", "Pardubice"],
+                "República Dominicana": ["Santo Domingo", "Santiago de los Caballeros", "La Romana", "San Pedro de Macorís", "San Francisco de Macorís", "Puerto Plata", "Punta Cana", "Higüey"],
+                "Rumanía": ["Bucarest", "Cluj-Napoca", "Timișoara", "Iași", "Constanza", "Craiova", "Brașov", "Sibiu", "Oradea", "Galați"],
+                "Rusia": ["Moscú", "San Petersburgo", "Novosibirsk", "Ekaterimburgo", "Kazán", "Nizhni Nóvgorod", "Samara", "Rostov del Don", "Sochi", "Ufa", "Volgogrado", "Krasnoyarsk", "Omsk"],
+                "Senegal": ["Dakar", "Thiès", "Kaolack", "Ziguinchor", "Saint-Louis", "Touba", "Rufisque", "Mbour"],
+                "Serbia": ["Belgrado", "Novi Sad", "Niš", "Kragujevac", "Subotica", "Čačak", "Novi Pazar"],
+                "Sri Lanka": ["Colombo", "Kandy", "Galle", "Jaffna", "Negombo", "Batticaloa", "Trincomalee"],
+                "Suecia": ["Estocolmo", "Gotemburgo", "Malmö", "Upsala", "Västerås", "Örebro", "Linköping", "Helsingborg", "Umeå", "Norrköping"],
+                "Suiza": ["Zúrich", "Ginebra", "Basilea", "Berna", "Lausana", "Lucerna", "Lugano", "San Galo", "Winterthur"],
+                "Tailandia": ["Bangkok", "Chiang Mai", "Phuket", "Pattaya", "Nakhon Ratchasima", "Hat Yai", "Udon Thani", "Khon Kaen", "Chiang Rai"],
+                "Tanzania": ["Dar es Salaam", "Dodoma", "Mwanza", "Arusha", "Zanzibar", "Mbeya", "Tanga"],
+                "Túnez": ["Túnez", "Sfax", "Sousse", "Kairouan", "Bizerte", "Ariana", "Gabès", "Monastir"],
+                "Turquía": ["Estambul", "Ankara", "Esmirna", "Bursa", "Antalya", "Konya", "Adana", "Gaziantep", "Kayseri", "Mersin", "Eskişehir", "Diyarbakır", "Samsun"],
+                "Ucrania": ["Kiev", "Járkov", "Odesa", "Dnipro", "Leópolis", "Zaporiyia", "Vínnytsia", "Poltava", "Chernivtsí", "Mykolaiv"],
+                "Uruguay": ["Montevideo", "Salto", "Paysandú", "Las Piedras", "Rivera", "Maldonado", "Punta del Este", "Colonia del Sacramento"],
+                "Uzbekistán": ["Taskent", "Samarcanda", "Namangan", "Andiyán", "Bucarà", "Nukus", "Fergana", "Qarshi"],
+                "Venezuela": ["Caracas", "Maracaibo", "Valencia", "Barquisimeto", "Maracay", "Ciudad Guayana", "Mérida", "San Cristóbal", "Puerto La Cruz", "Maturín", "Barinas"],
+                "Vietnam": ["Hanói", "Ciudad Ho Chi Minh", "Da Nang", "Haiphong", "Can Tho", "Hue", "Nha Trang", "Dalat", "Biên Hòa"]
               };
               const normalize = v => String(v||'').trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-              const aliases = Object.keys(citiesByCountry).reduce((a,c)=>{a[normalize(c)]=c;return a;},{turquea:'Turquía'});
+              const aliases = Object.keys(citiesByCountry).reduce((a,c)=>{a[normalize(c)]=c;return a;},{"turquea": "Turquía", "ethiopia": "Etiopía", "burma": "Myanmar", "ivory coast": "Côte d'Ivoire", "ivory": "Côte d'Ivoire", "srilanka": "Sri Lanka"});
               function wireCity(countryId, listId) {
                 const inp = document.getElementById(countryId);
                 const lst = document.getElementById(listId);
@@ -524,7 +588,7 @@
   <line x1="${k.x.toFixed(1)}" y1="${k.y.toFixed(1)}" x2="${E.x.toFixed(1)}" y2="${E.y.toFixed(1)}" stroke="rgba(157,230,255,.44)" stroke-width="1.2" stroke-dasharray="5 5"/>
   <text x="${P.x.toFixed(1)}" y="${P.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="rgba(157,230,255,.84)" font-size="13" font-family="Cinzel,serif" letter-spacing=".07em">DSC</text>
   ${M}
-</svg></div>`}function renderReport(e,t,o,n,c,s,i,r,a){const u=resolveTimezoneOffset(o,n,t.timezone),m=resolveTimezoneOffset(i,r,s.timezone),p=isDaylightSavingTime(o,n,t.timezone),$=isDaylightSavingTime(i,r,s.timezone),x=planetPositions(o,n,u),g=calcAscendant(o,n,t.timezone,0,t.lat,t.lon),b=calcAngles(o,n,t.timezone,0,t.lat,t.lon),f=planetPositions(i,r,m),S=calcAscendant(i,r,s.timezone,0,s.lat,s.lon),M=calcAngles(i,r,s.timezone,0,s.lat,s.lon),L=buildCompatibility(x,f,b,M),w=a==="en"?'<p class="hint" style="margin-top:6px;font-size:.8rem;opacity:.7;">System: <strong>Placidus</strong> - Orb: <strong>5&deg;</strong> - Time handling is calculated automatically from country, city, and birth date.</p>':'<p class="hint" style="margin-top:6px;font-size:.8rem;opacity:.7;">Sistema: <strong>Placidus</strong> - Orbe: <strong>5&deg;</strong> - La hora estacional se calcula automaticamente segun pais, ciudad y fecha de nacimiento.</p>',C=Math.max(-100,Math.min(100,Math.round((L.score-50)*2))),k=loveBand(C,a),E=(C+100)/200*100,N=AgentX.createTracker(),P=uniqueAspectContacts(L.pairs,12).map(y=>`<div class="aspect-card"><h5 class="aspect-title">${planetIcon(y.p1)}<strong>${a==="en"?`${locPlanet(y.p1,a)} of A ${locAspect(y.aspect,a)} ${locPlanet(y.p2,a)} of B (${y.orb})`:`${y.p1} de A ${y.aspect.toLowerCase()} ${y.p2} de B (${y.orb})`}</strong>${planetIcon(y.p2)}</h5>${buildAspectDescription(y,N,a)}</div>`).join(""),d=[`<span class="natal-chip">${a==="en"?"Person A":"Persona A"}: ${e}</span>`,`<span class="natal-chip">A ${a==="en"?"Country/City":"Pais/Ciudad"}: ${t.country}, ${t.city}</span>`,`<span class="natal-chip">A ${a==="en"?"Seasonal time":"Hora estacional"}: ${p?a==="en"?"summer":"verano":a==="en"?"winter":"invierno"} (${a==="en"?"auto by birth date":"auto por fecha de nacimiento"})</span>`,`<span class="natal-chip">${a==="en"?"Person B":"Persona B"}: ${c}</span>`,`<span class="natal-chip">B ${a==="en"?"Country/City":"Pais/Ciudad"}: ${s.country}, ${s.city}</span>`,`<span class="natal-chip">B ${a==="en"?"Seasonal time":"Hora estacional"}: ${$?a==="en"?"summer":"verano":a==="en"?"winter":"invierno"} (${a==="en"?"auto by birth date":"auto por fecha de nacimiento"})</span>`,`<span class="natal-chip">ASC A: ${g.signSym} ${locSign(g.sign,a)}</span>`,`<span class="natal-chip">MC A: ${b?b.MC.signSym+" "+locSign(b.MC.sign,a)+" "+b.MC.degInSign+"\xB0":"N/D"}</span>`,`<span class="natal-chip">ASC B: ${S.signSym} ${locSign(S.sign,a)}</span>`,`<span class="natal-chip">MC B: ${M?M.MC.signSym+" "+locSign(M.MC.sign,a)+" "+M.MC.degInSign+"\xB0":"N/D"}</span>`].join(""),l=`
+</svg></div>`}function renderReport(e,t,o,n,c,s,i,r,a){const u=resolveTimezoneOffset(o,n,t.timezone),m=resolveTimezoneOffset(i,r,s.timezone),p=isDaylightSavingTime(o,n,t.timezone),$=isDaylightSavingTime(i,r,s.timezone),x=planetPositions(o,n,u),g=calcAscendant(o,n,t.timezone,0,t.lat,t.lon),b=calcAngles(o,n,t.timezone,0,t.lat,t.lon),f=planetPositions(i,r,m),S=calcAscendant(i,r,s.timezone,0,s.lat,s.lon),M=calcAngles(i,r,s.timezone,0,s.lat,s.lon),L=buildCompatibility(x,f,b,M),w=(function(){var fg=function(lt,ln,lg){return lt!=null?' \uD83D\uDCCD '+Math.abs(lt).toFixed(4)+'\u00b0'+(lt>=0?'N':'S')+', '+Math.abs(ln).toFixed(4)+'\u00b0'+(ln>=0?'E':lg==='en'?'W':'O'):''};var ga=fg(t.lat,t.lon,a),gb=fg(s.lat,s.lon,a);return a==="en"?'<p class="hint" style="margin-top:6px;font-size:.8rem;opacity:.7;">System: <strong>Placidus</strong> - Orb: <strong>5&deg;</strong> - Timezone auto-calculated - A'+ga+' B'+gb+'.</p>':'<p class="hint" style="margin-top:6px;font-size:.8rem;opacity:.7;">Sistema: <strong>Placidus</strong> - Orbe: <strong>5&deg;</strong> - Zona horaria autom\xE1tica - A'+ga+' B'+gb+'.</p>';}()),C=Math.max(-100,Math.min(100,Math.round((L.score-50)*2))),k=loveBand(C,a),E=(C+100)/200*100,N=AgentX.createTracker(),P=uniqueAspectContacts(L.pairs,12).map(y=>`<div class="aspect-card"><h5 class="aspect-title">${planetIcon(y.p1)}<strong>${a==="en"?`${locPlanet(y.p1,a)} of A ${locAspect(y.aspect,a)} ${locPlanet(y.p2,a)} of B (${y.orb})`:`${y.p1} de A ${y.aspect.toLowerCase()} ${y.p2} de B (${y.orb})`}</strong>${planetIcon(y.p2)}</h5>${buildAspectDescription(y,N,a)}</div>`).join(""),d=[`<span class="natal-chip">${a==="en"?"Person A":"Persona A"}: ${e}</span>`,`<span class="natal-chip">A ${a==="en"?"Country/City":"Pais/Ciudad"}: ${t.country}, ${t.city}</span>`,`<span class="natal-chip">A ${a==="en"?"Seasonal time":"Hora estacional"}: ${p?a==="en"?"summer":"verano":a==="en"?"winter":"invierno"} (${a==="en"?"auto by birth date":"auto por fecha de nacimiento"})</span>`,`<span class="natal-chip">${a==="en"?"Person B":"Persona B"}: ${c}</span>`,`<span class="natal-chip">B ${a==="en"?"Country/City":"Pais/Ciudad"}: ${s.country}, ${s.city}</span>`,`<span class="natal-chip">B ${a==="en"?"Seasonal time":"Hora estacional"}: ${$?a==="en"?"summer":"verano":a==="en"?"winter":"invierno"} (${a==="en"?"auto by birth date":"auto por fecha de nacimiento"})</span>`,`<span class="natal-chip">ASC A: ${g.signSym} ${locSign(g.sign,a)}</span>`,`<span class="natal-chip">MC A: ${b?b.MC.signSym+" "+locSign(b.MC.sign,a)+" "+b.MC.degInSign+"\xB0":"N/D"}</span>`,`<span class="natal-chip">ASC B: ${S.signSym} ${locSign(S.sign,a)}</span>`,`<span class="natal-chip">MC B: ${M?M.MC.signSym+" "+locSign(M.MC.sign,a)+" "+M.MC.degInSign+"\xB0":"N/D"}</span>`].join(""),l=`
         <h3 style="margin-top:0">${a==="en"?"Compatibility overview":"Resumen de compatibilidad"}</h3>
         <div>${d}</div>
         <p>${relationSummary(L.pairs,a)}</p>
