@@ -143,6 +143,20 @@
     @media (max-width: 520px) {
       .art-car-card { flex: 0 0 82%; }
     }
+    .subscribe-bar { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .subscribe-bar-btn { font-size: .95rem; padding: 12px 28px; }
+    .subscribe-modal-backdrop { position: fixed; inset: 0; background: rgba(8,5,22,.75); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 16px; backdrop-filter: blur(4px); }
+    .subscribe-modal-backdrop.hidden { display: none; }
+    .subscribe-modal { background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 32px 28px; max-width: 420px; width: 100%; position: relative; }
+    .subscribe-modal h3 { font-family: 'Cinzel', serif; color: var(--gold); margin: 0 0 10px; font-size: 1.2rem; }
+    .subscribe-modal p { color: var(--muted); font-size: .92rem; margin: 0 0 18px; }
+    .subscribe-modal label { display: block; font-size: .86rem; margin-bottom: 6px; color: var(--muted); }
+    .subscribe-modal input[type=email] { width: 100%; padding: 10px 14px; background: rgba(255,255,255,.05); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 1rem; margin-bottom: 14px; box-sizing: border-box; }
+    .subscribe-modal input[type=email]:focus { outline: none; border-color: rgba(232,198,107,.5); }
+    .subscribe-modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; color: var(--muted); font-size: 1.4rem; cursor: pointer; padding: 4px 8px; line-height: 1; }
+    .subscribe-msg { margin: 10px 0 0; font-size: .9rem; }
+    .subscribe-msg.ok { color: #7fd6b9; }
+    .subscribe-msg.err { color: #ff8a7f; }
   </style>
 </head>
 <body>
@@ -215,6 +229,24 @@
                   <div class="art-car-track" id="carTrack"></div>
                 </div>
                 <button id="carNext" type="button" class="art-car-btn" aria-label="Siguiente">&#8594;</button>
+              </div>
+              <div class="subscribe-bar">
+                <button type="button" class="btn btn-primary subscribe-bar-btn" id="subscribeBarBtn">Suscribirme &middot; Lecturas interesantes cada semana</button>
+              </div>
+            </div>
+
+            <div id="subscribeModal" class="subscribe-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="subscribeModalTitle">
+              <div class="subscribe-modal">
+                <button type="button" class="subscribe-modal-close" id="subscribeModalClose" aria-label="Cerrar">&times;</button>
+                <h3 id="subscribeModalTitle">Suscribirse a las lecturas</h3>
+                <p>Recibe publicaciones exclusivas y nuevas entregas directamente en tu correo.</p>
+                <form id="subscribeForm" novalidate>
+                  <label for="subscribeEmail">Tu correo electr&oacute;nico</label>
+                  <input type="email" id="subscribeEmail" name="email" placeholder="correo@ejemplo.com" required autocomplete="email" />
+                  <input type="text" name="website" id="subscribeHoneypot" style="display:none" tabindex="-1" autocomplete="off" />
+                  <button type="submit" class="btn btn-primary" id="subscribeSubmit" style="width:100%">Suscribirme</button>
+                  <p id="subscribeMsg" class="subscribe-msg hidden"></p>
+                </form>
               </div>
             </div>
           </div>
@@ -307,7 +339,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           copyShareSuccess: "Link copied.",
           copyLinkSuccess: "Article link copied.",
           translationError: "Could not load the English translation.",
-          note: "Traducido por IA"
+          note: "Translated by AI"
         }
       };
 
@@ -818,6 +850,69 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           renderFeatured();
           renderCarousel();
           updateHead(null);
+        });
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      function getApiBase() {
+        var m = document.querySelector('meta[name="adeline-api-base"]');
+        var v = m && m.content ? m.content.trim() : "";
+        if (v) return v.replace(/\/+$/, "");
+        if (/adelinemagica\.com$/i.test(location.hostname)) return "https://adelinetarot2.onrender.com";
+        return "";
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        var btn = document.getElementById("subscribeBarBtn");
+        var modal = document.getElementById("subscribeModal");
+        var closeBtn = document.getElementById("subscribeModalClose");
+        var form = document.getElementById("subscribeForm");
+        var submitBtn = document.getElementById("subscribeSubmit");
+        var msgEl = document.getElementById("subscribeMsg");
+        if (!btn || !modal) return;
+        btn.addEventListener("click", function () { modal.classList.remove("hidden"); });
+        closeBtn.addEventListener("click", function () { modal.classList.add("hidden"); });
+        modal.addEventListener("click", function (e) { if (e.target === modal) modal.classList.add("hidden"); });
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var email = document.getElementById("subscribeEmail").value.trim();
+          var honeypot = document.getElementById("subscribeHoneypot").value;
+          if (!email) return;
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Enviando...";
+          msgEl.className = "subscribe-msg hidden";
+          fetch(getApiBase() + "/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              first_name: "Suscripcion",
+              last_name: "Lecturas",
+              email: email,
+              message: "Esta persona desea inscribirse a las lecturas interesantes cada semana. Email: " + email,
+              website: honeypot
+            })
+          })
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            msgEl.textContent = data.ok ? "\u00a1Suscripci\u00f3n recibida! Pronto tendr\u00e1s noticias." : (data.message || "Error al enviar.");
+            msgEl.className = "subscribe-msg " + (data.ok ? "ok" : "err");
+            msgEl.classList.remove("hidden");
+            if (data.ok) {
+              submitBtn.textContent = "\u2713 Suscrito";
+              document.getElementById("subscribeEmail").disabled = true;
+            } else {
+              submitBtn.disabled = false;
+              submitBtn.textContent = "Suscribirme";
+            }
+          })
+          .catch(function () {
+            msgEl.textContent = "Error de conexi\u00f3n. Intenta de nuevo.";
+            msgEl.className = "subscribe-msg err";
+            msgEl.classList.remove("hidden");
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Suscribirme";
+          });
         });
       });
     })();
