@@ -210,7 +210,7 @@
             <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px">
               <div class="lang-switch" aria-label="Idioma">
                 <button type="button" data-lang="es" onclick="localStorage.setItem('adelinemagica_lang','es');location.reload()">ES</button>
-                <button type="button" data-lang="en" onclick="localStorage.setItem('adelinemagica_lang','en');location.reload()">EN</button>
+                <button id="topTranslateEn" type="button" data-lang="en">EN</button>
               </div>
               <h1 style="margin:0">Editorial</h1>
             </div>
@@ -259,6 +259,7 @@
             <p class="muted" id="readerMeta" style="margin-bottom:6px"></p>
             <div class="reader-tools">
               <div class="reader-lang" aria-label="Idioma del articulo">
+                <span id="poweredByAI" style="margin-right:10px;color:var(--muted);font-size:.95rem">traduction powered by AI</span>
                 <button id="readerLangEs" type="button" class="btn btn-ghost is-active">ES</button>
                 <button id="readerLangEn" type="button" class="btn btn-ghost">EN</button>
                 <span id="readerLangNote" class="reader-lang-note hidden">Traducido por IA</span>
@@ -623,7 +624,9 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         document.getElementById("shareBtn").textContent = labels[state.currentLang].share;
         document.getElementById("copyBtn").textContent = labels[state.currentLang].copy;
         updateLanguageControls();
-        updateQuery(baseArticle.slug, state.currentLang);
+        if (settings.updateQuery !== false) {
+          updateQuery(baseArticle.slug, state.currentLang);
+        }
         updateHead(article);
         if (settings.scroll !== false) {
           document.getElementById("articleReader").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -777,6 +780,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         var copyButton = replaceButton("copyBtn");
         var esButton = replaceButton("readerLangEs");
         var enButton = replaceButton("readerLangEn");
+        var topEnButton = document.getElementById("topTranslateEn");
 
         shareButton.addEventListener("click", function () {
           if (!state.current || !state.currentBase) {
@@ -824,6 +828,15 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           renderCards();
           showEnglishArticle(state.currentBase, { scroll: false });
         });
+
+        if (topEnButton) {
+          topEnButton.addEventListener("click", function () {
+            if (!state.currentBase) return;
+            state.currentLang = "en";
+            // Show only the article translated to English without changing the rest of the page
+            showEnglishArticle(state.currentBase, { scroll: false, updateQuery: false });
+          });
+        }
 
         var carPrev = document.getElementById("carPrev");
         var carNext = document.getElementById("carNext");
