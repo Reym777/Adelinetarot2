@@ -112,6 +112,10 @@
     .reader-lang { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .reader-lang .btn { min-width: 0; padding: 8px 14px; }
     .reader-lang .btn.is-active { border-color: rgba(232, 198, 107, .6); color: var(--gold); box-shadow: 0 0 0 1px rgba(232, 198, 107, .25) inset; }
+    .translation-progress { color: var(--gold); font-size: .82rem; font-variant-numeric: tabular-nums; min-width: 76px; text-align: right; }
+    .translation-progress.hidden { display: none; }
+    .translation-progress[aria-busy="true"]::before { content: ""; display: inline-block; width: .7em; height: .7em; margin-right: 5px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; vertical-align: -1px; animation: translation-spin .7s linear infinite; }
+    @keyframes translation-spin { to { transform: rotate(360deg); } }
     .reader-lang-note { color: var(--muted); font-size: .92rem; }
     .reader-lang-note.hidden { display: none; }
     .reader-share { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
@@ -209,6 +213,7 @@
           <div class="articles-head">
             <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px">
               <div class="lang-switch" aria-label="Idioma">
+                <span id="translationProgress" class="translation-progress hidden" aria-live="polite" aria-atomic="true" aria-busy="false"></span>
                 <button type="button" data-lang="es" onclick="localStorage.setItem('adelinemagica_lang','es');location.reload()">ES</button>
                 <button id="topTranslateEn" type="button" data-lang="en">EN</button>
               </div>
@@ -319,7 +324,9 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         currentLang: "es",
         translations: {},
         featuredIndex: 0,
-        carouselOffset: 0
+        carouselOffset: 0,
+        translationTimer: null,
+        translationProgress: 0
       };
       var defaultDescription = "Articulos compartibles inspirados en tarot terapeutico y guia espiritual.";
       var fallbackArticles = Array.isArray(window.__adelineArticleFallbacks)
@@ -728,19 +735,58 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         return fetchJson("/api/articles/" + encodeURIComponent(slug) + "/translation?lang=en");
       }
 
+      function setTranslationProgress(value, visible) {
+        var progress = document.getElementById("translationProgress");
+        if (!progress) { return; }
+        progress.textContent = visible ? "Loading " + value + "%" : "";
+        progress.classList.toggle("hidden", !visible);
+        progress.setAttribute("aria-busy", visible ? "true" : "false");
+      }
+
+      function startTranslationProgress() {
+        if (state.translationTimer) { return; }
+        state.translationProgress = 0;
+        setTranslationProgress(0, true);
+        state.translationTimer = window.setInterval(function () {
+          state.translationProgress = Math.min(state.translationProgress + 10, 90);
+          setTranslationProgress(state.translationProgress, true);
+        }, 350);
+      }
+
+      function finishTranslationProgress() {
+        if (state.translationTimer) {
+          window.clearInterval(state.translationTimer);
+          state.translationTimer = null;
+        }
+        setTranslationProgress(100, true);
+        window.setTimeout(function () { setTranslationProgress(0, false); }, 700);
+      }
+
+      function failTranslationProgress() {
+        if (state.translationTimer) {
+          window.clearInterval(state.translationTimer);
+          state.translationTimer = null;
+        }
+        setTranslationProgress(0, false);
+      }
+
       function showEnglishArticle(baseArticle, options) {
         var cacheKey = baseArticle.slug + ":en";
         if (state.translations[cacheKey]) {
           renderArticle(state.translations[cacheKey], options);
+          if (state.translationTimer) { finishTranslationProgress(); }
           return Promise.resolve(state.translations[cacheKey]);
         }
+        startTranslationProgress();
         return fetchEnglishTranslation(baseArticle.slug)
           .then(function (translated) {
             state.translations[cacheKey] = translated;
             renderArticle(translated, options);
+            finishTranslationProgress();
             return translated;
           })
           .catch(function () {
+            failTranslationProgress();
             state.currentLang = "es";
             renderArticle(baseArticle, options);
             alert(labels.es.translationError);
@@ -831,10 +877,19 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
 
         if (topEnButton) {
           topEnButton.addEventListener("click", function () {
-            if (!state.currentBase) return;
             state.currentLang = "en";
-            // Show only the article translated to English without changing the rest of the page
-            showEnglishArticle(state.currentBase, { scroll: false, updateQuery: false });
+            var baseArticle = state.currentBase || state.list[state.featuredIndex];
+            if (!baseArticle) return;
+            var articlePromise = baseArticle.content
+              ? Promise.resolve(baseArticle)
+              : fetchArticle(baseArticle.slug);
+            startTranslationProgress();
+            articlePromise.then(function (article) {
+              state.currentBase = article;
+              return showEnglishArticle(article, { scroll: false, updateQuery: false });
+            }).catch(function () {
+              failTranslationProgress();
+            });
           });
         }
 
