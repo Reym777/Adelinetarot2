@@ -454,14 +454,15 @@ a:hover { color: #f3dd9a; }
   border: 1px solid var(--border);
   background: rgba(12,10,29,.6);
   color: var(--gold);
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  font-size: 1.25rem;
+  width: 84px;
+  height: 84px;
+  border-radius: 14px;
+  font-size: 2.2rem;
   cursor: pointer;
   position: relative;
   z-index: 2;
   margin-left: 12px;
+  flex-shrink: 0;
 }
 .brand {
   position: absolute;
@@ -579,6 +580,38 @@ a:hover { color: #f3dd9a; }
   }
 }
 
+@media (max-width: 560px) {
+  .menu-toggle {
+    width: 62px;
+    height: 62px;
+    font-size: 1.8rem;
+    margin-left: 10px;
+  }
+
+  .side-menu {
+    width: min(88vw, 360px);
+  }
+
+  .side-menu-head {
+    align-items: flex-start;
+  }
+
+  .side-menu-head > span {
+    margin-top: 2px;
+  }
+
+  .side-menu-lang-top {
+    flex: 1 1 100%;
+    justify-content: flex-end;
+    margin: 0;
+  }
+
+  .side-menu-links a {
+    font-size: 0.96rem;
+    padding: 12px 11px;
+  }
+}
+
 .side-menu {
   position: fixed;
   top: 0;
@@ -597,8 +630,13 @@ a:hover { color: #f3dd9a; }
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
   color: var(--gold);
   margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.side-menu-head > span {
+  flex: 1 1 auto;
 }
 .menu-close {
   border: 1px solid var(--border);
@@ -613,7 +651,7 @@ a:hover { color: #f3dd9a; }
 .side-menu-links {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 .side-menu-gap {
   height: 8px;

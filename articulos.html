@@ -149,6 +149,22 @@
     }
     .subscribe-bar { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
     .subscribe-bar-btn { font-size: .95rem; padding: 12px 28px; }
+    .ai-powered-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 4px 10px;
+      border: 1px solid rgba(232,198,107,.35);
+      border-radius: 999px;
+      background: rgba(12,10,29,.45);
+      color: rgba(232,198,107,.8);
+      font-family: "Cinzel", serif;
+      font-size: .64rem;
+      letter-spacing: .08em;
+      text-transform: none;
+      white-space: nowrap;
+    }
     .subscribe-modal-backdrop { position: fixed; inset: 0; background: rgba(8,5,22,.75); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 16px; backdrop-filter: blur(4px); }
     .subscribe-modal-backdrop.hidden { display: none; }
     .subscribe-modal { background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 32px 28px; max-width: 420px; width: 100%; position: relative; }
@@ -212,6 +228,7 @@
         <div class="panel">
           <div class="articles-head">
             <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px">
+              <span class="ai-powered-label">powered by AI</span>
               <div class="lang-switch" aria-label="Idioma">
                 <span id="translationProgress" class="translation-progress hidden" aria-live="polite" aria-atomic="true" aria-busy="false"></span>
                 <button id="topTranslateEs" type="button" data-lang="es">ES</button>
