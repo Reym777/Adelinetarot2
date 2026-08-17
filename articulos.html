@@ -165,6 +165,7 @@
       text-transform: none;
       white-space: nowrap;
     }
+    .ai-powered-label.hidden { display: none; }
     .subscribe-modal-backdrop { position: fixed; inset: 0; background: rgba(8,5,22,.75); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 16px; backdrop-filter: blur(4px); }
     .subscribe-modal-backdrop.hidden { display: none; }
     .subscribe-modal { background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 32px 28px; max-width: 420px; width: 100%; position: relative; }
@@ -228,7 +229,7 @@
         <div class="panel">
           <div class="articles-head">
             <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px">
-              <span class="ai-powered-label">powered by AI</span>
+              <span class="ai-powered-label hidden">powered by AI</span>
               <div class="lang-switch" aria-label="Idioma">
                 <span id="translationProgress" class="translation-progress hidden" aria-live="polite" aria-atomic="true" aria-busy="false"></span>
                 <button id="topTranslateEs" type="button" data-lang="es">ES</button>
@@ -354,14 +355,18 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           copy: "Copiar enlace",
           copyShareSuccess: "Enlace copiado.",
           copyLinkSuccess: "Enlace del articulo copiado.",
-          translationError: "No se pudo cargar la traduccion en ingles."
+          translationError: "No se pudo cargar la traduccion en ingles.",
+          moreArticles: "Otros articulos para leer",
+          subscribeBar: "Suscribirme \u00B7 Lecturas interesantes cada semana"
         },
         en: {
           share: "Share this article",
           copy: "Copy link",
           copyShareSuccess: "Link copied.",
           copyLinkSuccess: "Article link copied.",
-          translationError: "Could not load the English translation."
+          translationError: "Could not load the English translation.",
+          moreArticles: "More articles to read",
+          subscribeBar: "Subscribe \u00B7 Interesting reads every week"
         }
       };
 
@@ -681,16 +686,18 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         if (!wrap || !state.list.length) { if (wrap) wrap.style.display = "none"; return; }
         var track = document.getElementById("carTrack");
         track.innerHTML = state.list.map(function (article, idx) {
-          var text = article.excerpt || article.subtitle || "";
-          if (!text && article.content) {
+          var translated = state.currentLang === "en" ? state.translations[article.slug + ":en"] : null;
+          var source = translated || article;
+          var text = source.excerpt || source.subtitle || "";
+          if (!text && source.content) {
             var tmp = document.createElement("div");
-            tmp.innerHTML = renderContent(article.content);
+            tmp.innerHTML = renderContent(source.content);
             var p = tmp.querySelector("p");
             text = p ? p.textContent : "";
           }
           var active = idx === state.featuredIndex ? " is-active" : "";
           return '<div class="art-car-card' + active + '" data-idx="' + idx + '">' +
-            '<div class="art-car-card-title">' + escapeHtml(article.title || "") + '</div>' +
+            '<div class="art-car-card-title">' + escapeHtml(source.title || "") + '</div>' +
             '<p class="art-car-card-text">' + escapeHtml(text) + '</p>' +
             '</div>';
         }).join("");
@@ -700,6 +707,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
             state.featuredArticle = null;
             state.currentLang = "es";
             state.carouselOffset = 0;
+            applyStaticLang();
+            hideAiPowered();
             renderFeatured();
             document.getElementById("featuredPreview").scrollIntoView({ behavior: "smooth", block: "start" });
           });
@@ -772,6 +781,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         }
         setTranslationProgress(100, true);
         window.setTimeout(function () { setTranslationProgress(0, false); }, 700);
+        revealAiPowered();
       }
 
       function failTranslationProgress() {
@@ -780,6 +790,41 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           state.translationTimer = null;
         }
         setTranslationProgress(0, false);
+        hideAiPowered();
+      }
+
+      function revealAiPowered() {
+        var label = document.querySelector(".ai-powered-label");
+        if (label && state.currentLang === "en") { label.classList.remove("hidden"); }
+      }
+
+      function hideAiPowered() {
+        var label = document.querySelector(".ai-powered-label");
+        if (label) { label.classList.add("hidden"); }
+      }
+
+      function applyStaticLang() {
+        var dict = labels[state.currentLang] || labels.es;
+        var heading = document.querySelector(".art-carousel-hd");
+        if (heading) { heading.textContent = dict.moreArticles; }
+        var barBtn = document.getElementById("subscribeBarBtn");
+        if (barBtn) { barBtn.textContent = dict.subscribeBar; }
+      }
+
+      function translateCarouselArticles() {
+        if (state.currentLang !== "en") { return Promise.resolve(); }
+        return Promise.all(state.list.map(function (article) {
+          var cacheKey = article.slug + ":en";
+          if (state.translations[cacheKey]) { return Promise.resolve(state.translations[cacheKey]); }
+          return fetchEnglishTranslation(article.slug)
+            .then(function (translated) {
+              state.translations[cacheKey] = translated;
+              return translated;
+            })
+            .catch(function () { return null; });
+        })).then(function () {
+          renderCarousel();
+        });
       }
 
       function showEnglishArticle(baseArticle, options) {
@@ -905,6 +950,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
             return;
           }
           state.currentLang = "es";
+          applyStaticLang();
+          hideAiPowered();
           renderCards();
           renderArticle(state.currentBase, { scroll: false });
         });
@@ -914,13 +961,17 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
             return;
           }
           state.currentLang = "en";
+          applyStaticLang();
           renderCards();
           showEnglishArticle(state.currentBase, { scroll: false });
+          translateCarouselArticles();
         });
 
         if (topEnButton) {
           topEnButton.addEventListener("click", function () {
             state.currentLang = "en";
+            applyStaticLang();
+            hideAiPowered();
             var baseArticle = state.currentBase || state.list[state.featuredIndex];
             if (!baseArticle) return;
             if (!state.currentBase) {
@@ -928,7 +979,9 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
                 ? Promise.resolve(baseArticle)
                 : fetchArticle(baseArticle.slug);
               articlePromise.then(function (article) {
-                return showEnglishFeatured(article);
+                return Promise.all([showEnglishFeatured(article), translateCarouselArticles()]);
+              }).then(function () {
+                revealAiPowered();
               }).catch(function () {
                 failTranslationProgress();
               });
@@ -940,7 +993,9 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
             startTranslationProgress();
             articlePromise.then(function (article) {
               state.currentBase = article;
-              return showEnglishArticle(article, { scroll: false, updateQuery: false });
+              return Promise.all([showEnglishArticle(article, { scroll: false, updateQuery: false }), translateCarouselArticles()]);
+            }).then(function () {
+              revealAiPowered();
             }).catch(function () {
               failTranslationProgress();
             });
@@ -950,6 +1005,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         if (topEsButton) {
           topEsButton.addEventListener("click", function () {
             state.currentLang = "es";
+            applyStaticLang();
+            hideAiPowered();
             if (state.currentBase) {
               renderArticle(state.currentBase, { scroll: false });
               return;
