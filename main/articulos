@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-26T21:14:50.768793+00:00",
+  "updated_at": "2026-08-26T21:17:51.266983+00:00",
   "reason": "draft:borrador-4",
   "articles": [
     {
@@ -101,7 +101,7 @@
     },
     {
       "slug": "borrador-4",
-      "title": "Borrador",
+      "title": "HIGH ENERGY Y MAHAYANA",
       "subtitle": null,
       "hero_image": null,
       "excerpt": "Escribe tu articulo Este editor es visual: lo que ves aqui es lo que se publicara en el articulo final.",
@@ -109,7 +109,7 @@
       "author_name": "Adeline",
       "is_published": 0,
       "created_at": "2026-08-26T21:02:50.285589",
-      "updated_at": "2026-08-26T21:14:50.187065"
+      "updated_at": "2026-08-26T21:17:50.087833"
     }
   ]
 }
