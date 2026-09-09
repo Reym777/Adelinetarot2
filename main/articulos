@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updated_at": "2026-08-27T03:43:24.234577+00:00",
-  "reason": "publish-draft:borrador-4",
+  "updated_at": "2026-09-09T15:35:10.529703+00:00",
+  "reason": "draft:bodhisattva-proposito",
   "articles": [
     {
       "slug": "borrador-2",
@@ -110,6 +110,18 @@
       "is_published": 1,
       "created_at": "2026-08-26T21:02:50.285589",
       "updated_at": "2026-08-27T03:43:23.106916"
+    },
+    {
+      "slug": "bodhisattva-proposito",
+      "title": "BODHISATTVA, PROPÓSITO,",
+      "subtitle": null,
+      "hero_image": null,
+      "excerpt": "Escribe tu articulo Este editor es visual: lo que ves aqui es lo que se publicara en el articulo final.",
+      "content": "<h2>Escribe tu articulo</h2>\n          <p>Este editor es visual: lo que ves aqui es lo que se publicara en el articulo final.</p>",
+      "author_name": "Adeline",
+      "is_published": 0,
+      "created_at": "2026-09-09T15:35:09.370688",
+      "updated_at": "2026-09-09T15:35:09.370688"
     }
   ]
 }
