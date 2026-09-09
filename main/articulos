@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-09T23:15:05.596547+00:00",
+  "updated_at": "2026-09-09T23:18:05.283210+00:00",
   "reason": "draft:bodhisattva-proposito",
   "articles": [
     {
@@ -121,7 +121,7 @@
       "author_name": "Adeline",
       "is_published": 0,
       "created_at": "2026-09-09T15:35:09.370688",
-      "updated_at": "2026-09-09T23:15:04.401859"
+      "updated_at": "2026-09-09T23:18:04.500104"
     }
   ]
 }
