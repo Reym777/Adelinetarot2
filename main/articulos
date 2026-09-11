@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-11T13:12:01.290665+00:00",
+  "updated_at": "2026-09-11T13:15:00.787924+00:00",
   "reason": "draft:bodhisattva-proposito",
   "articles": [
     {
@@ -117,11 +117,11 @@
       "subtitle": null,
       "hero_image": null,
       "excerpt": "EL AMOR QUE PURIFICA Y SANA Querido lector (a), en este texto podrás encontrar pensamientos y sentimientos sobre el amor, bienvenido (a).",
-      "content": "<h2>EL AMOR QUE PURIFICA Y SANA</h2>\n          <p>Querido lector (a), en este texto podrás encontrar pensamientos y sentimientos sobre el amor, bienvenido (a).</p><p><br></p><p><br></p>",
+      "content": "<h2>EL AMOR QUE PURIFICA Y SANA</h2>\n          <p>Querido lector (a), en este texto podrás encontrar pensamientos y sentimientos sobre el amor, bienvenido (a).</p><p><br></p><p><br></p><p><br></p>",
       "author_name": "Adeline",
       "is_published": 0,
       "created_at": "2026-09-09T15:35:09.370688",
-      "updated_at": "2026-09-11T13:12:00.054562"
+      "updated_at": "2026-09-11T13:14:59.658575"
     }
   ]
 }
