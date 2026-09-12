@@ -14,7 +14,12 @@ from urllib.request import Request, urlopen
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from ..article_backup import delete_draft_snapshot, push_articles_snapshot, push_draft_snapshot
+from ..article_backup import (
+    delete_draft_snapshot,
+    push_articles_snapshot,
+    push_draft_snapshot,
+    restore_articles_from_backup,
+)
 from ..database import get_db
 from ..mailer import send_article_copy_to_contact
 from ..models import Article
@@ -235,6 +240,12 @@ def list_articles(
     return [_summary_from_row(row) for row in rows]
 
 
+@router.post("/admin/restore-backup", dependencies=[Depends(require_admin)])
+def restore_backup(db: Session = Depends(get_db)) -> Dict[str, int]:
+    """Pull missing/updated articles from the GitHub backup into the live DB."""
+    return restore_articles_from_backup(db)
+
+
 @router.get("/admin/export", response_model=List[ArticleDetail], dependencies=[Depends(require_admin)])
 def export_articles(
     _: None = Depends(read_rate_limit),
@@ -289,7 +300,7 @@ def import_article(
             excerpt=excerpt,
             content=payload.content,
             author_name=(payload.author_name or "Adeline"),
-            is_published=int(payload.is_published or 1),
+            is_published=int(payload.is_published if payload.is_published is not None else 1),
             created_at=payload.created_at or now,
             updated_at=payload.updated_at or now,
         )
@@ -301,7 +312,7 @@ def import_article(
         row.excerpt = excerpt
         row.content = payload.content
         row.author_name = payload.author_name or row.author_name
-        row.is_published = int(payload.is_published or 1)
+        row.is_published = int(payload.is_published if payload.is_published is not None else 1)
         row.updated_at = payload.updated_at or now
 
     db.commit()

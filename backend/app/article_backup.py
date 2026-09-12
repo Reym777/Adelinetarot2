@@ -75,6 +75,27 @@ def _request_json(url: str, method: str = "GET", payload: Optional[Dict[str, Any
         return json.loads(body) if body else {}
 
 
+def _github_blob_url(sha: str) -> str:
+    repo = settings.articles_backup_github_repo.strip()
+    return f"https://api.github.com/repos/{repo}/git/blobs/{parse.quote(sha)}"
+
+
+def _content_b64_from_payload(payload: Dict[str, Any]) -> str:
+    """Contents API omits inline `content` for files over 1MB; fall back to the blobs API."""
+    content_b64 = str(payload.get("content") or "").replace("\n", "")
+    if content_b64:
+        return content_b64
+    sha = str(payload.get("sha") or "").strip()
+    if not sha:
+        return ""
+    try:
+        blob = _request_json(_github_blob_url(sha))
+    except Exception:
+        logger.warning("GitHub blob read failed for sha %s", sha, exc_info=True)
+        return ""
+    return str(blob.get("content") or "").replace("\n", "")
+
+
 def _parse_dt(value: Any) -> datetime:
     if not value:
         return datetime.now(timezone.utc)
@@ -163,7 +184,7 @@ def _list_remote_article_files() -> List[Dict[str, Any]]:
 
 def _read_remote_json_file(path: str) -> Dict[str, Any]:
     payload = _request_json(_github_api_url_for_path(path))
-    content_b64 = str(payload.get("content") or "").replace("\n", "")
+    content_b64 = _content_b64_from_payload(payload)
     if not content_b64:
         return {}
     raw = base64.b64decode(content_b64.encode("ascii")).decode("utf-8")
@@ -230,7 +251,7 @@ def load_remote_articles() -> Tuple[List[Dict[str, Any]], Optional[str]]:
             logger.warning("GitHub article backup read failed", exc_info=True)
             return [], None
 
-        content_b64 = str(payload.get("content") or "").replace("\n", "")
+        content_b64 = _content_b64_from_payload(payload)
         if not content_b64:
             return [], payload.get("sha")
 
