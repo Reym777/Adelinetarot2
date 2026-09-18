@@ -228,6 +228,7 @@ class Settings(BaseSettings):
             "https://adelinemagica.com",
             "https://www.adelinemagica.com",
             "https://adelinetarot2.onrender.com",
+            "https://reym777.github.io",
             "http://localhost:8000",
             "http://127.0.0.1:8000",
         ]

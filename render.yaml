@@ -43,7 +43,7 @@ services:
           name: adelinemagica-db
           property: connectionString
       - key: ADELINE_CORS_ORIGINS
-        value: "https://adelinemagica.com,https://www.adelinemagica.com,https://adelinetarot2.onrender.com"
+        value: "https://adelinemagica.com,https://www.adelinemagica.com,https://adelinetarot2.onrender.com,https://reym777.github.io"
       # Token de administracion estable (Render genera un valor seguro y lo fija).
       - key: ADELINE_ADMIN_TOKEN
         generateValue: true

@@ -7,6 +7,10 @@ backend/.env
 backend/.env.*
 !backend/.env.example
 
+# Local SQLite dev database (production uses Postgres, see render.yaml)
+backend/*.db
+backend/*.db-journal
+
 # Frontend toolchain
 node_modules/
 
