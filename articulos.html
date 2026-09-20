@@ -235,6 +235,7 @@
                 <span id="translationProgress" class="translation-progress hidden" aria-live="polite" aria-atomic="true" aria-busy="false"></span>
                 <button id="topTranslateEs" type="button" data-lang="es">ES</button>
                 <button id="topTranslateEn" type="button" data-lang="en">EN</button>
+                <button id="topTranslateFr" type="button" data-lang="fr">FR</button>
               </div>
               <h1 style="margin:0">Editorial</h1>
             </div>
@@ -285,6 +286,7 @@
               <div class="reader-lang" aria-label="Idioma del articulo">
                 <button id="readerLangEs" type="button" class="btn btn-ghost is-active">ES</button>
                 <button id="readerLangEn" type="button" class="btn btn-ghost">EN</button>
+                <button id="readerLangFr" type="button" class="btn btn-ghost">FR</button>
               </div>
             </div>
             <h2 id="readerTitle" style="margin:0 0 4px"></h2>
@@ -368,6 +370,15 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           translationError: "Could not load the English translation.",
           moreArticles: "More articles to read",
           subscribeBar: "Subscribe \u00B7 Interesting reads every week"
+        },
+        fr: {
+          share: "Partager cet article",
+          copy: "Copier le lien",
+          copyShareSuccess: "Lien copi\u00e9.",
+          copyLinkSuccess: "Lien de l'article copi\u00e9.",
+          translationError: "Impossible de charger la traduction en fran\u00e7ais.",
+          moreArticles: "Autres articles \u00e0 lire",
+          subscribeBar: "S'abonner \u00B7 Lectures int\u00e9ressantes chaque semaine"
         }
       };
 
@@ -424,7 +435,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         if (isNaN(date.getTime())) {
           return "";
         }
-        return date.toLocaleDateString(lang === "en" ? "en-US" : "es-ES", {
+        var locale = lang === "en" ? "en-US" : lang === "fr" ? "fr-FR" : "es-ES";
+        return date.toLocaleDateString(locale, {
           day: "2-digit",
           month: "long",
           year: "numeric"
@@ -438,7 +450,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
 
       function getLangParam() {
         var params = new URLSearchParams(location.search);
-        return (params.get("lang") || "es").trim().toLowerCase() === "en" ? "en" : "es";
+        var lang = (params.get("lang") || "es").trim().toLowerCase();
+        return lang === "en" || lang === "fr" ? lang : "es";
       }
 
       function updateQuery(slug, lang) {
@@ -448,8 +461,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         } else {
           url.searchParams.delete("slug");
         }
-        if (lang === "en") {
-          url.searchParams.set("lang", "en");
+        if (lang === "en" || lang === "fr") {
+          url.searchParams.set("lang", lang);
         } else {
           url.searchParams.delete("lang");
         }
@@ -463,8 +476,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         } else {
           url.searchParams.delete("slug");
         }
-        if (lang === "en") {
-          url.searchParams.set("lang", "en");
+        if (lang === "en" || lang === "fr") {
+          url.searchParams.set("lang", lang);
         } else {
           url.searchParams.delete("lang");
         }
@@ -621,8 +634,10 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
       function updateLanguageControls() {
         var esButton = document.getElementById("readerLangEs");
         var enButton = document.getElementById("readerLangEn");
+        var frButton = document.getElementById("readerLangFr");
         esButton.classList.toggle("is-active", state.currentLang === "es");
         enButton.classList.toggle("is-active", state.currentLang === "en");
+        if (frButton) { frButton.classList.toggle("is-active", state.currentLang === "fr"); }
       }
 
       function renderArticle(article, options) {
@@ -687,7 +702,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         if (!wrap || !state.list.length) { if (wrap) wrap.style.display = "none"; return; }
         var track = document.getElementById("carTrack");
         track.innerHTML = state.list.map(function (article, idx) {
-          var translated = state.currentLang === "en" ? state.translations[article.slug + ":en"] : null;
+          var translated = state.currentLang !== "es" ? state.translations[article.slug + ":" + state.currentLang] : null;
           var source = translated || article;
           var text = source.excerpt || source.subtitle || "";
           if (!text && source.content) {
@@ -753,8 +768,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         return fetchJson("/api/articles/" + encodeURIComponent(slug));
       }
 
-      function fetchEnglishTranslation(slug) {
-        return fetchJson("/api/articles/" + encodeURIComponent(slug) + "/translation?lang=en");
+      function fetchTranslation(slug, lang) {
+        return fetchJson("/api/articles/" + encodeURIComponent(slug) + "/translation?lang=" + encodeURIComponent(lang));
       }
 
       function setTranslationProgress(value, visible) {
@@ -796,7 +811,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
 
       function revealAiPowered() {
         var label = document.querySelector(".ai-powered-label");
-        if (label && state.currentLang === "en") { label.classList.remove("hidden"); }
+        if (label && state.currentLang !== "es") { label.classList.remove("hidden"); }
       }
 
       function hideAiPowered() {
@@ -813,11 +828,12 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
       }
 
       function translateCarouselArticles() {
-        if (state.currentLang !== "en") { return Promise.resolve(); }
+        var lang = state.currentLang;
+        if (lang === "es") { return Promise.resolve(); }
         return Promise.all(state.list.map(function (article) {
-          var cacheKey = article.slug + ":en";
+          var cacheKey = article.slug + ":" + lang;
           if (state.translations[cacheKey]) { return Promise.resolve(state.translations[cacheKey]); }
-          return fetchEnglishTranslation(article.slug)
+          return fetchTranslation(article.slug, lang)
             .then(function (translated) {
               state.translations[cacheKey] = translated;
               return translated;
@@ -828,15 +844,15 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         });
       }
 
-      function showEnglishArticle(baseArticle, options) {
-        var cacheKey = baseArticle.slug + ":en";
+      function showTranslatedArticle(baseArticle, lang, options) {
+        var cacheKey = baseArticle.slug + ":" + lang;
         if (state.translations[cacheKey]) {
           renderArticle(state.translations[cacheKey], options);
           if (state.translationTimer) { finishTranslationProgress(); }
           return Promise.resolve(state.translations[cacheKey]);
         }
         startTranslationProgress();
-        return fetchEnglishTranslation(baseArticle.slug)
+        return fetchTranslation(baseArticle.slug, lang)
           .then(function (translated) {
             state.translations[cacheKey] = translated;
             renderArticle(translated, options);
@@ -847,26 +863,26 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
             failTranslationProgress();
             state.currentLang = "es";
             renderArticle(baseArticle, options);
-            alert(labels.es.translationError);
+            alert(labels[lang] ? labels[lang].translationError : labels.es.translationError);
             return baseArticle;
           });
       }
 
-      function showEnglishFeatured(baseArticle) {
-        var cacheKey = baseArticle.slug + ":en";
+      function showTranslatedFeatured(baseArticle, lang) {
+        var cacheKey = baseArticle.slug + ":" + lang;
         if (state.translations[cacheKey]) {
           state.featuredArticle = state.translations[cacheKey];
-          state.currentLang = "en";
+          state.currentLang = lang;
           renderFeatured();
           updateHead(state.featuredArticle);
           return Promise.resolve(state.featuredArticle);
         }
         startTranslationProgress();
-        return fetchEnglishTranslation(baseArticle.slug)
+        return fetchTranslation(baseArticle.slug, lang)
           .then(function (translated) {
             state.translations[cacheKey] = translated;
             state.featuredArticle = translated;
-            state.currentLang = "en";
+            state.currentLang = lang;
             renderFeatured();
             updateHead(translated);
             finishTranslationProgress();
@@ -877,7 +893,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
             state.currentLang = "es";
             state.featuredArticle = baseArticle;
             renderFeatured();
-            alert(labels.es.translationError);
+            alert(labels[lang] ? labels[lang].translationError : labels.es.translationError);
             return baseArticle;
           });
       }
@@ -889,8 +905,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         return fetchArticle(slug)
           .then(function (article) {
             state.currentBase = article;
-            if (state.currentLang === "en") {
-              return showEnglishArticle(article, options);
+            if (state.currentLang !== "es") {
+              return showTranslatedArticle(article, state.currentLang, options);
             }
             renderArticle(article, options);
             return article;
@@ -914,8 +930,10 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         var copyButton = replaceButton("copyBtn");
         var esButton = replaceButton("readerLangEs");
         var enButton = replaceButton("readerLangEn");
+        var frButton = document.getElementById("readerLangFr") ? replaceButton("readerLangFr") : null;
         var topEsButton = document.getElementById("topTranslateEs");
         var topEnButton = document.getElementById("topTranslateEn");
+        var topFrButton = document.getElementById("topTranslateFr");
 
         shareButton.addEventListener("click", function () {
           if (!state.current || !state.currentBase) {
@@ -957,20 +975,26 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           renderArticle(state.currentBase, { scroll: false });
         });
 
-        enButton.addEventListener("click", function () {
-          if (!state.currentBase) {
-            return;
-          }
-          state.currentLang = "en";
-          applyStaticLang();
-          renderCards();
-          showEnglishArticle(state.currentBase, { scroll: false });
-          translateCarouselArticles();
-        });
+        function bindReaderTranslateButton(button, lang) {
+          if (!button) { return; }
+          button.addEventListener("click", function () {
+            if (!state.currentBase) {
+              return;
+            }
+            state.currentLang = lang;
+            applyStaticLang();
+            renderCards();
+            showTranslatedArticle(state.currentBase, lang, { scroll: false });
+            translateCarouselArticles();
+          });
+        }
+        bindReaderTranslateButton(enButton, "en");
+        bindReaderTranslateButton(frButton, "fr");
 
-        if (topEnButton) {
-          topEnButton.addEventListener("click", function () {
-            state.currentLang = "en";
+        function bindTopTranslateButton(button, lang) {
+          if (!button) { return; }
+          button.addEventListener("click", function () {
+            state.currentLang = lang;
             applyStaticLang();
             hideAiPowered();
             var baseArticle = state.currentBase || state.list[state.featuredIndex];
@@ -980,7 +1004,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
                 ? Promise.resolve(baseArticle)
                 : fetchArticle(baseArticle.slug);
               articlePromise.then(function (article) {
-                return Promise.all([showEnglishFeatured(article), translateCarouselArticles()]);
+                return Promise.all([showTranslatedFeatured(article, lang), translateCarouselArticles()]);
               }).then(function () {
                 revealAiPowered();
               }).catch(function () {
@@ -994,7 +1018,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
             startTranslationProgress();
             articlePromise.then(function (article) {
               state.currentBase = article;
-              return Promise.all([showEnglishArticle(article, { scroll: false, updateQuery: false }), translateCarouselArticles()]);
+              return Promise.all([showTranslatedArticle(article, lang, { scroll: false, updateQuery: false }), translateCarouselArticles()]);
             }).then(function () {
               revealAiPowered();
             }).catch(function () {
@@ -1002,6 +1026,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
             });
           });
         }
+        bindTopTranslateButton(topEnButton, "en");
+        bindTopTranslateButton(topFrButton, "fr");
 
         if (topEsButton) {
           topEsButton.addEventListener("click", function () {

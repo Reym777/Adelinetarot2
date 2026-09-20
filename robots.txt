@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Allow: /fr/
+Allow: /en/
 
 Sitemap: https://adelinemagica.com/sitemap.xml

@@ -488,8 +488,8 @@ def article_translation_route(
     db: Session = Depends(get_db),
 ) -> ArticleTranslation:
     target_lang = (lang or "").strip().lower()
-    if target_lang != "en":
-        raise HTTPException(status_code=422, detail="Solo se admite traduccion automatica al ingles")
+    if target_lang not in ("en", "fr"):
+        raise HTTPException(status_code=422, detail="Solo se admite traduccion automatica al ingles o al frances")
 
     row = _published_article_or_404(db, slug)
     try:
