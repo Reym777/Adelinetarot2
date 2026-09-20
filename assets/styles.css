@@ -1657,7 +1657,7 @@ tbody tr:hover { background: rgba(232, 198, 107, .07); }
     font-size: clamp(.42rem, 1.35vw, .48rem) !important;
     margin-right: var(--banner-edge-pad);
   }
-  .menu-toggle { width: 57px; height: 57px; font-size: 1.65rem; }
+  .menu-toggle { width: 93px; height: 93px; font-size: 2.7rem; }
   .orbit-ring { width: min(92vw, 286px); }
   .orbit-card { width: 82px; min-height: 104px; transform: translate(-50%, -50%) rotate(var(--ang)) translate(0, -90px); }
   .orbit-card span { font-size: .5rem; }
