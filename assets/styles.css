@@ -582,9 +582,9 @@ a:hover { color: #f3dd9a; }
 
 @media (max-width: 560px) {
   .menu-toggle {
-    width: 93px;
-    height: 93px;
-    font-size: 2.7rem;
+    width: 56px;
+    height: 56px;
+    font-size: 1.6rem;
     margin-left: 10px;
   }
 
@@ -607,8 +607,21 @@ a:hover { color: #f3dd9a; }
   }
 
   .side-menu-links a {
-    font-size: 1.44rem;
-    padding: 14px 13px;
+    font-size: 1.1rem;
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .menu-toggle {
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
+  }
+
+  .side-menu-links a {
+    font-size: 0.98rem;
+    padding: 9px 10px;
   }
 }
 
@@ -624,6 +637,9 @@ a:hover { color: #f3dd9a; }
   transform: translateX(-105%);
   transition: transform .25s ease;
   padding: 14px 14px 18px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 .side-menu.open { transform: translateX(0); }
 .side-menu-head {
@@ -1657,11 +1673,10 @@ tbody tr:hover { background: rgba(232, 198, 107, .07); }
     font-size: clamp(.42rem, 1.35vw, .48rem) !important;
     margin-right: var(--banner-edge-pad);
   }
-  .menu-toggle { width: 93px; height: 93px; font-size: 2.7rem; }
+  /* duplicate .menu-toggle rule removed here; size is controlled by the 560px block above */
   .orbit-ring { width: min(92vw, 286px); }
   .orbit-card { width: 82px; min-height: 104px; transform: translate(-50%, -50%) rotate(var(--ang)) translate(0, -90px); }
   .orbit-card span { font-size: .5rem; }
-  
 
   .hero { padding: 26px 0 40px; }
   .hero { min-height: 340px; }
