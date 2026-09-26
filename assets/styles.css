@@ -464,6 +464,26 @@ a:hover { color: #f3dd9a; }
   margin-left: 12px;
   flex-shrink: 0;
 }
+.header-instagram-btn {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 148px;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  transform: translateY(-50%);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: rgba(12,10,29,.72);
+  color: var(--gold);
+}
+.header-instagram-btn svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.header-instagram-btn:hover { color: #fff; border-color: var(--gold); }
+.header-social-group { display: flex; align-items: center; gap: 8px; position: relative; z-index: 2; justify-self: start; margin-left: 12px; }
+.header-social-group > .header-instagram-btn { position: static; flex: 0 0 auto; transform: none; }
+.header-social-group > .btn-ghost { margin-left: 0 !important; }
 .brand {
   position: absolute;
   inset: 0;
@@ -581,6 +601,9 @@ a:hover { color: #f3dd9a; }
 }
 
 @media (max-width: 560px) {
+  .header-social-group { gap: 6px; margin-left: 10px; }
+  .header-instagram-btn { left: 74px; width: 38px; height: 38px; }
+  .header-instagram-btn svg { width: 19px; height: 19px; }
   .menu-toggle {
     width: 56px;
     height: 56px;
@@ -613,6 +636,8 @@ a:hover { color: #f3dd9a; }
 }
 
 @media (max-width: 380px) {
+  .header-instagram-btn { left: 64px; width: 34px; height: 34px; }
+  .header-instagram-btn svg { width: 17px; height: 17px; }
   .menu-toggle {
     width: 48px;
     height: 48px;

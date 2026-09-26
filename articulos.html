@@ -126,7 +126,7 @@
     .reader-lang-note.hidden { display: none; }
     .reader-share { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
     .reader-share .btn { min-width: 180px; }
-    .article-feedback { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }
+    .article-feedback { width: min(100%, 700px); margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }
     .article-feedback-actions { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
     .article-like-button { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,.04); color: var(--text); cursor: pointer; font: inherit; }
     .article-like-button[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
@@ -141,9 +141,6 @@
     .article-comment-status { min-height: 1.3em; margin: 0; color: var(--muted); font-size: .9rem; }
     .article-comments { display: grid; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
     .article-comment { padding: 10px 12px; border-left: 2px solid var(--gold); background: rgba(255,255,255,.035); overflow-wrap: anywhere; }
-    .instagram-editorial { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; color: var(--gold); border: 1px solid var(--border); border-radius: 50%; }
-    .instagram-editorial svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; }
-    .instagram-editorial:hover { color: #fff; border-color: var(--gold); }
     .empty-msg { text-align: center; padding: 20px 8px; color: var(--muted); }
     .fp-wrap { margin-top: 14px; }
     .art-carousel-wrap { margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border); }
@@ -213,6 +210,7 @@
   <header class="site-header">
     <div class="container nav">
       <button type="button" class="menu-toggle" aria-label="Abrir menu" onclick="toggleMenu(true)">☰</button>
+      <a class="header-instagram-btn" href="https://instagram.com/adeline.tarotterapeutico" target="_blank" rel="noopener noreferrer" aria-label="Instagram @adeline.tarotterapeutico" title="Instagram @adeline.tarotterapeutico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="18" cy="6" r=".8" fill="currentColor" stroke="none"></circle></svg></a>
       <a class="brand" href="index#inicio">
         <img src="assets/images/bandeau10_upscaled_1280_11zon-768w.webp" srcset="assets/images/bandeau10_upscaled_1280_11zon-480w.webp 480w, assets/images/bandeau10_upscaled_1280_11zon-768w.webp 768w, assets/images/bandeau10_upscaled_1280_11zon-1024w.webp 1024w, assets/images/bandeau10_upscaled_1280_11zon-1280w.webp 1280w" sizes="(max-width: 900px) 92vw, 1287px" width="2200" height="369" class="brand-banner-img" alt="Adeline" loading="eager" fetchpriority="high" decoding="async" />
       </a>
@@ -263,9 +261,6 @@
                 <button id="topTranslateFr" type="button" data-lang="fr">FR</button>
               </div>
               <h1 style="margin:0">Editorial</h1>
-              <a class="instagram-editorial" href="https://instagram.com/adeline.tarotterapeutico" target="_blank" rel="noopener noreferrer" aria-label="Instagram @adeline.tarotterapeutico" title="Instagram @adeline.tarotterapeutico">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="18" cy="6" r=".8" fill="currentColor" stroke="none"></circle></svg>
-              </a>
             </div>
             <p class="section-sub" style="margin:0 auto;text-align:center">Cronicas espirituales (por si ya te cansaste de scrollear infinito)</p>
           </div>
@@ -274,13 +269,12 @@
             <h2 id="fpTitle" style="margin:0 0 6px;font-family:'Cinzel',serif;font-size:1.5rem"></h2>
             <p id="fpSubtitle" class="section-sub" style="margin:0 0 14px"></p>
             <div id="fpContent" class="article-content"></div>
-            <section id="articleFeedback" class="article-feedback" aria-labelledby="articleFeedbackTitle">
-              <h3 id="articleFeedbackTitle" style="font-family:'Cinzel',serif;margin:0 0 12px">Participa</h3>
+            <section id="articleFeedback" class="article-feedback" aria-label="Comentarios y reacciones">
               <div class="article-feedback-actions">
                 <button id="articleLikeButton" type="button" class="article-like-button" aria-pressed="false"><span aria-hidden="true">😊</span><span id="articleLikeLabel">Me gustó</span><span id="articleLikeCount" class="article-like-count">0</span></button>
               </div>
               <form id="articleCommentForm" class="article-comment-form">
-                <label class="article-comment-label" for="articleCommentInput">Deja un comentario (máximo 100 caracteres)</label>
+                <label class="article-comment-label" for="articleCommentInput">Deja un comentario</label>
                 <div class="article-comment-row">
                   <textarea id="articleCommentInput" class="article-comment-input" maxlength="100" rows="2" required></textarea>
                   <button id="articleCommentSubmit" type="submit" class="btn btn-primary article-comment-submit">Publicar</button>
@@ -401,7 +395,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           copyLinkSuccess: "Enlace del articulo copiado.",
           like: "Me gustó",
           liked: "Te gustó",
-          commentLabel: "Deja un comentario (máximo 100 caracteres)",
+          commentLabel: "Deja un comentario",
           commentSubmit: "Publicar",
           commentSuccess: "Comentario publicado.",
           commentError: "No se pudo publicar el comentario. Inténtalo de nuevo.",
@@ -418,7 +412,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           copyLinkSuccess: "Article link copied.",
           like: "Like",
           liked: "Liked",
-          commentLabel: "Leave a comment (100 characters max)",
+          commentLabel: "Leave a comment",
           commentSubmit: "Post",
           commentSuccess: "Comment posted.",
           commentError: "Could not post the comment. Please try again.",
@@ -435,7 +429,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           copyLinkSuccess: "Lien de l'article copi\u00e9.",
           like: "J’aime",
           liked: "Aimé",
-          commentLabel: "Laissez un commentaire (100 caractères max)",
+          commentLabel: "Laissez un commentaire",
           commentSubmit: "Publier",
           commentSuccess: "Commentaire publié.",
           commentError: "Impossible de publier le commentaire. Réessayez.",
