@@ -79,21 +79,26 @@
     .articles-wrap { max-width: 980px; margin: 0 auto; }
     .articles-head { margin-bottom: 18px; text-align: center; }
     .articles-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-    .article-card {
-      display: block;
-      text-decoration: none;
+    .article-list-card {
+      position: relative;
+      overflow: hidden;
       border: 1px solid var(--border);
       border-radius: 14px;
       background: rgba(30, 25, 62, .66);
-      overflow: hidden;
       transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-      color: var(--text);
     }
-    .article-card:hover {
+    .article-list-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 14px 30px rgba(0,0,0,.35);
       border-color: rgba(232, 198, 107, .5);
     }
+    .article-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .article-card-share { margin: 0 14px 14px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; background: transparent; color: var(--gold); cursor: pointer; font: inherit; }
+    .article-card-share:hover { background: rgba(232,198,107,.08); }
     .article-cover { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
     .article-body { padding: 14px; }
     .article-meta { color: var(--muted); font-size: .92rem; margin-bottom: 6px; }
@@ -121,6 +126,24 @@
     .reader-lang-note.hidden { display: none; }
     .reader-share { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
     .reader-share .btn { min-width: 180px; }
+    .article-feedback { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }
+    .article-feedback-actions { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .article-like-button { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,.04); color: var(--text); cursor: pointer; font: inherit; }
+    .article-like-button[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
+    .article-like-count { color: var(--gold); font-variant-numeric: tabular-nums; }
+    .article-comment-form { display: grid; gap: 8px; }
+    .article-comment-label { color: var(--text); font-weight: 600; }
+    .article-comment-row { display: flex; align-items: flex-end; gap: 10px; }
+    .article-comment-input { flex: 1; min-height: 76px; resize: vertical; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,.04); color: var(--text); font: inherit; }
+    .article-comment-input:focus { outline: 2px solid rgba(232,198,107,.5); outline-offset: 1px; }
+    .article-comment-submit { min-height: 42px; padding: 8px 14px; white-space: nowrap; }
+    .article-comment-counter { justify-self: end; color: var(--muted); font-size: .84rem; font-variant-numeric: tabular-nums; }
+    .article-comment-status { min-height: 1.3em; margin: 0; color: var(--muted); font-size: .9rem; }
+    .article-comments { display: grid; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+    .article-comment { padding: 10px 12px; border-left: 2px solid var(--gold); background: rgba(255,255,255,.035); overflow-wrap: anywhere; }
+    .instagram-editorial { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; color: var(--gold); border: 1px solid var(--border); border-radius: 50%; }
+    .instagram-editorial svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .instagram-editorial:hover { color: #fff; border-color: var(--gold); }
     .empty-msg { text-align: center; padding: 20px 8px; color: var(--muted); }
     .fp-wrap { margin-top: 14px; }
     .art-carousel-wrap { margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border); }
@@ -128,12 +151,14 @@
     .art-carousel-outer { display: flex; align-items: center; gap: 10px; }
     .art-car-viewport { overflow: hidden; flex: 1; }
     .art-car-track { display: flex; gap: 12px; transition: transform .38s cubic-bezier(.4,0,.2,1); will-change: transform; }
-    .art-car-card { flex: 0 0 calc((100% - 24px) / 3); min-width: 0; border: 1px solid var(--border); border-radius: 12px; background: rgba(30,25,62,.66); padding: 14px 16px; cursor: pointer; transition: border-color .2s, transform .2s; color: var(--text); user-select: none; }
+    .art-car-card { flex: 0 0 38.33%; min-width: 0; border: 1px solid var(--border); border-radius: 12px; background: rgba(30,25,62,.66); padding: 16px 18px; cursor: pointer; transition: border-color .2s, transform .2s; color: var(--text); user-select: none; }
     .art-car-card:hover { border-color: rgba(232,198,107,.5); transform: translateY(-2px); }
     .art-car-card.is-active { border-color: rgba(232,198,107,.6); background: rgba(232,198,107,.06); }
-    .art-car-card-title { font-family: 'Cinzel', serif; font-size: .95rem; margin: 0 0 8px; line-height: 1.3; }
-    .art-car-card-text { font-size: .88rem; color: var(--muted); margin: 0; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .art-car-btn { flex: 0 0 36px; width: 36px; height: 36px; background: none; border: 1px solid var(--border); color: var(--gold); border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s, border-color .2s; }
+    .art-car-card-title { font-family: 'Cinzel', serif; font-size: 1.09rem; margin: 0 0 9px; line-height: 1.3; }
+    .art-car-card-text { font-size: 1.01rem; color: var(--muted); margin: 0; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .art-car-share { margin-top: 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; background: transparent; color: var(--gold); font: inherit; font-size: .9rem; cursor: pointer; }
+    .art-car-share:hover { background: rgba(232,198,107,.08); }
+    .art-car-btn { flex: 0 0 41px; width: 41px; height: 41px; background: none; border: 1px solid var(--border); color: var(--gold); border-radius: 50%; font-size: 1.27rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s, border-color .2s; }
     .art-car-btn:hover:not(:disabled) { background: rgba(232,198,107,.08); border-color: rgba(232,198,107,.5); }
     .art-car-btn:disabled { opacity: .28; cursor: default; }
     @media (max-width: 820px) {
@@ -143,10 +168,10 @@
       .articles-page { padding-top: 38px; }
       .reader-tools { align-items: stretch; }
       .reader-share .btn { width: 100%; }
-      .art-car-card { flex: 0 0 calc((100% - 12px) / 2); }
+      .art-car-card { flex-basis: 57.5%; }
     }
     @media (max-width: 520px) {
-      .art-car-card { flex: 0 0 82%; }
+      .art-car-card { flex-basis: 94.3%; }
     }
     .subscribe-bar { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
     .subscribe-bar-btn { font-size: .95rem; padding: 12px 28px; }
@@ -238,6 +263,9 @@
                 <button id="topTranslateFr" type="button" data-lang="fr">FR</button>
               </div>
               <h1 style="margin:0">Editorial</h1>
+              <a class="instagram-editorial" href="https://instagram.com/adeline.tarotterapeutico" target="_blank" rel="noopener noreferrer" aria-label="Instagram @adeline.tarotterapeutico" title="Instagram @adeline.tarotterapeutico">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="18" cy="6" r=".8" fill="currentColor" stroke="none"></circle></svg>
+              </a>
             </div>
             <p class="section-sub" style="margin:0 auto;text-align:center">Cronicas espirituales (por si ya te cansaste de scrollear infinito)</p>
           </div>
@@ -246,6 +274,22 @@
             <h2 id="fpTitle" style="margin:0 0 6px;font-family:'Cinzel',serif;font-size:1.5rem"></h2>
             <p id="fpSubtitle" class="section-sub" style="margin:0 0 14px"></p>
             <div id="fpContent" class="article-content"></div>
+            <section id="articleFeedback" class="article-feedback" aria-labelledby="articleFeedbackTitle">
+              <h3 id="articleFeedbackTitle" style="font-family:'Cinzel',serif;margin:0 0 12px">Participa</h3>
+              <div class="article-feedback-actions">
+                <button id="articleLikeButton" type="button" class="article-like-button" aria-pressed="false"><span aria-hidden="true">😊</span><span id="articleLikeLabel">Me gustó</span><span id="articleLikeCount" class="article-like-count">0</span></button>
+              </div>
+              <form id="articleCommentForm" class="article-comment-form">
+                <label class="article-comment-label" for="articleCommentInput">Deja un comentario (máximo 100 caracteres)</label>
+                <div class="article-comment-row">
+                  <textarea id="articleCommentInput" class="article-comment-input" maxlength="100" rows="2" required></textarea>
+                  <button id="articleCommentSubmit" type="submit" class="btn btn-primary article-comment-submit">Publicar</button>
+                </div>
+                <span id="articleCommentCounter" class="article-comment-counter">0/100</span>
+                <p id="articleCommentStatus" class="article-comment-status" aria-live="polite"></p>
+              </form>
+              <ul id="articleComments" class="article-comments" aria-live="polite"></ul>
+            </section>
             <div id="articlesCarousel" class="art-carousel-wrap" style="display:none">
               <p class="art-carousel-hd">Otros articulos para leer</p>
               <div class="art-carousel-outer">
@@ -306,11 +350,6 @@
   <footer class="site-footer">
     <div class="container">
       <p class="muted">Acompanamiento espiritual de alto valor - consultas con agenda previa.</p>
-      <div class="social-share" aria-label="Compartir esta pagina">
-        <span class="share-label">Compartir:</span>
-        <a class="share-pill" href="https://wa.me/?text=Articulos%20Adeline%20Magica%20https%3A%2F%2Fadelinemagica.com%2Farticulos" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="share-pill" href="https://instagram.com/adelinemagica" target="_blank" rel="noopener">Instagram</a>
-      </div>
       <div class="social-links" aria-label="Redes sociales">
         <a href="https://facebook.com/adelinemagica" target="_blank" rel="noopener">Facebook</a>
         <a href="https://youtube.com/@adelinemagica" target="_blank" rel="noopener">YouTube</a>
@@ -345,6 +384,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         featuredIndex: 0,
         featuredArticle: null,
         carouselOffset: 0,
+        feedbackSlug: "",
         translationTimer: null,
         translationProgress: 0
       };
@@ -355,27 +395,51 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
       var labels = {
         es: {
           share: "Compartir este articulo",
+          shareCard: "Compartir este articulo",
           copy: "Copiar enlace",
           copyShareSuccess: "Enlace copiado.",
           copyLinkSuccess: "Enlace del articulo copiado.",
+          like: "Me gustó",
+          liked: "Te gustó",
+          commentLabel: "Deja un comentario (máximo 100 caracteres)",
+          commentSubmit: "Publicar",
+          commentSuccess: "Comentario publicado.",
+          commentError: "No se pudo publicar el comentario. Inténtalo de nuevo.",
+          feedbackError: "No se pudieron cargar los comentarios.",
           translationError: "No se pudo cargar la traduccion en ingles.",
           moreArticles: "Otros articulos para leer",
           subscribeBar: "Suscribirme \u00B7 Lecturas interesantes cada semana"
         },
         en: {
           share: "Share this article",
+          shareCard: "Share this article",
           copy: "Copy link",
           copyShareSuccess: "Link copied.",
           copyLinkSuccess: "Article link copied.",
+          like: "Like",
+          liked: "Liked",
+          commentLabel: "Leave a comment (100 characters max)",
+          commentSubmit: "Post",
+          commentSuccess: "Comment posted.",
+          commentError: "Could not post the comment. Please try again.",
+          feedbackError: "Could not load comments.",
           translationError: "Could not load the English translation.",
           moreArticles: "More articles to read",
           subscribeBar: "Subscribe \u00B7 Interesting reads every week"
         },
         fr: {
           share: "Partager cet article",
+          shareCard: "Partager cet article",
           copy: "Copier le lien",
           copyShareSuccess: "Lien copi\u00e9.",
           copyLinkSuccess: "Lien de l'article copi\u00e9.",
+          like: "J’aime",
+          liked: "Aimé",
+          commentLabel: "Laissez un commentaire (100 caractères max)",
+          commentSubmit: "Publier",
+          commentSuccess: "Commentaire publié.",
+          commentError: "Impossible de publier le commentaire. Réessayez.",
+          feedbackError: "Impossible de charger les commentaires.",
           translationError: "Impossible de charger la traduction en fran\u00e7ais.",
           moreArticles: "Autres articles \u00e0 lire",
           subscribeBar: "S'abonner \u00B7 Lectures int\u00e9ressantes chaque semaine"
@@ -606,6 +670,118 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         return attempt();
       }
 
+      function sendJson(path, body) {
+        var origins = getApiOrigins();
+        var index = 0;
+
+        function attempt() {
+          if (index >= origins.length) {
+            return Promise.reject(new Error("No se pudo guardar la respuesta."));
+          }
+          var origin = origins[index++];
+          return fetch(origin + path, {
+            method: "POST",
+            headers: { Accept: "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+          }).then(function (response) {
+            if (!response.ok) {
+              return response.json().catch(function () { return {}; }).then(function (error) {
+                throw new Error(error.detail || "HTTP " + response.status);
+              });
+            }
+            return response.json();
+          }).catch(function (error) {
+            if (/^HTTP /.test(error.message)) { throw error; }
+            return attempt();
+          });
+        }
+
+        return attempt();
+      }
+
+      function getFeedbackClientId() {
+        var key = "adeline_article_feedback_client";
+        try {
+          var stored = localStorage.getItem(key);
+          if (stored) { return stored; }
+          var id;
+          if (window.crypto && window.crypto.randomUUID) {
+            id = window.crypto.randomUUID();
+          } else {
+            var bytes = new Uint8Array(16);
+            if (window.crypto && window.crypto.getRandomValues) {
+              window.crypto.getRandomValues(bytes);
+            } else {
+              bytes.forEach(function (_, index) { bytes[index] = Math.floor(Math.random() * 256); });
+            }
+            bytes[6] = (bytes[6] & 15) | 64;
+            bytes[8] = (bytes[8] & 63) | 128;
+            id = Array.from(bytes, function (value) { return value.toString(16).padStart(2, "0"); }).join("")
+              .replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, "$1-$2-$3-$4-$5");
+          }
+          localStorage.setItem(key, id);
+          return id;
+        } catch (error) {
+          return "";
+        }
+      }
+
+      function shareArticle(article, lang) {
+        var url = buildArticleUrl(article.slug, lang || "es").toString();
+        var payload = { title: article.title || "Editorial", text: article.excerpt || article.subtitle || "", url: url };
+        if (navigator.share) {
+          navigator.share(payload).catch(function () {});
+          return;
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(function () {
+            alert(labels[state.currentLang].copyShareSuccess);
+          }).catch(function () { window.prompt(labels[state.currentLang].copy, url); });
+          return;
+        }
+        window.prompt(labels[state.currentLang].copy, url);
+      }
+
+      function renderArticleFeedback(feedback) {
+        var likeButton = document.getElementById("articleLikeButton");
+        var likeCount = document.getElementById("articleLikeCount");
+        var commentsList = document.getElementById("articleComments");
+        if (!likeButton || !likeCount || !commentsList) { return; }
+        likeCount.textContent = String(feedback.likes || 0);
+        likeButton.setAttribute("aria-pressed", feedback.liked ? "true" : "false");
+        likeButton.disabled = !!feedback.liked;
+        document.getElementById("articleLikeLabel").textContent = labels[state.currentLang][feedback.liked ? "liked" : "like"];
+        commentsList.replaceChildren();
+        (feedback.comments || []).forEach(function (comment) {
+          var item = document.createElement("li");
+          item.className = "article-comment";
+          item.textContent = comment.text;
+          commentsList.appendChild(item);
+        });
+      }
+
+      function loadArticleFeedback(slug) {
+        var status = document.getElementById("articleCommentStatus");
+        var clientId = getFeedbackClientId();
+        var query = clientId ? "?client_id=" + encodeURIComponent(clientId) : "";
+        state.feedbackSlug = slug;
+        status.textContent = "";
+        document.getElementById("articleComments").replaceChildren();
+        document.getElementById("articleCommentInput").value = "";
+        document.getElementById("articleCommentCounter").textContent = "0/100";
+        document.getElementById("articleCommentSubmit").disabled = false;
+        document.getElementById("articleLikeCount").textContent = "0";
+        document.getElementById("articleLikeButton").disabled = false;
+        document.getElementById("articleLikeButton").setAttribute("aria-pressed", "false");
+        return fetchJson("/api/articles/" + encodeURIComponent(slug) + "/feedback" + query)
+          .then(function (feedback) {
+            if (state.feedbackSlug === slug) { renderArticleFeedback(feedback); }
+          })
+          .catch(function () {
+            if (state.feedbackSlug === slug) { status.textContent = labels[state.currentLang].feedbackError; }
+          });
+      }
+
       function renderCards() {
         var grid = document.getElementById("articlesGrid");
         var emptyState = document.getElementById("emptyState");
@@ -620,15 +796,21 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
             ? '<img class="article-cover" src="' + escapeHtml(article.hero_image) + '" alt="' + escapeHtml(article.title) + '" loading="lazy" decoding="async" />'
             : "";
           var url = buildArticleUrl(article.slug, state.currentLang);
-          return '<a class="article-card" href="' + url.pathname + url.search + '">' +
+          return '<article class="article-list-card"><a class="article-card" href="' + url.pathname + url.search + '">' +
             image +
             '<div class="article-body">' +
             '<p class="article-meta">' + escapeHtml(formatDate(article.created_at, "es")) + ' · ' + escapeHtml(article.author_name || "Adeline") + '</p>' +
             '<h3 class="article-title">' + escapeHtml(article.title) + '</h3>' +
             '<p class="article-sub">' + escapeHtml(article.subtitle || "") + '</p>' +
             '<p class="article-excerpt">' + escapeHtml(article.excerpt || "") + '</p>' +
-            '</div></a>';
+            '</div></a><button type="button" class="article-card-share" data-share-slug="' + escapeHtml(article.slug) + '">' + escapeHtml(labels[state.currentLang].shareCard) + '</button></article>';
         }).join("");
+        grid.querySelectorAll(".article-card-share").forEach(function (button) {
+          button.addEventListener("click", function () {
+            var article = state.list.find(function (entry) { return entry.slug === button.dataset.shareSlug; });
+            if (article) { shareArticle(article, state.currentLang); }
+          });
+        });
       }
 
       function updateLanguageControls() {
@@ -647,6 +829,9 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         document.getElementById("readerSubtitle").textContent = article.subtitle || "";
         document.getElementById("readerMeta").textContent = [formatDate(baseArticle.created_at, state.currentLang), article.author_name || "Adeline"].filter(Boolean).join(" · ");
         document.getElementById("readerContent").innerHTML = renderContent(article.content || "");
+        document.getElementById("readerContent").insertAdjacentElement("afterend", document.getElementById("articleFeedback"));
+        document.querySelector(".article-comment-label").textContent = labels[state.currentLang].commentLabel;
+        document.getElementById("articleCommentSubmit").textContent = labels[state.currentLang].commentSubmit;
 
         var image = document.getElementById("readerImage");
         if (article.hero_image) {
@@ -658,6 +843,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         }
 
         state.current = article;
+        document.getElementById("articleCommentStatus").textContent = "";
+        loadArticleFeedback(baseArticle.slug);
         document.getElementById("articleReader").classList.remove("hidden");
         document.getElementById("shareBtn").textContent = labels[state.currentLang].share;
         document.getElementById("copyBtn").textContent = labels[state.currentLang].copy;
@@ -684,6 +871,11 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         document.getElementById("fpTitle").textContent = article.title || "";
         document.getElementById("fpSubtitle").textContent = article.subtitle || "";
         wrap.classList.remove("hidden");
+        document.querySelector(".article-comment-label").textContent = labels[state.currentLang].commentLabel;
+        document.getElementById("articleCommentSubmit").textContent = labels[state.currentLang].commentSubmit;
+        document.getElementById("articleLikeLabel").textContent = labels[state.currentLang].like;
+        document.getElementById("fpContent").insertAdjacentElement("afterend", document.getElementById("articleFeedback"));
+        loadArticleFeedback(article.slug);
         renderCarousel();
         // content may be absent in list payload; fetch full article if needed
         if (article.content) {
@@ -715,6 +907,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           return '<div class="art-car-card' + active + '" data-idx="' + idx + '">' +
             '<div class="art-car-card-title">' + escapeHtml(source.title || "") + '</div>' +
             '<p class="art-car-card-text">' + escapeHtml(text) + '</p>' +
+            '<button type="button" class="art-car-share" data-share-idx="' + idx + '">' + escapeHtml(labels[state.currentLang].shareCard) + '</button>' +
             '</div>';
         }).join("");
         track.querySelectorAll(".art-car-card").forEach(function (card) {
@@ -729,6 +922,13 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
             document.getElementById("featuredPreview").scrollIntoView({ behavior: "smooth", block: "start" });
           });
         });
+        track.querySelectorAll(".art-car-share").forEach(function (button) {
+          button.addEventListener("click", function (event) {
+            event.stopPropagation();
+            var article = state.list[parseInt(button.dataset.shareIdx, 10)];
+            if (article) { shareArticle(article, state.currentLang); }
+          });
+        });
         state.carouselOffset = 0;
         applyCarouselPos();
         wrap.style.display = "";
@@ -740,11 +940,13 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         var prevBtn = document.getElementById("carPrev");
         var nextBtn = document.getElementById("carNext");
         if (!viewport || !track) { return; }
-        var visibleCount = window.innerWidth <= 520 ? 1 : window.innerWidth <= 820 ? 2 : 3;
-        var total = track.querySelectorAll(".art-car-card").length;
+        var cards = track.querySelectorAll(".art-car-card");
+        var total = cards.length;
+        var gap = parseFloat(window.getComputedStyle(track).gap) || 12;
+        var step = cards[0] ? cards[0].getBoundingClientRect().width + gap : viewport.offsetWidth;
+        var visibleCount = Math.max(1, (viewport.offsetWidth + gap) / step);
         var maxOffset = Math.max(0, total - visibleCount);
         state.carouselOffset = Math.max(0, Math.min(state.carouselOffset, maxOffset));
-        var step = (viewport.offsetWidth + 12) / visibleCount;
         track.style.transform = "translateX(-" + (state.carouselOffset * step) + "px)";
         if (prevBtn) { prevBtn.disabled = state.carouselOffset === 0; }
         if (nextBtn) { nextBtn.disabled = state.carouselOffset >= maxOffset; }
@@ -939,19 +1141,45 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           if (!state.current || !state.currentBase) {
             return;
           }
-          var url = buildArticleUrl(state.currentBase.slug, state.currentLang).toString();
-          var payload = {
-            title: state.current.title,
-            text: state.current.excerpt || state.current.subtitle || "",
-            url: url
-          };
-          if (navigator.share) {
-            navigator.share(payload).catch(function () {});
-            return;
-          }
-          navigator.clipboard.writeText(payload.url).then(function () {
-            alert(labels[state.currentLang].copyShareSuccess);
-          });
+          shareArticle(state.currentBase, state.currentLang);
+        });
+
+        var commentInput = document.getElementById("articleCommentInput");
+        var commentCounter = document.getElementById("articleCommentCounter");
+        commentInput.addEventListener("input", function () {
+          commentCounter.textContent = commentInput.value.length + "/100";
+        });
+        document.getElementById("articleCommentForm").addEventListener("submit", function (event) {
+          event.preventDefault();
+          if (!state.feedbackSlug) { return; }
+          var text = commentInput.value.trim();
+          var submit = document.getElementById("articleCommentSubmit");
+          var status = document.getElementById("articleCommentStatus");
+          if (!text || text.length > 100) { return; }
+          submit.disabled = true;
+          sendJson("/api/articles/" + encodeURIComponent(state.feedbackSlug) + "/comments", { text: text })
+            .then(function () {
+              commentInput.value = "";
+              commentCounter.textContent = "0/100";
+              status.textContent = labels[state.currentLang].commentSuccess;
+              return loadArticleFeedback(state.feedbackSlug);
+            })
+            .catch(function () { status.textContent = labels[state.currentLang].commentError; })
+            .then(function () { submit.disabled = false; });
+        });
+        document.getElementById("articleLikeButton").addEventListener("click", function () {
+          if (!state.feedbackSlug) { return; }
+          var clientId = getFeedbackClientId();
+          if (!clientId) { return; }
+          var button = document.getElementById("articleLikeButton");
+          button.disabled = true;
+          sendJson("/api/articles/" + encodeURIComponent(state.feedbackSlug) + "/likes", { client_id: clientId })
+            .then(function (feedback) {
+              document.getElementById("articleLikeCount").textContent = String(feedback.likes || 0);
+              button.setAttribute("aria-pressed", feedback.liked ? "true" : "false");
+              document.getElementById("articleLikeLabel").textContent = labels[state.currentLang].liked;
+            })
+            .catch(function () { button.disabled = false; });
         });
 
         copyButton.addEventListener("click", function () {
@@ -1058,6 +1286,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
             applyCarouselPos();
           });
         }
+        window.addEventListener("resize", applyCarouselPos);
       }
 
       document.addEventListener("DOMContentLoaded", function () {

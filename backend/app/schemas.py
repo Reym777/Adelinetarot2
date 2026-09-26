@@ -13,6 +13,7 @@ from __future__ import annotations
 import re
 from datetime import date, datetime, time, timezone
 from typing import Annotated, Any, Dict, List, Literal, Optional
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
 
@@ -404,6 +405,39 @@ class ArticleDetail(ArticleSummary):
 class ArticleTranslation(ArticleDetail):
     language: str
     translation_note: str
+
+
+class ArticleCommentCreate(StrictModel):
+    text: Annotated[str, Field(min_length=1, max_length=100)]
+
+    @field_validator("text")
+    @classmethod
+    def _valid_comment(cls, value: str) -> str:
+        cleaned = _clean(value)
+        if not cleaned or len(cleaned) > 100:
+            raise ValueError("el comentario debe tener entre 1 y 100 caracteres")
+        return cleaned
+
+
+class ArticleLikeCreate(StrictModel):
+    client_id: UUID
+
+
+class ArticleCommentPublic(BaseModel):
+    id: int
+    text: str
+    created_at: datetime
+
+
+class ArticleFeedback(BaseModel):
+    comments: List[ArticleCommentPublic]
+    likes: int
+    liked: bool
+
+
+class ArticleLikeResponse(BaseModel):
+    likes: int
+    liked: bool
 
 
 class ArticleImport(ArticleCreate):

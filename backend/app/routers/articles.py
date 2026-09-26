@@ -12,6 +12,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from ..article_backup import (
@@ -22,8 +23,8 @@ from ..article_backup import (
 )
 from ..database import get_db
 from ..mailer import send_article_copy_to_contact
-from ..models import Article
-from ..schemas import ArticleCreate, ArticleDetail, ArticleDraftSave, ArticleEmailRequest, ArticleImport, ArticleSummary, ArticleTranslation
+from ..models import Article, ArticleComment, ArticleLike
+from ..schemas import ArticleCommentCreate, ArticleCommentPublic, ArticleCreate, ArticleDetail, ArticleDraftSave, ArticleEmailRequest, ArticleFeedback, ArticleImport, ArticleLikeCreate, ArticleLikeResponse, ArticleSummary, ArticleTranslation
 from ..security import read_rate_limit, require_admin, write_rate_limit
 
 router = APIRouter(prefix="/api/articles", tags=["articles"])
@@ -507,6 +508,77 @@ def article_detail_route(
     db: Session = Depends(get_db),
 ) -> ArticleDetail:
     return article_detail(slug=slug, db=db)
+
+
+@router.get("/{slug}/feedback", response_model=ArticleFeedback)
+def article_feedback(
+    slug: str,
+    client_id: Optional[str] = None,
+    _: None = Depends(read_rate_limit),
+    db: Session = Depends(get_db),
+) -> ArticleFeedback:
+    _published_article_or_404(db, slug)
+    comments = (
+        db.query(ArticleComment)
+        .filter(ArticleComment.article_slug == slug)
+        .order_by(ArticleComment.created_at.desc(), ArticleComment.id.desc())
+        .limit(100)
+        .all()
+    )
+    likes_query = db.query(ArticleLike).filter(ArticleLike.article_slug == slug)
+    liked = False
+    if client_id:
+        try:
+            from uuid import UUID
+
+            normalized_client_id = str(UUID(client_id))
+            liked = likes_query.filter(ArticleLike.client_id == normalized_client_id).first() is not None
+        except ValueError:
+            raise HTTPException(status_code=422, detail="Identificador de cliente no válido")
+    return ArticleFeedback(
+        comments=[ArticleCommentPublic(id=row.id, text=row.text, created_at=row.created_at) for row in comments],
+        likes=likes_query.count(),
+        liked=liked,
+    )
+
+
+@router.post("/{slug}/comments", response_model=ArticleCommentPublic)
+def create_article_comment(
+    slug: str,
+    payload: ArticleCommentCreate,
+    _: None = Depends(write_rate_limit),
+    db: Session = Depends(get_db),
+) -> ArticleCommentPublic:
+    _published_article_or_404(db, slug)
+    row = ArticleComment(article_slug=slug, text=payload.text)
+    db.add(row)
+    db.commit()
+    db.refresh(row)
+    return ArticleCommentPublic(id=row.id, text=row.text, created_at=row.created_at)
+
+
+@router.post("/{slug}/likes", response_model=ArticleLikeResponse)
+def like_article(
+    slug: str,
+    payload: ArticleLikeCreate,
+    _: None = Depends(write_rate_limit),
+    db: Session = Depends(get_db),
+) -> ArticleLikeResponse:
+    _published_article_or_404(db, slug)
+    client_id = str(payload.client_id)
+    existing = (
+        db.query(ArticleLike)
+        .filter(ArticleLike.article_slug == slug, ArticleLike.client_id == client_id)
+        .first()
+    )
+    if existing is None:
+        db.add(ArticleLike(article_slug=slug, client_id=client_id))
+        try:
+            db.commit()
+        except IntegrityError:
+            db.rollback()
+    likes = db.query(ArticleLike).filter(ArticleLike.article_slug == slug)
+    return ArticleLikeResponse(likes=likes.count(), liked=True)
 
 
 @router.delete("/{slug}", dependencies=[Depends(require_admin)])

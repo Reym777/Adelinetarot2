@@ -10,7 +10,7 @@ from __future__ import annotations
 from datetime import date, datetime, time, timezone
 from typing import Optional
 
-from sqlalchemy import Date, DateTime, Float, Integer, String, Text, Time
+from sqlalchemy import Date, DateTime, Float, ForeignKey, Integer, String, Text, Time, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .database import Base
@@ -114,4 +114,23 @@ class Article(Base):
     is_published: Mapped[int] = mapped_column(Integer, default=1, index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_utcnow, index=True)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_utcnow)
+
+
+class ArticleComment(Base):
+    __tablename__ = "article_comments"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    article_slug: Mapped[str] = mapped_column(ForeignKey("articles.slug", ondelete="CASCADE"), index=True)
+    text: Mapped[str] = mapped_column(String(100))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_utcnow, index=True)
+
+
+class ArticleLike(Base):
+    __tablename__ = "article_likes"
+    __table_args__ = (UniqueConstraint("article_slug", "client_id", name="uq_article_like_client"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    article_slug: Mapped[str] = mapped_column(ForeignKey("articles.slug", ondelete="CASCADE"), index=True)
+    client_id: Mapped[str] = mapped_column(String(36))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_utcnow, index=True)
 
