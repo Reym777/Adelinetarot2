@@ -78,6 +78,12 @@
     .articles-page { padding: 44px 0 64px; }
     .articles-wrap { max-width: 980px; margin: 0 auto; }
     .articles-head { margin-bottom: 18px; text-align: center; }
+    .articles-head h1 { margin: 0 0 8px; text-align: center; }
+    .editorial-page-subtitle { margin: 0 auto 14px; text-align: center; }
+    .articles-head .editorial-language-switch { display: flex; width: min(100%, 440px); justify-content: center; align-items: center; gap: 8px; flex-wrap: nowrap; margin: 0 auto 8px; }
+    .articles-head .editorial-language-switch button { flex: 1 1 0; min-width: 0; min-height: 42px; padding: 8px 6px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,.035); color: var(--text); font: inherit; font-size: 15.6px; cursor: pointer; }
+    .editorial-language-switch button:hover, .editorial-language-switch button[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
+    .ai-powered-label { margin: 0 auto 8px; }
     .articles-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .article-list-card {
       position: relative;
@@ -128,9 +134,11 @@
     .reader-share .btn { min-width: 180px; }
     .article-feedback { width: min(100%, 700px); margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }
     .article-feedback-actions { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-    .article-like-button { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,.04); color: var(--text); cursor: pointer; font: inherit; }
+    .article-like-button { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; padding: 7px 14px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,.04); color: var(--text); cursor: pointer; font: inherit; text-align: left; }
     .article-like-button[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
-    .article-like-count { color: var(--gold); font-variant-numeric: tabular-nums; }
+    .article-like-icon { display: block; flex: 0 0 30px; width: 30px; height: 30px; }
+    .article-like-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; line-height: 1.1; }
+    .article-like-count { color: var(--gold); font-size: .84rem; font-variant-numeric: tabular-nums; }
     .article-comment-form { display: grid; gap: 8px; }
     .article-comment-label { color: var(--text); font-weight: 600; }
     .article-comment-row { display: flex; align-items: flex-end; gap: 10px; }
@@ -168,6 +176,8 @@
       .art-car-card { flex-basis: 57.5%; }
     }
     @media (max-width: 520px) {
+      .articles-head .editorial-language-switch { gap: 4px; }
+      .articles-head .editorial-language-switch button { padding: 6px 4px; white-space: nowrap; }
       .art-car-card { flex-basis: 94.3%; }
     }
     .subscribe-bar { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
@@ -252,17 +262,15 @@
       <div class="container articles-wrap">
         <div class="panel">
           <div class="articles-head">
-            <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px">
-              <span class="ai-powered-label hidden">powered by AI</span>
-              <div class="lang-switch" aria-label="Idioma">
-                <span id="translationProgress" class="translation-progress hidden" aria-live="polite" aria-atomic="true" aria-busy="false"></span>
-                <button id="topTranslateEs" type="button" data-lang="es">ES</button>
-                <button id="topTranslateEn" type="button" data-lang="en">EN</button>
-                <button id="topTranslateFr" type="button" data-lang="fr">FR</button>
-              </div>
-              <h1 style="margin:0">Editorial</h1>
+            <h1>Editorial</h1>
+            <p id="pageSubtitle" class="section-sub editorial-page-subtitle">Cronicas espirituales (por si ya te cansaste de scrollear infinito)</p>
+            <div id="editorialLanguageSwitch" class="lang-switch editorial-language-switch" aria-label="Idioma">
+              <span id="translationProgress" class="translation-progress hidden" aria-live="polite" aria-atomic="true" aria-busy="false"></span>
+              <button id="topTranslateEs" type="button" data-lang="es" aria-pressed="true">Español</button>
+              <button id="topTranslateEn" type="button" data-lang="en" aria-pressed="false">English</button>
+              <button id="topTranslateFr" type="button" data-lang="fr" aria-pressed="false">French</button>
             </div>
-            <p id="pageSubtitle" class="section-sub" style="margin:0 auto;text-align:center">Cronicas espirituales (por si ya te cansaste de scrollear infinito)</p>
+            <span class="ai-powered-label hidden">powered by AI</span>
           </div>
           <div id="featuredPreview" class="fp-wrap hidden">
             <p class="article-meta" id="fpMeta"></p>
@@ -271,7 +279,10 @@
             <div id="fpContent" class="article-content"></div>
             <section id="articleFeedback" class="article-feedback" aria-label="Comentarios y reacciones">
               <div class="article-feedback-actions">
-                <button id="articleLikeButton" type="button" class="article-like-button" aria-pressed="false"><span aria-hidden="true">😊</span><span id="articleLikeLabel">Me gustó</span><span id="articleLikeCount" class="article-like-count">0</span></button>
+                <button id="articleLikeButton" type="button" class="article-like-button" aria-pressed="false">
+                  <svg class="article-like-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#ffdf00" stroke="#17151b" stroke-width="2"/><ellipse cx="11" cy="12" rx="1.8" ry="3" fill="#17151b"/><ellipse cx="21" cy="12" rx="1.8" ry="3" fill="#17151b"/><path d="M8.5 18c1.2 4.1 3.8 6.4 7.5 6.4s6.3-2.3 7.5-6.4" fill="none" stroke="#17151b" stroke-width="2.4" stroke-linecap="round"/></svg>
+                  <span class="article-like-copy"><span id="articleLikeLabel">Me gustó</span><span id="articleLikeCount" class="article-like-count">0</span></span>
+                </button>
               </div>
               <form id="articleCommentForm" class="article-comment-form">
                 <label class="article-comment-label" for="articleCommentInput">Deja un comentario</label>
@@ -1043,6 +1054,9 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         if (barBtn) { barBtn.textContent = dict.subscribeBar; }
         var subtitle = document.getElementById("pageSubtitle");
         if (subtitle) { subtitle.textContent = dict.pageSubtitle; }
+        document.querySelectorAll(".editorial-language-switch [data-lang]").forEach(function (button) {
+          button.setAttribute("aria-pressed", button.dataset.lang === state.currentLang ? "true" : "false");
+        });
       }
 
       function translateCarouselArticles() {
