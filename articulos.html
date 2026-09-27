@@ -262,7 +262,7 @@
               </div>
               <h1 style="margin:0">Editorial</h1>
             </div>
-            <p class="section-sub" style="margin:0 auto;text-align:center">Cronicas espirituales (por si ya te cansaste de scrollear infinito)</p>
+            <p id="pageSubtitle" class="section-sub" style="margin:0 auto;text-align:center">Cronicas espirituales (por si ya te cansaste de scrollear infinito)</p>
           </div>
           <div id="featuredPreview" class="fp-wrap hidden">
             <p class="article-meta" id="fpMeta"></p>
@@ -402,7 +402,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           feedbackError: "No se pudieron cargar los comentarios.",
           translationError: "No se pudo cargar la traduccion en ingles.",
           moreArticles: "Otros articulos para leer",
-          subscribeBar: "Suscribirme \u00B7 Lecturas interesantes cada semana"
+          subscribeBar: "Suscribirme \u00B7 Lecturas interesantes cada semana",
+          pageSubtitle: "Cronicas espirituales (por si ya te cansaste de scrollear infinito)"
         },
         en: {
           share: "Share this article",
@@ -419,7 +420,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           feedbackError: "Could not load comments.",
           translationError: "Could not load the English translation.",
           moreArticles: "More articles to read",
-          subscribeBar: "Subscribe \u00B7 Interesting reads every week"
+          subscribeBar: "Subscribe \u00B7 Interesting reads every week",
+          pageSubtitle: "Spiritual chronicles (in case you're already tired of endless scrolling)"
         },
         fr: {
           share: "Partager cet article",
@@ -436,7 +438,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           feedbackError: "Impossible de charger les commentaires.",
           translationError: "Impossible de charger la traduction en fran\u00e7ais.",
           moreArticles: "Autres articles \u00e0 lire",
-          subscribeBar: "S'abonner \u00B7 Lectures int\u00e9ressantes chaque semaine"
+          subscribeBar: "S'abonner \u00B7 Lectures int\u00e9ressantes chaque semaine",
+          pageSubtitle: "Chroniques spirituelles (si tu es d\u00e9j\u00e0 fatigu\u00e9 de scroller \u00e0 l'infini)"
         }
       };
 
@@ -1021,6 +1024,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         if (heading) { heading.textContent = dict.moreArticles; }
         var barBtn = document.getElementById("subscribeBarBtn");
         if (barBtn) { barBtn.textContent = dict.subscribeBar; }
+        var subtitle = document.getElementById("pageSubtitle");
+        if (subtitle) { subtitle.textContent = dict.pageSubtitle; }
       }
 
       function translateCarouselArticles() {
@@ -1285,6 +1290,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
 
       document.addEventListener("DOMContentLoaded", function () {
         state.currentLang = getLangParam();
+        applyStaticLang();
         bindButtons();
         fetchArticles().catch(function () {
           state.list = fallbackArticles.slice();
