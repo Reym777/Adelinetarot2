@@ -958,6 +958,23 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
           if (slug) {
             return openArticle(slug, { scroll: false });
           }
+          if (state.currentLang !== "es" && state.list.length) {
+            var baseArticle = state.list[state.featuredIndex];
+            var articlePromise = baseArticle.content ? Promise.resolve(baseArticle) : fetchArticle(baseArticle.slug);
+            return articlePromise
+              .then(function (article) {
+                return Promise.all([showTranslatedFeatured(article, state.currentLang), translateCarouselArticles()]);
+              })
+              .then(function () {
+                revealAiPowered();
+                return null;
+              })
+              .catch(function () {
+                failTranslationProgress();
+                updateHead(null);
+                return null;
+              });
+          }
           updateHead(null);
           return null;
         });
