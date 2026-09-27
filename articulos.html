@@ -132,6 +132,7 @@
     .reader-lang-note.hidden { display: none; }
     .reader-share { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
     .reader-share .btn { min-width: 180px; }
+    .featured-share { margin: 14px 0 20px; }
     .article-feedback { width: min(100%, 700px); margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }
     .article-feedback-actions { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
     .article-like-button { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; padding: 7px 14px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,.04); color: var(--text); cursor: pointer; font: inherit; text-align: left; }
@@ -277,6 +278,7 @@
             <h2 id="fpTitle" style="margin:0 0 6px;font-family:'Cinzel',serif;font-size:1.5rem"></h2>
             <p id="fpSubtitle" class="section-sub" style="margin:0 0 14px"></p>
             <div id="fpContent" class="article-content"></div>
+            <div class="reader-share featured-share"><button id="featuredShareBtn" type="button" class="btn btn-primary">Compartir este articulo</button></div>
             <section id="articleFeedback" class="article-feedback" aria-label="Comentarios y reacciones">
               <div class="article-feedback-actions">
                 <button id="articleLikeButton" type="button" class="article-like-button" aria-pressed="false">
@@ -542,7 +544,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
       }
 
       function buildArticleUrl(slug, lang) {
-        var url = new URL(location.href);
+        var url = new URL("https://adelinemagica.com/articulos");
         if (slug) {
           url.searchParams.set("slug", slug);
         } else {
@@ -878,6 +880,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         ].filter(Boolean).join(" · ");
         document.getElementById("fpTitle").textContent = article.title || "";
         document.getElementById("fpSubtitle").textContent = article.subtitle || "";
+        document.getElementById("featuredShareBtn").textContent = labels[state.currentLang].shareCard;
         wrap.classList.remove("hidden");
         document.querySelector(".article-comment-label").textContent = labels[state.currentLang].commentLabel;
         document.getElementById("articleCommentSubmit").textContent = labels[state.currentLang].commentSubmit;
@@ -1159,6 +1162,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
 
       function bindButtons() {
         var shareButton = replaceButton("shareBtn");
+        var featuredShareButton = document.getElementById("featuredShareBtn");
         var copyButton = replaceButton("copyBtn");
         var esButton = replaceButton("readerLangEs");
         var enButton = replaceButton("readerLangEn");
@@ -1172,6 +1176,11 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
             return;
           }
           shareArticle(state.currentBase, state.currentLang);
+        });
+
+        featuredShareButton.addEventListener("click", function () {
+          var article = state.featuredArticle || state.list[state.featuredIndex];
+          if (article && article.slug) { shareArticle(article, state.currentLang); }
         });
 
         var commentInput = document.getElementById("articleCommentInput");
