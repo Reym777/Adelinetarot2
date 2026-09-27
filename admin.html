@@ -350,7 +350,7 @@
         </div>
 
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
-          <button class="btn btn-ghost" id="articleMailBtn" type="button">Guardar en mail</button>
+          <button class="btn btn-ghost" id="articleDraftMailBtn" type="button">Enviar borrador por correo</button>
           <button class="btn btn-ghost" id="draftHistoryBtn" type="button">&#128338; Historial de versiones</button>
           <button class="btn btn-primary" id="articlePublishBtn" type="button">Publicar articulo</button>
           <button class="btn btn-primary hidden" id="articleUpdateBtn" type="button">Actualizar publicacion</button>
@@ -1089,6 +1089,67 @@
         }
       });
     })();
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var button = document.getElementById("articleDraftMailBtn");
+      var result = document.getElementById("articlePublishResult");
+      if (!button || !result) { return; }
+
+      button.addEventListener("click", async function () {
+        var title = (document.getElementById("articleTitle").value || "").trim();
+        var content = (document.getElementById("articleEditor").innerHTML || "").trim();
+        var token = sessionStorage.getItem("adeline_admin_token") || "";
+        if (!title || !content) {
+          result.textContent = "Completa el título y el contenido antes de enviar el borrador.";
+          result.style.color = "#ffb7b7";
+          return;
+        }
+        if (!token) {
+          result.textContent = "Inicia sesión como administradora para enviar el borrador.";
+          result.style.color = "#ffb7b7";
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = "Enviando borrador...";
+        var meta = document.querySelector('meta[name="adeline-api-base"]');
+        var bases = [meta && meta.content ? meta.content.replace(/\/+$/, "") : "", location.protocol === "file:" ? "http://127.0.0.1:8000" : "", "https://adelinetarot2.onrender.com"];
+        var seen = new Set();
+        bases = bases.filter(function (base) {
+          if (seen.has(base)) { return false; }
+          seen.add(base);
+          return true;
+        });
+
+        try {
+          var response;
+          for (var base of bases) {
+            try {
+              response = await fetch(base + "/api/articles/admin/email-copy", {
+                method: "POST",
+                headers: { "Content-Type": "application/json", Accept: "application/json", "X-Admin-Token": token },
+                body: JSON.stringify({ slug: "", title: title, content: content })
+              });
+              break;
+            } catch (error) {
+              response = null;
+            }
+          }
+          if (!response) { throw new Error("No se pudo conectar con el servicio de correo."); }
+          var payload = await response.json().catch(function () { return {}; });
+          if (!response.ok) { throw new Error(payload.detail || "No se pudo enviar el borrador."); }
+          result.textContent = payload.message || "Borrador enviado por correo a contact@adelinemagica.com.";
+          result.style.color = "#7ee0b0";
+        } catch (error) {
+          result.textContent = error.message || "No se pudo enviar el borrador por correo.";
+          result.style.color = "#ffb7b7";
+        } finally {
+          button.disabled = false;
+          button.textContent = "Enviar borrador por correo";
+        }
+      });
+    });
   </script>
 </body>
 </html>

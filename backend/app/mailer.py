@@ -46,21 +46,21 @@ def send_article_copy_to_contact(
     plain = re.sub(r"\s+", " ", plain).strip() or "(sin contenido)"
 
     msg = EmailMessage()
-    msg["Subject"] = f"[{settings.business_name}] Guardar en mail: {clean_title}"
+    msg["Subject"] = f"[{settings.business_name}] Borrador editorial: {clean_title}"
     msg["From"] = settings.effective_sender or settings.resend_from
     msg["To"] = "contact@adelinemagica.com"
     if settings.mail_reply_to:
         msg["Reply-To"] = settings.mail_reply_to
 
     msg.set_content(
-        f"Copia de seguridad de articulo enviada desde /admin.\n\n"
+        f"Borrador editorial enviado desde /admin.\n\n"
         f"Titulo: {clean_title}\n"
         f"Slug: {clean_slug or 'N/A'}\n\n"
         f"Contenido (texto):\n{plain}\n"
     )
     msg.add_alternative(
         "<div style=\"font-family:Georgia,'Times New Roman',serif;max-width:760px;margin:auto;line-height:1.7;color:#2a2342\">"
-        "<p><strong>Copia de seguridad de articulo enviada desde /admin</strong></p>"
+        "<p><strong>Borrador editorial enviado desde /admin</strong></p>"
         f"<p><strong>Titulo:</strong> {clean_title}<br><strong>Slug:</strong> {clean_slug or 'N/A'}</p>"
         "<hr style=\"border:0;border-top:1px solid #e1d8c2;margin:16px 0\" />"
         f"{html}"

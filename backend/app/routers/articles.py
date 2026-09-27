@@ -359,7 +359,9 @@ def save_draft(
 
     row = None
     if payload.slug:
-      row = db.query(Article).filter(Article.slug == payload.slug).first()
+        row = db.query(Article).filter(Article.slug == payload.slug).first()
+        if row is not None and row.is_published == 1:
+            row = None
 
     if row is None:
         slug = requested_slug
@@ -428,8 +430,10 @@ def publish_draft(
     if len(plain) < 80:
         raise HTTPException(status_code=400, detail="El borrador necesita al menos 80 caracteres para publicarse")
 
+    published_at = datetime.now(timezone.utc)
     row.is_published = 1
-    row.updated_at = datetime.now(timezone.utc)
+    row.created_at = published_at
+    row.updated_at = published_at
     if not row.excerpt:
         row.excerpt = plain[:220] or None
     db.commit()
