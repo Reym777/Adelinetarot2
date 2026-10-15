@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-15T18:34:29.351492+00:00",
+  "updated_at": "2026-10-15T18:54:47.721562+00:00",
   "reason": "draft:borrador-6",
   "articles": [
     {
@@ -225,11 +225,11 @@
       "subtitle": null,
       "hero_image": null,
       "excerpt": "SHIVA WORLD Loco y hermoso sivalok unmilana, o en otras palabras \"la apertura de los ojos de Shiva\"",
-      "content": "<h2>SHIVA WORLD</h2><h2><font face=\"Cormorant Garamond, Georgia, Times New Roman, serif\"><span style=\"font-size: 17.280001px;\">Loco y hermoso sivalok unmilana, o en otras palabras \"la apertura de los ojos de Shiva\"</span></font></h2>",
+      "content": "<h2>SHIVA WORLD</h2><h2><font face=\"Cormorant Garamond, Georgia, Times New Roman, serif\"><span style=\"font-size: 17.280001px;\">Loco y hermoso sivalok unmilana, o en otras palabras \"la apertura de los ojos de Shiva\"</span></font></h2><div><font face=\"Cormorant Garamond, Georgia, Times New Roman, serif\"><span style=\"font-size: 17.280001px;\"><br></span></font></div><div><font face=\"Cormorant Garamond, Georgia, Times New Roman, serif\"><span style=\"font-size: 17.280001px;\"><br></span></font></div>",
       "author_name": "Adeline",
       "is_published": 0,
       "created_at": "2026-10-15T18:13:16.437758",
-      "updated_at": "2026-10-15T18:34:27.189804"
+      "updated_at": "2026-10-15T18:54:46.045994"
     }
   ]
 }
