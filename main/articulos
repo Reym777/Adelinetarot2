@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-15T18:24:27.849309+00:00",
+  "updated_at": "2026-10-15T18:28:08.446497+00:00",
   "reason": "draft:borrador-6",
   "articles": [
     {
@@ -221,15 +221,15 @@
     },
     {
       "slug": "borrador-6",
-      "title": "Borrador",
+      "title": "THE SHIVA REAL GAME",
       "subtitle": null,
       "hero_image": null,
-      "excerpt": "Escribe tu articulo Este editor es visual: lo que ves aqui es lo que se publicara en el articulo final.",
-      "content": "<h2>Escribe tu articulo</h2>\n          <p>Este editor es visual: lo que ves aqui es lo que se publicara en el articulo final.</p>",
+      "excerpt": "SHIVA WORLD Este editor es visual: lo que ves aqui es lo que se publicara en el articulo final.",
+      "content": "<h2>SHIVA WORLD</h2><h2><span style=\"font-size: 1.08rem; font-family: &quot;Cormorant Garamond&quot;, Georgia, &quot;Times New Roman&quot;, serif;\">Este editor es visual: lo que ves aqui es lo que se publicara en el articulo final.</span><br></h2>",
       "author_name": "Adeline",
       "is_published": 0,
       "created_at": "2026-10-15T18:13:16.437758",
-      "updated_at": "2026-10-15T18:24:25.046107"
+      "updated_at": "2026-10-15T18:28:06.722499"
     }
   ]
 }
