@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-17T16:04:13.661498+00:00",
+  "updated_at": "2026-10-23T18:26:54.124623+00:00",
   "reason": "draft:borrador-6",
   "articles": [
     {
@@ -229,7 +229,7 @@
       "author_name": "Adeline",
       "is_published": 0,
       "created_at": "2026-10-15T18:13:16.437758",
-      "updated_at": "2026-10-17T16:04:11.804012"
+      "updated_at": "2026-10-23T18:26:52.297961"
     }
   ]
 }
