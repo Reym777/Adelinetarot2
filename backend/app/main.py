@@ -28,6 +28,7 @@ except ImportError:  # pragma: no cover - optional dependency in local dev
 
 from . import __version__
 from .article_backup import restore_articles_from_backup
+from .routers.articles import normalize_article_slugs
 from .config import settings
 from .database import init_db
 from .routers import admin as admin_router
@@ -66,6 +67,16 @@ async def lifespan(app: FastAPI):
             )
         finally:
             db.close()
+    db = SessionLocal()
+    try:
+        renamed = normalize_article_slugs(db)
+        if renamed:
+            logger.info("Article slugs normalized: %s", renamed)
+    except Exception:
+        db.rollback()
+        logger.exception("Article slug normalization failed")
+    finally:
+        db.close()
     # Surface the admin token once so Adelinemagica can sign in (generated if
     # ADELINE_ADMIN_TOKEN was not provided).
     logger.info("Adelinemagica API %s started (debug=%s)", __version__, settings.debug)

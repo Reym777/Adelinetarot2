@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Adeline Magica</title>
+</head>
+<body>
+  <p><a href="/">Volver al inicio</a></p>
+  <script>
+    (function () {
+      var match = /^\/articulos-([^\/]+)\/?$/.exec(location.pathname);
+      if (!match) { return; }
+      fetch("/articulos.html", { credentials: "omit" })
+        .then(function (response) {
+          if (!response.ok) { throw new Error("HTTP " + response.status); }
+          return response.text();
+        })
+        .then(function (html) {
+          document.open();
+          document.write(html);
+          document.close();
+        })
+        .catch(function () {
+          location.replace("/articulos?slug=" + match[1]);
+        });
+    })();
+  </script>
+</body>
+</html>

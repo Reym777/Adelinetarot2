@@ -95,6 +95,39 @@ def _make_unique_slug(db: Session, title: str) -> str:
     return slug
 
 
+def _rename_article_slug(db: Session, row: Article, new_slug: str) -> None:
+    old_slug = row.slug
+    row.slug = new_slug
+    db.flush()
+    db.query(ArticleComment).filter(ArticleComment.article_slug == old_slug).update(
+        {ArticleComment.article_slug: new_slug}, synchronize_session=False
+    )
+    db.query(ArticleLike).filter(ArticleLike.article_slug == old_slug).update(
+        {ArticleLike.article_slug: new_slug}, synchronize_session=False
+    )
+
+
+def normalize_article_slugs(db: Session) -> int:
+    changed = 0
+    rows = db.query(Article).order_by(Article.id.asc()).all()
+    for row in rows:
+        base = _slugify(row.title or "")
+        if row.slug == base or re.fullmatch(re.escape(base) + r"-\d+", row.slug or ""):
+            continue
+        target = base
+        idx = 2
+        while db.query(Article).filter(Article.slug == target, Article.id != row.id).first() is not None:
+            suffix = f"-{idx}"
+            target = (base[: 200 - len(suffix)] + suffix).strip("-")
+            idx += 1
+        _rename_article_slug(db, row, target)
+        changed += 1
+    if changed:
+        db.commit()
+        push_articles_snapshot(db, reason="normalize-slugs")
+    return changed
+
+
 def _strip_markdown(md: str) -> str:
     text = re.sub(r"!\[[^\]]*\]\([^\)]*\)", "", md)
     text = re.sub(r"\[[^\]]+\]\([^\)]*\)", "", text)
@@ -430,6 +463,9 @@ def publish_draft(
     if len(plain) < 80:
         raise HTTPException(status_code=400, detail="El borrador necesita al menos 80 caracteres para publicarse")
 
+    title_slug = _slugify(row.title or "")
+    if row.slug != title_slug and db.query(Article).filter(Article.slug == title_slug).first() is None:
+        _rename_article_slug(db, row, title_slug)
     published_at = datetime.now(timezone.utc)
     row.is_published = 1
     row.created_at = published_at
@@ -656,15 +692,7 @@ def update_article(
     if new_slug != row.slug:
         if db.query(Article).filter(Article.slug == new_slug).first() is not None:
             raise HTTPException(status_code=409, detail="Ese slug ya existe")
-        old_slug = row.slug
-        row.slug = new_slug
-        db.flush()
-        db.query(ArticleComment).filter(ArticleComment.article_slug == old_slug).update(
-            {ArticleComment.article_slug: new_slug}, synchronize_session=False
-        )
-        db.query(ArticleLike).filter(ArticleLike.article_slug == old_slug).update(
-            {ArticleLike.article_slug: new_slug}, synchronize_session=False
-        )
+        _rename_article_slug(db, row, new_slug)
 
     excerpt: Optional[str] = payload.excerpt
     if excerpt is None:
