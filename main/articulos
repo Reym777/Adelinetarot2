@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updated_at": "2026-11-03T20:08:26.481480+00:00",
-  "reason": "update:arcano-de-muerte-y-10-de-espadas-y-postura-de-savasana-en-yoga",
+  "updated_at": "2026-11-03T20:25:18.759054+00:00",
+  "reason": "normalize-slugs",
   "articles": [
     {
       "slug": "borrador-2",
@@ -28,7 +28,7 @@
       "updated_at": "2026-08-10T00:37:36.652004"
     },
     {
-      "slug": "el-amor-todo-lo-ensambla-jul25",
+      "slug": "el-amor-que-todo-lo-ensambla-2",
       "title": "EL AMOR QUE TODO LO ENSAMBLA",
       "subtitle": null,
       "hero_image": null,
@@ -40,7 +40,7 @@
       "updated_at": "2026-07-28T15:38:56.303454"
     },
     {
-      "slug": "el-amor-que-todo-lo-ensambla",
+      "slug": "fluye-con-la-vida-manifiesta-con-el-flujo-2",
       "title": "FLUYE CON LA VIDA, MANIFIESTA CON EL FLUJO",
       "subtitle": null,
       "hero_image": null,
@@ -52,7 +52,7 @@
       "updated_at": "2026-08-03T17:00:41.581591"
     },
     {
-      "slug": "fluye-con-la-vida-manifiesta-con-el-flujo",
+      "slug": "que-nos-trae-el-tiempo-de-eclipse-2",
       "title": "QUÉ NOS TRAE EL TIEMPO DE ECLIPSE",
       "subtitle": null,
       "hero_image": null,
@@ -64,7 +64,7 @@
       "updated_at": "2026-08-10T01:03:37.439826"
     },
     {
-      "slug": "que-nos-trae-el-tiempo-de-eclipse",
+      "slug": "prendele-fuego-a-tu-consciencia-2",
       "title": "PRÉNDELE FUEGO A TU CONSCIENCIA",
       "subtitle": null,
       "hero_image": null,
@@ -88,7 +88,7 @@
       "updated_at": "2026-08-17T16:58:17.932088"
     },
     {
-      "slug": "borrador-4",
+      "slug": "high-energy-y-mahayana",
       "title": "HIGH ENERGY Y MAHAYANA",
       "subtitle": null,
       "hero_image": null,
@@ -100,7 +100,7 @@
       "updated_at": "2026-08-27T03:43:23.106916"
     },
     {
-      "slug": "bodhisattva-proposito",
+      "slug": "dejar-que-el-amor-incondicional-inunde-tu-alma-2",
       "title": "DEJAR QUE EL AMOR INCONDICIONAL INUNDE TU ALMA",
       "subtitle": null,
       "hero_image": null,
@@ -124,7 +124,7 @@
       "updated_at": "2026-09-12T03:20:49.344907"
     },
     {
-      "slug": "borrador",
+      "slug": "igualar-las-aguas-2",
       "title": "IGUALAR LAS AGUAS",
       "subtitle": null,
       "hero_image": null,
@@ -136,7 +136,7 @@
       "updated_at": "2026-09-18T19:15:14.016067"
     },
     {
-      "slug": "borrador-3",
+      "slug": "el-encanto-de-personificar-a-tu-feminidad-3",
       "title": "EL ENCANTO DE PERSONIFICAR A TU FEMINIDAD",
       "subtitle": null,
       "hero_image": null,
@@ -172,7 +172,7 @@
       "updated_at": "2026-09-24T15:12:07.657551"
     },
     {
-      "slug": "el-encanto-de-personificar-a-tu-feminidad-2",
+      "slug": "8-mil-millones-de-humanos-y-solo-importas-tu-4",
       "title": "8 MIL MILLONES DE HUMANOS Y SOLO IMPORTAS TU",
       "subtitle": null,
       "hero_image": null,
@@ -184,7 +184,7 @@
       "updated_at": "2026-09-27T17:07:25.908230"
     },
     {
-      "slug": "8-mil-millones-de-humanos-y-solo-importas-tu",
+      "slug": "prendele-fuego-a-tu-consciencia-3",
       "title": "PRÉNDELE FUEGO A TU CONSCIENCIA",
       "subtitle": null,
       "hero_image": null,
@@ -208,7 +208,7 @@
       "updated_at": "2026-09-27T17:20:37.317488"
     },
     {
-      "slug": "8-mil-millones-de-humanos-y-solo-importas-tu-3",
+      "slug": "soberania-humana-y-soberania-espiritual",
       "title": "SOBERANÍA HUMANA Y SOBERANÍA ESPIRITUAL",
       "subtitle": null,
       "hero_image": null,
