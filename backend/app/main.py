@@ -9,6 +9,7 @@ Run locally:
 from __future__ import annotations
 
 import logging
+import threading
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from pathlib import Path
@@ -28,7 +29,7 @@ except ImportError:  # pragma: no cover - optional dependency in local dev
 
 from . import __version__
 from .article_backup import restore_articles_from_backup
-from .routers.articles import normalize_article_slugs
+from .routers.articles import normalize_article_slugs, warm_translations
 from .config import settings
 from .database import init_db
 from .routers import admin as admin_router
@@ -77,6 +78,7 @@ async def lifespan(app: FastAPI):
         logger.exception("Article slug normalization failed")
     finally:
         db.close()
+    threading.Thread(target=warm_translations, daemon=True).start()
     # Surface the admin token once so Adelinemagica can sign in (generated if
     # ADELINE_ADMIN_TOKEN was not provided).
     logger.info("Adelinemagica API %s started (debug=%s)", __version__, settings.debug)

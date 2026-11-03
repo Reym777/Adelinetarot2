@@ -116,6 +116,15 @@ class Article(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_utcnow)
 
 
+class TranslationCache(Base):
+    __tablename__ = "translation_cache"
+
+    key: Mapped[str] = mapped_column(String(40), primary_key=True)
+    lang: Mapped[str] = mapped_column(String(8), index=True)
+    text: Mapped[str] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_utcnow)
+
+
 class ArticleComment(Base):
     __tablename__ = "article_comments"
 

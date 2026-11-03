@@ -1,15 +1,15 @@
 """Public article feed + admin article publishing endpoints."""
 from __future__ import annotations
 
-import json
+import logging
 import re
+import threading
 import unicodedata
 from datetime import datetime, timezone
 from html import escape as html_escape
+from html import unescape as html_unescape
 from html.parser import HTMLParser
 from typing import Dict, List, Optional, Tuple
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.exc import IntegrityError
@@ -26,55 +26,77 @@ from ..mailer import send_article_copy_to_contact
 from ..models import Article, ArticleComment, ArticleLike
 from ..schemas import ArticleCommentCreate, ArticleCommentPublic, ArticleCreate, ArticleDetail, ArticleDraftSave, ArticleEmailRequest, ArticleFeedback, ArticleImport, ArticleLikeCreate, ArticleLikeResponse, ArticleSummary, ArticleTranslation, ArticleUpdate
 from ..security import read_rate_limit, require_admin, write_rate_limit
+from ..translation import translate_segments
 
+logger = logging.getLogger("adelinemagica.articles")
 router = APIRouter(prefix="/api/articles", tags=["articles"])
 
-_TEXT_TRANSLATION_CACHE: Dict[Tuple[str, str], str] = {}
 _ARTICLE_TRANSLATION_CACHE: Dict[Tuple[str, str, datetime], ArticleTranslation] = {}
 _TRANSLATION_NOTE = "Traducido por IA"
 
 
-class _HtmlTranslationParser(HTMLParser):
-    def __init__(self, target_lang: str):
+class _HtmlSegmentParser(HTMLParser):
+    """Splits HTML into literal markup and translatable text runs."""
+
+    _SKIP_TAGS = ("script", "style")
+
+    def __init__(self):
         super().__init__(convert_charrefs=False)
-        self.target_lang = target_lang
-        self.parts: List[str] = []
+        self.tokens: List[Tuple[bool, str]] = []
+        self._run: List[str] = []
+        self._skip_depth = 0
+
+    def _flush(self) -> None:
+        if self._run:
+            raw = "".join(self._run)
+            self._run = []
+            self.tokens.append((self._skip_depth == 0, raw))
+
+    def _literal(self, text: str) -> None:
+        self._flush()
+        self.tokens.append((False, text))
+
+    def _tag_html(self, tag: str, attrs, closing: str) -> str:
+        parts = ["<" + tag]
+        for name, value in attrs:
+            if value is None:
+                parts.append(f" {name}")
+            else:
+                parts.append(f' {name}="{html_escape(value, quote=True)}"')
+        parts.append(closing)
+        return "".join(parts)
 
     def handle_starttag(self, tag: str, attrs) -> None:
-        self.parts.append("<" + tag)
-        for name, value in attrs:
-            if value is None:
-                self.parts.append(f" {name}")
-            else:
-                self.parts.append(f' {name}="{html_escape(value, quote=True)}"')
-        self.parts.append(">")
+        self._literal(self._tag_html(tag, attrs, ">"))
+        if tag in self._SKIP_TAGS:
+            self._skip_depth += 1
 
     def handle_endtag(self, tag: str) -> None:
-        self.parts.append(f"</{tag}>")
+        self._literal(f"</{tag}>")
+        if tag in self._SKIP_TAGS and self._skip_depth:
+            self._skip_depth -= 1
 
     def handle_startendtag(self, tag: str, attrs) -> None:
-        self.parts.append("<" + tag)
-        for name, value in attrs:
-            if value is None:
-                self.parts.append(f" {name}")
-            else:
-                self.parts.append(f' {name}="{html_escape(value, quote=True)}"')
-        self.parts.append(" />")
+        self._literal(self._tag_html(tag, attrs, " />"))
 
     def handle_data(self, data: str) -> None:
-        self.parts.append(_translate_preserving_whitespace(data, self.target_lang))
+        self._run.append(data)
 
     def handle_entityref(self, name: str) -> None:
-        self.parts.append(f"&{name};")
+        self._run.append(f"&{name};")
 
     def handle_charref(self, name: str) -> None:
-        self.parts.append(f"&#{name};")
+        self._run.append(f"&#{name};")
 
     def handle_comment(self, data: str) -> None:
-        self.parts.append(f"<!--{data}-->")
+        self._literal(f"<!--{data}-->")
 
-    def translated_html(self) -> str:
-        return "".join(self.parts)
+    def handle_decl(self, decl: str) -> None:
+        self._literal(f"<!{decl}>")
+
+    def close(self) -> None:
+        super().close()
+        self._flush()
 
 
 def _slugify(text: str) -> str:
@@ -137,80 +159,59 @@ def _strip_markdown(md: str) -> str:
     return text
 
 
-def _translate_text(text: str, target_lang: str) -> str:
-    clean_text = str(text or "")
-    if not clean_text.strip():
-        return clean_text
-
-    cache_key = (target_lang, clean_text)
-    cached = _TEXT_TRANSLATION_CACHE.get(cache_key)
-    if cached is not None:
-        return cached
-
-    query = urlencode(
-        [
-            ("client", "gtx"),
-            ("sl", "es"),
-            ("tl", target_lang),
-            ("dt", "t"),
-            ("q", clean_text),
-        ],
-        doseq=True,
-    )
-    request = Request(
-        url=f"https://translate.googleapis.com/translate_a/single?{query}",
-        headers={
-            "User-Agent": "Mozilla/5.0",
-            "Accept": "application/json",
-        },
-    )
-    with urlopen(request, timeout=15) as response:
-        payload = json.loads(response.read().decode("utf-8"))
-
-    translated = "".join(part[0] for part in payload[0] if part and part[0])
-    _TEXT_TRANSLATION_CACHE[cache_key] = translated
-    return translated
-
-
-def _translate_preserving_whitespace(text: str, target_lang: str) -> str:
-    if not text or not text.strip():
-        return text
-
-    leading = re.match(r"^\s*", text).group(0)
-    trailing = re.search(r"\s*$", text).group(0)
-    core = text.strip()
-    return f"{leading}{_translate_text(core, target_lang)}{trailing}"
-
-
-def _translate_markdown_line(line: str, target_lang: str) -> str:
-    if not line.strip():
-        return line
-
-    image_match = re.match(r"^(\s*!\[[^\]]*\]\([^\)]+\))(.*)$", line)
-    if image_match:
-        tail = _translate_preserving_whitespace(image_match.group(2), target_lang)
-        return f"{image_match.group(1)}{tail}"
-
-    prefix_match = re.match(r"^(\s*(?:#{1,6}|>|-|\*|\+|\d+\.)\s+)(.+)$", line)
-    if prefix_match:
-        prefix, body = prefix_match.groups()
-        return prefix + _translate_text(body, target_lang)
-
-    return _translate_preserving_whitespace(line, target_lang)
-
-
-def _translate_content(content: str, target_lang: str) -> str:
+def _translate_content(db: Session, content: str, target_lang: str, extra: Optional[List[str]] = None) -> Tuple[str, List[str]]:
+    """Translate content plus extra standalone strings in one batched pass."""
+    extra = extra or []
     raw = str(content or "")
-    if not raw.strip():
-        return raw
+    segments: List[str] = list(extra)
+    layout: List[Tuple[str, object]] = []
 
-    if re.search(r"<\s*[a-zA-Z][^>]*>", raw):
-        parser = _HtmlTranslationParser(target_lang)
+    if raw.strip() and re.search(r"<\s*[a-zA-Z][^>]*>", raw):
+        parser = _HtmlSegmentParser()
         parser.feed(raw)
         parser.close()
-        return parser.translated_html()
+        for translatable, text in parser.tokens:
+            if translatable and text.strip():
+                layout.append(("seg", len(segments)))
+                segments.append(html_unescape(text))
+            else:
+                layout.append(("lit", text))
+        html_mode = True
+    else:
+        html_mode = False
+        for line in raw.splitlines():
+            if not line.strip():
+                layout.append(("lit", line))
+                layout.append(("nl", "\n"))
+                continue
+            image_match = re.match(r"^(\s*!\[[^\]]*\]\([^\)]+\))(.*)$", line)
+            prefix_match = re.match(r"^(\s*(?:#{1,6}|>|-|\*|\+|\d+\.)\s+)(.+)$", line)
+            if image_match:
+                prefix, body = image_match.groups()
+            elif prefix_match:
+                prefix, body = prefix_match.groups()
+            else:
+                prefix, body = "", line
+            layout.append(("lit", prefix))
+            layout.append(("seg", len(segments)))
+            layout.append(("nl", "\n"))
+            segments.append(body)
 
-    return "\n".join(_translate_markdown_line(line, target_lang) for line in raw.splitlines())
+    translated = translate_segments(db, segments, target_lang)
+
+    out: List[str] = []
+    for kind, value in layout:
+        if kind == "seg":
+            text = translated[value]  # type: ignore[index]
+            out.append(html_escape(text, quote=False) if html_mode else text)
+        else:
+            out.append(str(value))
+    if html_mode:
+        return "".join(out), translated[: len(extra)]
+    joined = "".join(out)
+    if joined.endswith("\n"):
+        joined = joined[:-1]
+    return joined, translated[: len(extra)]
 
 
 def _published_article_or_404(db: Session, slug: str) -> Article:
@@ -225,26 +226,68 @@ def _published_article_or_404(db: Session, slug: str) -> Article:
     return row
 
 
-def _translate_article(row: Article, target_lang: str) -> ArticleTranslation:
+def _translate_article(db: Session, row: Article, target_lang: str) -> ArticleTranslation:
     cache_key = (row.slug, target_lang, row.updated_at)
     cached = _ARTICLE_TRANSLATION_CACHE.get(cache_key)
     if cached is not None:
         return cached
 
+    extra = [row.title or "", row.subtitle or "", row.excerpt or ""]
+    content, (title, subtitle, excerpt) = _translate_content(db, row.content, target_lang, extra)
     translated = ArticleTranslation(
         slug=row.slug,
-        title=_translate_text(row.title, target_lang),
-        subtitle=_translate_text(row.subtitle, target_lang) if row.subtitle else None,
-        excerpt=_translate_text(row.excerpt, target_lang) if row.excerpt else None,
+        title=title,
+        subtitle=subtitle if row.subtitle else None,
+        excerpt=excerpt if row.excerpt else None,
         hero_image=row.hero_image,
         author_name=row.author_name,
         created_at=row.created_at,
-        content=_translate_content(row.content, target_lang),
+        content=content,
         language=target_lang,
         translation_note=_TRANSLATION_NOTE,
     )
+    if len(_ARTICLE_TRANSLATION_CACHE) > 200:
+        _ARTICLE_TRANSLATION_CACHE.clear()
     _ARTICLE_TRANSLATION_CACHE[cache_key] = translated
     return translated
+
+
+def warm_translations() -> None:
+    """Pre-translate every published article so readers get instant results."""
+    from ..database import SessionLocal
+
+    db = SessionLocal()
+    try:
+        rows = db.query(Article).filter(Article.is_published == 1).all()
+        for row in rows:
+            for lang in ("en", "fr"):
+                try:
+                    _translate_article(db, row, lang)
+                except Exception:
+                    logger.warning("Translation warm-up failed (%s, %s)", row.slug, lang, exc_info=True)
+    finally:
+        db.close()
+
+
+def warm_article_async(slug: str) -> None:
+    def work() -> None:
+        from ..database import SessionLocal
+
+        db = SessionLocal()
+        try:
+            row = db.query(Article).filter(Article.slug == slug, Article.is_published == 1).first()
+            if row is None:
+                return
+            for lang in ("en", "fr"):
+                try:
+                    _translate_article(db, row, lang)
+                except Exception:
+                    logger.warning("Translation warm-up failed (%s, %s)", slug, lang, exc_info=True)
+        finally:
+            db.close()
+
+    threading.Thread(target=work, daemon=True).start()
+
 
 
 def _summary_from_row(row: Article) -> ArticleSummary:
@@ -476,6 +519,7 @@ def publish_draft(
     db.refresh(row)
     push_articles_snapshot(db, reason=f"publish-draft:{slug}")
     delete_draft_snapshot(slug, reason="published")
+    warm_article_async(row.slug)
     return ArticleDetail(
         slug=row.slug,
         title=row.title,
@@ -521,6 +565,46 @@ def article_detail(
     )
 
 
+@router.get("/translations/summaries", response_model=List[ArticleSummary])
+def translated_summaries(
+    lang: str = "en",
+    _: None = Depends(read_rate_limit),
+    db: Session = Depends(get_db),
+) -> List[ArticleSummary]:
+    target_lang = (lang or "").strip().lower()
+    if target_lang not in ("en", "fr"):
+        raise HTTPException(status_code=422, detail="Solo se admite traduccion automatica al ingles o al frances")
+    rows = (
+        db.query(Article)
+        .filter(Article.is_published == 1)
+        .order_by(Article.created_at.desc())
+        .limit(100)
+        .all()
+    )
+    segments: List[str] = []
+    for row in rows:
+        segments.extend([row.title or "", row.subtitle or "", row.excerpt or ""])
+    try:
+        out = translate_segments(db, segments, target_lang)
+    except Exception as exc:
+        raise HTTPException(status_code=502, detail="No se pudo traducir los articulos") from exc
+    result: List[ArticleSummary] = []
+    for i, row in enumerate(rows):
+        title, subtitle, excerpt = out[i * 3], out[i * 3 + 1], out[i * 3 + 2]
+        result.append(
+            ArticleSummary(
+                slug=row.slug,
+                title=title,
+                subtitle=subtitle if row.subtitle else None,
+                excerpt=excerpt if row.excerpt else None,
+                hero_image=row.hero_image,
+                author_name=row.author_name,
+                created_at=row.created_at,
+            )
+        )
+    return result
+
+
 @router.get("/{slug}/translation", response_model=ArticleTranslation)
 def article_translation_route(
     slug: str,
@@ -534,7 +618,7 @@ def article_translation_route(
 
     row = _published_article_or_404(db, slug)
     try:
-        return _translate_article(row, target_lang)
+        return _translate_article(db, row, target_lang)
     except HTTPException:
         raise
     except Exception as exc:
@@ -708,6 +792,7 @@ def update_article(
     db.commit()
     db.refresh(row)
     push_articles_snapshot(db, reason=f"update:{row.slug}")
+    warm_article_async(row.slug)
     return ArticleDetail(
         slug=row.slug,
         title=row.title,

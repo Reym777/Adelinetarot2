@@ -388,6 +388,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         currentBase: null,
         currentLang: "es",
         translations: {},
+        carouselTranslations: {},
         featuredIndex: 0,
         featuredArticle: null,
         carouselOffset: 0,
@@ -912,7 +913,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
         if (!wrap || !state.list.length) { if (wrap) wrap.style.display = "none"; return; }
         var track = document.getElementById("carTrack");
         track.innerHTML = state.list.map(function (article, idx) {
-          var translated = state.currentLang !== "es" ? state.translations[article.slug + ":" + state.currentLang] : null;
+          var langMap = state.currentLang !== "es" ? state.carouselTranslations[state.currentLang] : null;
+          var translated = langMap ? langMap[article.slug] : null;
           var source = translated || article;
           var text = source.excerpt || source.subtitle || "";
           if (!text && source.content) {
@@ -1006,7 +1008,16 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
       }
 
       function fetchTranslation(slug, lang) {
-        return fetchJson("/api/articles/" + encodeURIComponent(slug) + "/translation?lang=" + encodeURIComponent(lang));
+        var path = "/api/articles/" + encodeURIComponent(slug) + "/translation?lang=" + encodeURIComponent(lang);
+        var tries = 0;
+        function run() {
+          return fetchJson(path).catch(function (error) {
+            tries++;
+            if (tries >= 3) { throw error; }
+            return new Promise(function (resolve) { window.setTimeout(resolve, 700 * tries); }).then(run);
+          });
+        }
+        return run();
       }
 
       function setTranslationProgress(value, visible) {
@@ -1072,18 +1083,16 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
       function translateCarouselArticles() {
         var lang = state.currentLang;
         if (lang === "es") { return Promise.resolve(); }
-        return Promise.all(state.list.map(function (article) {
-          var cacheKey = article.slug + ":" + lang;
-          if (state.translations[cacheKey]) { return Promise.resolve(state.translations[cacheKey]); }
-          return fetchTranslation(article.slug, lang)
-            .then(function (translated) {
-              state.translations[cacheKey] = translated;
-              return translated;
-            })
-            .catch(function () { return null; });
-        })).then(function () {
-          renderCarousel();
-        });
+        if (state.carouselTranslations[lang]) { renderCarousel(); return Promise.resolve(); }
+        fetchJson("/api/articles/translations/summaries?lang=" + encodeURIComponent(lang))
+          .then(function (rows) {
+            var map = {};
+            (Array.isArray(rows) ? rows : []).forEach(function (row) { map[row.slug] = row; });
+            state.carouselTranslations[lang] = map;
+            if (state.currentLang === lang) { renderCarousel(); }
+          })
+          .catch(function () {});
+        return Promise.resolve();
       }
 
       function showTranslatedArticle(baseArticle, lang, options) {
