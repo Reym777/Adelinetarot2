@@ -519,7 +519,19 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
 
       function getSlugParam() {
         var params = new URLSearchParams(location.search);
-        return (params.get("slug") || "").trim();
+        var fromQuery = (params.get("slug") || "").trim();
+        if (fromQuery) {
+          return fromQuery;
+        }
+        var match = /^\/articulos-([^\/]+)\/?$/.exec(location.pathname);
+        if (!match) {
+          return "";
+        }
+        try {
+          return decodeURIComponent(match[1]).trim();
+        } catch (error) {
+          return "";
+        }
       }
 
       function getLangParam() {
@@ -530,11 +542,8 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
 
       function updateQuery(slug, lang) {
         var url = new URL(location.href);
-        if (slug) {
-          url.searchParams.set("slug", slug);
-        } else {
-          url.searchParams.delete("slug");
-        }
+        url.searchParams.delete("slug");
+        url.pathname = slug ? "/articulos-" + encodeURIComponent(slug) : "/articulos";
         if (lang === "en" || lang === "fr") {
           url.searchParams.set("lang", lang);
         } else {
@@ -546,9 +555,7 @@ Observa tr\xE1nsito, descanso y l\xEDmites. Tu bienestar mejora cuando organizas
       function buildArticleUrl(slug, lang) {
         var url = new URL("https://adelinemagica.com/articulos");
         if (slug) {
-          url.searchParams.set("slug", slug);
-        } else {
-          url.searchParams.delete("slug");
+          url.pathname = "/articulos-" + encodeURIComponent(slug);
         }
         if (lang === "en" || lang === "fr") {
           url.searchParams.set("lang", lang);

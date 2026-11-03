@@ -253,6 +253,8 @@ if settings.serve_frontend and (settings.frontend_path / "index.html").exists():
         allowed_raw = (".html", ".txt", ".xml", ".webmanifest")
         if safe_name.endswith(allowed_raw):
             file_path = frontend / safe_name
+        elif safe_name.startswith("articulos-") and len(safe_name) > len("articulos-"):
+            file_path = frontend / "articulos.html"
         else:
             file_path = frontend / f"{safe_name}.html"
         if not file_path.is_file():

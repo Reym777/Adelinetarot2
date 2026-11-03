@@ -24,7 +24,7 @@ from ..article_backup import (
 from ..database import get_db
 from ..mailer import send_article_copy_to_contact
 from ..models import Article, ArticleComment, ArticleLike
-from ..schemas import ArticleCommentCreate, ArticleCommentPublic, ArticleCreate, ArticleDetail, ArticleDraftSave, ArticleEmailRequest, ArticleFeedback, ArticleImport, ArticleLikeCreate, ArticleLikeResponse, ArticleSummary, ArticleTranslation
+from ..schemas import ArticleCommentCreate, ArticleCommentPublic, ArticleCreate, ArticleDetail, ArticleDraftSave, ArticleEmailRequest, ArticleFeedback, ArticleImport, ArticleLikeCreate, ArticleLikeResponse, ArticleSummary, ArticleTranslation, ArticleUpdate
 from ..security import read_rate_limit, require_admin, write_rate_limit
 
 router = APIRouter(prefix="/api/articles", tags=["articles"])
@@ -644,13 +644,27 @@ def create_article(
 @router.post("/{slug}/update", response_model=ArticleDetail, dependencies=[Depends(require_admin)])
 def update_article(
     slug: str,
-    payload: ArticleCreate,
+    payload: ArticleUpdate,
     _: None = Depends(write_rate_limit),
     db: Session = Depends(get_db),
 ) -> ArticleDetail:
     row = db.query(Article).filter(Article.slug == slug).first()
     if row is None:
         raise HTTPException(status_code=404, detail="Articulo no encontrado")
+
+    new_slug = _slugify(payload.slug) if payload.slug and payload.slug.strip() else row.slug
+    if new_slug != row.slug:
+        if db.query(Article).filter(Article.slug == new_slug).first() is not None:
+            raise HTTPException(status_code=409, detail="Ese slug ya existe")
+        old_slug = row.slug
+        row.slug = new_slug
+        db.flush()
+        db.query(ArticleComment).filter(ArticleComment.article_slug == old_slug).update(
+            {ArticleComment.article_slug: new_slug}, synchronize_session=False
+        )
+        db.query(ArticleLike).filter(ArticleLike.article_slug == old_slug).update(
+            {ArticleLike.article_slug: new_slug}, synchronize_session=False
+        )
 
     excerpt: Optional[str] = payload.excerpt
     if excerpt is None:

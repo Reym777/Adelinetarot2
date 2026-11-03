@@ -440,6 +440,10 @@ class ArticleLikeResponse(BaseModel):
     liked: bool
 
 
+class ArticleUpdate(ArticleCreate):
+    slug: Optional[Annotated[str, Field(max_length=220)]] = None
+
+
 class ArticleImport(ArticleCreate):
     slug: Optional[Annotated[str, Field(max_length=220)]] = None
     author_name: Optional[Annotated[str, Field(max_length=120)]] = None

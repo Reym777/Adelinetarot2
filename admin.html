@@ -273,6 +273,10 @@
           <label for="articleTitle">Titulo</label>
           <input id="articleTitle" type="text" maxlength="180" placeholder="Ej: El Loco y el nuevo camino" />
         </div>
+        <div class="field full" style="margin-bottom:10px;">
+          <label for="articleSlug">Slug (URL: /articulos-slug)</label>
+          <input id="articleSlug" type="text" maxlength="200" placeholder="Se genera desde el titulo" />
+        </div>
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
             <input id="draftModeToggle" type="checkbox" checked />
@@ -726,6 +730,8 @@
         var editor = $("articleEditor");
         if (!title || !editor) { return; }
         title.value = article.title || "";
+        var slugInput = $("articleSlug");
+        if (slugInput) { slugInput.value = article.slug || ""; }
         editor.innerHTML = article.content || "<p></p>";
         resetEditorHistory();
         title.dispatchEvent(new Event("input", { bubbles: true }));
@@ -891,7 +897,9 @@
         var updateBtn = $("articleUpdateBtn");
         if (!title || !editor || !editState.slug || !editState.article) { return; }
 
+        var slugField = $("articleSlug");
         var payload = {
+          slug: slugField ? (slugField.value || "").trim() : "",
           title: (title.value || "").trim(),
           subtitle: editState.article.subtitle || null,
           hero_image: editState.article.hero_image || null,
@@ -919,6 +927,7 @@
           body: JSON.stringify(payload),
         }).then(function (article) {
           editState.article = article;
+          editState.slug = article.slug || editState.slug;
           fillEditor(article);
           renderPreview(article);
           setResult("Publicacion actualizada.", true);
