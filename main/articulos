@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updated_at": "2026-11-03T20:05:40.688693+00:00",
-  "reason": "draft:8-mil-millones-de-humanos-y-solo-importas-tu",
+  "updated_at": "2026-11-03T20:08:26.481480+00:00",
+  "reason": "update:arcano-de-muerte-y-10-de-espadas-y-postura-de-savasana-en-yoga",
   "articles": [
     {
       "slug": "borrador-2",
@@ -220,7 +220,7 @@
       "updated_at": "2026-10-04T04:30:56.828140"
     },
     {
-      "slug": "borrador-6",
+      "slug": "arcano-de-muerte-y-10-de-espadas-y-postura-de-savasana-en-yoga",
       "title": "ARCANO DE MUERTE Y 10 DE ESPADAS Y POSTURA DE SAVASANA EN YOGA",
       "subtitle": null,
       "hero_image": null,
@@ -229,7 +229,7 @@
       "author_name": "Adeline",
       "is_published": 1,
       "created_at": "2026-11-03T02:16:26.282348",
-      "updated_at": "2026-11-03T02:16:26.282348"
+      "updated_at": "2026-11-03T20:08:23.976508"
     }
   ]
 }
