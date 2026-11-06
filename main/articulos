@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-06T16:13:03.874658+00:00",
+  "updated_at": "2026-11-06T16:32:11.552346+00:00",
   "reason": "draft:borrador",
   "articles": [
     {
@@ -236,12 +236,12 @@
       "title": "Borrador",
       "subtitle": null,
       "hero_image": null,
-      "excerpt": "A mi tio Juan Isaac Oregel De Grecia Quiero saludarte despues de tanto tiempo.",
-      "content": "A mi tio Juan Isaac Oregel<div><br></div><div>De Grecia</div><div><br></div><div>Quiero saludarte despues de tanto tiempo.</div><div><br></div>",
+      "excerpt": "A mi tio Juan Isaac Oregel De Grecia Quiero saludarte después de tanto tiempo.",
+      "content": "A mi tio Juan Isaac Oregel<div><br></div><div>De Grecia</div><div><br></div><div>Quiero saludarte después de tanto tiempo.</div>",
       "author_name": "Adeline",
       "is_published": 0,
       "created_at": "2026-11-06T15:54:57.568590",
-      "updated_at": "2026-11-06T16:13:00.986692"
+      "updated_at": "2026-11-06T16:32:07.256745"
     }
   ]
 }
